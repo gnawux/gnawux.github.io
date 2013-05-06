@@ -1,0 +1,87 @@
+--- 
+tags: 
+- strace
+- tools
+- translation
+layout: post
+meta: {}
+
+type: post
+status: publish
+published: true
+title: !binary |
+  W+ivkeaWh11zdHJhY2U657O757uf6LCD55So6Lef6Liq5LiO5L+h5Y+35oql
+  5ZGK5bel5YW3
+
+---
+<p>原文出处：http://linuxgazette.net/148/saha.html   <br />原文作者：<b><a href="http://linuxgazette.net/authors/saha.html">Amit Kumar Saha</a> and <a href="http://linuxgazette.net/authors/ghosh1.html">Sayantini Ghosh</a></b>    <br />翻译时间：2008年3月3日    <br />译者：王旭 &lt;gnawux (at) gmail.com&gt;</p>  <p><i> 译者按：翻译篇文章换换心情，strace 是个有用的工具，LinuxGazette 是个不错的杂志，本文也希望你喜欢。</i></p>  <p>了解一切是怎么运转的是件有趣的事情。所有的C程序员们都知道，在他们的C程序的“输入-处理-输出”周期中用到了很多<a href="http://en.wikipedia.org/wiki/System_call">系统调用 </a>。 看看程序中到底哪些系统调用被用到了无疑是件很让人兴奋的事情。本文就是关于这个话题的，让我们开始吧。</p>  <h5>何为 ’strace’?</h5>  <p><b><a href="http://sourceforge.net/projects/strace/">’strace’</a></b> 是一个用于在运行时跟踪进程调用的系统调用的工具。它同时报告进程收到的<a href="http://www.cs.pitt.edu/%7Ealanjawi/cs449/code/shell/UnixSignals.htm">信号</a>（或软中断） 。</p>  <p>根据手册页，在最简单的情况下，“strace 运行指定的命令直到该命令执行完成。它截获并记录进程调用的系统调用和收到的信号。”</p>  <p>直接在终端中敲入”strace”命令就可以看到它的各个开关和选项：</p>  <pre>$ strace<br />usage: strace [-dffhiqrtttTvVxx] [-a column] [-e expr] ... [-o file]<br />              [-p pid] ... [-s strsize] [-u username] [-E var=val] ...<br />              [command [arg ...]]<br />   or: strace -c [-e expr] ... [-O overhead] [-S sortby] [-E var=val] ...<br />              [command [arg ...]]<br />-c -- count time, calls, and errors for each syscall and report summary<br /><br />[[[etc.]]]</pre>
+
+<h5>跟踪系统调用</h5>
+
+<p>先从一个简单的例子开始。考虑如下C代码（清单1）：</p>
+
+<pre>/* Listing 1*/<br /><br />#include &lt;stdio.h&gt;<br /><br />int main()<br />{<br />return 0;<br />}</pre>
+
+<p>假设编译好的目标文件名为’temp.o’。如下运行：</p>
+
+<pre>$strace ./temp.o</pre>
+
+<p>将会得到如下跟踪结果输出：</p>
+
+<pre>execve(&quot;./temp.o&quot;, [&quot;./temp.o&quot;], [/* 36 vars */]) = 0<br />brk(0)                                  = 0x804a000<br />access(&quot;/etc/ld.so.nohwcap&quot;, F_OK)      = -1 ENOENT (No such file or directory)<br />mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7fba000<br />access(&quot;/etc/ld.so.preload&quot;, R_OK)      = -1 ENOENT (No such file or directory)<br />open(&quot;/etc/ld.so.cache&quot;, O_RDONLY)      = 3<br />fstat64(3, {st_mode=S_IFREG|0644, st_size=68539, ...}) = 0<br />mmap2(NULL, 68539, PROT_READ, MAP_PRIVATE, 3, 0) = 0xb7fa9000<br />close(3)                                = 0<br />access(&quot;/etc/ld.so.nohwcap&quot;, F_OK)      = -1 ENOENT (No such file or directory)<br />open(&quot;/lib/tls/i686/cmov/libc.so.6&quot;, O_RDONLY) = 3<br />read(3, &quot;177ELF111331`100&quot;..., 512) = 512<br />fstat64(3, {st_mode=S_IFREG|0644, st_size=1307104, ...}) = 0<br />mmap2(NULL, 1312164, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0xb7e68000<br />mmap2(0xb7fa3000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x13b) = 0xb7fa3000<br />mmap2(0xb7fa6000, 9636, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xb7fa6000<br />close(3)                                = 0<br />mmap2(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb7e67000<br />set_thread_area({entry_number:-1 -&gt; 6, base_addr:0xb7e676c0, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0<br />mprotect(0xb7fa3000, 4096, PROT_READ)   = 0<br />munmap(0xb7fa9000, 68539)               = 0<br />exit_group(0)                           = ?<br />Process 8909 detached</pre>
+
+<p>现在，我们来理论联系实际一下。</p>
+
+<p>我们知道，当用户输入命令或可执行文件来运行的时候，系统会制造一个“子”Shell，并用这个子Shell来运行程序。这是通过系统调用”execve”来实现的。因此，跟踪结果是以如下内容开始的：</p>
+
+<pre>execve(&quot;./temp.o&quot;, [&quot;./temp.o&quot;], [/* 36 vars */]) = 0</pre>
+
+<p>接下来，进程调用 ‘brk()’, ‘open’,'access’, ‘open’, ‘close’ 知道最终进程从 shell 中分离并使用”exit_group(0)”推出。</p>
+
+<p>如上，跟踪过程显示了系统调用及其返回值。</p>
+
+<h4>strace的信号报告功能</h4>
+
+<p>下面来看一下”strace”的信号报告功能。考虑如下C代码（列表2）：</p>
+
+<pre>/*Listing 2*/<br /><br />#include &lt;stdio.h&gt;<br /><br />int main()<br />{<br />int i;<br /><br />for(i=0;i&gt;=0;i++)<br />        printf(&quot;infinityn&quot;);<br />return 0;<br />}</pre>
+
+<p>假设编译输出的可执行文件为”temp-1.o”。如下运行：</p>
+
+<pre>$ strace -o trace.txt ./temp-1.o</pre>
+
+<p>这里，”-o”开关将把跟踪结果保存到”trace.txt”文件。</p>
+
+<p>这里，你将会看到”write()”系统调用将不停地被调用，现在，用”ctrl-c”来结束这个进程</p>
+
+<pre>[[[...]]]<br /><br />write(1, &quot;tyninfinityninfinityninfinitynin&quot;..., 1024) = 1024<br />write(1, &quot;nityninfinityninfinityninfinityn&quot;..., 1024) = 1024<br />write(1, &quot;finityninfinityninfinityninfinit&quot;..., 1024) = 1024<br />write(1, &quot;infinityninfinityninfinityninfin&quot;..., 1024) = 1024<br />write(1, &quot;yninfinityninfinityninfinityninf&quot;..., 1024) = 1024<br />write(1, &quot;ityninfinityninfinityninfinityni&quot;..., 1024) = 1024<br />write(1, &quot;inityninfinityninfinityninfinity&quot;..., 1024) = 1024<br />write(1, &quot;nfinityninfinityninfinityninfini&quot;..., 1024) = 1024<br />write(1, &quot;ninfinityninfinityninfinityninfi&quot;..., 1024) = 1024<br />write(1, &quot;tyninfinityninfinityninfinitynin&quot;..., 1024) = 1024<br />write(1, &quot;nityninfinityninfinityninfinityn&quot;..., 1024) = 1024<br />write(1, &quot;finityninfinityninfinityninfinit&quot;..., 1024) = 1024<br />write(1, &quot;infinityninfinityninfinityninfin&quot;..., 1024) = 1024<br />write(1, &quot;yninfinityninfinityninfinityninf&quot;..., 1024) = 1024<br /><br />[[[etc.]]]</pre>
+
+<p>现在，查看”trace.txt”</p>
+
+<pre>$cat trace.txt</pre>
+
+<p>其中的最后几行应该是：</p>
+
+<pre>--- SIGINT (Interrupt) @ 0 (0) ---<br />+++ killed by SIGINT +++</pre>
+
+<p>因为我们使用”ctrl-c”结束了进程，于是信号 SIGINT 被发送给进程 ，正如”strace”所输出的一样。</p>
+
+<h5>收集系统调用相关的统计信息</h5>
+
+<p>使用”strace”，还可以对跟踪的系统调用进行一些简单的统计。这通过”-c”开关实现。例如：</p>
+
+<pre>$ strace -o trace-1.txt -c ./temp-1.o # 运行上述可执行程序 'temp-1.o'<br />$ cat trace-1.txt <br /><br />% time     seconds  usecs/call     calls    errors syscall<br />------ ----------- ----------- --------- --------- ----------------<br />100.00    0.007518           0     46702           write<br />  0.00    0.000000           0         1           read<br />  0.00    0.000000           0         2           open<br />  0.00    0.000000           0         2           close<br />  0.00    0.000000           0         1           execve<br />  0.00    0.000000           0         3         3 access<br />  0.00    0.000000           0         1           brk<br />  0.00    0.000000           0         1           munmap<br />  0.00    0.000000           0         1           mprotect<br />  0.00    0.000000           0         7           mmap2<br />  0.00    0.000000           0         3           fstat64<br />  0.00    0.000000           0         1           set_thread_area<br />------ ----------- ----------- --------- --------- ----------------<br />100.00    0.007518                 46725         3 total</pre>
+
+<p>如上，在其他输出信息之外，同时还输出了系统调用的统计信息，”write()”系统调用（一共运行了46702次），花去了进程的绝大部分时间（100%）。</p>
+
+<h5>后记</h5>
+
+<p>本文对”strace”的一些基本功能进行了简单的介绍。这个工具在进行可执行程序的bug寻找、寻找程序崩溃点的时候非常有用。使用 “strace”，可以极大地缩小问题可能发生的范围。</p>
+
+<p>与 <a href="http://sourceware.org/gdb/">‘GNU Debugger’ (gdb)</a> 和 <a href="http://freshmeat.net/projects/ltrace/">‘ltrace’</a>一起，”strace” 为 Linux 程序员提供了强大的调试能力。</p>
+
+<h5>有用链接:</h5>
+
+<ul>
+  <li><a href="http://www.ibm.com/developerworks/aix/library/au-unix-strace.html">Fun with strace and the GDB Debugger</a></li>
+</ul>

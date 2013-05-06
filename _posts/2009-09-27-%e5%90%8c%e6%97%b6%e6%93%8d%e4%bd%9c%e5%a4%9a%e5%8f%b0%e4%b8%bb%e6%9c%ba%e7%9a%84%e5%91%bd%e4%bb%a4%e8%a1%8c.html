@@ -1,0 +1,18 @@
+--- 
+tags: 
+- pdsh
+- scripts
+- sed
+- shell
+- xargs
+layout: post
+meta: {}
+
+type: post
+status: publish
+published: true
+title: !binary |
+  5ZCM5pe25pON5L2c5aSa5Y+w5Li75py655qE5ZG95Luk6KGM
+
+---
+<p>先让命令行亮相一下：</p>  <blockquote>   <p><font face="Courier New">cat conf/slaves| xargs echo |sed -e &quot;s/ /,/g&quot; | \</font></p>    <p><font face="Courier New">sed -e &quot;s/^\(.*\)$/pdsh -f 200 -w \&quot;\1\&quot; \&quot;jps|grep JobShell|cut -f1 -d\' \' |xargs kill -9 \&quot;/&quot; | \</font></p>    <p><font face="Courier New"> /bin/bash </font></p> </blockquote>  <p>第一行主要就是将一行一个的 slave 整成全在一行里，逗号分隔，第一行的 sed 用 tr 也能干。</p>  <p>第二行的用途是整成一个 pdsh 命令行，这是个同时操作多台机器的工具，pdsh –w 后面是节点列表，也就是刚才那个一行的文件列表。后面用引号引起来一群命令行，这些命令行会送到每台计算机去执行，上面这行实际是去杀掉每个节点上的 JobShell Java 进程。最后，第三行里，是把上面合成的命令行交给 shell 执行</p>  <p>这个命令行看起来长，但实际上并不复杂，这里还有一个变形版本</p>  <blockquote>   <p><font face="Courier New">cat conf/slaves| xargs echo |sed -e 's/ /,/g' | \</font></p>    <p><font face="Courier New">sed -e &quot;s/^\(.*\)$/pdsh -f 200 -w \&quot;\1\&quot;        <br />\' for i in <font color="#ff0000">\`seq 2001 2100\`</font>;        <br />do&#160; \/share\/home\/testhdp\/hadoop-0\.19\.2\/bin\/hadoop fs -touchz <font color="#ff0000">\`uname -n\`</font>\.<font color="#ff0000">\$</font>i ;         <br />done \' /&quot; | \</font></p>    <p><font face="Courier New"> /bin/bash</font></p> </blockquote>  <p>中间一行被断成四行写了，实际不应该断行的，这里面的头一部分和上面是一样的，之后的关键实际是怎么把反引号送出去，而不是当场在本机shell被直接变量替换了，实际处理很简单——将命令行放在单引号里，当然，各种引号和 i 前面的 $ 需要反斜线，否则在送到 bash 之前就被当前 shell 给解释了。这样处理后，反引号会被送到每台机器上，由那台机器上的shell来将反引号打开、变量替换也会在远程进行。</p>  <p>嗯，这个命令行长，但是并不很复杂，有兴趣的朋友可以修改并反馈哈。</p>

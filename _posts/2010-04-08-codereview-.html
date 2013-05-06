@@ -1,0 +1,16 @@
+--- 
+tags: []
+
+layout: post
+meta: 
+  _edit_last: "1"
+type: post
+status: draft
+published: false
+title: !binary |
+  Q29kZVJldmlld+e7n+iuoeiEmuacrA==
+
+---
+<code>
+grep -n -R '//\*CR\*' * |sed -ne 's/\([^:]*\)\/\([^.:]\+\.java\):\([0-9]\+\):\(.*\)\/\/\*CR\*\(.*\)$/@line \3 of \2 \n\tin Path: \.\/\1\n\t--&gt; \4\n\t\"Issue: \5/p'
+</code>

@@ -1,0 +1,25 @@
+--- 
+tags: 
+- scripts
+- sed
+- shell
+layout: post
+meta: {}
+
+type: post
+status: publish
+published: true
+title: !binary |
+  5pW055CG5omL5py65Zu+54mH55So55qE5LiA5Liq5om56YeP5pS55ZCN5ZG9
+  5LukKGJhc2gp
+
+---
+<p>一行命令文件改名：</p>  <pre>for f in *.jpg;
+do
+    mv $f \
+    $(echo ${f%.jpg}| sed -e 's/\([0-9]\{2\}\)-\([0-9]\{2\}\)-\([0-9]\{2\}\)_\([0-9]\{4\}\)/20\3-\2-\1_\4/').jpg;
+done</pre>
+
+<p>原来的文件是 日-月-年_时间.jpg，成批改成 年-月-日_时间.jpg</p>
+
+<p>如15-02-08_2303.jpg 就会变成 2008-02-15_2303.jpg</p>

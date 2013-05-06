@@ -1,0 +1,61 @@
+--- 
+tags: 
+- kernel
+- linux
+- lwn
+- security
+- translation
+layout: post
+meta: 
+  _edit_last: "1"
+type: post
+status: publish
+published: true
+title: !binary |
+  W+ivkeaWh10g56m65oyH6ZKI55qE5LmQ6Laj77yIMe+8iQ==
+
+---
+作者：<strong>Jonathan Corbet</strong>
+原文发布日期：July 20, 2009
+来源：<a title="http://lwn.net/Articles/342330/" href="http://lwn.net/Articles/342330/">http://lwn.net/Articles/342330/</a>
+译者：王旭 ( <a href="http://wangxu.me">http://wangxu.me</a> , <a href="http://twitter.com/gnawux">@gnawux</a> )
+翻译时间：2009年9月2-3日
+
+现在，大部分读者都已经知道了 Brad Spengler 发布的“<a href="http://lwn.net/Articles/341773/">the local kernel exploit</a>”（本地内核漏洞利用）。这一漏洞会影响 2.6.30 内核（以及 RHEL5的一个测试版 2.6.18 内核），受到了多方关注。本文将详细分析如何利用这一漏洞，以及让这个漏洞得以成真的令人震惊的一连串错误。
+
+TUN/TAP 驱动提供了一个虚拟的网络设备，它会建立一个隧道；这一驱动在多种场合都有很有用，包括虚拟化、VPN 等很多地方。使用 TUN 时，程序通常打开 <tt>/dev/net/tun</tt>，然后使用 <tt>ioctl()</tt> 调用来建立网络端点。Herbert Xu 近来注意到，缺少对包的审计可能会导致恶意程序能够占用大量的内核内存，并导致系统性能下降。他的解决方案是通过<a href="http://git.kernel.org/?p=linux/kernel/git/torvalds/linux-2.6.git;a=commitdiff;h=33dccbb050bbe35b88ca8cf1228dcf3e4d4b3554">一个补丁</a>给该设备添加一个“伪 socket”，使它可以使用内核的审计机制。问题是解决了，但是，回头看来，它的代价是已入了一个更严重问题。
+
+TUN 设备支持 <tt>poll()</tt> 系统调用。（在 2.6.30 内核中）实现这个功能的函数的开头是这样的：
+<pre>    static unsigned int tun_chr_poll(struct file *file, poll_table * wait)
+    {
+	struct tun_file *tfile = file-&gt;private_data;
+	struct tun_struct *tun = __tun_get(tfile);
+	<span style="text-decoration: underline;">struct sock *sk = tun-&gt;sk;</span>
+	unsigned int mask = 0;
+
+	if (!tun)
+	    return POLLERR;</pre>
+上面有下划线的的那行代码是 Herbert 的补丁中添加的，这正是惹祸的开始。精心编写的内核代码都会小心的避免对指针的解引用，以避免 NULL；事实上，这里只在那个条件语句那里检查了 <tt>tun</tt> 指针。并且，这是件好事；现在看来，如果进行了 configuring <tt>ioctl()</tt> 调用，<tt>tun</tt> 确实将是 NULL。这时，按照预期，本来 <tt>tun_chr_poll()</tt> 应该返回一个错误状态。
+
+但 Herbert 的补丁添加的指针解引用是在检查之前的，这显然是一个 bug。在正常操作中，这个 bug 的影响会比较有限，如果 <tt>tun</tt> 是 NULL 的话，会导致内核 oops。oops 会首先杀掉进行这个系统调用的进程，并将回溯信息加入系统日志，此外就不应该发生什么其他的事情了。最坏情况下，这应该也就是个拒绝服务问题。
+
+依照上述推理，这是一个小问题，虽人 NULL （0）可能确实是个合法的指针地址。缺省的，不论在用户空间还是内核空间，虚拟地址空间的底部（“0页”和它上面的一些页面）都是不允许任何访问的，以用来捕捉空指针错误（如上描述）。不过，使用 <tt>mmap()</tt> 系统调用将真实的内存映射到虚拟地址空间的底部仍然是可能的。这个功能有一些合法的用例，包括运行一些过时的程序。尽管如此，大部分现代的系统都通过使用 <tt>mmap_min_addr</tt> sysctl 设置来禁止映射到0页。
+<blockquote>安全模块检查被认为可以作为内核已经进行了的检查的一个补充，但这次，它并没有如愿工作。</blockquote>
+这一设置应该阻止用户空间的程序区映射零页，这也就保证了空指针的解引用只会导致一次内核的oops。但是，不知何故，如果安全模块机制被配置入内核的话，2.6.30 中的 <tt>mmap()</tt> 的代码会显示地拒绝执行 <tt>mmap_min_addr</tt> 。取而代之的是将这个工作留给特定的安全模块来进行。安全模块的检查工作被认为是内核中已有的检查工作的一个补充，但它此时却并不工作。对于 0 页，安全模块会授权访问，而其他情况下则会拒绝访问。这个错误的最后一步是，Red Hat 的缺省 SELinux policy 允许映射 0 页。这样，运行 SELinux 实际是降低了系统的安全性。
+
+但没有 SELinux 的生活也不是就一马平川了。在没有 SELinux 的时候，攻击行为会被 <tt>mmap_min_addr</tt> 限制，这似乎足够让一切结束了。但这是可以通过使用 <tt>personality()</tt> 系统调用绕过的。打开 SVR4 个性化会在程序被 <tt>exec()</tt> 调用的时候将一个只读页面映射到 0 地址，但只有进程有 CAP_SYS_RAWIO 能力的时候才会这样。所以，需要一个更进一步的欺诈行为：顶级的攻击代码设置 SVR4 更兴华，然后使用 exec 运行有特殊插件的 pulseaudio 服务器。pulseaudio 服务器是 setuid root 的，所以它将会在调用时映射到 0 页面。当调用到插件代码的时候，pulseaudio 将会放弃它的权限，但是，这时 0 页已经对攻击代码可用了，攻击代码可以让 0 页可写，并将其自己的数据放在这里。
+
+上面这些攻击的结果就是，用户空间进程是有可能映射0页而不让 <tt>tun_chr_poll()</tt> 发生内核 oops。不过，你可能会想，攻击者还不能高兴得太早，毕竟接下来 <tt>tun</tt> 就会检查空指针。这正是这一系列错误中的下一个：GCC编译器缺省会优化掉 NULL 的彻底检验。原因在于，因为这个指针已经被解引用过了（而且也什么都没发生），所以它不可能是 NULL。所以，没有理由再去检查它了。于是，尽管这个逻辑本来在大部分情况下都有效，但是在 NULL 是一个合法指针的时候却是错误的。
+
+所以，攻击者这时就能通过一个空 <tt>tun</tt> 指针而成功进入 <tt>tun_chr_poll()</tt> 内部了。接下来需要指出如何利用这种情况控制内核。<tt>tun_chr_poll()</tt> 中后面的下一步代码是这样的：
+<pre>	if (sock_writeable(sk) ||
+	    (!test_and_set_bit(SOCK_ASYNC_NOSPACE, &amp;sk-&gt;sk_socket-&gt;flags) &amp;&amp;
+	     sock_writeable(sk)))
+		mask |= POLLOUT | POLLWRNORM;</pre>
+注意，<tt>sk</tt> 的值来自于 <tt>tun</tt> 的解引用，所以它位于攻击者的控制之下。<tt>SOCK_ASYNC_NOSPACE</tt> 是 0，所以 <tt>test_and_set_bit()</tt> 调用可以用于设置内存中任何字的最低权重位。这是个小小的内存冲突，但这已经被证实是足够的了，在 Brad 展示的攻击代码中，<tt>sk-&gt;sk_socket-&gt;flags</tt> 指针指向了 TUN 驱动的 <tt>file_operations</tt> 结构；特别的，它是指向了 <tt>mmap()</tt> 函数。TUN驱动不支持 <tt>mmap()</tt> 调用，所以这个指针通常应该是 NULL，在 <tt>poll()</tt> 调用之后，它就是 1 了。
+
+攻击代码的最后一步就是调用这个打开的 TUN 设备的文件描述符的 <tt>mmap()</tt> 调用。由于内部的 <tt>mmap()</tt> 已经不是空了（刚刚被我们设置成了 1），内核将会跳到哪里。那个地址已经在攻击代码所映射的0页面中了，所以，它在攻击者的控制之下。于是，攻击代码使用下一个跳转跳到其自己的代码处即可。这样，当内核调用（它以为的）TUN 驱动的 <tt>mmap()</tt> 函数的时候，结果就是任意代码都可以在内核模式下运行；这里，攻击代码获得了完全的控制权。
+
+在一个良好设计的系统中，一个单独的错误很少导致灾难性的故障。而这里就是这样一个例子。很多东西都出错才导致了这个攻击成为可能：安全模块能够不顾系统策略而授权访问地位内存，SELinux 策略允许这些映射，pulseaudio 可以被攻击代码利用从而让这一映射可以被攻击代码使用，空指针在解引用之前未被检验，并且检验被编译器优化掉了，代码以某种方式使用空指针可以获取系统的控制权。这是一条长长的错误链，其中的每一环节都是让这一攻击成功的必要条件。
+
+这个漏洞如今已经被关闭了，不过几乎可以肯定还有类似的问题。本系列的<a href="http://lwn.net/Articles/342420/">下一篇文章</a>将会介绍内核开发者们如何应对这一攻击行为。

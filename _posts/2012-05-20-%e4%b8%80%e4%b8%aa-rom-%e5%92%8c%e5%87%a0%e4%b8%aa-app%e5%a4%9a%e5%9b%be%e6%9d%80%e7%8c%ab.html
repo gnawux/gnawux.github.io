@@ -1,0 +1,83 @@
+--- 
+tags: 
+- android
+- FreeNote
+- galaxy note
+- ics
+- LectureNotes
+- life
+- rom
+- stylus
+- TouchRetouch
+- !binary |
+  5bqU55So
+
+- !binary |
+  5omL5py6
+
+layout: post
+meta: 
+  _edit_last: "1"
+  posturl_add_url: "yes"
+type: post
+status: publish
+published: true
+title: !binary |
+  5LiA5LiqIFJPTSDlkozlh6DkuKogQVBQW+WkmuWbvuadgOeMq10=
+
+---
+前几天，把我的 Galaxy Note 刷到 CyanogenMod 9 (CM9) Nightly build 了，之前没有刷上来过，主要是想尝试一下，而且，这个 ICS 的 kernel 没有三星的 Kernel 的硬砖问题。经过几天试用之后，有一个感觉 —— 纯粹的 CM 给了一个很好的可定制平台，但却没有提供很方便的用户定制工具，其他开发者基于这个来开发更好用的 ROM 应该不错，但它本身似乎还没有什么很容易摆弄的地方。
+
+于是，转来转去，今天发现了一个值得关注的 ROM——<strong> PARANOIDANDROID</strong>，链接在这里：
+<blockquote><a href="http://forum.xda-developers.com/showthread.php?t=1662802" target="_blank">http://forum.xda-developers.com/showthread.php?t=1662802</a></blockquote>
+这个ROM才刚刚发布，就显得很吸引人，由于作者之前成绩不错，我也第一时间刷上了 0.1 来玩。这个 ROM 是基于 CM9 的，从 CM9 过来不需要 wipe，所以很容易就刷上了，它吸引人的地方在于：
+<ul>
+	<li>Tablet 模式与 Phone 模式的混合体——系统以 Tablet 模式为主，但可以为每个程序指定 DPI</li>
+</ul>
+是这样的，对于 CM9/AOSP 的 GN Rom 来说，DPI 决定了是平板还是手机，（大约）216 以下是平板，以上是手机，得益于高分辨率 Super HD AMOLED 屏，Galaxy Note 的实际 DPI 值是 320。平板模式时，因为把 DPI 值设得很低，字和按钮都会很小，有些应用字都看不清了（其他一些变小倒是很好看），而且，平板模式下，很多 Launcher，比如 Apex，都没有 dock，布置的桌面也不好看；一般切换平板和手机模式需要重启，很不方便，而且对Market还有些影响。总的说，一般的 ROM 的平板模式都是好看，但很难日常用的。
+
+但是这个ROM是平板模式和手机模式结合起来的，Launcher 是修改过的 Trebuchet，用起来和手机模式很接近，很方便，更重要的是，每个应用可以指定自己的 DPI，需要有很多字的就指定高分辨率，比如，短信、电话…… 都可以设成 220，字更多的，看书应用、Facebook，可以设到真实值 320，而缺省值是 192，使用平板模式，很漂亮。后面以图为主了。介绍下这个 ROM 和这几天玩/买的有意思的 App（推荐：LectureNotes, FreeNote, Touch Retouch）。
+
+开始推荐之前插一句，可调分辨率对某些程序是有问题的，这些程序可能对DPI处理不好，但是要插入到别的程序里面显示的程序（输入法、widget），墨迹天气的 widget 根本就无法显示，只好用 Go Weather，百度输入法插到DPI不同的程序里，或是自己设不同的DPI，就时而空出一大块，时而显示不全，只好用Google拼音输入法，不过所幸都有得替代，也没有其他应用有问题。嗯，下面正式开始：
+<h2>总体观感与Google Apps</h2>
+先来两张总体感觉：
+
+<a href="http://wangxu.me/blog/wp-content/uploads/2012/05/Screenshot_2012-05-20-14-12-34.png"><img class="size-medium wp-image-692" title="Screenshot_2012-05-20-14-12-34" src="http://wangxu.me/blog/wp-content/uploads/2012/05/Screenshot_2012-05-20-14-12-34-187x300.png" alt="" width="187" height="300" /></a> <a href="http://wangxu.me/blog/wp-content/uploads/2012/05/Screenshot_2012-05-20-13-04-13.png"><img class="size-medium wp-image-693" title="Screenshot_2012-05-20-13-04-13" src="http://wangxu.me/blog/wp-content/uploads/2012/05/Screenshot_2012-05-20-13-04-13-187x300.png" alt="" width="187" height="300" /></a>
+
+还算舒服吧，嗯，那个画图的widget，帆船画得不好看是我的责任哈。再来看看设置界面——
+
+<a href="http://wangxu.me/blog/wp-content/uploads/2012/05/Screenshot_2012-05-20-14-25-27.png"><img class="size-medium wp-image-695" title="Screenshot_2012-05-20-14-25-27" src="http://wangxu.me/blog/wp-content/uploads/2012/05/Screenshot_2012-05-20-14-25-27-187x300.png" alt="" width="187" height="300" /></a> <a href="http://wangxu.me/blog/wp-content/uploads/2012/05/Screenshot_2012-05-20-14-23-40.png"><img class="alignnone size-medium wp-image-696" title="Screenshot_2012-05-20-14-23-40" src="http://wangxu.me/blog/wp-content/uploads/2012/05/Screenshot_2012-05-20-14-23-40-187x300.png" alt="" width="187" height="300" /></a>
+
+可以看到咱们的新鲜出炉的 ROM 版本和 kernel build 的时间，以及为每个程序设置 DPI 值的界面。下面看看 GMail 和 Market，给两张横屏的视图：
+
+<a href="http://wangxu.me/blog/wp-content/uploads/2012/05/Screenshot_2012-05-20-13-05-54.png"><img class="alignnone size-medium wp-image-698" title="Screenshot_2012-05-20-13-05-54" src="http://wangxu.me/blog/wp-content/uploads/2012/05/Screenshot_2012-05-20-13-05-54-300x187.png" alt="" width="300" height="187" /></a>
+
+<a href="http://wangxu.me/blog/wp-content/uploads/2012/05/Screenshot_2012-05-20-14-19-46.png"><img class="alignnone size-medium wp-image-699" title="Screenshot_2012-05-20-14-19-46" src="http://wangxu.me/blog/wp-content/uploads/2012/05/Screenshot_2012-05-20-14-19-46-300x187.png" alt="" width="300" height="187" /></a>
+
+接下来来几个好玩的 APP：
+<h2>Lecture Notes</h2>
+$3.84 收的，嗯，很适合随意写写画画，随便记笔记，没什么限制。支持电磁笔（看stylus配置），而且支持笔上的按钮，用笔画的时候，可以按下按钮，就变成橡皮擦了。可以用小刀工具，选定一块，复制到别的地方，或是移动到别的地方，非常好用。而且可以设置为只有笔能写上，手指写不上，这样可以手指控制缩放移动、笔写字画画，很方便。
+
+<a href="http://wangxu.me/blog/wp-content/uploads/2012/05/Screenshot_2012-05-20-13-11-39.png"><img class="alignnone size-medium wp-image-700" title="Screenshot_2012-05-20-13-11-39" src="http://wangxu.me/blog/wp-content/uploads/2012/05/Screenshot_2012-05-20-13-11-39-187x300.png" alt="" width="187" height="300" /></a>  <a href="http://wangxu.me/blog/wp-content/uploads/2012/05/Screenshot_2012-05-20-13-12-09.png"><img class="alignnone size-medium wp-image-701" title="Screenshot_2012-05-20-13-12-09" src="http://wangxu.me/blog/wp-content/uploads/2012/05/Screenshot_2012-05-20-13-12-09-187x300.png" alt="" width="187" height="300" /></a>
+<h2>FreeNote</h2>
+这个是免费的，收费版叫 FreeNote+，$5.99，但免费版已经很好用了。虽然名字叫Free，但用法没有Lecture Notes 那么 Free，有一个功能是画画，上面那个主屏的帆船就是这么画出来的，但更主要的功能是手写输入，又一个基线，写在里面就可以输入进去，然后还可以弄出来画重点啥的，功能也非常强大，界面我还是更喜欢一些 Lecture Notes。同样支持电磁笔，可以只有笔写入，手指不写
+
+<a href="http://wangxu.me/blog/wp-content/uploads/2012/05/Screenshot_2012-05-20-13-19-18.png"><img class="alignnone size-medium wp-image-702" title="Screenshot_2012-05-20-13-19-18" src="http://wangxu.me/blog/wp-content/uploads/2012/05/Screenshot_2012-05-20-13-19-18-187x300.png" alt="" width="187" height="300" /></a>  <a href="http://wangxu.me/blog/wp-content/uploads/2012/05/Screenshot_2012-05-20-13-18-20.png"><img class="alignnone size-medium wp-image-703" title="Screenshot_2012-05-20-13-18-20" src="http://wangxu.me/blog/wp-content/uploads/2012/05/Screenshot_2012-05-20-13-18-20-187x300.png" alt="" width="187" height="300" /></a>
+<h2>Touch Retouch</h2>
+这不是一个笔记工具，而是一个修图工具，给张对比图哈
+
+<a href="http://wangxu.me/blog/wp-content/uploads/2012/05/2012-05-18-09.19.17.jpg"><img class="alignnone size-medium wp-image-704" title="2012-05-18 09.19.17" src="http://wangxu.me/blog/wp-content/uploads/2012/05/2012-05-18-09.19.17-300x225.jpg" alt="" width="300" height="225" /></a>
+
+<a href="http://wangxu.me/blog/wp-content/uploads/2012/05/IMG_20120518_091918x.jpg"><img class="alignnone size-medium wp-image-705" title="IMG_20120518_091918x" src="http://wangxu.me/blog/wp-content/uploads/2012/05/IMG_20120518_091918x-300x225.jpg" alt="" width="300" height="225" /></a>
+
+看到左侧的鼠标垫了没，用 Touch Retouch 只要用笔把小修掉的地方涂上，然后“start”，就消失了，超好玩，这个应用 $0.99，买来玩玩挺好哈 :)
+<h2>Evernote/Sketch</h2>
+都提到笔记了，不能不说大名鼎鼎的 Evernote 和它收购的 Sketch，嗯，Sketch 也可以写写画画：
+
+<a href="http://wangxu.me/blog/wp-content/uploads/2012/05/Screenshot_2012-05-20-13-16-23.png"><img class="alignnone size-medium wp-image-706" title="Screenshot_2012-05-20-13-16-23" src="http://wangxu.me/blog/wp-content/uploads/2012/05/Screenshot_2012-05-20-13-16-23-187x300.png" alt="" width="187" height="300" /></a>  <a href="http://wangxu.me/blog/wp-content/uploads/2012/05/Screenshot_2012-05-20-13-17-20.png"><img class="alignnone size-medium wp-image-707" title="Screenshot_2012-05-20-13-17-20" src="http://wangxu.me/blog/wp-content/uploads/2012/05/Screenshot_2012-05-20-13-17-20-187x300.png" alt="" width="187" height="300" /></a>
+
+但是，Sketch 似乎没有对笔的优化，而且，放在 Evernote 里也只是附件，还是留着用来勾照片吧。不过 Sketch 有个好处，会对画上的线条自动进行平滑，会更“好看”一点。
+<h2>Papyrus 和 FlipaClip</h2>
+这两个看起来很好玩，一个写起来特别舒服，一个写写画画自动生成动画，可惜了，在我的 ICS Rom 上全跑步起来，嗯，CM9, AOSP, Stock 都跑不起来，遗憾啊，这里就不贴图了。
+
+&nbsp;

@@ -1,0 +1,211 @@
+--- 
+tags: 
+- networking
+- translation
+- virtualization
+- xen
+layout: post
+meta: {}
+
+type: post
+status: publish
+published: true
+title: !binary |
+  WGVuIOe7hOe9kQ==
+
+---
+XenWiki 之 XenNetworking 译文版  <br />王旭 译  <p>[译注：这是一篇 wiki 文章，由多人多次编辑完成，其中难免有些不协调的痕迹，但内容非常详实，很有帮助，译文保持了原文的状态，较少添加译注。]</p>  <h4>目录</h4>  <ol>   <li>虚拟以太网接口</li>    <li>MAC地址</li>    <li>桥接     <ol>       <li>桥接中的包流向</li>        <li>network-bridge_脚本</li>        <li>vif-bridge_脚本</li>        <li>补充说明</li>        <li>相关链接</li>     </ol>   </li>    <li>路由     <ol>       <li>network-route脚本</li>        <li>vif-route脚本</li>     </ol>   </li>    <li>虚拟网络     <ol>       <li>相关链接</li>     </ol>   </li>    <li>接口命名</li>    <li>VLAN</li> </ol>  <h4><a name="虚拟以太网接口"></a>虚拟以太网接口</h4>  <p>&#160;&#160;&#160;&#160; 缺省情况下，Xen 为 dom0 创建7对&quot;对接的虚拟以太网接口&quot;。就是使用交叉线对连的以太网口。veth0 连接到 vif0.0，veth1 连接到 vif0.1 等等，知道 veth7 连接到 vif0.7。你可以在 veth# 端配置 IP 和 MAC 地址，而另一端，vif0.# 被加入到了一个网桥之中。</p>  <p>&#160;&#160;&#160;&#160; 每当建立一个 domU 实例的时候，就会分配一个新的域 ID。很遗憾，这个号码不能选择的。第一个 domU 的 id就是 1，第二个就是 2，即使第一个已经关机了也不会重新使用它的 id。</p>  <p>&#160;&#160;&#160;&#160; 对于每个新的 domU，Xen 就会为它新建一对“对接的以太网口”，一端在 domU 里面，而另一端在 dom0 里面。对于 Linux 的 domU，这个设备一般会被命名为 eth0。这个虚拟以太网接口对在 dom0 之中的另一端称为 vif&lt;id#&gt;.0。举个例子，domU 5 的 eth0 连接到 vif5.0。如果为一个 DomU 建立多个网口，也就是 eth0, eth1....那么，在 dom0 之中对应的便是 vif&lt;id#&gt;.0, vif&lt;id#&gt;.1...</p>  <p>&#160;&#160;&#160;&#160; 当 domU 关机的时候，对应的虚拟以太网接口也会被删除。</p>  <h4><a name="MAC地址"></a>MAC地址</h4>  <p>虚拟以太网接口也具有以太网的 MAC 地址，缺省情况下，xend 会随机分配地址，这样，同一个 domain 的不同实例会具有不同的地址。如果你需要让一个 domain 具有固定的 MAC 地址（比如用于 DHCP），那么可以在 vif 配置中使用 &quot;mac=&quot; 选项（如 vif= ['mac=aa:00:00:00:00:11']）。</p>  <p>在选择要使用的 MAC 地址的时候，要确保你使用的是一个单播地址。也就是说第一个字节的最地位应该是0。比如，一个 aa 开头的地址是正确的，而 ab 是不正确的。最好将地址标明是“本地分配的” (而不是全局性地分配给硬件厂商的)。这样，要让第一个字节的次低位是 1。比如 aa 是正确的，而 a8 就不是。</p>  <p>总之，一个地址应该是这样的形式</p>  <pre>XY:XX:XX:XX:XX:XX<br /></pre>
+
+<p>其中 X 是任意 16 进制数，而 Y 则是 2、6、A、E 之一。</p>
+
+<p>另外，建议使用 00:16:3e:xx:xx:xx 区段的 MAC 地址。这段地址是为 Xen 保留的。</p>
+
+<h4><a name="桥接"></a>桥接</h4>
+依照缺省的 Xen 配置，会在 dom0 中进行桥接来允许所有的域像独立的主机那样出现在网络上。如果在 dom0 中大量使用了 iptables （比如构筑防火墙），那么就可能影响桥接，因为桥接的包会通过 PREROUTING, FORWARD 和 POSTROUTING 三条 iptables 链。也就是说，从客户域桥接到外面的包需要通过这三条链。最常出现问题的可能是 FORWARD 链被配置为拒绝包或丢包 （这与在内核中的 IP forwarding 不同）。
+
+<p>iptables FORWARDING 可以设为禁止转发所有包，这样就禁止了 dom0 作为一个路由器的能力：echo 0 &gt; /proc/sys/net/ipv4/ip_forward。</p>
+
+<p>更安全一点的手段是允许在外部物理接口与 vif 们之间转发包。例如，一个只有一块以太网卡的计算机可以这么设置：</p>
+
+<pre>iptables -A FORWARD -m physdev --physdev-in eth0 --physdev-out '!' eth0  -j ACCEPT<br />iptables -A FORWARD -m physdev --physdev-out eth0 --physdev-in '!' eth0  -j ACCEPT<br /></pre>
+
+<p>（这里需要 ipt_physdev [就是 xt-physdev] 模块可用）。</p>
+
+<p>ebtables 项目有<a href="http://ebtables.sourceforge.net/br_fw_ia/br_fw_ia.html">一篇关于桥接与 iptables 互动的有趣文档</a>。</p>
+
+<h5><a name="桥接中的包流向"></a>桥接中的包流向(<a href="http://lists.xensource.com/archives/html/xen-users/2006-02/msg00586.html">By Ernst Bachman</a>)</h5>
+当包到达硬件的时候，由 dom0 中的以太网驱动来归口处理，并出现在了 peth0 上面。peth0 被绑定在网桥上，所以，包被送到网桥上来。这一步在以太网层（第二层）运行，peth0 或网桥没有配置 IP 地址。
+
+<p>现在，网桥将分发来包，正像一个交换机那样。在这一阶段的过滤可以由 <a href="http://ebtables.sourceforge.net/">ebtables</a> 之类的工具进行。</p>
+
+<p>接下来，因为有一组 vifX.Y 连接到网桥上，它将会根据 MAC 决定把哪些包放到哪个接收端上。</p>
+
+<p>vif接口会把包交给 Xen，由它把包送给 vif 对应的端口（dom0中也是同样进行的，这时走的是 vif0.0-&gt;(v)eth0 这对接口）。</p>
+
+<p>最终，dom0/domU 中的目标设备是有 IP 地址的，你可以对它们使用 iptables 进行过滤。</p>
+
+<h5><a name="network-bridge_脚本"></a>network-bridge 脚本</h5>
+当 xend 启动的时候，它会运行 network-bridge 脚本，这个脚本会
+
+<ol>
+  <li>建立一个称为 xenbr0 的网桥 </li>
+
+  <li>关闭真正的以太网接口 eth0</li>
+
+  <li>将 eth0 的 IP 和 MAC 地址拷贝给虚拟以太网接口 veth0</li>
+
+  <li>将真实的接口 eth0 重命名为 peth0 </li>
+
+  <li>将虚拟以太网接口 veth0 重命名为 eth0</li>
+
+  <li>将 peth0 和 vif0.0 连接到网桥 xenbr0</li>
+
+  <li>将网桥、peth0、eth0 和 vif0.0 都激活</li>
+</ol>
+将物理以太网接口和 dom0 的接口分开是个有益的设计，比如，这样你就可以为 dom0 配置防火墙而不会影响&#160; domU 们（仅仅保护 dom0 自己）。
+
+<h5><a name="vif-bridge_脚本"></a>vif-bridge 脚本</h5>
+当一个 domU 启动的时候，dom0 中运行的 xend 会运行 vif-bridge 脚本，这个脚本会：
+
+<ol>
+  <li>将 vif&lt;id#&gt;.0 连接到 xenbr0 </li>
+
+  <li>激活 vif&lt;id#&gt;.0</li>
+</ol>
+
+<h5><a name="补充说明"></a>补充说明</h5>
+
+<ul>
+  <li>你可以在 xend-config.sxp 文件中改用如下配置，并重启 xend 来修改网桥 xenbr0 的名字：
+    <pre>(network-script 'network-bridge bridge=mybridge')<br /></pre>
+  </li>
+
+  <li>当然要记得在 domU 的配置文件中修改要连接到的网桥的名字：
+    <pre>vif=[ 'bridge=mybridge' ]<br /></pre>
+或者是这样的配置：
+
+    <pre>vif=[ 'mac=00:16:3e:01:01:01,bridge=mybridge' ]<br /></pre>
+  </li>
+
+  <li>也可以创建多个网络接口，并连接到不同的网桥之上：
+    <pre>vif=[ 'mac=00:16:3e:70:01:01,bridge=br0', 'mac=00:16:3e:70:02:01,bridge=br1' ]<br /></pre>
+  </li>
+
+  <li>
+    <p>如果你希望有多个网桥，必须自己手工建立他们，可以是手工，也可以是通过启动脚本建立，或者是修改 network-bridge 脚本。比如</p>
+
+    <pre>$ cd /etc/xen/scripts<br />$ cp network-bridge network-custom<br />$ cp vif-bridge vif-custom<br />$ vi /etc/xen/xend-config.sxp<br />        (network-script network-custom)<br />        (vif-script vif-custom)<br />$ vi network-custom<br />        # whatever you want<br /></pre>
+  </li>
+
+  <li>在将物理接口连接到网桥之前，记得重置它的 mac 地址并关闭 arp。比如：
+    <pre># ip link set eth1 down<br /># ip link set eth1 mac fe:ff:ff:ff:ff:ff arp off<br /># brctl addif br1 eth1<br /># ip link set eth1 up<br /></pre>
+  </li>
+
+  <li>
+    <p>对于 Xen 3.0，添加网桥的最佳途径是使用一个略加修改的 Xen 缺省配置脚本。按照 <a href="http://bugzilla.xensource.com/bugzilla/show_bug.cgi?id=332">XenBug #332</a> 所述。例如，对一个连着 eth0 和 eth1 两个网桥的配置，可以建立这样一个 /etc/xen/scripts/my-network-script：</p>
+
+    <pre>#!/bin/sh<br />dir=$(dirname &quot;$0&quot;)<br />&quot;$dir/network-bridge&quot; &quot;$@&quot; vifnum=0<br />&quot;$dir/network-bridge&quot; &quot;$@&quot; vifnum=1<br /></pre>
+
+    <ul>
+      <li>（steve_from_moreover 的附加说明——可能是显而易见的，但一定要记住，让 /etc/xen/scripts/my-network-script 的访问权限为 755，否则重启之后你会发现它仍旧保持沉默而没有运行）。</li>
+
+      <li>至少对于 SuSE Linux，每个接口都需要配置 /etc/sysconfig/network 之下的 ifcfg 脚本。否则 network-bridge 将会创建没有人何接口连接于其上的网桥。</li>
+
+      <li>修改脚本后不要忘记修改 /etc/xen/xend-config.sxp 中的网络配置为 (network-script my-network-script)。</li>
+
+      <li>同样的源里可以用于没有物理以太网卡的环境中。可以使用 dummy 接口：
+        <pre>&quot;$dir/network-bridge&quot; &quot;$@&quot; vifnum=2 netdev=dummy0<br /></pre>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h5><a name="相关链接"></a>相关链接</h5>
+邮件列表中一些相关话题的讨论：
+
+<ul>
+  <li>
+    <p>eth0 IP in dom0 <a href="http://lists.xensource.com/archives/html/xen-devel/2005-01/msg00425.html">2005/01/14</a></p>
+  </li>
+
+  <li>
+    <p>Bridging vs. Routing <a href="http://lists.xensource.com/archives/html/xen-devel/2005-01/msg00368.html">2005/01/13</a></p>
+  </li>
+
+  <li>
+    <p>Bridging vs. Routing <a href="http://lists.xensource.com/archives/html/xen-devel/2004-07/msg00223.html">2004/07/18</a></p>
+  </li>
+
+  <li>
+    <p>An attempt to explain Xen networking <a href="http://lists.xensource.com/archives/html/xen-users/2006-02/msg00030.html">2006-02-01</a></p>
+  </li>
+
+  <li>
+    <p><a href="http://lists.xensource.com/archives/html/xen-users/2006-02/msg00602.html">Firewall in domU with bridging</a></p>
+  </li>
+
+  <li>
+    <p><a href="http://www.shorewall.net/Xen.html">Xen and Shorewall</a> (with bridging)</p>
+  </li>
+
+  <li>
+    <p><a href="http://www1.shorewall.net/XenMyWay.html">Xen and the Art of Consolidation</a> (with bridging)</p>
+  </li>
+
+  <li>
+    <p><a href="http://lists.xensource.com/archives/html/xen-users/2006-03/msg00109.html">Another way for making multiple Xen bridges</a></p>
+  </li>
+</ul>
+
+<h4><a name="路由"></a>路由</h4>
+本节仅当你选用了 network-route 和 vif-route 而不是 network-bridge 和 vif-bridge 时有意义。
+
+<br />通过路由，在 dom0 和 domU 之间建立点对点连接。到每个 domU 的路由会添加到 dom0 的路由表当中，这里 domU 必须有一个确定的（固定）IP。DHCP 无法工作，因为无法创建路由，DHCP offer 也就无法送到 domU。
+
+<h5><a name="network-route脚本"></a>network-route脚本</h5>
+当 xend 启动的时候，它会运行 network-route 脚本，进行如下工作：
+
+<ol>
+  <li>打开 dom0 的 ip forwarding</li>
+</ol>
+
+<h5><a name="vif-route脚本"></a>vif-route脚本</h5>
+当 domU 启动的时候，xend（在 dom0 之中）运行 vif-route 脚本，进行如下工作：
+
+<ol>
+  <li>将 eth0 的 ip 地址拷贝到 vif&lt;id#&gt;.0</li>
+
+  <li>激活 vif&lt;id#&gt;.0</li>
+
+  <li>为 domU 的配置文件中给出的 domU 的 IP 地址增加一个主机固定路由，指向 vif&lt;id#&gt;.0 接口。</li>
+</ol>
+
+<h4><a name="虚拟网络"></a>虚拟网络</h4>
+目前虚拟网络是一种非标准配置。
+
+<br />虚拟网络配置将所有 domU 放在 dom0 的一个虚拟网络中。这样允许 domU 使用 dom0 提供的 DHCP 服务器，不允许 domU 的 DHCP 请求出到物理网络之中。（据我所知，vif0.0 和 dummy0 都不是必须的。）
+
+<h5><a name="相关链接(虚拟网络)"></a>相关链接</h5>
+
+<ul>
+  <li>
+    <p>Sapphirecat 的虚拟网络和 DHCP 设置： <a href="http://www.sapphirepaw.org/pawprints/index.php?/archives/127-Xen-part-II.html">http://www.sapphirepaw.org/pawprints/index.php?/archives/127-Xen-part-II.html</a></p>
+  </li>
+
+  <li>
+    <p>另一个虚拟网络的设置：<a href="http://en.opensuse.org/Xen3_and_a_Virtual_Network">http://en.opensuse.org/Xen3_and_a_Virtual_Network</a></p>
+  </li>
+</ul>
+
+<h4><a name="接口命名"></a>接口命名</h4>
+Xen 系统的缺省配置是使用桥接。当 xend 启动的时候，它会建立一个称为 xenbr0 的网桥。xend 将会把 eth0 的 ip 地址之类的分配到 xenbr0 (作为 dom0 连接到网桥上的接口的名称)。所以，现在 dom0 的对外的接口已经是 xenbr0 了，注意防火墙之类的配置要指向它。（译注：新版本 xen 中，或说译者使用的版本中，这个接口被重命名成了 eth0，而物理的 eth0 早被重命名成了 peth0 了。）
+
+<h4><a name="VLAN"></a>VLAN</h4>
+如果将 802.1Q VLAN 支持配置到 dom0 当中来，Xen 可以支持多标签 VLAN。每个需要的 VLAN 都需要 dom0 中的一个本地接口，虽然不一定需要一个 IP 地址。每个 VLAN 都可以配置一个网桥，客户 OS 可以连接到合适的网桥。
+
+<p><a href="http://wiki.xensource.com/xenwiki/JamesBulpin">JamesBulpin</a> 倾向于将网桥定以为一个不自动激活的接口（比如，在 Debian 的 /etc/network/interfaces 中，不使用 &quot;auto&quot; 选项）</p>
+
+<pre>iface xen-br293 inet manual<br />    up vconfig add eth0 293<br />    up /etc/xen/scripts/network start netdev=eth0.293 bridge=xen-br293 antispoof=no<br />    up /sbin/ifconfig eth0.293 up<br />    down /etc/xen/scripts/network stop netdev=eth0.293 bridge=xen-br293 antispoof=no<br />    down vconfig rem eth0.293<br /></pre>
+之后，可以添加一个 init.d 脚本在 xend 和 xendomains 之间启动这个接口。
+
+<p>XenNetworking (<a href="http://wiki.xensource.com/xenwiki/PhilipGarrett">PhilipGarrett</a> 于 2008-07-06 18:49:56 最后一次编辑本文)</p>

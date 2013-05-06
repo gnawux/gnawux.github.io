@@ -1,0 +1,61 @@
+--- 
+tags: 
+- expect
+- expect_out
+- exp_continue
+- full_buffer
+- scripts
+- tcl
+layout: post
+meta: 
+  _edit_last: "1"
+  posturl_add_url: "yes"
+type: post
+status: publish
+published: true
+title: !binary |
+  5LiA54K5ZXhwZWN05b+D5b6X
+
+---
+最近用了几下 expect,  记几个心得，以备不时之需
+<h2>循环式匹配: exp_continue</h2>
+expect 的匹配可以看做是一个循环，通常匹配之后都会退出语句，但如果有 exp_continue 则可以不断循环匹配，输入多条命令
+<pre class="brush: bash; gutter: true">expect{
+    &quot;$passprompt&quot;    { send &quot;$password&quot;; exp_continue }
+    &quot;$prompt&quot; {send &quot;$c\r&quot;}
+}</pre>
+在这个例子里，遇到密码提示的时候，送出密码，然后继续 expect，遇到命令提示，送出命令，然后退出 expect，当然，可以做得更复杂，一条一条送命令，送没了再退出。这样，expect 的结构会比较漂亮，而且容易扩展。
+<h2>正则匹配: -re</h2>
+作为一种 tcl 的分支，expect 支持 tcl 的正则表达式，正则表达式这里就不多说了，正则匹配的一个重要用途是，对多个匹配关键字进行相同的操作，比如
+<pre class="brush: bash; gutter: true">expect {
+    -re &quot;$prompt|$rootprompt&quot; { send &quot;$c\r&quot; }
+}</pre>
+这里是对普通用户的提示和root用户的提示进行同样的操作。
+<h2>利用PS1环境变量</h2>
+在 expect 里，根据程序的返回状态做操作不是件容易事，很多做法都不是十分干净，我的一个方法是，根据 $? 的值设置 PS1 环境变量，这样，下一次出现的 Shell 提示就不是之前的提示了，只要特别 expect 这个提示，进行操作就行了。
+
+嗯，这算是个野路子，不正规哈，欢迎指正。
+<h2>抓取远程的输出到本地：expect_out 和 full_buffer</h2>
+我们经常需要抓取远程的输出，这时，可以借助 expect_out 来抓取两次 expect 之间的内容，它有两个用法：
+<ul>
+	<li>expect_out(buffer) 这个直接抓取两次 expect 之间的全部 buffer</li>
+	<li>expect_out(1,buffer) 这个抓取正则匹配的部分</li>
+</ul>
+后者这里不多说了，前者有个问题，就是当两条命令之间输出很多时，可能 buffer 会满，在这种情况下，expect_out(buffer) 不是全部的 buffer 内容，而是最后的，这时要靠 full_buffer 帮助了，这里举个例子
+<pre class="brush: bash; gutter: true">set result &quot;&quot;
+expect {
+    &quot;$prompt&quot; {
+        append result $expect_out(buffer)
+        puts stderr $result
+        set result &quot;&quot;
+        send &quot;$newcmd&quot;
+        exp_continue 
+    }
+    full_buffer {
+        append result $expect_out(buffer)
+        exp_continue
+    }
+}</pre>
+这时个示例，注意 full_buffer 是特殊匹配事件，类似 timeout，不是字符串。
+
+嗯，暂时记这些吧。

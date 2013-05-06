@@ -1,0 +1,69 @@
+--- 
+tags: 
+- code
+- cscope
+- silentbob
+- tools
+- translation
+layout: post
+meta: {}
+
+type: post
+status: publish
+published: true
+title: !binary |
+  W+ivkeaWh10g5L2/55SoIENzY29wZSDlkowgU2lsZW50Qm9iIOWIhuaekOa6
+  kOS7o+eggQ==
+
+---
+<p><b>Title </b>Using Cscope and SilentBob to analyze source code    <br /><b>Date </b>2007.03.09 4:01    <br /><b>Author </b>StoneLion</p>  <p>http://programming.linux.com/article.pl?sid=07/03/05/1715201</p>  <p>当你开始研究一个不熟悉的项目的源代码的时候，对源代码的结构、函数和类的名称的含义等都不甚了解。这时，虽然我们可以使用 tags 来查看他们的定义，但是却很难通过一个一个看这些定义来得到全句的信息。Cscope 和 SilentBob 就是两个可以帮助我们分析不熟悉的源代码的工具。他们可以帮助你查找符号的定义，判断某个函数在哪里被调用了，发现某个给定的函数调用了哪些其他函数，以及在源代码中进行字符串模式匹配。使用这两个工具，你可以通过高速、有目的性的阅读代码来节省大量的时间，而不需要去手工 grep 所有代码文件。</p>  <h3><b>使用 Cscope</b></h3>  <p>Cscope 是一个非常流行的实用工具，大部分现代发行版都包含它。虽然 Cscope 最初被设计用来分析 C 代码，不过实际上，它在分析其他语言，诸如 C++ 和 Java 的时候同样好用。Cscope 拥有一个基于 ncurses 的界面，不过，它同样支持命令行模式，以便和其他前端程序一同工作，这些前端包含很多主流编辑器，如 Emacs 和 Vim。</p>  <p>当你调用 Cscope 的时候，它自动扫描当前目录之中的源文件，并把收集到的信息存储在一个内部数据库里面。如果需要递归扫描子目录，可以使用 -R 开关。如果你不需要 Cscope 的界面，只想从其它程序里查询其数据库，可以使用 -b 参数。如果你需要在一个大型或系统相关项目中使用，可以通过参考链接中的指南来查询一些优化参数，以提高速度。</p>  <p>缺省情况下，生成数据库之后，前端界面会自动启动 (可以使用 -d 参数告知 Cscope 使用已经生成的数据库，而不是重新生成一个)。这事一个两个面板的界面；在下面的面板中输入你希望查询的内容，结果会在上面的面板中显示出来。你可以使用 Tab 键在面板间切换，退出程序的快捷键是 Ctrl-D</p>  <p>在下面的面版上，可以使用方向键切换不同的查找域。使用这个面板，你可以:</p>  <ul>   <li>查找某特定符号的出现位置； </li>    <li>查找全局定义 (如果找到的话，自动打开编辑器) </li>    <li>查找特定函数调用过的函数 </li>    <li>查找调用某个特定函数的函数 </li>    <li>查找文本字符串 </li>    <li>替换字符串 </li>    <li>查找一个 egrep 正则表达式 </li>    <li>在编辑器里打开一个特定文件 </li>    <li>查找 #include 了某个文件的文件</li> </ul>  <p>每当你进行一次查询，Cscope 会把查找结果进行编号，和文件名、函数名 (如果有的话)、行号以及代码行本身一起显示出来。如果使用方向键选择了一个查询结果并敲回车或是直接敲对应的数字键，Cscope 会启动系统缺省的编辑器 (由 EDITOR 环境变量确定) 打开该文件，并把光标定位到该行 (某些编辑器可能不支持定位到行，不过至少 Emacs 和 Vim 没有问题)。</p>  <h4><b>使用 (X)Emacs 作为前端</b></h4>  <p>在 Emacs 中使用 Cscope 非常容易。如果你没有运行着 cscope 开头的程序，而 Emacs 中已经有 Cscope 菜单了，你可以通过安装 xcscope.el 在 Emacs 中集成 Cscope。xcscope.el 可以在 Cscope 源码包中的&#160; contrib/xcscope 子目录中得到。安装的方法是把 cscope-indexer 脚本放到 $PATH 中的路径之中，并把 xcscope.el 放到 Emacs 的脚本路径 (路径相关帮助可以在 Emacs 里面运行 ``C-h v load-path`` 来查询 load-path 相关说明)。先在，把 (require 'xcscope') 这行放到 ~/.emace 或 ~/emacs.d/init.el 当中就可以了。xcscope.el 文件的开头部分的注释可以作为文档。</p>  <p>这个包把所有 Cscope 的查找命令添加导了 Emacs 菜单中的 Cscope 子菜单当中，并且可以在你编辑文件的时候使用快捷键调用。比如，如果你想查找一个符号，可以直接在菜单中选择 Cscope -&gt; Symbol 或是输入 M-x cscope-find-this-symbol，或按快捷键 C-c s s，之后输入符号的名字 (如果什么都不输入，就使用光标下的名字)。搜索的结果会显示在 *cscope* buffer 之中, 按照文件名分组，并以 &lt;函数名&gt;[行号] &lt;整行内容&gt; 的形式显示。把光标移动到想查看的搜索结果上，按空格键，将会在另一个 buffer 中打开该文件，并定位光标到搜索的行。如果你按的是回车而不是空格，你将会直接从 *cscope* buffer 中跳到相应的 buffer (鼠标点击搜索结果也可以)。你可以使用 n 和 p 来选择下一个或上一个搜索结果 (当 *cscope* buffer 不是当前 buffer 的时候可以用 C-c s n 和 C-c s p)。N 或 P 可以用于选择下一个和上一个文件 (或 C-c s N 和 C-c s P)。</p>  <h4><b>在 Vim 中使用 Cscope</b></h4>  <p>如果你更喜欢用 Vim，你还是可以用 Cscope。首先，你的 Vim 应该是使用 --enable-cscope 开关编译的。大部分二进制形式的 Linux 发布版都打开了这个开关。Gentoo 的用户则应该打开 cscope USE 标志。这里假设你使用的是 Vim 6.x 或 7.x。Vim 参考手册里包含了一篇使用 Cscope 接口的文章，你可以在 /usr/share/vim/vim&amp;<i>version</i>/doc/if_cscop.txt找到它。你还可以看另一个简短的教程 (参考链接)。</p>  <p>在 Vim 中，你可以使用如下形式调用 Cscope: :cscope find <i>search type</i> <i>search string</i> (可以用 :cs f 来代替 :cscope find)，这里的 search type 包括:</p>  <ul>   <li>symbol or s -- 所有引用这个符号的地方; </li>    <li>global or g --查找全局符号 </li>    <li>calls or c --查找特定函数的所有调用 </li>    <li>called or d --查找特定函数调用的所有函数 </li>    <li>text or t --查找文本 </li>    <li>file or f --打开文件 </li>    <li>include or i --查找 #include 了指定文件的文件</li> </ul> 查找结果会在 Vim 窗口的底部以菜单方式显示出来。你可以键入你希望进入的查找结果的编号并按回车。如果你用 :scscope 或 :scs 代替 :cscope 的话，Vim 窗口会水平拆分成两个，你选择的查找结果将会放在新的窗口之中。  <p>在 Vim 之中，从 Cscope 查询中跳到一个结果和跳到任意的 tag 没有什么区别; 你可以用 Ctrl-T 条回到查找之前的地方，也可以用 :tnext 和 :tprevious 在查找结果间来回跳。</p>  <p>如果你想调对光标下的词进行查找，你应该安装 cscope_maps.vim 插件 (把这个文件放在 $HOME/.vim/plugin 目录即可)。这个文件里面的注释说明了它的用法。使用这个插件，你可以用 Ctrl-\ 代替 :cscope，用 Ctrl-space 代替 :scscope，搜索将意光标下的词作为搜索词 (比如，你把光标挪到 &quot;initialize&quot; 上面，输入 Ctrl-\ s，就可以找到所有引用 initialize 符号的地方了。</p>  <h3><b>SilentBob</b></h3>  <p>SilentBob 是一个用于分析源代码的新工具，目前支持 C/C++, Perl 以及 Python，不过它的插件框架 (目前尚无文档)允许用户方便地添加新语言和新功能。 </p>  <p>你可以从该软件的官方网站获取源码包或 deb 包。安装之后，在源码目录运行三次 SilentBob:</p>  <pre>  bob --make-ctags<br />  bob --cfiles<br />  bob -L cfiles --call-tags<br /></pre>
+这样会生成三个文件: tags, 一般标签表格; cfiles, C/C++ 文件列表; calltags, 调用标签表。 调用标签表用于函数调用，所以，如果你希望查找某个函数的所有调用，你可以让 Vim 使用 调用标签表 (:set tags=./call_tags) 并使用内建命令用于查找标签 (:tag <i>function-name</i> 以及用 :tnext 和 :tprevious循环查找)。这三个索引文件可以被 SilentBob 用于构建调用树和反向调用树。
+
+<p>对于 Perl 和 Python，只支持标签表和文件列表:</p>
+
+<pre>  bob &lt;--perl | --python&gt; --make-ctags<br />  bob &lt;--perl | --python&gt; --files<br /></pre>
+第二个命令会生成 generate a perl_files 或 python_files 文件。
+
+<p>一旦生成了一个标签表，SilentBob 可以显示出一个调用树:</p>
+
+<pre>  bob [--depth <i>N</i>] <i>function</i></pre>
+
+<p>--depth 选项允许你限制调用树的深度。如果你之希望知道哪些函数被给定函数调用了，使用 --depth 0 参数即可。否则，被调用的函数会被依次列出来。</p>
+
+<p>注意，你可以对 SilentBob 为 Python 和 Perl 文件生成的标签表加上这个参数。不过，使用 Exuberant Ctags 生成的表是不被支持的。</p>
+
+<p>调用标签表还可以用于生成反向调用树</p>
+
+<pre>  bob [--depth <i>N</i>] -u <i>function</i></pre>
+
+<p>这将依次显示调用给定函数的函数。这时，指定 --depth 1 则只显示调用此函数的函数。SilentBob 也可以使用创建的 cfiles 文件查找 C/C++代码种的文本。它检查操作符，字符串和注释会被省略掉。</p>
+
+<pre>  bob <i>list of files</i> --cgrep <i>pieces of text, separated by comma</i></pre>
+
+<p>你可以指定 -L ./cfiles 来使用生成的文件列表。几个文本应该来自于同一个操作符，所以，如果你要找检验 T 变量的地方，可以使用:</p>
+
+<pre>  bob -L ./cfiles --cgrep if,T<br /></pre>
+SilentBob 还包含一个 tags 工具，让你可以在一个控制台查看标签的定义。调用 tags <i>tag1 tag2 ... tagN</i> 可以从代码中取出你感兴趣的片段 -- 函数定义、全局变量声明等等 -- 你将会看到你需要的代码片段。
+
+<h4>为什么使用 SilentBob 生成标签?</h4>
+SilentBob 使用语法分析器来解析源文件，这使得它比使用正则表达式定位文件中的某行的工具，如 Exuberant Ctags 要快很多。在对 Linux 内核源文件 (2.6.19) 的测试中，Exuberant Ctags 生成标签表需要 90 秒，而 SilentBob 仅需 10 秒钟 (测试机使用 2.6GHz 的赛扬处理器)。SilentBob 还支持多线程优化。
+
+<p>另一个不同来自于标签表的格式: Exuberant Ctags 生成的表中，使用正则表达式定位特定行。这就意味着，如果你编辑该文件，某些定义的位置可能会改变，但你不需要重新生成标签表。这对于 Exuberant Ctags 来说很理想，因为这样你就不需要频繁地重新生成表格了，不过，这也意味着如果你在浏览一个大型文件，在标签定义之间的跳转相对于记录行号的方式会非常慢。这就是 SilentBob 为什么在标签表中使用行号; 不过，这就意味着你必须在较大的编辑之后重新生成标签表了。</p>
+
+<h3>参考链接</h3>
+
+<ol>
+  <li>&quot;tags&quot; - http://applications.linux.com/article.pl?sid=07/01/22/167212&amp;tid=13 </li>
+
+  <li>&quot;Cscope&quot; - http://cscope.sourceforge.net/ </li>
+
+  <li>&quot;在大型项目中使用 Cscope&quot; - http://cscope.sourceforge.net/large_projects.html </li>
+
+  <li>&quot;关于在 Vim 里使用 Cscope 的简短教程&quot; - http://cscope.sourceforge.net/cscope_vim_tutorial.html </li>
+
+  <li>&quot;cscope_maps.vim&quot; - http://cscope.sourceforge.net/cscope_maps.vim </li>
+
+  <li>&quot;SilentBob&quot; - http://silentbob.sourceforge.net/</li>
+</ol>
+
+<hr />
