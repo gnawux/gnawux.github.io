@@ -1,0 +1,18 @@
+--- 
+meta: {}
+
+published: true
+title: !binary |
+  5paH5Lu26Lev5b6E5aSE55CG5bm255Sf5oiQ5aSE55CG5ZG95Luk
+
+status: publish
+layout: post
+type: post
+tags: 
+- find
+- regexp
+- scripts
+- sed
+- shell
+---
+<p>这也是个一行命令</p>  <blockquote>   <p>find ../hadoop-0.18.1/ \     <br />'(' -name &quot;*.jar&quot; -o -name &quot;*.a&quot; -o -name &quot;*.so*&quot; -o -name &quot;*.gif&quot;&#160; -o -name &quot;*.png&quot; -o -name &quot;*.jpg&quot; -o -name &quot;*.pdf&quot;&#160; ')' \      <br />-exec 'echo' '{}' '{}' ';' | \      <br />sed -ne 's/\([^ ]*\) \.\.\/hadoop-[\.0-9]*\/\([^\ ]*\)/cp \1 \.\/\2/p' | \      <br />/bin/sh</p> </blockquote>  <p>这个命令的 find 部分从平级的一个子目录中寻找各种二进制文件，然后把文件路径完整地输出两次，而之后用 sed 把第二遍的目录前缀去掉，换到本目录中的相同位置，再在前面加上 cp 命令，这就构成了一个复制命令。</p>  <p>嗯，这个命令算不算变态要看有多少文件要处理，并且要处理多少次类似操作，如果多的话，费这么点力气写个超长命令行还是值得的。</p>

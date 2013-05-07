@@ -1,0 +1,21 @@
+--- 
+meta: 
+  _edit_last: "1"
+published: true
+title: !binary |
+  5LiA6KGM55qE5pel5b+X57uf6K6h6K6h566X6ISa5pys
+
+status: publish
+layout: post
+type: post
+tags: 
+- cli
+- linux
+- regexp
+- scripts
+- sed
+- shell
+---
+﻿accu=0;sed -ne 's/.*bytesIn=\"\([0-9]*\)\"\/&gt;/\1/p' stage_3.xml |while read num;do cur=$(($num-$accu));accu=$num; echo $(($cur/20/1024/1024));done
+
+记在这里了，先不解释了。

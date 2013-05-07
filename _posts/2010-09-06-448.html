@@ -1,0 +1,19 @@
+--- 
+meta: {}
+
+published: true
+title: !binary |
+  Q1NETiBUVVAg5LmLIEhhZG9vcCDmspnpvpnmtYHmsLTotKY=
+
+status: publish
+layout: post
+type: post
+tags: 
+- cloud
+- csdn
+- hadoop
+- hdfs
+- map
+- tup
+---
+<p>前两天在twitter上，因为 HIC2010 的缘故，注意到 TUP 搞了这个 Hadoop 沙龙（<a title="http://tup.csdn.net" href="http://tup.csdn.net">http://tup.csdn.net</a>），通过和刘江老师（@turingbook）陶瓷，混到了入场机会，今天就兴奋而来了，这里记个流水账。</p>  <p>因为路途遥远，下班后不敢耽搁，直接出发，一路公交+地铁，六点半赶到五道口，饥饿难耐，在 KFC 解决了一下自己的肚子问题，然后匆匆赶往清华科技园的 Yahoo 北京研发中心。</p>  <p>走到电梯间，发现了周六见过的印裔老哥，估计这就是今天的主讲人Milind Bhandarkar了，于是上前搭讪，说明自己是中国移动的搞 hadoop 的同学，特地慕名前来参加 hadoop 的活动的，简单寒暄了几句，大意是说周六的活动很盛大，问问他停留多久，还去了啥地方啥的，别的不说了，总之，印度口音让我对今晚的活动有点怯意。</p>  <p>到门口的时候看到了刘江老师，可能是上周电话确认的时候我没接到电话，所以签到表里并没有我的名字，厚着脸皮签了个名就进去了，这时就差不多七点了。进到会场，发现已经来了不少人了，差不多坐满了，不过后来还有不少陆陆续续赶到的同学，我还不算是晚的，呵呵。</p>  <p>在刘江老师和Yahoo的东道主们致辞之后，介绍就正式开始了。Milind 今天的主要话题是 Hadoop 调优，面向 MapReduce 应用，实际上从08年底09年初的某项目之后一年半多的时间里，我的重点都不在调优上，所以今天的话题不是很在行，基本就是来学习一下，不准备吭声了，话题里，有这么几个点还是值得一说的，时间顺序：</p>  <ul>   <li>Milind 的工作是做 Job 无关的调优，或者说 Job 的实现是个黑箱，主要根据系统运行参数进行调优，通过配置，使应用相对于基线效率有较大提升；</li>    <li>首先是 Map/Reduce 的数量和性能优化的关系，Map 任务越多，并行度就越高，但调度开销也越高，这是需要 trade-off 的；而 Reduce 则要有所保留，不要占满所有能力，为重复执行留出一部分能力空余来；</li>    <li>然后是内存分配方面，通过设置buffer，（Map 端的 io.sort.mb 和 Reduce 端的几个参数）尽量降低本地磁盘读写；</li>    <li>还有使用 combiner ，通过 map 端的提前聚合，降低 map 与 reduce 任务间的通信量；</li>    <li>当然还有使用压缩，减少通信，节约磁盘开销。</li>    <li>此外，还在最后总结时提到了 DistributedCache 的使用。</li> </ul>  <p>讲座中，还介绍了一个 hadoop 诊断工具 vaidya。</p>  <p>这里是一张照片，嗯，是内容的最后一页，总结一些经验的</p>  <p><a href="http://wangxu.me/blog/wp-content/uploads/2010/09/csdntup.jpg"><img style="background-image: none; border-bottom: 0px; border-left: 0px; padding-left: 0px; padding-right: 0px; display: inline; border-top: 0px; border-right: 0px; padding-top: 0px" title="csdntup" border="0" alt="csdntup" src="http://wangxu.me/blog/wp-content/uploads/2010/09/csdntup_thumb.jpg" width="244" height="139" /></a></p>  <p>这是我今天拍的唯一一张能看得到字的，不是因为我坐的太远，是因为……我的手机相机一直工作在微距的状态……FML，调回自动状态，并擦了擦镜头后，终于拍到一张能看到字的……</p>  <p>在完成之后的提问环节，比较引起我关注的是关于 scheduler 的问题，毕竟同事小郭也做了这方面的工作，Yahoo 在使用的是 Capacity Scheduler，用于给不同的用户分配处理能力，这方面我们可能有参考或经验，不过要回去请教小郭才知道。</p>  <p>此外，又有人提到 NameNode 的 SPoF 问题了，这次 Milind 十分慷慨地介绍说中国移动也有哥们搞这个，我就接过话题说了一下我们当前的状态和下一步考虑一起共建 trunk 中的 HA 的考虑。这个问题上，我想我低估需求了，虽然技术上实际上问题的严重性并不高，但人们的心魔难祛，这个功能实际的需求（包括心理需求）是很强烈的，我应该在上面再花点精力努力一下。</p>  <p>也正因为这下曝光了我的垄断国企雇员身份，引来无数目光，嗯，我干的确实还不够好，有点对不起大家的话费了。</p>  <p>往外走的时候，刘江老师建议我们写写我们的Hadoop方面的工作，呵呵，真是有些惭愧，担心拿不出手啊。在门口还和优酷、Yahoo中国的朋友交流了半天，快10点才出门，觉得今天不仅收获到了些知识，还增加了很多动力。</p>  <p>回想一下这几天参见的 HIC2010 和 TUP，我先后向 Facebook、Yahoo 和国内同行朋友们介绍了我们在 NameNode HA 和 DataNode 卷管理方面的工作，但这些工作在受到一定瞩目的同时还有很多不成熟的地方，我得抓紧时间、集中精力，作出更大贡献才对得起自己、对得起大家。希望我们的工作更多地出现在官方的代码仓库里。</p>

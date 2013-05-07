@@ -1,0 +1,61 @@
+--- 
+meta: 
+  _edit_last: "1"
+  posturl_add_url: "yes"
+published: true
+title: !binary |
+  W+ivkeaWh10gQXZybzog5aSn5pWw5o2u55qE5pWw5o2u5qC85byP
+
+status: publish
+layout: post
+type: post
+tags: 
+- avro
+- cloud
+- hadoop
+- mapreduce
+- translation
+---
+<small><a href="http://www.cloudera.com/blog/2009/11/avro-a-new-format-for-data-interchange/">Monday, November 2nd, 2009 at 8:00 am </a>by Doug Cutting, filed under <a href="http://www.cloudera.com/blog/category/data-collection/">data collection</a>, <a href="http://www.cloudera.com/blog/category/general/">general</a>, <a href="http://www.cloudera.com/blog/category/hadoop/">hadoop</a>, <a href="http://www.cloudera.com/blog/category/mapreduce/">mapreduce</a>.
+<a href="http://wangxu.me/">王旭</a> [ gnawux(at)gmail.com , <a href="http://twitter.com/gnawux" target="_blank">@gnawux</a>, <a href="http://wangxu.me">http://wangxu.me</a> ]于11月2-3日译</small>
+<blockquote>译注：Doug Cutting 是 Hadoop 的大佬，目前在 Cloudera，Avro 基本上将成为未来 Hadoop 的数据描述和 RPC 的基础，今天看到这篇，就立刻翻译了，水平有限且译的比较草，请见谅，且欢迎纠错。</blockquote>
+<a href="http://hadoop.apache.org/avro/" target="_blank">Avor</a> 是 Apache 的 <a href="http://hadoop.apache.org/" target="_blank">Hadoop</a> 项目族的一个新成员。Avro 定义了一种用于支持大数据应用的数据格式，并为这种格式提供了不同的编程语言的支持。
+<h4>背景</h4>
+我们希望处理大数据的应用可以更加动态化：人们应该能够快速的从不同的数据源合并数据集。我们希望能够让新颖的、创造性的数据分析变得更方便。比如说，有人需要完美地将销售各个网点的交易、网站的访问量以及外部的统计数据关联在一起，而不需要很多的准备工作。这应该可以使用脚本和交互工具即时完成。
+
+目前的数据格式通常都做的不是很好。XML 和 <a href="http://json.org/">JSON</a> 可以承载很多信息，但它们本身就很大，处理起来很慢。当你处理上 PB 的数据的时候，尺寸和速度绝对是个大问题。
+
+Google 使用一个称为 <a href="http://code.google.com/p/protobuf/">Protocol Buffers</a> 的系统来解决这个问题。（还有其他的系统，比如 <a href="http://incubator.apache.org/thrift/">Thrift</a>，与 Protocol Buffers 很类似，我不会在这里深入讨论它们，但我对 Protocol Buffers 的评价对它们同样适用。）Google 已经开放了 Protocol Buffers，但它对我们的目的来说也不完美。
+<h4>通用数据</h4>
+在 Protocol Buffers 中，用户首先定义数据结构，然后生成可以有效读写这些数据的代码。不过，如果你需要在一个脚本语言中直接使用 Protocol Buffer 的数据，你必须首先确定数据结构定义的位置；为它生成代码；最后，在获取数据之前装载代码。这么做可能还算是不错，但如果我们想要一个能浏览任意数据集的通用工具，它将不得不首先定位定义，再为每个数据集生成与装在代码。这让很多本来简单的事情变得复杂了。
+
+与 Protocol Buffer 不同，Avro 格式将数据结构的定义以一种易于处理的形式存储在数据之中。这样，Avro 的实现可以在运行时使用这些定义，将数据以一种通用的方式展现给应用，而不需要生成代码。
+
+代码生成在 Avro 中是可选的：如果某些编程语言要对某些数据结构是由代码生成的话也相当不错，比如需要频繁串行化的数据类型。但是，对于像 <a href="http://hadoop.apache.org/hive/">Hive</a> 和 <a href="http://hadoop.apache.org/pig/">Pig</a> 这样的脚本来说，代码生成可能会是一种过分的负担，所以，Avro 不需要代码生成。
+
+把数据结构定义存储在数据中的一个附加的好处是允许数据可以被更快和更小巧地存储。Protocol Buffers 为数据增加了注释，以保证在定义和数据不完全匹配的时候仍然能够得到处理。然而这些注释会让数据略微增大、处理稍稍变慢。一些<a href="http://code.google.com/p/thrift-protobuf-compare/wiki/Benchmarking">评测结果</a>显示，Avro 这样不需要这些注释的数据和其他串行化系统相比，更小而且处理起来更快。
+<h4>Avro Schemas</h4>
+Avro 使用 JSON 来定义数据结构的 schema。比如，一个二维平面上的点可以定义为如下的 Avro 记录：
+<pre class="brush: javascript; gutter: true">{&quot;type&quot;: &quot;record&quot;, &quot;name&quot;: &quot;Point&quot;, 
+&quot;fields&quot;: [ 
+  {&quot;name&quot;: &quot;x&quot;, &quot;type&quot;: &quot;int&quot;}, 
+  {&quot;name&quot;: &quot;y&quot;, &quot;type&quot;: &quot;int&quot;}, 
+] 
+}</pre>
+指针的每个实例都包含两个整数，不包含附加的每个记录或每个域的注释。整数使用<a href="http://lucene.apache.org/java/2_4_0/fileformats.html#VInt">变长 zig-zag 编码</a>存储。所以小的正负值可能只需要两个字节：100个点可能只需要两百个字节。
+
+在记录和数值类型之外，Avro 支持数组、map、每句、变长与定长二进制数据以及字符串。它还定义了一个容器文件格式，这样可以更好的支持 MapReduce 和其他大数据处理框架。对于更多的细节信息，可以参考 <a href="http://hadoop.apache.org/avro/docs/current/spec.html">Avro 的规范</a>。
+<h4>兼容性</h4>
+应用程序都在演进，在这一过程中数据结构是可以改变的。我们希望应用的新版本仍然能够处理老版本创建的数据，反之亦然。Avro 和 Protocol Buffers 处理这个问题的方式比较类似。当应用需要的域没有出现的时候，Avro 会提供一个 schema 中规定的缺省值。Avro 忽略掉数据中的意外值。这并不能处理所有的后向兼容问题，但它让大部分的兼容性问题更容易处理。
+<h4>RPC</h4>
+Avro 也定义了一个 RPC 协议。尽管 RPC 中使用的数据类型和数据集中的类型通常是不同的，使用一个通用的串行化系统仍然是有用的。大数据需要一个分布式的基于 RPC 的框架。所以，在我们需要处理数据集文件的所有地方，我们也需要能够使用 RPC。这样，将 RPC 和数据集都建立在同一个基础之上将会最小化地减少那些代码可以处理数据，却无法使用分布式框架来这么做的可能性。
+<h4>与 Hadoop 集成</h4>
+我们希望在 Hadoop MapReduce 中可以简单地使用 Avro 数据。目前这项工作仍然在进展中。目前 issue <a href="https://issues.apache.org/jira/browse/MAPREDUCE-1126">MAPREDUCE-1126</a> 和 <a href="https://issues.apache.org/jira/browse/MAPREDUCE-815">MAPREDUCE-815</a> 在处理这个问题。
+
+注意，Avro 数据结构可以定义它们的排序方式，所以一个编程语言中创建的复杂的数据可以在另一个语言中被排序。Avro 可以在不还原序列化的情况下进行排序，这可以加快处理速度。
+
+我们希望 Avro 可以替换掉 Hadoop 中现有的 RPC。Hadoop 目前需要客户端和服务器必须使用相同版本的 Hadoop。我们希望使用 Avro 可以允许一个 Hadoop 应用能和多个运行不同版本的 HDFS 和/或 MapReduce 的多个集群交互工作。
+
+最后，我们希望 Avro 可以允许 Hadoop 应用更容易的使用 Java 之外的语言开发。比如，一旦 Hadoop 构建在 Avro 之上，我们希望支持 Python，C 和 C++ 等语言的 HDFS 和 MapReduce 的原生客户端。
+<h4>Hadoop World 访谈</h4>
+很多话题都已经包含在了我最近在 Hadoop World 的访谈，我很乐于在这篇 blog 里包含这段视频。（译注：译者撞墙看不到视频，不贴了哈。）

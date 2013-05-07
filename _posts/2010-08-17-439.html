@@ -1,0 +1,18 @@
+--- 
+meta: {}
+
+published: true
+title: !binary |
+  5Y2T6LaK6LSt5Lmm5Y2V55Sf5oiQ5ZG95Luk6KGM
+
+status: publish
+layout: post
+type: post
+tags: 
+- amazon
+- bash
+- book
+- scripts
+- sed
+---
+<p>拿到一个小组准备买书的列表，大家把书的卓越的url都放进去了，我决定帮负责订书的同事mm一个忙，不要一个一个点啦，咱们这样，把书的url保存成一个csv文件，比如Book1.csv，然后这么干：</p>  <blockquote>   <p>url=http://www.amazon.cn/gp/item-dispatch?submit.addToCart=addToCart; inc=1; sed -ne 's/.*\(B0[0-9A-Z]\{8\}\).*/\1/p' Book1.csv | while read bookid; do url=`echo ${url}\&amp;asin.${inc}\=${bookid}`; inc=$(($inc+1));echo $inc: $url; done;</p> </blockquote>  <p>这样，每行会打出一个url，这个url里的结尾部分就是 &amp;asin.1=B0xxxxxxxx&amp;asin.2=B0xxxxxxxx&amp;asin.3….以此类推，不管有多少本，都可以放到一个URL里，实际测试到75本，没有问题，可以一次性加入。</p>  <p>登录卓越后，打开这个URL就可以一次性添加了。</p>  <p>呵呵，自娱自乐。</p>
