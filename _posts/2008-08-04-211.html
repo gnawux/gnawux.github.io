@@ -1,18 +1,15 @@
 --- 
-meta: {}
-
-published: true
-title: !binary |
-  WGVuIOe7hOe9kQ==
-
-status: publish
 layout: post
-type: post
+meta: {}
+published: true
+status: publish
 tags: 
-- networking
-- translation
-- virtualization
-- xen
+  - networking
+  - translation
+  - virtualization
+  - xen
+title: "Xen 组网"
+type: post
 ---
 XenWiki 之 XenNetworking 译文版  <br />王旭 译  <p>[译注：这是一篇 wiki 文章，由多人多次编辑完成，其中难免有些不协调的痕迹，但内容非常详实，很有帮助，译文保持了原文的状态，较少添加译注。]</p>  <h4>目录</h4>  <ol>   <li>虚拟以太网接口</li>    <li>MAC地址</li>    <li>桥接     <ol>       <li>桥接中的包流向</li>        <li>network-bridge_脚本</li>        <li>vif-bridge_脚本</li>        <li>补充说明</li>        <li>相关链接</li>     </ol>   </li>    <li>路由     <ol>       <li>network-route脚本</li>        <li>vif-route脚本</li>     </ol>   </li>    <li>虚拟网络     <ol>       <li>相关链接</li>     </ol>   </li>    <li>接口命名</li>    <li>VLAN</li> </ol>  <h4><a name="虚拟以太网接口"></a>虚拟以太网接口</h4>  <p>&#160;&#160;&#160;&#160; 缺省情况下，Xen 为 dom0 创建7对&quot;对接的虚拟以太网接口&quot;。就是使用交叉线对连的以太网口。veth0 连接到 vif0.0，veth1 连接到 vif0.1 等等，知道 veth7 连接到 vif0.7。你可以在 veth# 端配置 IP 和 MAC 地址，而另一端，vif0.# 被加入到了一个网桥之中。</p>  <p>&#160;&#160;&#160;&#160; 每当建立一个 domU 实例的时候，就会分配一个新的域 ID。很遗憾，这个号码不能选择的。第一个 domU 的 id就是 1，第二个就是 2，即使第一个已经关机了也不会重新使用它的 id。</p>  <p>&#160;&#160;&#160;&#160; 对于每个新的 domU，Xen 就会为它新建一对“对接的以太网口”，一端在 domU 里面，而另一端在 dom0 里面。对于 Linux 的 domU，这个设备一般会被命名为 eth0。这个虚拟以太网接口对在 dom0 之中的另一端称为 vif&lt;id#&gt;.0。举个例子，domU 5 的 eth0 连接到 vif5.0。如果为一个 DomU 建立多个网口，也就是 eth0, eth1....那么，在 dom0 之中对应的便是 vif&lt;id#&gt;.0, vif&lt;id#&gt;.1...</p>  <p>&#160;&#160;&#160;&#160; 当 domU 关机的时候，对应的虚拟以太网接口也会被删除。</p>  <h4><a name="MAC地址"></a>MAC地址</h4>  <p>虚拟以太网接口也具有以太网的 MAC 地址，缺省情况下，xend 会随机分配地址，这样，同一个 domain 的不同实例会具有不同的地址。如果你需要让一个 domain 具有固定的 MAC 地址（比如用于 DHCP），那么可以在 vif 配置中使用 &quot;mac=&quot; 选项（如 vif= ['mac=aa:00:00:00:00:11']）。</p>  <p>在选择要使用的 MAC 地址的时候，要确保你使用的是一个单播地址。也就是说第一个字节的最地位应该是0。比如，一个 aa 开头的地址是正确的，而 ab 是不正确的。最好将地址标明是“本地分配的” (而不是全局性地分配给硬件厂商的)。这样，要让第一个字节的次低位是 1。比如 aa 是正确的，而 a8 就不是。</p>  <p>总之，一个地址应该是这样的形式</p>  <pre>XY:XX:XX:XX:XX:XX<br /></pre>
 

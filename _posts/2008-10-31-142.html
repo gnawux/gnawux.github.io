@@ -1,17 +1,14 @@
 --- 
-meta: {}
-
-published: true
-title: !binary |
-  5LuOc3ZuIHdvcmtpbmcgY29weSDkuK3liKDpmaTpg6jliIbmlofku7Y=
-
-status: publish
 layout: post
-type: post
+meta: {}
+published: true
+status: publish
 tags: 
-- find
-- scripts
-- shell
-- svn
+  - find
+  - scripts
+  - shell
+  - svn
+title: "从svn working copy 中删除部分文件"
+type: post
 ---
 <p>又是一个一句话操作</p>  <p>find . '(' -name &quot;*.jar&quot; -o -name &quot;*.a&quot; -o -name &quot;*.so*&quot; -o -name &quot;*.gif&quot; -o -name &quot;*.png&quot; -o -name &quot;*.jpg&quot; -o -name &quot;*.pdf&quot;&#160; ')'&#160; -exec 'echo' 'svn' 'del' '{}' ';'|/bin/sh</p>  <p>这里的要点主要是 find 命令的多条件“或”操作，另外，提供了一种 find 后执行的手段——echo 送至 shell，这样的好处是可以先不添加管道后面的东东，从而观察并验证命令的正确性。这个办法是和 hoplee 老师学的，呵呵。   <br />同理，还可以添加文件</p>  <p>find . '(' -name &quot;*.jar&quot; -o -name &quot;*.a&quot; -o -name &quot;*.so*&quot;&#160; -o -name &quot;*.gif&quot; -o -name &quot;*.png&quot; -o -name &quot;*.jpg&quot; -o -name &quot;*.pdf&quot;&#160; ')'&#160; -exec 'echo' 'svn' 'add' '{}' ';'|grep -v '\.svn\/'|/bin/sh</p>  <p>只是要注意，放在 .svn/ 中的是 svn 的结构性文件，不能也添加进仓库的。</p>

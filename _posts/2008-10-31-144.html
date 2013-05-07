@@ -1,18 +1,15 @@
 --- 
-meta: {}
-
-published: true
-title: !binary |
-  5riF55CGc3Zu5LuT5bqT55qE5byC5bi454q25oCB5paH5Lu2
-
-status: publish
 layout: post
-type: post
+meta: {}
+published: true
+status: publish
 tags: 
-- awk
-- grep
-- scripts
-- shell
-- svn
+  - awk
+  - grep
+  - scripts
+  - shell
+  - svn
+title: 清理svn仓库的异常状态文件
+type: post
 ---
 <p>这个命令行非常初级</p>  <p>svn status|grep '!'|awk '{print &quot;svn del &quot; $2}' |/bin/sh   <br />svn status|grep '?'|awk '{print &quot;svn add &quot; $2}' |/bin/sh</p>  <p>将有 ! 前缀的文件清除出去，将有 ? 前缀的文件纳入版本管理。</p>

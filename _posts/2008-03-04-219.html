@@ -1,18 +1,14 @@
 --- 
-meta: {}
-
-published: true
-title: !binary |
-  W+ivkeaWh11zdHJhY2U657O757uf6LCD55So6Lef6Liq5LiO5L+h5Y+35oql
-  5ZGK5bel5YW3
-
-status: publish
 layout: post
-type: post
+meta: {}
+published: true
+status: publish
 tags: 
-- strace
-- tools
-- translation
+  - strace
+  - tools
+  - translation
+title: "[译文]strace:系统调用跟踪与信号报告工具"
+type: post
 ---
 <p>原文出处：http://linuxgazette.net/148/saha.html   <br />原文作者：<b><a href="http://linuxgazette.net/authors/saha.html">Amit Kumar Saha</a> and <a href="http://linuxgazette.net/authors/ghosh1.html">Sayantini Ghosh</a></b>    <br />翻译时间：2008年3月3日    <br />译者：王旭 &lt;gnawux (at) gmail.com&gt;</p>  <p><i> 译者按：翻译篇文章换换心情，strace 是个有用的工具，LinuxGazette 是个不错的杂志，本文也希望你喜欢。</i></p>  <p>了解一切是怎么运转的是件有趣的事情。所有的C程序员们都知道，在他们的C程序的“输入-处理-输出”周期中用到了很多<a href="http://en.wikipedia.org/wiki/System_call">系统调用 </a>。 看看程序中到底哪些系统调用被用到了无疑是件很让人兴奋的事情。本文就是关于这个话题的，让我们开始吧。</p>  <h5>何为 ’strace’?</h5>  <p><b><a href="http://sourceforge.net/projects/strace/">’strace’</a></b> 是一个用于在运行时跟踪进程调用的系统调用的工具。它同时报告进程收到的<a href="http://www.cs.pitt.edu/%7Ealanjawi/cs449/code/shell/UnixSignals.htm">信号</a>（或软中断） 。</p>  <p>根据手册页，在最简单的情况下，“strace 运行指定的命令直到该命令执行完成。它截获并记录进程调用的系统调用和收到的信号。”</p>  <p>直接在终端中敲入”strace”命令就可以看到它的各个开关和选项：</p>  <pre>$ strace<br />usage: strace [-dffhiqrtttTvVxx] [-a column] [-e expr] ... [-o file]<br />              [-p pid] ... [-s strsize] [-u username] [-E var=val] ...<br />              [command [arg ...]]<br />   or: strace -c [-e expr] ... [-O overhead] [-S sortby] [-E var=val] ...<br />              [command [arg ...]]<br />-c -- count time, calls, and errors for each syscall and report summary<br /><br />[[[etc.]]]</pre>
 

@@ -1,18 +1,15 @@
 --- 
-meta: {}
-
-published: true
-title: !binary |
-  W+ivkeaWh10g5LuO5YmN4oCm4oCm
-
-status: publish
 layout: post
-type: post
+meta: {}
+published: true
+status: publish
 tags: 
-- atime
-- kernel
-- linux
-- lwn
-- translation
+  - atime
+  - kernel
+  - linux
+  - lwn
+  - translation
+title: "[译文] 从前……"
+type: post
 ---
 <p>原文：http://lwn.net/Articles/244829/   <br />原作者：<strong>Jonathan Corbet</strong>    <br />原作时间：August 8, 2007    <br />译者：王旭 | gnawux(at)gmail.com |    <br />翻译时间：2007年12月8日</p>  <p>译注：译者当然知道 once upon atime 和 once upon a time 是不一样的，不过，原作者这么写不就是让我们像 once upon a time 这么念 once upon atime 么，所以，题目就是这样了，本文是译者琢磨怎么节约点能源的时候考古出来的，下面是译文。</p>  <p>大多数文件系统都维护着一个元数据，用于记录文件的最新访问时间，即“atime” 。这个时间可以说是非常有用的，管理员或管理程序根据这个时间就可以判断一个文件最近一次被使用是什么时候的事情了。不过，这个功能有个很严重的问题：每次文件被访问的时候，它都需要写一次硬盘。即使是那些已经被读入缓存的，可以被方便读取的文件的只读操作也需要写一次硬盘，来维护atime值。</p>  <p>最近，一个关于磁盘写操作节流（译注：或称为占空比调制，类似于CPU在一定时间的时候关闭时钟来降低功耗的机制）的讨论在 Ingo Molnar 指出 atime 可能 是比其它人何事情都严重的一个性能障碍之后转而开始讨论 atime 了。Ingo <a href="http://lwn.net/Articles/244830/">提到</a>:</p>  <blockquote>   <p>Atime的更新是目前影响Linux IO性能的最为严重的因素。如果能不进行 atime 更新将会显著提高 Linux 性能，这个提高会比过去10年里所有的的关于 pagecache 加速机制加起来都会多。</p> </blockquote>  <p>他还认为 atime “可能是 Unix 的各种时间值设计中最愚蠢的一个”。</p>  <p>这个讨论很快就转换成了另一个问题：关于这种情况，我们应该怎么作呢？一个差不多所有Linux都能采用的方法就是在加载文件系统的时候使用 noatime 开关，这样就彻底地关掉了访问时间的记录。对于文件系统敏感的人物，这个改变的性能提高是立竿见影的。世事无完美，关掉 atime 在某些情况下可能会让那些依赖这个东东的程序没法正常工作。传统上说，一写邮件工具会比较访问时间和修改时间来判断邮件是否未读。tmpwatch工具和一写备份工具也使用 atime，如果这个时间不正确的话，它们可能会有异常行为。正是基于这个原因，各个发布版都不太敢于将 noatime 作为缺省开关。</p>  <p>2.6.20 内核引入了一个新的方法：relatime 开关。如果在挂载文件系统的时候使用这个开关，访问时间只有在它们比变更时间更旧的时候才会更新。这个变化允许工具们看当前文件似乎否被读过了，同时很大程度上减少了 atime 的更新次数。这个开关还很少有人使用，可能是因为很少有人听说过它或是发布版们的mount版本还没有更新，还不支持relatime。不过，如果有程序想知道某个文件是否在过去的一段特定长时间（比如一个星期）里被访问过，那它还是可能会被relatime欺骗。</p>  <p>为了解决这个问题，Linus <a href="http://lwn.net/Articles/244831/">建议</a>调整一下 relatime的工作方式：如果在一段时间里更新过文件，比如一天，那就更新它。Ingo 很快就写了<a href="http://lwn.net/Articles/244384/">一个补丁</a>来实现这个特性，还增加了两个新的启动参数：指定缺省更新秒数的 relatime_interval 和在所有文件系统中缺省使用 relatime 的开关 default_relatime。</p>  <p>这个补丁的类似补产品可能会进入 2.6.24。这个补丁建议当一个inode将要被写入到硬盘的时候，kernel可以同时更新 atime。不过Alan Cox反对这个改变，因为这个改动可能会让整个行为变得不可预测。这个补丁到目前位置还没有更新版本，将来如果这个补丁能进入内核当中的话，也肯定不是当前这个版本。</p>

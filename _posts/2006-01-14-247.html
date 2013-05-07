@@ -1,17 +1,13 @@
 --- 
-meta: {}
-
-published: true
-title: !binary |
-  56Gs55uY5YiG5Yy66LCD5pW05a+86Ie0Z3J1YuaXoOazleW8leWvvOeahOS/
-  ruWkjQ==
-
-status: publish
 layout: post
-type: post
+meta: {}
+published: true
+status: publish
 tags: 
-- boot
-- grub
-- works
+  - boot
+  - grub
+  - works
+title: 硬盘分区调整导致grub无法引导的修复
+type: post
 ---
 <p>1. 定位 boot 分区：   <br />==================    <br />&quot;grub&gt;&quot;提示符下运行如下命令：    <br />grub&gt; find /grub/stage1    <br />(hd0,4)    <br />如果得到类似上述的结果，则表明存在单独的 /boot 分区，这是 Red hat 的典型    <br />风格，记为(*)，相应的记 /dev/hda5 为 (*')。(*)到(*')的映射遵循如下规律    <br />(hdm,n)--&gt;(/dev/hdck)    <br />m=0,1,2,3 ---&gt; c=a,b,c,d    <br />k=n+1    <br />如果没有得到有用结果，则表明不存在 /boot 分区，那么运行如下命令    <br />grub&gt; find /boot/grub/stage1    <br />(hd0,4)    <br />记此结果为 (**)，对应的 (**') 使用同样的方式转换而成    <br />(*) 或 (**) 就是对应的 grub 的分区的位置，记为 (grub)    <br />2. 定位根分区:    <br />==============    <br />如果存在(**') 则这个就是根分区，如果存在(*)，则运行如下命令    <br />grub&gt; find /etc/fstab    <br />(hd0,6)    <br />记上述结果为 (***) 并用同样规则，相应得到 (***')    <br />(**') 或 (***') 就是的根分区的位置，记为 (root')    <br />3. 引导系统:    <br />一共需要三到四条命令：    <br />a) grub&gt;root (grub)    <br />例如    <br />grub&gt; root (hd0,4)    <br />b) kernel (vmlinuz) root=(root') ro    <br />这里(vmlinuz)以如下方式确定    <br />如果(*)    <br />grub&gt; kernel /vmlinuz    <br />如果(**)    <br />grub&gt; kernel /boot/vmlinuz    <br />输入上面内容后，*不要回车*，连按tab键，可以得到匹配文件名列表，选择一个    <br />合适的，输入完整，格式如下    <br />grub&gt; kernel /vmlinuz-2.6.10-1 root=/dev/hda5 ro    <br />或    <br />grub&gt; kernle /boot/vmlinuz-2.6.10-1 root=/dev/hda7 ro    <br />c) initrd (initrd)    <br />同样按照上面同样的命令行补全方式，输入，例如    <br />grub&gt; initrd /initrd-2.6.10-i386.img    <br />或    <br />grub&gt; initrd /boot/initrd-2.6.10-i386.img    <br />d) boot    <br />grub&gt; boot    <br />至此，系统启动    <br />4. 修复引导程序:    <br />a)首先使用(root')和(boot')更新 /etc/fstab 里面的 / 和 /boot 的设备号，    <br />如果有其它分区，相应调整。    <br />b) 修改 /boot/grub/menu.lst 或 grub.conf    <br />按照步骤3里面的数据修改此文件    <br />c) 重新安装 grub    <br />以root用户    <br /># grub    <br />grub&gt; root (boot)    <br />grub&gt; setup (hd0)    <br />大概就是这样了，没有实验，直接写的，恐怕有些地方有些疏漏，请大家指正。</p>

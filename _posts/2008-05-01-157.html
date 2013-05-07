@@ -1,17 +1,14 @@
 --- 
-meta: {}
-
-published: true
-title: !binary |
-  R0lU566A6KaB5pWZ56iL77ya56ys5LqM6YOo5YiG
-
-status: publish
 layout: post
-type: post
+meta: {}
+published: true
+status: publish
 tags: 
-- git
-- translation
-- vcs
+  - git
+  - translation
+  - vcs
+title: GIT简要教程：第二部分
+type: post
 ---
 <p>阅读本教程之前，你应该已经阅读过<a href="http://wangxu.me/blog/?p=156">《GIT简要教程》</a>（译注：本人曾经翻译过）了。</p>  <p>本教程将介绍GIT架构中的两个基础概念——对象数据库和索引文件——并为读者提供阅读其他GIT文档所需的基础知识。</p>  <h4>GIT对象数据库</h4>  <p>让我们从一个新项目开始，并加入少量的变更历史：</p>  <pre>$ mkdir test-project<br />$ cd test-project<br />$ git init<br />Initialized empty Git repository in .git/<br />$ echo 'hello world' &gt; file.txt<br />$ git add .<br />$ git commit -a -m &quot;initial commit&quot;<br />Created initial commit 54196cc2703dc165cbd373a65a4dcf22d50ae7f7<br /> create mode 100644 file.txt<br />$ echo 'hello world!' &gt;file.txt<br />$ git commit -a -m &quot;add emphasis&quot;<br />Created commit c4d59f390b9cfd4318117afde11d601c1085f241</pre>
 

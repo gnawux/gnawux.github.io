@@ -1,20 +1,20 @@
 --- 
+layout: post
 meta: 
   _edit_last: "1"
   posturl_add_url: "yes"
 published: true
-title: "Tornado \xE7\x9A\x84 stack context"
 status: publish
-layout: post
-type: post
 tags: 
-- async
-- memcached
-- python
-- scripts
-- stack_context
-- timeout
-- tornado
+  - async
+  - memcached
+  - python
+  - scripts
+  - stack_context
+  - timeout
+  - tornado
+title: "Tornado 的 stack context"
+type: post
 ---
 <blockquote>按：本人 python 菜鸟，对 tornado 更没什么研究，这两天小摆弄了一下，记一下，有不对的还请指正</blockquote>
 这两天在用 <a title="Tornado" href="http://www.tornadoweb.org/" target="_blank">tornado</a> 做一个 memcached 的 proxy，作为一个 Python 的高性能异步框架，tornado （实际是 epoll/kqueue... ）的思想是——单线程+异步化，线程的运行时间不等待任何东西，这样就要求 memcached 的访问也必须异步化。如果线程在等待中消耗了，就无法达到高并发的目的，这个问题是无法通过简单地交给线程池或什么其他东西来达到的。

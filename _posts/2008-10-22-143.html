@@ -1,17 +1,14 @@
 --- 
-meta: {}
-
-published: true
-title: !binary |
-  5oyJ6Lev5b6E6YCJ5oup5paH5Lu2
-
-status: publish
 layout: post
-type: post
+meta: {}
+published: true
+status: publish
 tags: 
-- grep
-- scripts
-- shell
-- xargs
+  - grep
+  - scripts
+  - shell
+  - xargs
+title: 按路径选择文件
+type: post
 ---
 <p>选取上层目录下的 global 和 util 两个子目录之外的所有子目录的 c 源文件，并送至某程序（这里用 echo 代替）的命令行</p>  <p>ls ../*/*.c | grep -v &quot;^../\(global/\|util/\)&quot; | xargs echo</p>  <p>这里主要是 grep 的或操作需要注意一下，其余没有什么特别的。</p>

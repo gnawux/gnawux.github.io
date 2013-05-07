@@ -1,16 +1,13 @@
 --- 
-meta: {}
-
-published: true
-title: !binary |
-  5Y+v55SoSVDliJfooajnlJ/miJA=
-
-status: publish
 layout: post
-type: post
+meta: {}
+published: true
+status: publish
 tags: 
-- script
-- scripts
-- shell
+  - script
+  - scripts
+  - shell
+title: 可用IP列表生成
+type: post
 ---
 <p>命令如下</p>  <blockquote>   <p>seq 79 158 | while read addr;do ping -c1 -w2&#160; 192.168.1.$addr &gt; /dev/null &amp;&amp; echo $addr ; done &gt; iplist</p> </blockquote>  <p>这行命令首先生成 79-158 一共 80 个 IP 尾号，进入循环后为每个尾号添加 “192.168.1.” 前缀，尝试 ping 操作，如果两秒钟之内成功 ping 通，那么将尾号输出，并重定向到 iplist 里面，ping 的其他输出会被抛弃。</p>

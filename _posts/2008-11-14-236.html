@@ -1,20 +1,17 @@
 --- 
-meta: {}
-
-published: true
-title: !binary |
-  TGludXjkuIvnmoRXUEHml6Dnur/orqTor4E=
-
-status: publish
 layout: post
-type: post
+meta: {}
+published: true
+status: publish
 tags: 
-- linux
-- wireless
-- wlan
-- works
-- wpa
-- wpasupplicant
+  - linux
+  - wireless
+  - wlan
+  - works
+  - wpa
+  - wpasupplicant
+title: Linux下的WPA无线认证
+type: post
 ---
 <p>2004年12月，我还是LinuxFocus的中文编辑（志愿者，呵呵），为她写了一篇关于Linux 下玩弄无线网卡的文章（<a href="http://www.linuxfocus.org/ChineseGB/December2004/article361.shtml">中文版</a>、<a href="http://www.linuxfocus.org/English/December2004/article361.shtml">英文版</a>），时至今日，仍在被转载中，也很容易 Google 到，不过该文章中对各种无线认证技术的描述语焉不详，这实在是当时水平有限，而且也缺少环境。直到今年，才自己在家弄了个 Linksys 搭上玩玩。</p>  <p>搭上无线网之后，一直也没准备写这篇介绍，一来是自己没什么长进，不想丢人来，二来也是 NetworkManager 实在很方便，比 Windows 的无线网卡配置要简单很多，觉得完全没有必要写东西介绍。不过，后来发现 NetworkManager 作为新兴工具，还存在很多不稳定的地方，有时会有一些莫名其妙的问题，因此，又回到了命令行/配置文件+后台Daemon的老朋友那，这里，向各位介绍 wpa_supplicant 的使用。</p>  <p>[注：如果你的环境中，NetworkManager 可以使用的话，大可不必如此费力，保持所有配置文件都是空的，在图形界面中配置即可。]   <br />[注2：本文适用于 Debian 系统，其它 Distro 有所不同，仅供参考。]</p>  <p>WPA_supplicant 是 WPA/WPA2 认证的客户端，同时也适用于 WEAP，对有线、无线网络都可以使用，不过，WPA2/TKIP （就是前两天说被破解了的那个，不过目前仍然是最安全的WLAN无线连接方式。哦？你说WAPI？哦，不好意思，我没见过真的，不好说哈。）还是我们最首选的方式。</p>  <p>要使用 WPA_Supplicant，在 /etc/network/interfaces （这个网卡配置文件的格式是 Debian 系的特点 RH/SuSE 系有明显不同，未做研究）中，需要指定使用 WPA_supplicant</p>  <blockquote>   <pre>allow-hotplug wlan0
 iface wlan0 inet manual

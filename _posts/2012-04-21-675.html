@@ -1,21 +1,19 @@
 --- 
+layout: post
 meta: 
   _edit_last: "1"
   posturl_add_url: "yes"
 published: true
-title: !binary |
-  5L2/55SoIGlwcm91dGUyIOi/m+ihjCBNdWx0aUhvbWluZyDorr7nva4=
-
 status: publish
-layout: post
-type: post
 tags: 
-- admin
-- ip
-- iproute2
-- linux
-- networking
-- route
+  - admin
+  - ip
+  - iproute2
+  - linux
+  - networking
+  - route
+title: "使用 iproute2 进行 MultiHoming 设置"
+type: post
 ---
 iproute2，也就是ip(8)这个命令的功能是非常强大的，之前就曾经用它建隧道之类的，但从来没涉及过路由，毕竟找不到什么不用 route(8) 命令的理由。不过，这次我们找到了一个——当你需要两个缺省路由的时候，该怎么配置？
 <blockquote>按：这个是新研究出来的，有什么不对的地方敬请指出哈</blockquote>

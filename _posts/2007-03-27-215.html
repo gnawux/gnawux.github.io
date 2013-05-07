@@ -1,18 +1,15 @@
 --- 
-meta: {}
-
-published: true
-title: !binary |
-  W+ivkeaWh10g5aaC5L2V5ZyoIFBvc3RmaXgg5b2T5Lit5a6e546wIFNQRg==
-
-status: publish
 layout: post
-type: post
+meta: {}
+published: true
+status: publish
 tags: 
-- mail
-- postfix
-- spf
-- translation
+  - mail
+  - postfix
+  - spf
+  - translation
+title: "[译文] 如何在 Postfix 当中实现 SPF"
+type: post
 ---
 <p>原文出处: http://www.howtoforge.com/postfix_spf   <br />Version 1.0    <br />Author: Falko Timme    <br />Last edited 02/09/2007    <br /><i>译注: 关于 SPF，可以参考译者曾经翻译的 Bruno Sousa 的《SPF 简介》 &lt;http://www.linuxfocus.org/ChineseGB/December2004/article354.shtml&gt;</i>    <br />本教程技术了如何在 Postfix 2.x 中来实现 SPF (发送方策略框架)。SPF 是一个开放标准，用于规范防止伪造发送方地址的技术途径 (http://www.openspf.org/Introduction)。目前，有很多 Postfix 的 SPF 扩展和补丁，不过，大部分都需要你重新编译 Postfix。所以，我们将要安装的是来自 openspf.org 的 postfix-policyd-spf-perl 包，这是一个 Perl 包，它可以在已经安装好的 Postfix 上实现 SPF，而无须重新编译。    <br />开始之前，我想说的是这不是惟一的设置方法。条条大路通罗马，不过这是我选择的路。我不保证它对你也是合适的！ </p>  <h5>1 说明</h5>  <p>我架设你已经安装好了一个可以工作的 Postfix 邮件服务器。</p>  <p>下面的步骤和发布版是无关的，也就是说，它应该在任何 Linux distro 上都是工作的 (不过我只在 Debian Etch 上测试过)。</p>  <h5>2 安装需要的 Perl 模块</h5>  <p>postfix-policyd-spf-perl 包依赖于 Mail::SPF 和 NetAddr::IP Perl 模块。所以，我们准备是用 Perl shell 安装它们。现在，启动一个 Perl shell:</p>  <blockquote>   <p>perl -MCPAN -e shell</p> </blockquote>  <p>如果你这是第一次启动 Perl shell, 你会被问及几个问题，全都接受缺省值好了 (译注: 输出字符可以选择 no，这时输出字符集是 UTF-8, 缺省的是 Latin-1)。程序还会询问你所是用的 CPAN 仓库，选择一个最接近你的。</p>  <p>初始化 Perl shell 设置之后，现在我们可以开始安装需要的模块了，要安装 Mail::SPF，只要如下操作即可:</p>  <blockquote>   <p>install Mail::SPF</p> </blockquote>  <p>在我这里，它还会尝试安装 Module::Build (它是被依赖的)，不过随后失败了。如果在你那里也是这样的话，直接退出 Perl shell 吧</p>  <blockquote>   <p>q</p> </blockquote>  <p>然后重新进入 Perl shell:</p>  <blockquote>   <p>perl -MCPAN -e shell</p> </blockquote>  <p>重新尝试安装 Mail::SPF :</p>  <blockquote>   <p>install Mail::SPF</p> </blockquote>  <p>这一次应该成功了，而且你应该可以看到 Net::DNS::Resolver::Programmable 和 NetAddr::IP 这两个被依赖的模块也安装上了。</p>  <p>成功的安装过程应该是这样的:</p>  <blockquote>   <p>Installing /usr/local/bin/spfquery     <br />Writing /usr/local/lib/perl/5.8.8/auto/Mail/SPF/.packlist      <br />/usr/bin/make install -- OK</p> </blockquote>  <p>因为 NetAddr::IP 也已经被安装上了，现在我们退出 Perl shell:</p>  <blockquote>   <p>q</p> </blockquote>  <h5>3 安装 postfix-policyd-spf-perl</h5>  <p>下面，我们从 _real_href=&quot;http://www.openspf.org/Software&quot; href=&quot;http://www.openspf.org/Software&quot; target=&quot;_blank&quot;&gt;http://www.openspf.org/Software 下载 postfix-policyd-spf-perl ，把它放在 /usr/src，然后安装到 /usr/lib/postfix/ 。如下:</p>  <blockquote>   <p>cd /usr/src     <br />wget http://www.openspf.org/blobs/postfix-policyd-spf-perl-2.001.tar.gz      <br />tar xvfz postfix-policyd-spf-perl-2.001.tar.gz      <br />cd postfix-policyd-spf-perl-2.001      <br />cp postfix-policyd-spf-perl /usr/lib/postfix/policyd-spf-perl</p> </blockquote>  <p>然后编辑 /etc/postfix/master.cf 并在最后添加如下内容</p>  <blockquote>   <p>vi /etc/postfix/master.cf</p> </blockquote>  <blockquote>   <pre>[...]<br />policy  unix  -       n       n       -       -       spawn<br />    user=nobody argv=/usr/bin/perl /usr/lib/postfix/policyd-spf-perl</pre>
 </blockquote>

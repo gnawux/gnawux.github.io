@@ -1,17 +1,14 @@
 --- 
-meta: {}
-
-published: true
-title: !binary |
-  R0lU5pel5bi45ZG95LukMjDmnaXmnaE=
-
-status: publish
 layout: post
-type: post
+meta: {}
+published: true
+status: publish
 tags: 
-- git
-- translation
-- vcs
+  - git
+  - translation
+  - vcs
+title: GIT日常命令20来条
+type: post
 ---
 <p>[基本仓库]： 拥有 GIT 仓库的人需要的命令——也就是所有人，因为 git 的每个工作拷贝都是一个仓库。</p>  <p>之后，[个人开发者 (独立工作)]： 任何需要进行 commit 的人都需要的命令，即使是一个人工作的情况。</p>  <p>如果你和其他人一起工作，你还需要列在[个人开发者 (参与者)]小节的命令。</p>  <p>扮演[集成者]角色的人还需要学习这一节中的命令。</p>  <p>[仓库管理]命令是给哪些负责维护 GIT 仓库的系统管理员的。</p>  <h4>基本仓库<a></a></h4>  <p>所有人都可以用这些命令来维护 git 仓库。</p>  <ul>   <li>     <p><a href="http://www.kernel.org/pub/software/scm/git/docs/git-init.html">git-init(1)</a> 或 <a href="http://www.kernel.org/pub/software/scm/git/docs/git-clone.html">git-clone(1)</a> : 创建一个新仓库。 </p>   </li>    <li>     <p><a href="http://www.kernel.org/pub/software/scm/git/docs/git-fsck.html">git-fsck(1)</a> : 检查仓库的错误。 </p>   </li>    <li>     <p><a href="http://www.kernel.org/pub/software/scm/git/docs/git-gc.html">git-gc(1)</a> 进行日常维护工作，如 repack 或 prune。 </p>   </li> </ul>  <h5>实例：</h5> 检查健康状况并去除无用的内容 (译注：cruft 不知如此翻译是否妥当，git-gc 基本是这个含义)。   <pre>$ git fsck <b>(1)</b>
 $ git count-objects <b>(2)</b>

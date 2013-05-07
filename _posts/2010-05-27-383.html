@@ -1,24 +1,17 @@
 --- 
-meta: {}
-
-published: true
-title: !binary |
-  W+ivkeaWh11DYXNzYW5kcmHlrp7kvos=
-
-status: publish
 layout: post
-type: post
+meta: {}
+published: true
+status: publish
 tags: 
-- cassandra
-- cloud
-- data model
-- translation
-- !binary |
-  5LqR6K6h566X
-
-- !binary |
-  5pWw5o2u5qih5Z6L
-
+  - cassandra
+  - cloud
+  - "data model"
+  - translation
+  - 云计算
+  - 数据模型
+title: "[译文]Cassandra实例"
+type: post
 ---
 <p>原文: <a href="http://www.rackspacecloud.com/blog/2010/05/12/cassandra-by-example/#">http://www.rackspacecloud.com/blog/2010/05/12/cassandra-by-example/#</a>     <br />原作者：Eric Evan&#160; <br />原文发布日期：May 12, 2010     <br />译者：王旭（<a href="http://wangxu.me/blog/">http://wangxu.me/blog/</a> , @gnawux）     <br />翻译时间：2010年5月15,25,26日</p>  <p>近来 <a href="http://cassandra.apache.org/">Cassandra</a> 备受瞩目，很多人正在评估是否可以应用 Cassandra。由于这些人更多的追求速度，相应的，我们的文档就过于粗浅了。这些文章中，最差的是为有关系数据库基础的人解释Cassandra数据模型的那些。</p>  <p>Cassandra 数据模型实际和传统的数据库差异非常大，足够让人眩晕，而且很多误解都需要修正。</p>  <p>有些人把这个数据模型描述成存放map的map，或对于super column的场景，是存放map的map的map。这些解释经常用类似 JSON 标记的视觉辅助展示方法来进行佐证。其他人则把列族看做是系数表，还有人把列族看作是存放列对象的集合容器。甚至有人有时把列看走势三元组。我觉得所有这些解释都不够好。</p>  <p>问题在于很难去用类比的方法来确切解释一个新的东西，而且如果比较的不准确的话常常把人搞糊涂。我仍然期望有人能解释清楚这个数据模型，但同时我觉得确切的例子可能更容易说明白一些。</p>  <h3>Twitter</h3>  <p>尽管 <a href="http://twitter.com/" target="_blank">Twitter</a> 本身就是 Cassandra 的一个<a href="http://nosql.mypopescu.com/post/407159447/cassandra-twitter-an-interview-with-ryan-king" target="_blank">实际的应用场景</a>，它仍然是一个不错的教学实例，因为它众所周知而且易于抽象。在例子中，和很多站点一样，每个用户都有一份用户数据（显示名称、密码、email等），这些信息链接到朋友（译注：用户follow的人）和 follower（译注：follow用户的人）。此外，如果没有那些短 tweets 的话也就不是 twitter 了，tweet每条140个字符，它们都关联着诸如时间戳和惟一的id这样的元数据，这个id我们可以从URL里看到。</p>  <p>现在我们在一个关系数据库里来直接进行建模，我们首先需要一个表来存放用户。</p>  <pre>CREATE TABLE user (
     id INTEGER PRIMARY KEY,

@@ -1,18 +1,15 @@
 --- 
-meta: {}
-
-published: true
-title: !binary |
-  OOaciOS6keiuoeeul+ebuOWFs+W8gOa6kOaWsOmXuw==
-
-status: publish
 layout: post
-type: post
+meta: {}
+published: true
+status: publish
 tags: 
-- cassandra
-- cloud
-- hadoop
-- open source
-- openstack
+  - cassandra
+  - cloud
+  - hadoop
+  - "open source"
+  - openstack
+title: 8月云计算相关开源新闻
+type: post
 ---
 <h2>Hadoop 0.21 发布</h2>  <p><a href="http://hadoop.apache.org/common/docs/r0.21.0/releasenotes.html">http://hadoop.apache.org/common/docs/r0.21.0/releasenotes.html</a>     <br />8 月23日，Hadoop 0.21发布，距离上一个版本0.20的发布已经过去了16个月，而之前两个版本，从0.18到0.20也仅仅用了一半的时间，8个月。这个千呼万唤始出来的版本是Hadoop发展历史上的一个重要里程碑，但是，很可能将成为一个过渡版本，而不会被广泛使用。 </p>  <p>Hadoop 0.21有一个代码结构上的大调整，HDFS和MapReduce分离成了两个独立的子项目，而公共部分，如 RPC 和一些辅助工具则由 Common 子项目来完成，这一拆分是造成发布姗姗来迟的主要原因之一。这一版本在功能上的新特征包括：支持Backup Node来改善NameNode的单点问题，扩大了新MapReduce API的支持范围，提供了新的 FileContext API等，同时对测试框架进行了改进，引入了新的自动测试框架Herriot。 </p>  <p>尽管从结构上和开发框架上有了很多调整，但从功能看，Hadoop 0.21.0 实际上只是 0.20.2+，在接口上保持了和 0.20.2 的兼容性，新增加的功能或者比较有限，或者还在完善中，很重要的安全方面的功能 Kerberos 的支持也要到 0.22 才会提供，因此，包括 Yahoo 在内的很多重要用户都表示很可能会跳过 0.21 而在 0.22 成熟时直接演进到 0.22，0.21 的前途尚不明朗，它很可能只是 0.22 前进路上的一个重要的铺路石。    <br /></p>  <h2>Cassandra 0.7.0-beta1和0.6.5发布</h2>  <p><a href="https://svn.apache.org/repos/asf/cassandra/tags/cassandra-0.7.0-beta1/NEWS.txt">https://svn.apache.org/repos/asf/cassandra/tags/cassandra-0.7.0-beta1/NEWS.txt</a>     <br />开源分布式非关系型数据库NoSQL一直在我们的视野之中，自从成为Apache项目以来，发展十分迅速，当然也经历了一些波折，面对着一些质疑，此次 0.7.0 beta的发布，使他再次出现在我们的视野之中，0.7中，行的尺寸从2GB提升到了20亿列，同时增加了输出到Hadoop的输出格式，便于两者的互动，此外，还在功能和性能上进行了很多其他改进。     <br /></p>  <h2>OpenStack 社区迅速成长</h2>  <p><a href="http://openstack.org/blog/2010/08/openstack-community-update/">http://openstack.org/blog/2010/08/openstack-community-update/</a>     <br />如果说上半年的明星项目是Cassandra的话，迄今为止，下半年的明星项目当属RackSpace和NASA在7月联合发布的OpenStack，一个多月来，这个项目一直留在我们的视野当中，并于8月25日举行了一次聚会。目前，OpenStack的计算部分（Nova）支持了KVM、Xen和 VirtualBox三种虚拟机，而存储部分则开始进行对象存储系统swift的开发。这些具体的工作让 OpenStack 开始逐步走向现实。</p>

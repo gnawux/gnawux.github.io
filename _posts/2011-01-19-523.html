@@ -1,21 +1,18 @@
 --- 
-meta: {}
-
-published: true
-title: !binary |
-  55SoU1ZN5ZCM5q2lU1ZO5LuT5bqT5Y+K6Kej5Yaz6ZSB6Zeu6aKY
-
-status: publish
 layout: post
-type: post
+meta: {}
+published: true
+status: publish
 tags: 
-- apache
-- hadoop
-- linux
-- mirror
-- revprop
-- subversion
-- svm
-- svn
+  - apache
+  - hadoop
+  - linux
+  - mirror
+  - revprop
+  - subversion
+  - svm
+  - svn
+title: 用SVM同步SVN仓库及解决锁问题
+type: post
 ---
 <p>这两天用svm同步hadoop上游的svn仓库的时候遇到个小问题，刚刚fix了，特此贴出来：</p>  <h2>同步仓库</h2>  <p>如果是RHEL/CentOS 5的话，安装 perl-SVN-Mirror 包，其他 distro 未尝试，应该类似，然后用 svnadmin 创建一个仓库，这个应该不用教，呵呵</p>  <blockquote>   <p>mkdir –p /state/partion1/repo/</p>    <p>svnadmin create mirror</p> </blockquote>  <p>这个仓库mirror就是我们准备用于做镜像的仓库了，然后初始化仓库，需要先设置环境变量</p>  <blockquote>   <p>export SVMREPOS=”/state/partion1/repo/mirror”</p> </blockquote>  <p>然后初始化</p>  <blockquote>   <p>svm init hadoop-common <a href="http://svn.apache.org/repos/asf/hadoop/common">http://svn.apache.org/repos/asf/hadoop/common</a></p> </blockquote>  <p>这里的hadoop-common是在新仓库里的路径，现在，就可以来同步仓库了</p>  <blockquote>   <p>svm sync hadoop-common</p> </blockquote>  <p>如果一切顺利的话，经过相当长一段时间的同步，镜像仓库就可以顺利使用了，新仓库的路径是：</p>  <blockquote>   <p><a href="file:///state/partion1/repo/mirror/hadoop-common">file:///state/partion1/repo/mirror/hadoop-common</a></p> </blockquote>  <p>至于如果需要HTTP访问或是其他什么特殊的定制的话，可以自行配置了。可以重复执行上面的同步命令来追加同步上游仓库里的更新</p>  <h2>仓库锁定的问题及修复</h2>  <p>昨天遇到的一个问题是仓库同步的时候，被我用C-c中断了，于是出现了一个无法解锁的问题，重复打印错误：</p>  <blockquote>   <p>Waiting for sync lock on /hadoop-common: wang.xu:9660.</p> </blockquote>  <p>经过大约2小时的源码和命令研究，大致明白了问题，首先分解上面的这句话：</p>  <ul>   <li>sync是加锁的命令，svm sync</li>    <li>/hadoop-common是同步的路径</li>    <li>wang.xu是出错的主机的hostname</li>    <li>9660是加锁的进程的PID</li> </ul>  <p>试图直接利用svm自己来解锁失败后，改为研究它是怎么加锁的，最终证明：</p>  <ul>   <li>所谓的锁是一个加在 revision 0 上的 revision property</li>    <li>锁的名字由加锁命令和路径构成，形式如 svm:lock:sync:_hadoop-common ，路径里的 _ 会被替换为 __，而/则会替换为_</li>    <li>锁的内容由主机和PID构成，形式如wang.xu:9660</li> </ul>  <p>可以这样看到：</p>  <blockquote>   <p>$ svnlook pg –revprop –r0 mirror/ svm:lock:sync:_hadoop-common      <br />wang.xu:9660</p> </blockquote>  <p>上面的mirror/是仓库的文件系统路径。自然地，应该这么去掉这个属性就可以解锁了：</p>  <blockquote>   <p>svn pd svm:lock:sync:_hadoop-common –revprop –r 0 <a href="file:///state/partion1/repo/mirror/">file:///state/partion1/repo/mirror/</a></p> </blockquote>  <p>不过，大部分svn仓库缺省不允许revision property随便写的，所以，这个命令无法成功，需要编辑这个hook文件</p>  <blockquote>   <p>/state/partion1/repo/mirror/hook/pre-revprop-change</p> </blockquote>  <p>让这个文件对于我们的编辑返回0，甚至临时改成就一行 exit 0 也行，以后记得改过来就好。然后，务必给这个文件加执行权限，并且，上述svn命令的执行者需要可以访问这个目录且有执行权限。</p>  <p>这样，执行上述svn pd命令即可。现在，锁被消灭了，可以正常更新了。</p>

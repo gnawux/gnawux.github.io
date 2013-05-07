@@ -1,20 +1,16 @@
 --- 
-meta: {}
-
-published: true
-title: !binary |
-  W+ivkeaWh11VcHN0YXJ0OiBVYnVudHUg55qE5Z+65LqO5LqL5Lu255qE5ZCv
-  5Yqo6L+b56iL
-
-status: publish
 layout: post
-type: post
+meta: {}
+published: true
+status: publish
 tags: 
-- debian
-- init
-- translation
-- ubuntu
-- upstart
+  - debian
+  - init
+  - translation
+  - ubuntu
+  - upstart
+title: "[译文]Upstart: Ubuntu 的基于事件的启动进程"
+type: post
 ---
 <p>By <a href="http://www.sobell.com/">Mark Sobell</a> on February 08, 2008 (9:00:00 AM)    <br />原文链接：http://www.linux.com/feature/125977    <br />翻译时间：2008年3月7日    <br />译者：王旭（gnawux at gmail.com）</p>  <p><i>译注：尽管译者是一位铁杆的Debian粉丝，但也注意 upstart 很久了，就译者本人观点，upstart 应该说是 Ubuntu 所做的众多工作中最为杰出的一个，它将可以极大地加快 Linux 系统启动的过程。尽管它不是惟一的下一代 init 程序，但它已经作为 Ubuntu 的缺省 init 进程工作了相当长的时间，这点将极大有助于程序的成熟；而且，upstart 使用了基于事件的模型，而不是简单的将各个 daemon 并行化，这个架构上的突破也是具有革命性的，下面我们来看这篇文章吧。</i></p>  <p>因为传统的System V 的 init daemon (Sysvinit)无法很好地处理现代硬件，如热插拔设备、USB硬盘或山村、网络文件系统等，Ubuntu 使用了<a href="http://upstart.ubuntu.com/">Upstart</a> init daemon。</p>  <p><i>本文抽取自最近出版的 </i><a href="http://www.amazon.com/exec/obidos/asin/013236039X/vasoft-20">A Practical Guide to Ubuntu Linux</a><i>.</i></p>  <p>目前已经有多种 sysvinit 的替代产品了，这其中最为著名的一个就是 <a href="http://www.initng.org/">initng</a>，它已经可以用于 Debian 了，并且在 Ubuntu 上也能工作。在同一位置上，Solaris 使用 SMF (Service Management Facility)，而 Mac OS 则使用 launchd。而 Ubuntu 则更倾向于集这些软件的优点于一身。</p>  <p>Sysvinit daemon 是一个基于运行级别的初始化程序，它使用了运行级别（如单用户、多用户等）并通过从 /etc/rc?.d 目录到 /etc/init.d 目录的初始化脚本的链接来启动与终止系统服务。自从 Feisty 开始，Ubuntu 转向了 Upstart init daemon，并开始将Sysvinit 设置转换为 Upstart 的设置。本文探讨 Upstart 和残存的部分 Sysvinit 遗迹：/etc/rc?.d 和 /etc/init.d 目录以及运行级别的概念。</p>  <p>Upstart init daemon 是基于事件的，当系统中的什么情况发生变化时，它会运行某个特定的程序。这里被运行的程序多半是用来启动或终止服务的脚本。这个配置方式和systemv 在系统进入某个运行级别的时候运行init脚本的链接的概念实际上是非常类似的，只不过 upstart 更加灵活一些。Upstart 不仅能在运行级别改变的时候启动或终止服务，也能在接收到系统发生其他改变的信息的时候启动或终止服务。这些系统的改变被称为“事件”。例如，当 upstart 从 udev 接收到运行时文件系统加载、打印机安装或其他类似的设备添加或删除的信息，并采取相应的行动。Upstart 也可以在系统启动、关闭或某个任务状态改变的时候启动或关闭服务。</p>  <p>Upstart由五个包组成，（Ubuntu 中）它们都会被缺省安装：</p>  <ul>   <li>     <p><b>upstart</b> 提供Upstart init daemon 和 initctl 工具。</p>   </li>    <li>     <p><b>upstart-logd</b> 提供 logd daemon 和 logd 服务的工作定义文件。</p>   </li>    <li>     <p><b>upstart-compat-sysv</b> 提供了 rc 任务的工作定义文件，并提供了 reboot, runlevel, shutdown, telinit 等工具，以便与 sysvinit 相兼容。</p>   </li>    <li>     <p><b>startup-tasks</b> 提供了系统启动任务的工作定义文件。</p>   </li>    <li>     <p><b>system-services</b> 提供了 tty 服务的工作定义文件。</p>   </li> </ul>  <h6>定义</h6>  <p>有几个名词帮助我们理解 init 相关的东西。事件（event）是 init 可以得到的状态变更信息。几乎系统所有的内部或外部状态变更都可以触发一个事件。比如，引导程序会触发启动（startup）事件，系统进入运行级别2会触发运行级别2（runlevel 2）事件，而文件系统加载则会触发路径加载（path-mounted）事件，拔掉或安装一个热插拔或USB设备（如打印机）也会触发一个时间。用户还可以通过 initctl emit 命令来手动触发一个事件。</p>  <p>一个工作（job）是 init 可以理解的一系列指令。典型的指令包括一个程序（二进制文件或是脚本）和事件的名称。Upstart init daemon 会在事件触发的时候运行相应的程序。用户可以分别用 initctl start 和 stop 命令手动启动或终止一项工作。工作又可以分为任务和服务。</p>  <p>任务是运行、并在执行结束后返回到等待状态的工作。</p>  <p>服务是那些通常不会自己结束的工作。比如，logd daemon 和 gettys 就被实现为服务。init daemon 会监测每个服务的状态，如果服务出现问题会重启服务，在某些事件触发时或手工停止时会杀死服务。</p>  <p>/etc/event.d 目录下包含着一系列的工作定义文件（定义了 upstart init daemon 运行的工作的文件）。最初，这个目录由 Upstart 包来生成。在 Feisty 之后的 Ubuntu 中，被安装的服务会向这个目录中添加控制服务的文件，替代哪些安装到 /etc/rc?.d 和 /etc/init.d 目录的文件。</p>  <p>Upstart init daemon 的核心是一个状态机。它持续跟踪各个工作的状态，当有事件触发的时候，跟踪工作的状态改变。当 init 跟踪到一个工作的状态从一个转变到了另一个的时候，就可能会执行工作的命令或是终止工作。</p>  <p>System V 的 init daemon 通过改变运行级别来启动或停止服务。而使用 Upstart init daemon 的 Ubuntu 系统没有运行级别的概念。为了将基于运行级别的系统平滑移植到基于事件的系统，并为面向其他发布版的软件提供一定的兼容性，Ubuntu 使用 Upstart 模拟了运行级别。</p>  <p>在 /etc/event.d/rc? 文件中定义的 rc? 工作会运行 /etc/init.d/rc 脚本，这个脚本会运行链接到 /etc/rc?.d 目录中的 /etc/init.d 中的启动脚本，以模拟 SysVinit 的行为。当系统进入一个运行级别的时候，rc? 工作就会运行这些脚本。同时，Upstart 提供了 runlevel 和 telinit 工具以提供与 SysVinit 的兼容性。</p>  <p>使用 initctl (init control) 工具，具有 root 权限的管理员可以和 Upstart init daemon 通信。这个工具可以用来启动、停止或报告(report)一项工作。 比如，initctl list 命令会列出所有的工作和它们的状态：</p>  <pre><p>$ <b>sudo initctl list </b><br />logd (stop) waiting<br />rc-default (stop) waiting<br />rc0 (stop) waiting <br />...<br />tty5 (start) running, process 4720 <br />tty6 (start) running, process 4727</p></pre>
 

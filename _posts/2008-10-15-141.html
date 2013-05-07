@@ -1,18 +1,15 @@
 --- 
-meta: {}
-
-published: true
-title: !binary |
-  5paH5Lu25oiQ5YiG5Yik5Yir
-
-status: publish
 layout: post
-type: post
+meta: {}
+published: true
+status: publish
 tags: 
-- file
-- find
-- scripts
-- shell
+  - file
+  - find
+  - scripts
+  - shell
+title: 文件成分判别
+type: post
 ---
 <p>目录中文件成分判断：</p>  <pre>find . -type f -exec 'file' '{}' ';' |cut -d: -f2| cut -d, -f1|sort|uniq -c|sort -n<br /></pre>
 
