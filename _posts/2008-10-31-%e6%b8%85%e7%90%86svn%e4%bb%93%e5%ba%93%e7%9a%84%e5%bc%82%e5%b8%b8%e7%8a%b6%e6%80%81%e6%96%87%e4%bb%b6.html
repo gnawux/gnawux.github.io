@@ -1,0 +1,26 @@
+---
+layout: post
+title: 清理svn仓库的异常状态文件
+date: 2008-10-31 20:59:00.000000000 +08:00
+categories:
+- scripts
+tags:
+- awk
+- grep
+- scripts
+- shell
+- svn
+status: publish
+type: post
+published: true
+meta: {}
+author:
+  login: gnawux
+  email: gnawux@gmail.com
+  display_name: gnawux
+  first_name: ''
+  last_name: ''
+---
+<p>这个命令行非常初级</p>
+<p>svn status|grep '!'|awk '{print &quot;svn del &quot; $2}' |/bin/sh   <br />svn status|grep '?'|awk '{print &quot;svn add &quot; $2}' |/bin/sh</p>
+<p>将有 ! 前缀的文件清除出去，将有 ? 前缀的文件纳入版本管理。</p>

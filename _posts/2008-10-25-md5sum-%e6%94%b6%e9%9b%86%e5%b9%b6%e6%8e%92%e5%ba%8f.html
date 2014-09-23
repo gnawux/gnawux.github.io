@@ -1,0 +1,26 @@
+---
+layout: post
+title: md5sum 收集并排序
+date: 2008-10-25 21:06:00.000000000 +08:00
+categories:
+- scripts
+tags:
+- find
+- regexp
+- scripts
+- sed
+status: publish
+type: post
+published: true
+meta: {}
+author:
+  login: gnawux
+  email: gnawux@gmail.com
+  display_name: gnawux
+  first_name: ''
+  last_name: ''
+---
+<p>下了一个openclipart 的 daily 发布包，所有文件是按照用户名排序的，文件辨识分类很困难，不管别的了，先选择所有 svg 文件，计算 md5sum，并提取不包含路径的文件名、然后按文件名排序，方便索引。</p>
+<blockquote><p>find . -name &quot;*.svg&quot; -exec 'md5sum' '{}' | \     <br />sed -e &quot;s/\([^ ]*\) .*\/\([-a-zA-Z0-9_().]*\.svg\)/\2,\1/g&quot; | \      <br />sort&#160; &gt; md5sums_sorted.csv</p>
+</blockquote>
+<p>md5sum 的输出结果是 md5sum 路径名，这里去掉了前面的路径，只保留文件名，然后把它放在前面，md5sum放在后面，中间用逗号分开，构成csv格式，文件名包括字母、数字、横线、下划线、括号和点。</p>

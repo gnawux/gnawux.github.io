@@ -1,0 +1,29 @@
+---
+layout: post
+title: 昨晚险些重装XP
+date: 2009-05-22 08:01:59.000000000 +08:00
+categories: []
+tags:
+- dotNetFx
+- msicuu2
+- windows
+- 卸载
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: gnawux
+  email: gnawux@gmail.com
+  display_name: gnawux
+  first_name: ''
+  last_name: ''
+---
+<p>情况异常惊险，已经进入Windows安装程序了，不过XP的安装盘似乎不支持串口硬盘，又没准备驱动，所以作罢。之前本来想用Thinkpad的系统恢复来着，但我的这个居然只能整盘恢复出厂状态，代价太大，没敢尝试。再之前想一键恢复来着，但似乎装过grub之后，就无法一键恢复了。</p>
+<p>回来说为啥想重装——原因很简单——很多软件都不能正常工作了，影响最大的是.Net Framework，导致一系列程序都不能工作。这件事情的起因是因为我为了腾磁盘空间，把系统目录里的一些以往的安装文件删掉了，没想到这些东西删掉虽然不影响运行，但会影响删除程序。后来某天想尝试blu（一个twitter客户端），不得不升级dotNetFx到3.5，这时问题就出现了，系统中已有2.0版本，于是dotNetFx就进入了一个</p>
+<blockquote><p>欲删不可，欲装不能</p></blockquote>
+<p>的状态，包括飞信、Paint.Net等大量日常生活用品都不能启动了，于是，忍了俩月之后，昨天终于下决心要重装了。</p>
+<p>由于开头所说的囧原因，重装未果，只好回来想法修正，想法倒是很简单——想办法清除dotNetFx的一些信息，主要应该在注册表，只要让系统觉得没有装过它，就可以直接覆盖安装了。不过，手工编辑注册表确实太挑战了一些，于是，再次求助搜索引擎。</p>
+<p>终于，有<a title="飞信不能启动-双击fetion.exe文件无反应(解决办法)" href="http://hi.baidu.com/%D2%F8%C9%AB%CA%A5%C6%EF%CA%BF/blog/item/c79d4c95157110007bf480ca.html" target="_blank">先行者提供了方法</a>，使用<a title="Windows Installer 清理实用工具说明" href="http://support.microsoft.com/kb/290301" target="_blank">微软安装程序清理工具（msicuu2, windows installer cleanup utility）</a>可以清除包括dotNetFx, MS Office等各种因为丢失安装文件无法卸载、重装的软件。</p>
+<p>删除dotNetFx之后，重新安装就可以了。</p>

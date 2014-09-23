@@ -1,0 +1,27 @@
+---
+layout: post
+title: 一行的日志统计计算脚本
+date: 2010-01-20 13:04:35.000000000 +08:00
+categories:
+- scripts
+tags:
+- cli
+- linux
+- regexp
+- scripts
+- sed
+- shell
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: gnawux
+  email: gnawux@gmail.com
+  display_name: gnawux
+  first_name: ''
+  last_name: ''
+---
+<p>﻿accu=0;sed -ne 's/.*bytesIn=\"\([0-9]*\)\"\/&gt;/\1/p' stage_3.xml |while read num;do cur=$(($num-$accu));accu=$num; echo $(($cur/20/1024/1024));done</p>
+<p>记在这里了，先不解释了。</p>

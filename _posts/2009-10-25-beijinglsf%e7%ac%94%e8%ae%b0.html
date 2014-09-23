@@ -1,0 +1,32 @@
+---
+layout: post
+title: BeijingLSF笔记
+date: 2009-10-25 22:27:05.000000000 +08:00
+categories: []
+tags:
+- BeijingLSF
+- kernel
+- linuxfb
+- storage
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: gnawux
+  email: gnawux@gmail.com
+  display_name: gnawux
+  first_name: ''
+  last_name: ''
+---
+<p>BeijingLSF = Linux Storage Filesystem Workshop in Beijing，这是 <a href="http://blog.coly.li/">Coly</a> 等大牛组织起来的一次国内 Linux 内核存储相关部分的主要开发者的聚会，会议由 Novell 提供了一定的资助，在 linuxfb 的老巢北邮教三楼召开，参与者来自 Novell, EMC, Oracle, Intel, Fujisu, Freescale, Lenovo, Xteam 等公司，2/3 的第二天 AKA 大会的讲演者都在 BeijingLSF 上介绍了他们的工作，来参加 AKA 大会的 Herbert Xu 也大驾光临，直接从机场来到了会场。作为 <a href="http://blog.coly.li/">Coly</a> 的信徒，我有幸参加了这一峰会，当然写Blog是必须的了。</p>
+<p>正如我在最后所说的，我本来是跟着 <a href="http://blog.coly.li/">Coly</a> 来看大牛的，结果一不小心还被大牛围观了，这基本是由于我来自一个让中国的开源社区感到陌生而又熟悉的公司——中国移动。嗯……稍后再来感慨，先谈谈这次会议的实况。</p>
+<p>第一个时段是 <a href="http://blog.coly.li/">Coly</a> 亲自主持的关于 ocfs2 和 DLM 的讨论，<a href="http://blog.coly.li/">Coly</a> 分享了很多开发过程中遇到的问题，Oracle 和 Novell 的同学基本上主导了这个话题的讨论，其他公司的同学也参与其中了。给我留下比较深刻印象的是那个32/64位 lvb 的问题以及最后的那个 race condition 的问题。</p>
+<p>第二个时段应该是马涛主持的讨论，但他把这个时段几乎完全贡献给大家作为自我介绍时段了，也就是在这个时段，我从瞻仰变成了被围观，呵呵。不过，说实话，我最感兴趣的是马涛介绍的 reflink，对于大量使用虚拟机的情况，这一特性无疑非常具有吸引力，而且也获悉 btrfs 也具有类似特性，我确实希望能尝试一下这个文件系统了。</p>
+<p>接下来胡欣蔚介绍了 clvm 等内容，之前尝试过 drbd8，不过还是被 md，dm 这些模块搞得有些晕晕的，呃……对于我们的某些应用来说，多节点构成一个逻辑卷的需求是切实存在的，以后可能有机会常和这些东东打交道。</p>
+<p>下午，吴锋光首先介绍 writeback 和 readahead，大家对 SSD 的讨论很热闹，这也是世界范围的关注重点，头一次听说 SSD 的随机读取速度可能会超过连续读，非常有趣的情况，我想，下个月我会测试一下SSD的实际情况，可能会有更多可发言的东西，呵呵。</p>
+<p>接下来，归剑锋介绍了 cgroup iocontroller，了解了很多相关的开发进程以及背后的八卦信息，当年我在翻译LWN的<a href="http://wangxu.me/blog/?p=117">CFS组调度</a>的文章的时候接触过 cgroup 这个概念，这次听归剑锋的介绍，对 pdflush 的问题印象比较深刻。</p>
+<p>最后的一个session是联想研究院的卢亿雷介绍他们的网盘系统的实现和一些问题，这个系统和我们的应用有些类似的地方，我也参与了一些性能相关的讨论。</p>
+<p>结束前的light talk环节，EMC的同学们还提出下次可以分享一些不涉及机密的非开源产品的技术内容，其他参与者也表达了美好的憧憬，这让我也不由得期待明年还能有机会参与其中，呵呵。</p>
+<p>本来没想在这里一直一天的，毕竟由于上周出差已经两个星期没和儿子有一整段时间在一起了，不过，内容和嘉宾太吸引人了，Herbert Xu这样的名人要来，如果不住在河北省，谁会早走呢，呵呵，不仅学到很多东西，而且认识了很多大牛，不虚此行。感谢 Coly，感谢组委会，感谢 Novell，感谢志愿者彭涛和李劼……</p>

@@ -1,0 +1,23 @@
+---
+layout: post
+title: Linux忘记密码的处理方法
+date: 2006-01-14 15:16:00.000000000 +08:00
+categories:
+- works
+tags:
+- boot
+- grub
+- init
+- works
+status: publish
+type: post
+published: true
+meta: {}
+author:
+  login: gnawux
+  email: gnawux@gmail.com
+  display_name: gnawux
+  first_name: ''
+  last_name: ''
+---
+<p>这个问题总被问，回答过无数次了，贴在这里，这是终极方法，适用于一切可以重新启动系统、使用 LILO/GRUB，并且引导程序没有密码的情况。   <br />如果你忘了普通用户的用户名密码，用 root 登录，然后运行 passwd username 即可修改    <br />如果忘了 root 密码，启动到单用户模式，用 passwd 命令修改密码    <br />如果单用户模式也需要密码，启动时用内核参数 init=/bin/sh 即可，出现提示符后，以 rw 方法重新 mount 根分区，编辑 /etc/passwd，去掉 root 密码即可，具体操作是    <br />1.a 如果用 grub 引导的话，在引导菜单上要启动的选项处按'e'，然后上下找到kernel那一行，再按 e，在后面加上 init=/bin/sh 这几个字，然后按回车，然后大概是按b，启动    <br />1.b 如果用lilo，在 lilo 提示界面下，输入你启动的东东的 lable，再在后面加上参数，比如label是linux，那就输入 linux init=/bin/sh，然后回车    <br />2. 看到 Shell 提示符之后，输入命令, mount -o remount,rw /，重新以可读写方式挂载根分区。    <br />3 用 passwd 命令修改密码，也可以直接修改 /etc/passwd文件    <br />4 用 mount -o ro,remount / 重新把根分区只读，这个必须做，否则就功亏一篑了    <br />5 按计算机的 reset 键，重新启动系统。因为没有 init，所以 reboot, halt, shutdown 这些命令很可能不好用。    <br />完毕。</p>

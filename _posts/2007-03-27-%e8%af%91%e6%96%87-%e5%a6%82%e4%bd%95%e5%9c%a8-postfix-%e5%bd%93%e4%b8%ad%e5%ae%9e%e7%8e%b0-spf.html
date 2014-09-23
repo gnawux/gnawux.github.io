@@ -1,0 +1,169 @@
+---
+layout: post
+title: '[译文] 如何在 Postfix 当中实现 SPF'
+date: 2007-03-27 12:56:00.000000000 +08:00
+categories:
+- translation
+tags:
+- mail
+- postfix
+- spf
+- translation
+status: publish
+type: post
+published: true
+meta: {}
+author:
+  login: gnawux
+  email: gnawux@gmail.com
+  display_name: gnawux
+  first_name: ''
+  last_name: ''
+---
+<p>原文出处: http://www.howtoforge.com/postfix_spf   <br />Version 1.0    <br />Author: Falko Timme    <br />Last edited 02/09/2007    <br /><i>译注: 关于 SPF，可以参考译者曾经翻译的 Bruno Sousa 的《SPF 简介》 &lt;http://www.linuxfocus.org/ChineseGB/December2004/article354.shtml&gt;</i>    <br />本教程技术了如何在 Postfix 2.x 中来实现 SPF (发送方策略框架)。SPF 是一个开放标准，用于规范防止伪造发送方地址的技术途径 (http://www.openspf.org/Introduction)。目前，有很多 Postfix 的 SPF 扩展和补丁，不过，大部分都需要你重新编译 Postfix。所以，我们将要安装的是来自 openspf.org 的 postfix-policyd-spf-perl 包，这是一个 Perl 包，它可以在已经安装好的 Postfix 上实现 SPF，而无须重新编译。    <br />开始之前，我想说的是这不是惟一的设置方法。条条大路通罗马，不过这是我选择的路。我不保证它对你也是合适的！ </p>
+<h5>1 说明</h5>
+<p>我架设你已经安装好了一个可以工作的 Postfix 邮件服务器。</p>
+<p>下面的步骤和发布版是无关的，也就是说，它应该在任何 Linux distro 上都是工作的 (不过我只在 Debian Etch 上测试过)。</p>
+<h5>2 安装需要的 Perl 模块</h5>
+<p>postfix-policyd-spf-perl 包依赖于 Mail::SPF 和 NetAddr::IP Perl 模块。所以，我们准备是用 Perl shell 安装它们。现在，启动一个 Perl shell:</p>
+<blockquote><p>perl -MCPAN -e shell</p>
+</blockquote>
+<p>如果你这是第一次启动 Perl shell, 你会被问及几个问题，全都接受缺省值好了 (译注: 输出字符可以选择 no，这时输出字符集是 UTF-8, 缺省的是 Latin-1)。程序还会询问你所是用的 CPAN 仓库，选择一个最接近你的。</p>
+<p>初始化 Perl shell 设置之后，现在我们可以开始安装需要的模块了，要安装 Mail::SPF，只要如下操作即可:</p>
+<blockquote><p>install Mail::SPF</p>
+</blockquote>
+<p>在我这里，它还会尝试安装 Module::Build (它是被依赖的)，不过随后失败了。如果在你那里也是这样的话，直接退出 Perl shell 吧</p>
+<blockquote><p>q</p>
+</blockquote>
+<p>然后重新进入 Perl shell:</p>
+<blockquote><p>perl -MCPAN -e shell</p>
+</blockquote>
+<p>重新尝试安装 Mail::SPF :</p>
+<blockquote><p>install Mail::SPF</p>
+</blockquote>
+<p>这一次应该成功了，而且你应该可以看到 Net::DNS::Resolver::Programmable 和 NetAddr::IP 这两个被依赖的模块也安装上了。</p>
+<p>成功的安装过程应该是这样的:</p>
+<blockquote><p>Installing /usr/local/bin/spfquery     <br />Writing /usr/local/lib/perl/5.8.8/auto/Mail/SPF/.packlist      <br />/usr/bin/make install -- OK</p>
+</blockquote>
+<p>因为 NetAddr::IP 也已经被安装上了，现在我们退出 Perl shell:</p>
+<blockquote><p>q</p>
+</blockquote>
+<h5>3 安装 postfix-policyd-spf-perl</h5>
+<p>下面，我们从 _real_href=&quot;http://www.openspf.org/Software&quot; href=&quot;http://www.openspf.org/Software&quot; target=&quot;_blank&quot;&gt;http://www.openspf.org/Software 下载 postfix-policyd-spf-perl ，把它放在 /usr/src，然后安装到 /usr/lib/postfix/ 。如下:</p>
+<blockquote><p>cd /usr/src     <br />wget http://www.openspf.org/blobs/postfix-policyd-spf-perl-2.001.tar.gz      <br />tar xvfz postfix-policyd-spf-perl-2.001.tar.gz      <br />cd postfix-policyd-spf-perl-2.001      <br />cp postfix-policyd-spf-perl /usr/lib/postfix/policyd-spf-perl</p>
+</blockquote>
+<p>然后编辑 /etc/postfix/master.cf 并在最后添加如下内容</p>
+<blockquote><p>vi /etc/postfix/master.cf</p>
+</blockquote>
+<blockquote><pre>[...]<br />policy  unix  -       n       n       -       -       spawn<br />    user=nobody argv=/usr/bin/perl /usr/lib/postfix/policyd-spf-perl</pre>
+</blockquote>
+<p>( user=nobody 之前的空格是必要的，这样 Postfix 才知道这一行是接着上面一行的！)</p>
+<p>然后，打开 /etc/postfix/main.cf ，搜索 smtpd_recipient_restrictions 指示，这个设置之中应该包含 reject_unauth_destination ，在这之后，添加 check_policy_service unix:private/policy ，如下:</p>
+<blockquote>
+<p>vi /etc/postfix/main.cf</p>
+</blockquote>
+<blockquote>
+<pre>[...]<br />smtpd_recipient_restrictions = permit_sasl_authenticated,permit_mynetworks,reject_unauth_destination,check_policy_service<br />[...]</pre>
+</blockquote>
+<p>or like this:</p>
+<pre>[...]<br />[...]<br />smtpd_recipient_restrictions =<br />        [...]<br />        reject_unauth_destination<br />        check_policy_service unix:private/policy<br />        [...]<br />[...]</pre>
+<p>在 reject_unauth_destination <b>之后</b>指定 check_policy_service 非常之重要，否则你的邮件系统就成为一个 open relay 服务器了!</p>
+<p>然后重新起动 Postfix:</p>
+<blockquote>
+<p>/etc/init.d/postfix restart</p>
+</blockquote>
+<p>完成！你应该看看 postfix-policyd-spf-perl 包当中的 README 文件，其中包含一些关于该包如何处理邮件重要的细节，比如，postfix-policyd-spf-perl-2.0001 的 README 中写到:</p>
+<p><i>此版本</i><i>的 policy server 在 Mail From 之前检查 HELO (老版本仅在 Mail From 为空的情况下才检查 HELO)。它拒绝所有没有通过 Mail From 或 HELO SPF 检查的邮件。如果遇到一个临时性的错误并在其他检查中通过了，邮件将被延迟发送 (DEFER_IF_PERMIT)。如果 HELO 检查的结果是 </i><i>REJECT/DEFER，Mail From 将不被检查。<br />
+    <br /></i></p>
+<p><i>如果消息没有被拒绝，policy server 将在消息开始处添加相应的 </i><i>SPF Received 头部。对于有多个接收方的邮件，会添加多个头部。如果 Mail From 不是完全空白，那么，Mail From 的检查结果将被用于 SPF Received 头部 (比如 Maile From None 的情况，即使此时 HELO 已经通过了)。<br />
+    <br /></i></p>
+<p><i>policy server 对于来自本机 (127.) 的连接将跳过 SPF 检查，并在邮件头部添加 </i><i>'SPF skipped - localhost is always allowed.'，同时记入日志。</i></p>
+<h5>4 测试 policyd-spf-perl</h5>
+<p>我们可以用如下方法测试 policyd-spf-perl:</p>
+<blockquote>
+<p>perl /usr/lib/postfix/policyd-spf-perl</p>
+</blockquote>
+<p>光标将停留在 policyd-spf-perl shell 中等待输入。现在我们模拟一封从某个域名某个服务器发送给另一个邮件地址的邮件。policyd-spf-perl 将会检查给定的服务器是否是该域名允许发送邮件的服务器并显示结果。</p>
+<p>现在，咱们来看看，如果我们尝试从服务器 h****.server*********.net (IP 地址 81.169.1**.**) 发送一封来自 info@h****forge.com 的邮件，于是就会有一条 SPF 记录表明允许 81.169.1**.** 发送来自 h****forge.com 的邮件。</p>
+<p>于是，咱们在 policyd-spf-perl shell 输入:</p>
+<blockquote>
+<p>request=smtpd_access_policy<br />
+    <br />protocol_state=RCPT</p>
+<p>protocol_name=SMTP</p>
+<p>helo_name=h****forge.com</p>
+<p>queue_id=8045F2AB23</p>
+<p>sender=info@h****forge.com</p>
+<p>recipient=falko.timme@*******.de</p>
+<p>client_address=81.169.1**.**</p>
+<p>client_name=h****.server*********.net</p>
+<p>[empty line]</p>
+</blockquote>
+<p>输出应该是这个样子的:</p>
+<blockquote>
+<p>action=PREPEND Received-SPF: pass (h****forge.com: 81.169.1**.** is authorized to use 'info@h****forge.com' in 'mfrom' identity (mechanism 'ip4:81.169.1**.**' matched)) receiver=server1.example.com; identity=mfrom; envelope-from=&quot;info@h****forge.com&quot;; helo=h****forge.com; client-ip=81.169.1**.**</p>
+</blockquote>
+<p>这就意味着我们通过了这个测试。</p>
+<p>现在来第二个测试，我们从一个不被允许发送 h****forge.com 域邮件的主机 1.2.3.4 (www.example.com) 发送邮件:</p>
+<blockquote>
+<p>request=smtpd_access_policy<br />
+    <br />protocol_state=RCPT</p>
+<p>protocol_name=SMTP</p>
+<p>helo_name=h****forge.com</p>
+<p>queue_id=8045F2AB23</p>
+<p>sender=info@h****forge.com</p>
+<p>recipient=falko.timme@*******.de</p>
+<p>client_address=1.2.3.4</p>
+<p>client_name=www.example.com</p>
+<p>[empty line]</p>
+</blockquote>
+<p>下面是输出，测试输出的结果应该是失败的:</p>
+<blockquote>
+<p>action=PREPEND Received-SPF: softfail (h****forge.com: Sender is not authorized by default to use 'info@h****forge.com' in 'mfrom' identity, however domain is not currently prepared for false failures (mechanism '~all' matched)) receiver=server1.example.com; identity=mfrom; envelope-from=&quot;info@h****forge.com&quot;; helo=h****forge.com; client-ip=1.2.3.4</p>
+</blockquote>
+<p>我们设置可以测试没有 sender 域的情况，这也正是很多垃圾邮件采用的手段。同样 policyd-spf-perl 应该可以完成这个测试:</p>
+<blockquote>
+<p>request=smtpd_access_policy<br />
+    <br />protocol_state=RCPT</p>
+<p>protocol_name=SMTP</p>
+<p>helo_name=h****forge.com</p>
+<p>queue_id=8045F2AB23</p>
+<p>sender=</p>
+<p>recipient=falko.timme@*******.de</p>
+<p>client_address=81.169.1**.**</p>
+<p>client_name=h****.server*********.net</p>
+<p>[empty line]</p>
+</blockquote>
+<p>这是输出结果，我们仍然被允许发送来自 h****forge.com 的邮件:</p>
+<blockquote>
+<p>action=PREPEND Received-SPF: pass (h****forge.com: 81.169.1**.** is authorized to use 'h****forge.com' in 'helo' identity (mechanism 'ip4:81.169.1**.**' matched)) receiver=server1.example.com; identity=helo; helo=h****forge.com; client-ip=81.169.1**.**</p>
+</blockquote>
+<p>现在尝试从一个非法的客户端 (译注: 注意 client 字段) 进行相同的测试:</p>
+<blockquote>
+<p>request=smtpd_access_policy<br />
+    <br />protocol_state=RCPT</p>
+<p>protocol_name=SMTP</p>
+<p>helo_name=h****forge.com</p>
+<p>queue_id=8045F2AB23</p>
+<p>sender=</p>
+<p>recipient=falko.timme@*******.de</p>
+<p>client_address=1.2.3.4</p>
+<p>client_name=www.example.com</p>
+<p>[empty line]</p>
+</blockquote>
+<p>不出所料，这事输出结果:</p>
+<blockquote>
+<p>action=PREPEND Received-SPF: softfail (h****forge.com: Sender is not authorized by default to use 'h****forge.com' in 'helo' identity, however domain is not currently prepared for false failures (mechanism '~all' matched)) receiver=server1.example.com; identity=helo; helo=h****forge.com; client-ip=1.2.3.4</p>
+</blockquote>
+<p>要离开 the policyd-spf-perl shell, 请输入</p>
+<blockquote>
+<p>[CTRL+C]</p>
+</blockquote>
+<h5>5相关链接</h5>
+<ul>
+<li>OpenSPF: _real_href=&quot;http://www.openspf.org/&quot; href=&quot;http://www.openspf.org/&quot; target=&quot;_blank&quot;&gt;http://www.openspf.org </li>
+<li>policyd-spf-perl 下载地址: _real_href=&quot;http://www.openspf.org/Software&quot; href=&quot;http://www.openspf.org/Software&quot; target=&quot;_blank&quot;&gt;http://www.openspf.org/Software </li>
+<li>Wikipedia 上 SPF 的定义: _real_href=&quot;http://en.wikipedia.org/wiki/Sender_Policy_Framework&quot; href=&quot;http://en.wikipedia.org/wiki/Sender_Policy_Framework&quot; target=&quot;_blank&quot;&gt;http://en.wikipedia.org/wiki/Sender_Policy_Framework </li>
+<li>Postfix: _real_href=&quot;http://www.postfix.org/&quot; href=&quot;http://www.postfix.org/&quot; target=&quot;_blank&quot;&gt;http://www.postfix.org</li>
+</ul>
+<p>Copyright © 2007 Falko Timme<br />
+  <br />All Rights Reserved.</p>

@@ -1,0 +1,25 @@
+---
+layout: post
+title: 'dfs.datanode.max.xcievers: hadoop 的无文档的参数'
+date: 2009-04-30 11:55:41.000000000 +08:00
+categories: []
+tags:
+- hadoop
+- hdfs
+- 配置
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+author:
+  login: gnawux
+  email: gnawux@gmail.com
+  display_name: gnawux
+  first_name: ''
+  last_name: ''
+---
+<p><!--正文内容：<br />
+--> 								该参数限制了datanode所允许同时执行的发送和接受任务的数量，缺省为256，hadoop-defaults.xml中通常不设置这个参数。</p>
+<p>这个限制看来实际有些偏小，高负载下，DFSClient 在put数据的时候会报 could not read from stream 的 Exception。</p>
+<p>值得注意的是，程序里进行比较的数值来自于java的ThreadGroup，据JDK API文档解释，这个参数并不确保准确，仅供参考用途，Core Java也建议不要使用ThreadGroup，hadoop在此使用ThreadGroup有些值得商榷。</p>

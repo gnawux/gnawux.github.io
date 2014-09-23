@@ -1,0 +1,88 @@
+---
+layout: post
+title: 创建 Debian/Ubuntu 风格的内核模块包
+date: 2012-05-14 18:26:52.000000000 +08:00
+categories:
+- linux
+tags:
+- deb
+- debian
+- kernel
+- module
+- module-assistant
+- package
+- ubuntu
+- unleashed
+status: publish
+type: post
+published: true
+meta:
+  posturl_add_url: 'yes'
+  _edit_last: '1'
+author:
+  login: gnawux
+  email: gnawux@gmail.com
+  display_name: gnawux
+  first_name: ''
+  last_name: ''
+---
+<p>很久不深入玩Debian系的东西了，最近，乘着工作之便，又打了个deb包，而且是我之前没干过的内核模块的deb包，恩，记一下吧。</p>
+<h2>Debian内核模块的一般构建方法</h2>
+<p>和 RHEL 不同，Debian 很少提供内核匹配的模块的二进制 deb 包，相反，一般会提供一些比较长用的模块的源码包，并配合 module-assistant 工具，生成与用户使用的内核版本一致的内核模块。</p>
+<p>module-assistant 是一个菜单界面的CLI工具，用户可以在这里选择源码包，当然，也可以用 apt 安装 xxx-source 的源码包（也是deb包），然后，用命令</p>
+<pre class="brush: bash; gutter: true">m-a a-i module-name-here</pre>
+<p>来自动生成模块的二进制 deb 包并安装。</p>
+<h2>打包模块源码</h2>
+<p>如果源里没有这个模块的话，就只能自己打包内核模块了。这个工作实际和一般软件的 deb 打包非常相似，可以借助 debhelper 的 dh_make(8) 命令。</p>
+<h3>生成 Debianize 文件</h3>
+<p>dh_make 实际上有一个专门的选项/参数 (k)，可以用来制作模块的 deb 包，现在，在源码的顶层目录（目录的命名方式是 package-name-x.x.x）运行 dh_make 命令：</p>
+<pre class="brush: bash; gutter: true"># dh_make -e account@examplel.com -k --createorig
+#</pre>
+<p>恩，为了方便，我实际在源码的顶层目录里放了一个叫 driver 的目录，内核模块代码就在里面，这样复制的时候可以直接复制整个目录了。</p>
+<p>执行玩上面的命令之后，你就可以看到，多了一个 debian 目录，这个目录里有很多文件，它们遵循 debian 的一般打包原则，简单介绍几个重要的，具体的参考《Debian新维护人员手册》吧：</p>
+<ul>
+<li>rule：这个最重要，实际是个Makefile，后面具体介绍；</li>
+<li>control：这个是软件包的描述，照着内容敲吧，section 之要遵循 debian 的约定，比如 kernel 就是一个 section，其他自便吧；</li>
+<li>changelog：这个是打包版本的变更，每个版本开头里，目标distro一般写 unstable，urgency 一般是 low ；</li>
+<li>README.Debian：是对这个包的说明，给人看的；</li>
+<li>可执行脚本：postinst 和 prerm 比较常用，分别是在安装之后进行配置和卸载之前进行清理的，preinst 和 postrm 一般用的不多。其他文件各有各的用处，.ex 结尾的都是例子，如果用的上就用，用不上的可以考虑删除。</li>
+</ul>
+<h3>内核模块包的特殊文件</h3>
+<p>恩，因为这 kernel module 包的做法是先做 source 的 deb 包，用户用 m-a 根据这个 deb包的内容再做一个二进制的 deb 包，所以需要为他们准备一些配置文件，一般用得上的是这两个：</p>
+<ul>
+<li>control.modules.in  这个用作模块包的 control 文件；</li>
+<li>ebs-driver1-modules-_KVERS_.postinst.modules.in 这个用作模块包的 postinst 脚本，比如要插模块、调整 daemon 什么的。</li>
+</ul>
+<h3>写内核模块包的 rules</h3>
+<p>这是关键折腾的一步，我也是头一次写，没找到什么现成的文档，自己琢磨的，有什么不对的地方还请指出来啊。</p>
+<p>规则里面 kdist_clean, kdist_config, binary-modules 是用来编译内核的，编译内核时，有些规则是从 module-assistant 里导入进来的</p>
+<pre class="brush: bash; gutter: true"># modifieable for experiments or debugging m-a
+MA_DIR ?= /usr/share/modass
+# load generic variable handling
+-include $(MA_DIR)/include/generic.make
+# load default rules, including kdist, kdist_image, ...
+-include $(MA_DIR)/include/common-rules.make
+
+</pre>
+<p>这些会帮助我们在正式打包之前，在上面那几个给模块准备的配置文件里，加入内核版本号信息，并用正式的文件名。当然，在一开始 make kdist_clean 规则的时候，这些文件还没生成，所以应该把 dh_testdir 和 dh_clean 注掉，否则做不成的，如：</p>
+<pre class="brush: bash; gutter: true">kdist_clean: 
+        #dh_testdir
+        rm -f build-arch-stamp build-indep-stamp configure-stamp
+        #dh_clean
+        rm -f driver/*.o driver/*.ko
+
+</pre>
+<p>这里可以根据尝试的情况调整内容，稍稍注意一下即可。正式的 binary-module 目标倒是没什么特殊的，简单根据自己需求调整就行了，这里的安装过程会把模块放到</p>
+<pre class="brush: bash; gutter: true">debian/$(PKGNAME)/lib/modules/$(KVERS)
+
+</pre>
+<p>目录里，如果有配置文件，也可以相应的放进去，debian 在安装包的时候，如果有配置文件的更改，是会提示用户的。</p>
+<p>如果制作模块包的时候只要做源码包，不用做用户空间工具包的话，binary 目标只要依赖 binary-indep 就可以了，不需要依赖 binary-arch 了。</p>
+<h3>打包</h3>
+<p>写完配置文件之后，在源码顶级目录里，也就是有 debian 目录的目录里，运行</p>
+<pre class="brush: bash; gutter: true">dpkg-buildpackage -uc -us -rfakeroot
+
+</pre>
+<p>就可以生成源码包了，安装之后，就可以像开头那样用 module-assistant 制作安装二进制模块了。</p>
+<h2>小结</h2>
+<p>实际上做内核模块的 deb 包并不难，只要有点 debian/ubuntu 经验，细心一点就可以做好里。估计短时间内我是不会更新 unleashed 了，就这篇 blog 供大家参考吧。</p>
