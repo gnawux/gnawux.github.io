@@ -38,6 +38,8 @@ tags:
 
 赛罕坝国家森林公园是此行第一站，风景很不错，几处有水的景观都很漂亮，虽然游客不少，但拍出漂亮的照片依然不是难事，只是森林公园里的路实在是非常难走，从景区入口不远的塞罕塔开到七星湖的一段尤其让人担心车的悬挂，泰丰湖正在修路，以后可能就会好了。
 
+<iframe src="https://www.flickr.com/photos/gnawux/15565543982/player/" width="500" height="281" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
 赛罕坝国家森林公园的主景区是赛罕坝机械林场，当年大规模造出的人工林，如今连绵不绝，非常壮观，这是在景区的高点塞罕塔上照出的林海
 
 <iframe src="https://www.flickr.com/photos/gnawux/15470709656/in/set-72157648191857408/player/" width="500" height="281" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
@@ -102,7 +104,7 @@ tags:
 
 路上确实有一些山路，但路很平，没什么太大难度，而且路上有些地方的风景仍然不错，只是儿子睡着了，就没再停下来看，等儿子再醒过来时，已经很快就要到经棚了。
 
-经棚类似很多小县城，G308国道穿城而过，我们没有预订酒店，根据我的一贯经验，一般情况下，在去哪或携程之类的地方看到酒店的价格，然后直接到前台问，都可以拿到同样甚至更低的价格，这次也同样没有落空。到得很早，我和儿子安顿下来，休息了一下，吃了晚饭，然后休息、准备第三天的旅程。经棚镇的酒店都有WiFi提供，我甚至还在晚上修了两个bug。
+经棚类似很多小县城，G303国道穿城而过，我们没有预订酒店，根据我的一贯经验，一般情况下，在去哪或携程之类的地方看到酒店的价格，然后直接到前台问，都可以拿到同样甚至更低的价格，这次也同样没有落空。到得很早，我和儿子安顿下来，休息了一下，吃了晚饭，然后休息、准备第三天的旅程。经棚镇的酒店都有WiFi提供，我甚至还在晚上修了两个bug。
 
 第三天我们的目标是阿斯哈图石林——
 
@@ -110,23 +112,23 @@ tags:
 
 之后，在黄岗梁地区，我们爬升到了海拔1800米，在高山上俯瞰山谷，还是很壮观的。过了山之后，就进入草原牧区，之前看到的草原总觉的少点什么，终于在这里看到了大片的牛羊，牛在过马路的时候，还真是急不得的。
 
+<iframe src="https://www.flickr.com/photos/gnawux/15565314612/in/set-72157648827151031/player/" width="500" height="375" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
 阿斯哈图石林本身是克什克腾世界地质公园的一个部分，这里冰川侵蚀的花岗岩组成形状各异的石雕，不过对我其实吸引力不大，原来石林似乎是可以开车穿过的，不过现在不行了，我们要乘坐景区的班车，在大门和三个主要景区之间摆渡，高处风大，还是应该适当多穿一件衣服的。不过倒也不必租棉衣，没那么夸张。
+
+<iframe src="https://www.flickr.com/photos/gnawux/15565328652/in/set-72157648827151031/player/" width="500" height="375" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
 
 因为现在阿斯哈图石林不能穿过去了，也就没法从这边开向达里诺尔了，于是，我们从阿斯哈图石林出来，原路回到经棚镇，吃饭休息，准备第四天去达里湖，并直接开向锡林浩特，因为不确定到达的时间，提前在去哪订了一间酒店，这也是我们这一行唯一一次提前预订酒店，事实证明并不成功，呵呵。
 
-
-
-
-
-
-
 ##达里湖：草原大湖（以及锡林九曲、贝子庙）
 
-第四天一早，我们出发，沿G308国道一路向西，途中新的高速正在边上修，下次再来可能更好走了，不过老国道也很平，只是没有更多车道而已。
+第四天一早，我们出发，沿G303国道一路向西，途中新的高速正在边上修，下次再来可能更好走了，不过老国道也很平，只是没有更多车道而已。
 
 我们的第一站是达里湖，这是一个真正的草原大湖，即使是在大比例尺的地图上，也能清晰地看到它，我们首先开到的是一个小博物馆，这里介绍了同样作为克什克腾世界地址公园一部分的达里湖的一些情况，我们在这里没做太多停留，转到了真正的达里湖畔。
 
 我们在达里湖公园门外停下车，乘坐园区的小车，沿着湖边，一直到达里面码头的位置，毫无疑问，我们选择了坐船去湖中央转一圈，湖真很大，烟波浩渺，转了一大圈回来，我们又继续乘坐小车到达观鸟长廊，用这里提供的望远镜看到很多小鸟啥的。
+
+<iframe src="https://www.flickr.com/photos/gnawux/15378993250/player/" width="500" height="333" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
 
 从达里湖出来，时间其实还挺早，我们决定继续驶向锡林郭勒，去找大草原。
 
@@ -135,6 +137,8 @@ tags:
 在锡林浩特，我们找到入住的酒店之后发现时间尚早，于是就出发寻找传说中的锡林九曲去了。这个方向实际也就是G207国道——我们回家的方向，当我们找到锡林九曲的时候略有失望，这里实际上是一个餐饮中心——话说可能锡林浩特所有的景点都是餐饮中心，但是景点之外的草原也随处是风景。
 
 锡林九曲餐饮中心旁边，我们看到了一小片湖水，据说应该是锡林河和水库，不过和我们刚刚路过的达里湖当然完全不能比了，这里有一个敖包，湖对面还有一些牛羊，拍出照片来还是挺好看的，不过和达里湖真的没法比。
+
+<iframe src="https://www.flickr.com/photos/gnawux/15378658058/player/" width="500" height="333" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
 
 从锡林九曲出来，我们一路回到锡林浩特的酒店，这里离贝子庙已很近，不过有点晚，贝子庙已经关门了，我们爬到上面看了一串大敖包，拍了照片，在广场上玩了一会儿，然后回到酒店休息。
 
@@ -148,6 +152,8 @@ tags:
 
 长途跋涉，绕过西乌珠穆沁旗的县城之后，我们到达了蒙古汗城，至此我们得到了一个惊人的发现——锡林浩特所有的旅游景点其实都是餐饮娱乐中心，蒙古汗城也是。虽然如此，我们还是在这里骑到了骆驼，儿子很开心，只是没有适合我们两个人吃的东西。
 
+<iframe src="https://www.flickr.com/photos/gnawux/15379183690/in/photostream/player/" width="500" height="375" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
 ##蒙古包、返程：告别草原
 
 在蒙古汗城转了一圈之后，我们向回回到县城吃了饭——事实证明儿子在这里吃的东西足够让我们后悔……
@@ -157,6 +163,8 @@ tags:
 很快我们就找到了方法，当在路边看到牧民的家的牌子的时候，我们就在路边停下车，按上面的电话打过去，问有没有蒙古包住。这个方法很灵验，第二个电话就找到住的地方了。当天不是周末，蒙古包都很少有游客住，第一家牧民都没在蒙古包，第二家也只有我们一家人。因为这些牧民都是随机找的，我对安全性啥的心里也没有谱，在到达之后就把我们的座标发给我老婆了，呵呵。
 
 这家牧民有500头羊，我们看见的都是些小羊以及带小羊的母羊，非常意外的是，羊们很好奇，不仅主动靠近儿子，而且还围住我们的车。
+
+<iframe src="https://www.flickr.com/photos/gnawux/15565645612/in/photostream/player/" width="500" height="333" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
 
 当天的晚饭，我点了内蒙特色手把肉，不过，儿子因为疲劳+中午吃的饭消化不是很好+在牧民的草场里闻到不少牛粪味儿，这三者的作用，在手把肉入口之前就吐了出来，手把肉基本上原封不动的带回了北京。
 
