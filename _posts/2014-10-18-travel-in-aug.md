@@ -48,13 +48,19 @@ tags:
 
 实际上，景区里面的路还是很遥远的，店主在到店之前带我们去了塞罕塔和七星湖景区。刚才提到的塞罕塔是一座仿古建筑，是景区的制高点，可以环顾塞罕坝森林公园，乃至乌兰布统草原的景色，非常壮观。
 
+<iframe src="https://www.flickr.com/photos/gnawux/14943946923/player/" width="500" height="500" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
 从塞罕塔下来，经过一段漫长的搓板路，到达了七星湖，七星湖的全称好像是“七星湖假鼠妇草湿地保护区”，这里生长着大片的假鼠妇草，这种草大片生长在海拔1100米左右的高原上，但赛罕坝这里海拔大约有1500米，能生长出如此大面积的假鼠妇草非常罕见，因此格外值得保护和研究。单说风景，这里也是非常漂亮的，厚实的大片草地中，点缀着点点的湖面，宛如天上七星下凡……（有点小学生作文的感觉了），不多说了，还是上照片
+
+<iframe src="https://www.flickr.com/photos/gnawux/15564135345/player/" width="500" height="500" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
 
 到景区的第一个傍晚就收获了如此美景，真让人停不下拍照的手机，随后，我们就入住了带我们进来的农家院，住宿条件还算是不错的，不过吃的着实不便宜。
 
 入住之后，我们抓紧时间研究了带来的攻略，幸亏下载了离线版，因为在这里基本上是无法接入网络的……经过一晚上的研究我们确定了第二天的目的地——上午是泰丰湖、滦河源头和塞北石佛等，然后下午进入内蒙古境内的红山军马场（乌兰布统草原）然后视情况决定，在乌兰布统住下还是直接前往克什克腾旗的经棚镇。
 
 按照农家院老板的指点，我们沿着返回七星湖的路走过去，途中看到了泰丰湖的路标，不过一条主要的路正在修路，我们随即尝试了两条土路，前一条是不通的，不过后一条带我们来到了泰丰湖。
+
+<iframe src="https://www.flickr.com/photos/gnawux/15540399426/player/" width="500" height="500" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
 
 泰丰湖是一个小小的月牙形的小湖，可就是这小湖还是很漂亮的，泛舟湖上，蓝天碧水，周围的绿树以及远处的乌兰布统草原，都非常漂亮，这里不仅满足了儿子坐船的愿望，也让他骑了一回高头大马。儿子十分开心，之后，我俩就离开了泰丰湖，路过了赛罕坝林场总部的门口，然后按照店家的指点，在第二个路口左转之后，直奔内蒙古方向而去，这之后的路就变得非常好开了，基本没什么颠簸。
 
@@ -68,7 +74,11 @@ tags:
 
 乌兰布统草原（红山军马场）景区内，只有一小段路不好走，总体路况远强于赛罕坝森林公园，其实整个内蒙的路况都相当不错。
 
+<iframe src="https://www.flickr.com/photos/gnawux/15378112567/player/" width="500" height="375" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
 刚到草原我就开始感慨，自己好像看到了久违的 Windows XP 桌面，儿子也非常兴奋，到处拍照。
+
+<iframe src="https://www.flickr.com/photos/gnawux/15540396196/player/" width="500" height="375" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
 
 这里就是安北大将军佟国纲的墓，整个木兰围场，包括河北境内的围场和乌兰布统草原，都和康熙平定准噶尔叛乱的历史故事相关，这位大将军也是主角之一，似乎是康熙皇帝的舅舅还是啥。
 
@@ -77,6 +87,8 @@ tags:
 不过我们饭后还是出发驶向将军泡子，路上路过了我们此行的第一个敖包——百草敖包，我们短暂停留之后就开到了将军泡子。
 
 将军泡子实际离路有一两公里的距离，我们车停在大停车场上，周围有不少吃饭和卖东西的地方，我们徒步走向了将军泡子，这里实际可以搭乘一段马车的，我们没搭，有点后悔，这段路其实还挺远的。
+
+<iframe src="https://www.flickr.com/photos/gnawux/15564956442/player/" width="500" height="500" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
 
 将军泡子水确实不多，儿子在这里坐了一段羊车，也算是没白来，离开将军泡子之后，我们向回折，快到午饭的地方的时候，拐向另一个岔路，向北，向着克什克腾旗经棚镇方向开去。
 
