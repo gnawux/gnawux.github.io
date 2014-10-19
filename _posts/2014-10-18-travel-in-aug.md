@@ -20,7 +20,7 @@ tags:
 
 2014年8月10-15日，我们父子二人进行了一次草原自驾游，行程2100公里，在北京以北画了一个大圈。因为诺基亚的迅猛的裁员行动，导致团组人员和团长发生了变化，致使我们在没有仔细计划的就进行了这次说走就走的旅行。
 
-<img src="/assets/2014-08-travel.png" width="80%" />
+<img src="https://monosnap.com/image/pJpxKfqH44fkzWMd3LrT7gb8Bp5LDB.png" />
 
 虽然计划并不充分，但这次旅行还是很充实圆满的，这里就记录一下，供后来者参考吧。[全程的照片在这里](https://www.flickr.com/photos/gnawux/sets/72157645995802789/)，不喜欢流水帐的同学也可以只看看照片。
 
