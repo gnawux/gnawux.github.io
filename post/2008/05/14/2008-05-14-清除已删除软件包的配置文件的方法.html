@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="shell,xargs,APT,debian,scripts,">
+        <meta name="description" content="清除已删除软件包的配置文件的方法">
+        <link rel="stylesheet" href="/css/index.css">
+        <link rel="stylesheet" href="/css/github.css">
+        <title>清除已删除软件包的配置文件的方法</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    
+</ul>
+
+            <article class="main article">
+                <h1 class="title">清除已删除软件包的配置文件的方法</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1210767180">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/shell/index.html">shell</a><a class="tag" href="/tag/xargs/index.html">xargs</a><a class="tag" href="/tag/APT/index.html">APT</a><a class="tag" href="/tag/debian/index.html">debian</a><a class="tag" href="/tag/scripts/index.html">scripts</a></span>
+                </section>
+                <article class="content"><p>嗯，今天 (May 14th, 2006) 清理一下系统，使用了一个命令行，可能对其他人有参考价值</p>
+
+<blockquote><p>dpkg -l |grep &quot;^rc&quot;|awk '{print $2}' |xargs aptitude -y purge</p>
+
+</blockquote>
+
+<p>用途:</p>
+
+<p>删除已经删除的软件包的残留配置文件。因为 debian 中 remove 包不删除配置文件，purge 才能清除，但根据依赖关系自动清除都是 remove，在加上自己失手操作，所以用得时间长了，难免残留很多没必要的配置文件，比较烦，于是有了上述操作。</p>
+
+<p>说明:</p>
+
+<p>1) dpkg –l</p>
+
+<p>列出系统中安装的所有包的状态，`ii' 开头的是正常安装的包，`rc'开头的则是删除但仍留下配置文件的包，其他状态则是有错误的状态，自己执行一次就明白了，输出结果的开头有说明的。</p>
+
+<p>2) grep &quot;^rc&quot;</p>
+
+<p>提取以 rc 开头的包，也就是被删除但仍残留配置文件的包的信息的行</p>
+
+<p>3) awk '{print $2}'</p>
+
+<p>打印这些包的名字，他们位于 dpkg -l 输出结果的第二个字段，估计有很多人是通过这个命令认识到 awk 的，也有很多人只在这个命令行中才使用 awk，我就是其中之一。</p>
+
+<p>4) xargs aptitude -y purge</p>
+
+<p>把上述输出，也就是要清除配置文件的包的名字放在 aptitude -y purge 后面，purge 命令会清除配置文件，而 -y 参数会自动对后面 aptitude 命令的提示回答是，这个开关通常是危险的，所以在一般情况下不要轻易使用，而在这里，如果你确定这些包的配置文的清除是没有问题的的话，可以使用这个开关。</p>
+
+<p>完毕 :)</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/post/2008/06/01/2008-06-01-what-is-rcu.html">[译文]What is RCU, Fundamentally?</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/post/2008/05/03/2008-05-03-git%e6%97%a5%e5%b8%b8%e5%91%bd%e4%bb%a420%e6%9d%a5%e6%9d%a1.html">GIT日常命令20来条</a>
+                    </section>
+                    
+                </section>
+                <section id="disqus_thread"></section>
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/js/jquery-1.11.2.min.js"></script>
+        <script src="/js/highlight.pack.js"></script>
+        <script src="/js/jquery.unveil.js"></script>
+        <script src="/js/index.js"></script>
+        <script type="text/javascript">
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//gnawux.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+    </body>
+</html>

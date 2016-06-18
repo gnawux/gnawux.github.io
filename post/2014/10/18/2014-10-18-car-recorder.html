@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="life,car,行车记录仪,汽车,生活,">
+        <meta name="description" content="第一次对汽车进行DIY">
+        <link rel="stylesheet" href="/css/index.css">
+        <link rel="stylesheet" href="/css/github.css">
+        <title>第一次对汽车进行DIY</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    
+</ul>
+
+            <article class="main article">
+                <h1 class="title">第一次对汽车进行DIY</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1413590888">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/car/index.html">car</a><a class="tag" href="/tag/%e8%a1%8c%e8%bd%a6%e8%ae%b0%e5%bd%95%e4%bb%aa/index.html">行车记录仪</a><a class="tag" href="/tag/%e6%b1%bd%e8%bd%a6/index.html">汽车</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a></span>
+                </section>
+                <article class="content"><p>多年以来，看了这么多有意思的行车记录仪拍的视频，以及这么多的碰磁事件，一直对记录仪很心痒，琢磨着买一个，这次调研之后，郑重动手了。</p>
+
+<p>促使我动手的一个重要因素是，我发现了一件好玩事情——从保险盒取电，而不是用点烟器供电，走暗线到记录仪。这样的好处在于——点烟器还是很常用的，空出来可以给导航和其他东西用，而且暗线也避免了视觉上的干扰。</p>
+
+<p>取电的要点是用一个专用的取电器，相当于从一个保险的正极取出12V直流电，过一个新加的保险丝，过调压器调到5V的USB供电，输出到记录仪，回来的负极接到靠近保险盒位置的一个金属点上，嗯，学电子一般都知道，直流设备里，接地和接机壳一般是同一件事情，所以这个没什么问题，这里是不能并回到取电的保险丝负极的，否则那个保险丝的意义就没有了。取电部分的效果如图</p>
+
+<p><img src="/assets/2014-10-13_15.54.44.jpg" width="80%" /></p>
+
+<p>这里的主要技术难度是中间的接头部分上烙铁了，用焊锡接了一段线。之后就是打开A柱的护板，把线从里面走上去，沿玻璃顶部走线，线要塞进内饰里，不过因为有降压电路的小盒，没有完全塞进去，不过也没什么妨碍，连接行车记录仪部分的效果如下图。这里还多留了一个USB母口，觉得万一可能有什么用，其实实际上没什么用……</p>
+
+<p><img src="/assets/2014-10-13_15.58.23.jpg" width="80%" /></p>
+
+<p>就这样，还是很简单的。取电器、保险丝和降压线都可以在万能的淘宝买到，这里就不做广告了。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/post/2014/10/18/2014-10-18-travel-in-aug.html">一次说走就走的旅行</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/post/2014/07/29/2014-07-29-%e6%90%ac%e5%ae%b6.html">搬家</a>
+                    </section>
+                    
+                </section>
+                <section id="disqus_thread"></section>
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/js/jquery-1.11.2.min.js"></script>
+        <script src="/js/highlight.pack.js"></script>
+        <script src="/js/jquery.unveil.js"></script>
+        <script src="/js/index.js"></script>
+        <script type="text/javascript">
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//gnawux.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+    </body>
+</html>

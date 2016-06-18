@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="hadoop,open source,openstack,cassandra,cloud,">
+        <meta name="description" content="8月云计算相关开源新闻">
+        <link rel="stylesheet" href="/css/index.css">
+        <link rel="stylesheet" href="/css/github.css">
+        <title>8月云计算相关开源新闻</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    
+</ul>
+
+            <article class="main article">
+                <h1 class="title">8月云计算相关开源新闻</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1282982094">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/open%20source/index.html">open source</a><a class="tag" href="/tag/openstack/index.html">openstack</a><a class="tag" href="/tag/cassandra/index.html">cassandra</a><a class="tag" href="/tag/cloud/index.html">cloud</a></span>
+                </section>
+                <article class="content"><h2>Hadoop 0.21 发布</h2>
+
+<p><a href="http://hadoop.apache.org/common/docs/r0.21.0/releasenotes.html">http://hadoop.apache.org/common/docs/r0.21.0/releasenotes.html</a>     <br />8 月23日，Hadoop 0.21发布，距离上一个版本0.20的发布已经过去了16个月，而之前两个版本，从0.18到0.20也仅仅用了一半的时间，8个月。这个千呼万唤始出来的版本是Hadoop发展历史上的一个重要里程碑，但是，很可能将成为一个过渡版本，而不会被广泛使用。 </p>
+
+<p>Hadoop 0.21有一个代码结构上的大调整，HDFS和MapReduce分离成了两个独立的子项目，而公共部分，如 RPC 和一些辅助工具则由 Common 子项目来完成，这一拆分是造成发布姗姗来迟的主要原因之一。这一版本在功能上的新特征包括：支持Backup Node来改善NameNode的单点问题，扩大了新MapReduce API的支持范围，提供了新的 FileContext API等，同时对测试框架进行了改进，引入了新的自动测试框架Herriot。 </p>
+
+<p>尽管从结构上和开发框架上有了很多调整，但从功能看，Hadoop 0.21.0 实际上只是 0.20.2+，在接口上保持了和 0.20.2 的兼容性，新增加的功能或者比较有限，或者还在完善中，很重要的安全方面的功能 Kerberos 的支持也要到 0.22 才会提供，因此，包括 Yahoo 在内的很多重要用户都表示很可能会跳过 0.21 而在 0.22 成熟时直接演进到 0.22，0.21 的前途尚不明朗，它很可能只是 0.22 前进路上的一个重要的铺路石。    </p>
+
+<h2>Cassandra 0.7.0-beta1和0.6.5发布</h2>
+
+<p><a href="https://svn.apache.org/repos/asf/cassandra/tags/cassandra-0.7.0-beta1/NEWS.txt">https://svn.apache.org/repos/asf/cassandra/tags/cassandra-0.7.0-beta1/NEWS.txt</a>     <br />开源分布式非关系型数据库NoSQL一直在我们的视野之中，自从成为Apache项目以来，发展十分迅速，当然也经历了一些波折，面对着一些质疑，此次 0.7.0 beta的发布，使他再次出现在我们的视野之中，0.7中，行的尺寸从2GB提升到了20亿列，同时增加了输出到Hadoop的输出格式，便于两者的互动，此外，还在功能和性能上进行了很多其他改进。     </p>
+
+<h2>OpenStack 社区迅速成长</h2>
+
+<p><a href="http://openstack.org/blog/2010/08/openstack-community-update/">http://openstack.org/blog/2010/08/openstack-community-update/</a>     <br />如果说上半年的明星项目是Cassandra的话，迄今为止，下半年的明星项目当属RackSpace和NASA在7月联合发布的OpenStack，一个多月来，这个项目一直留在我们的视野当中，并于8月25日举行了一次聚会。目前，OpenStack的计算部分（Nova）支持了KVM、Xen和 VirtualBox三种虚拟机，而存储部分则开始进行对象存储系统swift的开发。这些具体的工作让 OpenStack 开始逐步走向现实。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/post/2010/08/29/2010-08-29-linuxfb-gnome%e5%8c%97%e4%ba%ac%e7%94%a8%e6%88%b7%e7%bb%84%e8%81%94%e5%90%88%e8%81%9a%e4%bc%9a%e8%ae%b0%e5%bd%95.html">LinuxFB/Gnome北京用户组联合聚会记录</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/post/2010/08/17/2010-08-17-%e5%8d%93%e8%b6%8a%e8%b4%ad%e4%b9%a6%e5%8d%95%e7%94%9f%e6%88%90%e5%91%bd%e4%bb%a4%e8%a1%8c.html">卓越购书单生成命令行</a>
+                    </section>
+                    
+                </section>
+                <section id="disqus_thread"></section>
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/js/jquery-1.11.2.min.js"></script>
+        <script src="/js/highlight.pack.js"></script>
+        <script src="/js/jquery.unveil.js"></script>
+        <script src="/js/index.js"></script>
+        <script type="text/javascript">
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//gnawux.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+    </body>
+</html>

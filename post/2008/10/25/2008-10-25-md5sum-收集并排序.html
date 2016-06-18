@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="find,regexp,scripts,sed,">
+        <meta name="description" content="md5sum 收集并排序">
+        <link rel="stylesheet" href="/css/index.css">
+        <link rel="stylesheet" href="/css/github.css">
+        <title>md5sum 收集并排序</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    
+</ul>
+
+            <article class="main article">
+                <h1 class="title">md5sum 收集并排序</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1224939960">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/find/index.html">find</a><a class="tag" href="/tag/regexp/index.html">regexp</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/sed/index.html">sed</a></span>
+                </section>
+                <article class="content"><p>下了一个openclipart 的 daily 发布包，所有文件是按照用户名排序的，文件辨识分类很困难，不管别的了，先选择所有 svg 文件，计算 md5sum，并提取不包含路径的文件名、然后按文件名排序，方便索引。</p>
+
+<blockquote><p>find . -name &quot;*.svg&quot; -exec 'md5sum' '{}' | \     <br />sed -e &quot;s/\([^ ]*\) .*\/\([-a-zA-Z0-9_().]*\.svg\)/\2,\1/g&quot; | \      <br />sort&#160; &gt; md5sums_sorted.csv</p>
+
+</blockquote>
+
+<p>md5sum 的输出结果是 md5sum 路径名，这里去掉了前面的路径，只保留文件名，然后把它放在前面，md5sum放在后面，中间用逗号分开，构成csv格式，文件名包括字母、数字、横线、下划线、括号和点。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/post/2008/10/31/2008-10-31-%e4%bb%8esvn-working-copy-%e4%b8%ad%e5%88%a0%e9%99%a4%e9%83%a8%e5%88%86%e6%96%87%e4%bb%b6.html">从svn working copy 中删除部分文件</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/post/2008/10/23/2008-10-23-%e4%ba%ba%e4%b8%8d%e8%83%bd%e6%97%a0%e8%80%bb%e5%88%b0%e8%bf%99%e4%b8%aa%e5%9c%b0%e6%ad%a5.html">人不能无耻到这个地步</a>
+                    </section>
+                    
+                </section>
+                <section id="disqus_thread"></section>
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/js/jquery-1.11.2.min.js"></script>
+        <script src="/js/highlight.pack.js"></script>
+        <script src="/js/jquery.unveil.js"></script>
+        <script src="/js/index.js"></script>
+        <script type="text/javascript">
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//gnawux.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+    </body>
+</html>
