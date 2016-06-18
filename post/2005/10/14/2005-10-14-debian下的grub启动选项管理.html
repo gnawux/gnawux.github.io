@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="boot,grub,linux,works,">
+        <meta name="keywords" content="grub,linux,works,boot,">
         <meta name="description" content="debian下的grub启动选项管理">
         <link rel="stylesheet" href="/css/index.css">
         <link rel="stylesheet" href="/css/github.css">
@@ -28,7 +28,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/boot/index.html">boot</a><a class="tag" href="/tag/grub/index.html">grub</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/works/index.html">works</a></span>
+                    <span class="tags"><a class="tag" href="/tag/grub/index.html">grub</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/works/index.html">works</a><a class="tag" href="/tag/boot/index.html">boot</a></span>
                 </section>
                 <article class="content"><p>那天偶和偶在版面上说相声的搭挡 LeoVirgo 都提到了根据 debian 的   <br />kernel-img.conf    <br />更新完内核后会自动调用 update-grub 来更新引导程序，就觉得这个东西一定可以    <br />配置，否则每次总要改写一下 menu.lst 来修改启动内核参数毕竟不方便    <br />恰逢今天为了上一贴的那个网卡驱动，编译了一次内核，就想着看看这个东西怎么工作    <br />（阿？您问怎么看阿，当然是 man 了，男人嘛，如果是女同胞可以 alias 一下，    <br />来个 woman 什么的）    <br />发现，menu.lst 里面就有关于 update-grub 的设置，LeoVirgo 一定知道自动    <br />修改的 menu.lst 上面有一大段注释吧，以    <br />### BEGIN AUTOMAGIC KERNELS LIST    <br />开始    <br />我抄一段过来大家就知道是什么意思了    <br />## ## Start Default Options ##    <br />## default kernel options    <br />## default kernel options for automagic boot options    <br />## If you want special options for specifiv kernels use kopt_x_y_z    <br />## where x.y.z is kernel version. Minor versions can be omitted.    <br />## e.g. kopt=root=/dev/hda1 ro    <br /># kopt=root=/dev/hda1 ro acpi_sleep=s3_bios resume=/dev/hda2    <br />看到了不？这个就是设置内核参数的，我把对我有用的    <br />acpi_sleep=s3_bios resume=/dev/hda2    <br />这下，自动生成的配置文件里面就有我的自定义内核参数了，    <br />还有这个    <br />## should update-grub create alternative automagic boot options    <br />## e.g. alternative=true    <br />##&#160;&#160;&#160;&#160; alternative=false    <br /># alternative=false    <br />可以指定一个其他的启动方式，缺省文件里面是单用户模式，偶好好的用机器，    <br />要单用户模式做什么？出了问题 grub 还有命令行呢，去掉之，于是写成 false    <br />怎么样，明白了吧，还有其它设置，呵呵，自己打开 menu.lst 看看就知道了，    <br />如果用的不是 Debian，那我就不负责了;P</p>
 </article>

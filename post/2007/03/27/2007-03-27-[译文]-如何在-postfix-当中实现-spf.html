@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="spf,translation,mail,postfix,">
+        <meta name="keywords" content="mail,postfix,spf,translation,">
         <meta name="description" content="[译文] 如何在 Postfix 当中实现 SPF">
         <link rel="stylesheet" href="/css/index.css">
         <link rel="stylesheet" href="/css/github.css">
@@ -28,7 +28,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/spf/index.html">spf</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/mail/index.html">mail</a><a class="tag" href="/tag/postfix/index.html">postfix</a></span>
+                    <span class="tags"><a class="tag" href="/tag/mail/index.html">mail</a><a class="tag" href="/tag/postfix/index.html">postfix</a><a class="tag" href="/tag/spf/index.html">spf</a><a class="tag" href="/tag/translation/index.html">translation</a></span>
                 </section>
                 <article class="content"><p>原文出处: http://www.howtoforge.com/postfix_spf   <br />Version 1.0    <br />Author: Falko Timme    <br />Last edited 02/09/2007    <br /><i>译注: 关于 SPF，可以参考译者曾经翻译的 Bruno Sousa 的《SPF 简介》 &lt;http://www.linuxfocus.org/ChineseGB/December2004/article354.shtml&gt;</i>    <br />本教程技术了如何在 Postfix 2.x 中来实现 SPF (发送方策略框架)。SPF 是一个开放标准，用于规范防止伪造发送方地址的技术途径 (http://www.openspf.org/Introduction)。目前，有很多 Postfix 的 SPF 扩展和补丁，不过，大部分都需要你重新编译 Postfix。所以，我们将要安装的是来自 openspf.org 的 postfix-policyd-spf-perl 包，这是一个 Perl 包，它可以在已经安装好的 Postfix 上实现 SPF，而无须重新编译。    <br />开始之前，我想说的是这不是惟一的设置方法。条条大路通罗马，不过这是我选择的路。我不保证它对你也是合适的！ </p>
 
