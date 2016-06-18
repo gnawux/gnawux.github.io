@@ -1,0 +1,24 @@
+date: 2011-04-07 08:08:08 +0800
+update: ""
+author: me
+topic: ""
+draft: false
+top: false
+title: FSDataset结构图
+date: 2011-04-07 16:08:38 +0800
+categories:
+- cloud
+tags:
+- FSDataset
+- hadoop
+- hdfs
+- xmind
+status: publish
+type: post
+published: true
+---
+<p>大概用了三天弄出来的，当前trunk的FSDataset的结构&amp;调用关系图，肯定有疏漏的地方。这个文件现在是HDFS里，仅次于FSNamesystem的最长的文件了。</p>
+
+<p><img style="vertical-align: middle; border: 1px solid black;" src="/assets/FSDataset.png" alt="Illustration of FSDataset" width="500" height="500" /></p>
+
+<p>&nbsp;</p>
