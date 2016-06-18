@@ -2,7 +2,7 @@ date: 2015-11-15 08:08:08 +0800
 update: ""
 author: me
 topic: ""
-draft: false
+draft: true
 top: false
 title: "Kubernetes 中的 Service Account"
 preview: "Service Account 是 Kubernetes 用于集群内运行的程序，进行服务发现时调用 API 的帐号"
