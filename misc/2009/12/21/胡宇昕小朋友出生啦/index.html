@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="喜讯,生活,">
+        <meta name="keywords" content="生活,喜讯,">
         <meta name="description" content="胡宇昕小朋友出生啦">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>胡宇昕小朋友出生啦</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">胡宇昕小朋友出生啦</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/%e5%96%9c%e8%ae%af/index.html">喜讯</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a></span>
+                    <span class="tags"><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/%e5%96%9c%e8%ae%af/index.html">喜讯</a></span>
                 </section>
                 <article class="content"><p>今年4月，我在刚刚知道于mm怀孕的时候就发了<a href="http://wangxu.me/blog/?p=10" target="_blank">一篇文章</a>来恭喜<a href="http://www.fishnini.com/" target="_blank">胡铮和于静潇夫妇</a>，今天，胡宇昕小朋友终于在大家的期望中平安出生了，祝他健康成长 :)</p>
 </article>

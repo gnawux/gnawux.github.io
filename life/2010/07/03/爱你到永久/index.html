@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="生活,纪念日,life,家庭,斯屹,">
+        <meta name="keywords" content="家庭,斯屹,生活,纪念日,life,">
         <meta name="description" content="爱你到永久">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>爱你到永久</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">爱你到永久</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/%e7%ba%aa%e5%bf%b5%e6%97%a5/index.html">纪念日</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/%e5%ae%b6%e5%ba%ad/index.html">家庭</a><a class="tag" href="/tag/%e6%96%af%e5%b1%b9/index.html">斯屹</a></span>
+                    <span class="tags"><a class="tag" href="/tag/%e5%ae%b6%e5%ba%ad/index.html">家庭</a><a class="tag" href="/tag/%e6%96%af%e5%b1%b9/index.html">斯屹</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/%e7%ba%aa%e5%bf%b5%e6%97%a5/index.html">纪念日</a><a class="tag" href="/tag/life/index.html">life</a></span>
                 </section>
                 <article class="content"><p>还有五天，就是7月8日，我们的结婚三周年纪念日了，在这个周末，我收集了两个人在一起的点点滴滴的往事，做了一个小视频，来纪念这一个日子，把祝福送给我的爱妻。</p>
 

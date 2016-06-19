@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="linux,scripts,ubuntu,bcache,initramfs,">
+        <meta name="keywords" content="bcache,initramfs,linux,scripts,ubuntu,">
         <meta name="description" content="在新 Thinkpad S3 上使用 bcache 作为 Linux 的根分区">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>在新 Thinkpad S3 上使用 bcache 作为 Linux 的根分区</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">在新 Thinkpad S3 上使用 bcache 作为 Linux 的根分区</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/ubuntu/index.html">ubuntu</a><a class="tag" href="/tag/bcache/index.html">bcache</a><a class="tag" href="/tag/initramfs/index.html">initramfs</a></span>
+                    <span class="tags"><a class="tag" href="/tag/bcache/index.html">bcache</a><a class="tag" href="/tag/initramfs/index.html">initramfs</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/ubuntu/index.html">ubuntu</a></span>
                 </section>
                 <article class="content"><p>前两天采购了一台“全球首发"的 <a title="京东链接" href="http://item.jd.com/894057.html" target="_blank">Thinkpad S3 超级本</a>，激动之余，就把不会用的 Windows 8 给抹掉，装上 Linux 了。这台机器的配置如下</p>
 

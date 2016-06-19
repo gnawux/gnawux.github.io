@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="blog action day,feeling,ogf27,">
+        <meta name="keywords" content="ogf27,blog action day,feeling,">
         <meta name="description" content="博客行动日，我也来一篇吧">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>博客行动日，我也来一篇吧</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">博客行动日，我也来一篇吧</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/blog%20action%20day/index.html">blog action day</a><a class="tag" href="/tag/feeling/index.html">feeling</a><a class="tag" href="/tag/ogf27/index.html">ogf27</a></span>
+                    <span class="tags"><a class="tag" href="/tag/ogf27/index.html">ogf27</a><a class="tag" href="/tag/blog%20action%20day/index.html">blog action day</a><a class="tag" href="/tag/feeling/index.html">feeling</a></span>
                 </section>
                 <article class="content"><p>现在是山地时间10月15日晚上，我也来响应一下号召。刚好这次OGF27也有很多人谈绿色IT，有些人看到了绿色IT之后，能减少碳排放到原来的1/40，也有些人看到，因为成本和收益的原因，绿色IT在大多数地方还是口号。</p>
 

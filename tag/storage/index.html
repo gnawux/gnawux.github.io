@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
@@ -67,7 +89,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/scheduler/index.html">scheduler</a><a class="tag" href="/tag/SSD/index.html">SSD</a><a class="tag" href="/tag/storage/index.html">storage</a><a class="tag" href="/tag/%e5%bc%a0%e6%99%93%e4%b8%9c/index.html">张晓东</a>
+                            <a class="tag" href="/tag/%e5%bc%a0%e6%99%93%e4%b8%9c/index.html">张晓东</a><a class="tag" href="/tag/scheduler/index.html">scheduler</a><a class="tag" href="/tag/SSD/index.html">SSD</a><a class="tag" href="/tag/storage/index.html">storage</a>
                             </span>
                         </section>
                     </li>
@@ -84,7 +106,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/block/index.html">block</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/bcache/index.html">bcache</a><a class="tag" href="/tag/dm/index.html">dm</a><a class="tag" href="/tag/dm-cache/index.html">dm-cache</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lsfmm/index.html">lsfmm</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/storage/index.html">storage</a>
+                            <a class="tag" href="/tag/lsfmm/index.html">lsfmm</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/bcache/index.html">bcache</a><a class="tag" href="/tag/dm/index.html">dm</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/block/index.html">block</a><a class="tag" href="/tag/dm-cache/index.html">dm-cache</a><a class="tag" href="/tag/storage/index.html">storage</a>
                             </span>
                         </section>
                     </li>

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="读后感,孙子兵法,读书,">
+        <meta name="keywords" content="孙子兵法,读书,读后感,">
         <meta name="description" content="《孙子兵法》阅读指南">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>《孙子兵法》阅读指南</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">《孙子兵法》阅读指南</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/%e8%af%bb%e5%90%8e%e6%84%9f/index.html">读后感</a><a class="tag" href="/tag/%e5%ad%99%e5%ad%90%e5%85%b5%e6%b3%95/index.html">孙子兵法</a><a class="tag" href="/tag/%e8%af%bb%e4%b9%a6/index.html">读书</a></span>
+                    <span class="tags"><a class="tag" href="/tag/%e5%ad%99%e5%ad%90%e5%85%b5%e6%b3%95/index.html">孙子兵法</a><a class="tag" href="/tag/%e8%af%bb%e4%b9%a6/index.html">读书</a><a class="tag" href="/tag/%e8%af%bb%e5%90%8e%e6%84%9f/index.html">读后感</a></span>
                 </section>
                 <article class="content"><p>昨天半夜被季总转发的一篇微博（<a href="http://www.weibo.com/1407449582/yowcksTWf">这里</a>）的勾起了多年的《孙子兵法》回忆，在微博连载了对兵法十三篇的前八篇的心得，不过没什么同学感兴趣啊，不论如何，今天贴回到 blog 上吧，纯粹的个人感悟，很可能不对，有兴趣的做参考吧，按前八篇顺序如下（下面的链接是链到原微博的，不是原文哈）：</p>
 

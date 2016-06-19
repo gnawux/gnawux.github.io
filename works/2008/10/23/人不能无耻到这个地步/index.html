@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="盗版,works,">
+        <meta name="keywords" content="works,盗版,">
         <meta name="description" content="人不能无耻到这个地步">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>人不能无耻到这个地步</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">人不能无耻到这个地步</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/%e7%9b%97%e7%89%88/index.html">盗版</a><a class="tag" href="/tag/works/index.html">works</a></span>
+                    <span class="tags"><a class="tag" href="/tag/works/index.html">works</a><a class="tag" href="/tag/%e7%9b%97%e7%89%88/index.html">盗版</a></span>
                 </section>
                 <article class="content"><p>本文发于微软开始正版认证，让盗版Windows显示黑色桌面的时候，因为看不惯很多人这时挺盗版、骂微软而发。首发于本人博客（<a href="http://labs.chinamobile.com/blog/gnawux">http://labs.chinamobile.com/blog/gnawux</a> ）。</p>
 

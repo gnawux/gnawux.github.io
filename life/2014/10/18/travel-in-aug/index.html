@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="草原,siyi,life,斯屹,children,travel,旅游,家庭,family,">
+        <meta name="keywords" content="children,life,travel,旅游,草原,siyi,家庭,family,斯屹,">
         <meta name="description" content="一次说走就走的旅行">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>一次说走就走的旅行</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">一次说走就走的旅行</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/%e8%8d%89%e5%8e%9f/index.html">草原</a><a class="tag" href="/tag/siyi/index.html">siyi</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/%e6%96%af%e5%b1%b9/index.html">斯屹</a><a class="tag" href="/tag/children/index.html">children</a><a class="tag" href="/tag/travel/index.html">travel</a><a class="tag" href="/tag/%e6%97%85%e6%b8%b8/index.html">旅游</a><a class="tag" href="/tag/%e5%ae%b6%e5%ba%ad/index.html">家庭</a><a class="tag" href="/tag/family/index.html">family</a></span>
+                    <span class="tags"><a class="tag" href="/tag/children/index.html">children</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/travel/index.html">travel</a><a class="tag" href="/tag/%e6%97%85%e6%b8%b8/index.html">旅游</a><a class="tag" href="/tag/%e8%8d%89%e5%8e%9f/index.html">草原</a><a class="tag" href="/tag/siyi/index.html">siyi</a><a class="tag" href="/tag/%e5%ae%b6%e5%ba%ad/index.html">家庭</a><a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/%e6%96%af%e5%b1%b9/index.html">斯屹</a></span>
                 </section>
                 <article class="content"><blockquote>
 <p>按，从回来开始就写这个游记，写了两个月才写出来，对不起观众了……</p>

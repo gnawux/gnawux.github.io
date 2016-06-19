@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
@@ -67,7 +89,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/apache/index.html">apache</a><a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/mirror/index.html">mirror</a><a class="tag" href="/tag/revprop/index.html">revprop</a><a class="tag" href="/tag/subversion/index.html">subversion</a><a class="tag" href="/tag/svm/index.html">svm</a><a class="tag" href="/tag/svn/index.html">svn</a>
+                            <a class="tag" href="/tag/apache/index.html">apache</a><a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/mirror/index.html">mirror</a><a class="tag" href="/tag/revprop/index.html">revprop</a><a class="tag" href="/tag/subversion/index.html">subversion</a><a class="tag" href="/tag/svm/index.html">svm</a><a class="tag" href="/tag/svn/index.html">svn</a><a class="tag" href="/tag/linux/index.html">linux</a>
                             </span>
                         </section>
                     </li>

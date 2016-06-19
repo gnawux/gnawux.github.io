@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
@@ -38,6 +60,23 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/life/2012/02/17/galaxy-note%e5%85%a5%e6%89%8b%e4%bd%93%e9%aa%8c/index.html">Galaxy Note入手体验</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            <span class="date" data-time="1329409348">
+                                <span class="from"></span>
+                                
+                            </span>
+                            <span class="tags">
+                            <a class="tag" href="/tag/%e6%89%8b%e6%9c%ba/index.html">手机</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/android/index.html">android</a><a class="tag" href="/tag/galaxy%20note/index.html">galaxy note</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/translation/2012/02/09/flushing-out-pdflush/index.html">[译文] Flushing out pdflush</a>
@@ -51,7 +90,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/pdflush/index.html">pdflush</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/filesystem/index.html">filesystem</a><a class="tag" href="/tag/flusher/index.html">flusher</a><a class="tag" href="/tag/kernel/index.html">kernel</a>
+                            <a class="tag" href="/tag/flusher/index.html">flusher</a><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/pdflush/index.html">pdflush</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/filesystem/index.html">filesystem</a>
                             </span>
                         </section>
                     </li>
@@ -68,7 +107,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/ext4/index.html">ext4</a><a class="tag" href="/tag/filesystem/index.html">filesystem</a><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a>
+                            <a class="tag" href="/tag/ext4/index.html">ext4</a><a class="tag" href="/tag/filesystem/index.html">filesystem</a><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/translation/index.html">translation</a>
                             </span>
                         </section>
                     </li>
@@ -153,7 +192,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/iscsi/index.html">iscsi</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/translation/index.html">translation</a>
+                            <a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/iscsi/index.html">iscsi</a><a class="tag" href="/tag/linux/index.html">linux</a>
                             </span>
                         </section>
                     </li>
@@ -170,7 +209,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/%e8%81%94%e9%80%9a/index.html">联通</a><a class="tag" href="/tag/%e8%b5%84%e8%b4%b9/index.html">资费</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/3G/index.html">3G</a><a class="tag" href="/tag/%e7%a7%bb%e5%8a%a8/index.html">移动</a>
+                            <a class="tag" href="/tag/%e7%a7%bb%e5%8a%a8/index.html">移动</a><a class="tag" href="/tag/%e8%81%94%e9%80%9a/index.html">联通</a><a class="tag" href="/tag/%e8%b5%84%e8%b4%b9/index.html">资费</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/3G/index.html">3G</a>
                             </span>
                         </section>
                     </li>
@@ -188,23 +227,6 @@
                             </span>
                             <span class="tags">
                             <a class="tag" href="/tag/feeling/index.html">feeling</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/%e5%ae%b6%e5%ba%ad/index.html">家庭</a><a class="tag" href="/tag/%e6%96%af%e5%b1%b9/index.html">斯屹</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/life/2011/08/22/%e6%ad%a6%e5%a4%b7%e5%b1%b1%e6%b8%b8%e8%ae%b0/index.html">武夷山游记</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            <span class="date" data-time="1313993764">
-                                <span class="from"></span>
-                                
-                            </span>
-                            <span class="tags">
-                            <a class="tag" href="/tag/%e6%ad%a6%e5%a4%b7%e5%b1%b1/index.html">武夷山</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/%e5%ae%b6%e5%ba%ad/index.html">家庭</a><a class="tag" href="/tag/%e6%96%af%e5%b1%b9/index.html">斯屹</a><a class="tag" href="/tag/%e6%97%85%e6%b8%b8/index.html">旅游</a>
                             </span>
                         </section>
                     </li>

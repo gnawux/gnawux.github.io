@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="cli,linux,regexp,scripts,sed,shell,">
+        <meta name="keywords" content="regexp,scripts,sed,shell,cli,linux,">
         <meta name="description" content="一行的日志统计计算脚本">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>一行的日志统计计算脚本</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">一行的日志统计计算脚本</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/cli/index.html">cli</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/regexp/index.html">regexp</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/sed/index.html">sed</a><a class="tag" href="/tag/shell/index.html">shell</a></span>
+                    <span class="tags"><a class="tag" href="/tag/regexp/index.html">regexp</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/sed/index.html">sed</a><a class="tag" href="/tag/shell/index.html">shell</a><a class="tag" href="/tag/cli/index.html">cli</a><a class="tag" href="/tag/linux/index.html">linux</a></span>
                 </section>
                 <article class="content"><p>﻿accu=0;sed -ne 's/.*bytesIn=\"\([0-9]*\)\"\/&gt;/\1/p' stage_3.xml |while read num;do cur=$(($num-$accu));accu=$num; echo $(($cur/20/1024/1024));done</p>
 

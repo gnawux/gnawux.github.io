@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="八卦,生活,FML,">
+        <meta name="keywords" content="FML,八卦,生活,">
         <meta name="description" content="重名啊……FML">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>重名啊……FML</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">重名啊……FML</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/%e5%85%ab%e5%8d%a6/index.html">八卦</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/FML/index.html">FML</a></span>
+                    <span class="tags"><a class="tag" href="/tag/FML/index.html">FML</a><a class="tag" href="/tag/%e5%85%ab%e5%8d%a6/index.html">八卦</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a></span>
                 </section>
                 <article class="content"><p>过节的短信勾起了我的重名之痛……谨以这些糗事恭祝大家新年快乐。</p>
 

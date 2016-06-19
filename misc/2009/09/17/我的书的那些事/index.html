@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="出版,朋友,unleashed,八卦,">
+        <meta name="keywords" content="unleashed,八卦,出版,朋友,">
         <meta name="description" content="我的书的那些事">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>我的书的那些事</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">我的书的那些事</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/%e5%87%ba%e7%89%88/index.html">出版</a><a class="tag" href="/tag/%e6%9c%8b%e5%8f%8b/index.html">朋友</a><a class="tag" href="/tag/unleashed/index.html">unleashed</a><a class="tag" href="/tag/%e5%85%ab%e5%8d%a6/index.html">八卦</a></span>
+                    <span class="tags"><a class="tag" href="/tag/unleashed/index.html">unleashed</a><a class="tag" href="/tag/%e5%85%ab%e5%8d%a6/index.html">八卦</a><a class="tag" href="/tag/%e5%87%ba%e7%89%88/index.html">出版</a><a class="tag" href="/tag/%e6%9c%8b%e5%8f%8b/index.html">朋友</a></span>
                 </section>
                 <article class="content"><p>这件始于03年的事情终于几乎尘埃落定了，而且结局基本还算圆满，目前，已经在china-pub, 卓越亚马逊和当当上看到这本书在卖了，回忆一下书里的故事吧。</p>
 

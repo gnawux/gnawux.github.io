@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="feeling,unleashed,">
+        <meta name="keywords" content="unleashed,feeling,">
         <meta name="description" content="收到一个读者回应">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>收到一个读者回应</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">收到一个读者回应</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/feeling/index.html">feeling</a><a class="tag" href="/tag/unleashed/index.html">unleashed</a></span>
+                    <span class="tags"><a class="tag" href="/tag/unleashed/index.html">unleashed</a><a class="tag" href="/tag/feeling/index.html">feeling</a></span>
                 </section>
                 <article class="content"><p>这周在加拿大开会，偶尔上了一下msn，发现有人加我msn，说明大概是买了我的书，觉得挺好，想和作者交流一下。</p>
 

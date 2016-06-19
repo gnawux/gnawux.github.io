@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="container,docker,Orchestration,云计算,cloud,">
+        <meta name="keywords" content="cloud,container,docker,Orchestration,云计算,">
         <meta name="description" content="近期云计算技术的发展与热点技术">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>近期云计算技术的发展与热点技术</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">近期云计算技术的发展与热点技术</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/container/index.html">container</a><a class="tag" href="/tag/docker/index.html">docker</a><a class="tag" href="/tag/Orchestration/index.html">Orchestration</a><a class="tag" href="/tag/%e4%ba%91%e8%ae%a1%e7%ae%97/index.html">云计算</a><a class="tag" href="/tag/cloud/index.html">cloud</a></span>
+                    <span class="tags"><a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/container/index.html">container</a><a class="tag" href="/tag/docker/index.html">docker</a><a class="tag" href="/tag/Orchestration/index.html">Orchestration</a><a class="tag" href="/tag/%e4%ba%91%e8%ae%a1%e7%ae%97/index.html">云计算</a></span>
                 </section>
                 <article class="content"><h2>从IaaS到PaaS</h2>
 

@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
@@ -67,7 +89,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/hyper/index.html">hyper</a><a class="tag" href="/tag/kubernetes/index.html">kubernetes</a><a class="tag" href="/tag/hypernetes/index.html">hypernetes</a><a class="tag" href="/tag/openstack/index.html">openstack</a><a class="tag" href="/tag/cloud/index.html">cloud</a>
+                            <a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/hyper/index.html">hyper</a><a class="tag" href="/tag/kubernetes/index.html">kubernetes</a><a class="tag" href="/tag/hypernetes/index.html">hypernetes</a><a class="tag" href="/tag/openstack/index.html">openstack</a>
                             </span>
                         </section>
                     </li>

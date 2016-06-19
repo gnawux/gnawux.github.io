@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
@@ -50,7 +72,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/GSM/index.html">GSM</a><a class="tag" href="/tag/SIM/index.html">SIM</a><a class="tag" href="/tag/%e5%ae%89%e5%85%a8/index.html">安全</a><a class="tag" href="/tag/%e7%a7%91%e6%99%ae/index.html">科普</a><a class="tag" href="/tag/%e7%a7%bb%e5%8a%a8%e7%bd%91%e7%bb%9c/index.html">移动网络</a>
+                            <a class="tag" href="/tag/%e7%a7%bb%e5%8a%a8%e7%bd%91%e7%bb%9c/index.html">移动网络</a><a class="tag" href="/tag/GSM/index.html">GSM</a><a class="tag" href="/tag/SIM/index.html">SIM</a><a class="tag" href="/tag/%e5%ae%89%e5%85%a8/index.html">安全</a><a class="tag" href="/tag/%e7%a7%91%e6%99%ae/index.html">科普</a>
                             </span>
                         </section>
                     </li>

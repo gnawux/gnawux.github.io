@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="process sub,script,substitute,scripts,bash,command sub,pipe,">
+        <meta name="keywords" content="command sub,pipe,process sub,script,substitute,scripts,bash,">
         <meta name="description" content="Bash 的 Process Sub">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>Bash 的 Process Sub</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">Bash 的 Process Sub</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/process%20sub/index.html">process sub</a><a class="tag" href="/tag/script/index.html">script</a><a class="tag" href="/tag/substitute/index.html">substitute</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/bash/index.html">bash</a><a class="tag" href="/tag/command%20sub/index.html">command sub</a><a class="tag" href="/tag/pipe/index.html">pipe</a></span>
+                    <span class="tags"><a class="tag" href="/tag/command%20sub/index.html">command sub</a><a class="tag" href="/tag/pipe/index.html">pipe</a><a class="tag" href="/tag/process%20sub/index.html">process sub</a><a class="tag" href="/tag/script/index.html">script</a><a class="tag" href="/tag/substitute/index.html">substitute</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/bash/index.html">bash</a></span>
                 </section>
                 <article class="content"><p>Shell这东西，如果你真会用的话，你可能永远不敢说你会用。</p>
 

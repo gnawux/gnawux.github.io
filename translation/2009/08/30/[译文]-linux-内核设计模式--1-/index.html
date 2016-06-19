@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="linux,lwn,programming,translation,design pattern,kernel,">
+        <meta name="keywords" content="programming,translation,design pattern,kernel,linux,lwn,">
         <meta name="description" content="[译文] Linux 内核设计模式 (1)">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>[译文] Linux 内核设计模式 (1)</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">[译文] Linux 内核设计模式 (1)</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/programming/index.html">programming</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/design%20pattern/index.html">design pattern</a><a class="tag" href="/tag/kernel/index.html">kernel</a></span>
+                    <span class="tags"><a class="tag" href="/tag/programming/index.html">programming</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/design%20pattern/index.html">design pattern</a><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a></span>
                 </section>
                 <article class="content"><p>作者：Neil Brown<br />
 原文发布日期：June 8, 2009<br />

@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
@@ -38,6 +60,23 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/misc/2009/09/15/%e4%b8%8a%e6%9e%b6%e5%95%a6%ef%bc%81/index.html">上架啦！</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            <span class="date" data-time="1252992293">
+                                <span class="from"></span>
+                                
+                            </span>
+                            <span class="tags">
+                            <a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/%e4%b9%a6/index.html">书</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/translation/2009/09/14/null-pointers-2/index.html">[译文] 空指针的乐趣（2）</a>
@@ -51,7 +90,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/security/index.html">security</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a>
+                            <a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/security/index.html">security</a><a class="tag" href="/tag/translation/index.html">translation</a>
                             </span>
                         </section>
                     </li>
@@ -102,7 +141,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/programming/index.html">programming</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/design%20pattern/index.html">design pattern</a><a class="tag" href="/tag/kernel/index.html">kernel</a>
+                            <a class="tag" href="/tag/programming/index.html">programming</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/design%20pattern/index.html">design pattern</a><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a>
                             </span>
                         </section>
                     </li>
@@ -136,7 +175,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/open%20source/index.html">open source</a><a class="tag" href="/tag/chrome%20os/index.html">chrome os</a><a class="tag" href="/tag/google/index.html">google</a><a class="tag" href="/tag/linux/index.html">linux</a>
+                            <a class="tag" href="/tag/chrome%20os/index.html">chrome os</a><a class="tag" href="/tag/google/index.html">google</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/open%20source/index.html">open source</a>
                             </span>
                         </section>
                     </li>
@@ -188,23 +227,6 @@
                             </span>
                             <span class="tags">
                             <a class="tag" href="/tag/%e7%89%a2%e9%aa%9a/index.html">牢骚</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/misc/2009/05/22/%e6%98%a8%e6%99%9a%e9%99%a9%e4%ba%9b%e9%87%8d%e8%a3%85xp/index.html">昨晚险些重装XP</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            <span class="date" data-time="1242950519">
-                                <span class="from"></span>
-                                
-                            </span>
-                            <span class="tags">
-                            <a class="tag" href="/tag/%e5%8d%b8%e8%bd%bd/index.html">卸载</a><a class="tag" href="/tag/dotNetFx/index.html">dotNetFx</a><a class="tag" href="/tag/msicuu2/index.html">msicuu2</a><a class="tag" href="/tag/windows/index.html">windows</a>
                             </span>
                         </section>
                     </li>

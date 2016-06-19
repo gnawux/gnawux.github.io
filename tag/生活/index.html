@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
@@ -118,7 +140,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/%e5%96%9c%e8%ae%af/index.html">喜讯</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a>
+                            <a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/%e5%96%9c%e8%ae%af/index.html">喜讯</a>
                             </span>
                         </section>
                     </li>
@@ -152,7 +174,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/%e5%ad%a6%e8%bd%a6/index.html">学车</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a>
+                            <a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/%e5%ad%a6%e8%bd%a6/index.html">学车</a>
                             </span>
                         </section>
                     </li>
@@ -169,7 +191,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/feeling/index.html">feeling</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a>
+                            <a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/feeling/index.html">feeling</a>
                             </span>
                         </section>
                     </li>
@@ -186,7 +208,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/%e5%85%ab%e5%8d%a6/index.html">八卦</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/FML/index.html">FML</a>
+                            <a class="tag" href="/tag/FML/index.html">FML</a><a class="tag" href="/tag/%e5%85%ab%e5%8d%a6/index.html">八卦</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a>
                             </span>
                         </section>
                     </li>
@@ -203,7 +225,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/open%20source/index.html">open source</a><a class="tag" href="/tag/ophone/index.html">ophone</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a>
+                            <a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/open%20source/index.html">open source</a><a class="tag" href="/tag/ophone/index.html">ophone</a>
                             </span>
                         </section>
                     </li>

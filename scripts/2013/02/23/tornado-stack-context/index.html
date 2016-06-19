@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="python,scripts,stack_context,timeout,tornado,async,memcached,">
+        <meta name="keywords" content="async,memcached,python,scripts,stack_context,timeout,tornado,">
         <meta name="description" content="Tornado 的 stack context">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>Tornado 的 stack context</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">Tornado 的 stack context</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/python/index.html">python</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/stack_context/index.html">stack_context</a><a class="tag" href="/tag/timeout/index.html">timeout</a><a class="tag" href="/tag/tornado/index.html">tornado</a><a class="tag" href="/tag/async/index.html">async</a><a class="tag" href="/tag/memcached/index.html">memcached</a></span>
+                    <span class="tags"><a class="tag" href="/tag/async/index.html">async</a><a class="tag" href="/tag/memcached/index.html">memcached</a><a class="tag" href="/tag/python/index.html">python</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/stack_context/index.html">stack_context</a><a class="tag" href="/tag/timeout/index.html">timeout</a><a class="tag" href="/tag/tornado/index.html">tornado</a></span>
                 </section>
                 <article class="content"><blockquote>按：本人 python 菜鸟，对 tornado 更没什么研究，这两天小摆弄了一下，记一下，有不对的还请指正</p></blockquote>
 

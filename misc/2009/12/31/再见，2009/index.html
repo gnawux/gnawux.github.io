@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="feeling,生活,">
+        <meta name="keywords" content="生活,feeling,">
         <meta name="description" content="再见，2009">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>再见，2009</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">再见，2009</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/feeling/index.html">feeling</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a></span>
+                    <span class="tags"><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/feeling/index.html">feeling</a></span>
                 </section>
                 <article class="content"><p>2009年就要不声不响的过去了，这实际上是乏善可陈的一年，对这一年最大的不舍莫过于希望能弥补一下这一年中的不足。但即使是这平庸的一年，仍有许多事情发生在了我身上和身边，而由于网络的发达，甚至是很多本来遥远的事情，也让我们感同身受，更让人增添了一些迷茫。</p>
 

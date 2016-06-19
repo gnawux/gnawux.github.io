@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="kernel,linux,lwn,translation,gem,graphic,">
+        <meta name="keywords" content="graphic,kernel,linux,lwn,translation,gem,">
         <meta name="description" content="[译文] GEM vs. TTM">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>[译文] GEM vs. TTM</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">[译文] GEM vs. TTM</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/gem/index.html">gem</a><a class="tag" href="/tag/graphic/index.html">graphic</a></span>
+                    <span class="tags"><a class="tag" href="/tag/graphic/index.html">graphic</a><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/gem/index.html">gem</a></span>
                 </section>
                 <article class="content"><p>By <strong>Jonathan Corbet</strong>    <br />May 28, 2008    <br />王旭于2008年8月8日译    <br /><a href="http://lwn.net/Articles/283793/">http://lwn.net/Articles/283793/</a></p>
 

@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
@@ -50,7 +72,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/tuning/index.html">tuning</a><a class="tag" href="/tag/gc/index.html">gc</a><a class="tag" href="/tag/java/index.html">java</a><a class="tag" href="/tag/jvm/index.html">jvm</a>
+                            <a class="tag" href="/tag/jvm/index.html">jvm</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/tuning/index.html">tuning</a><a class="tag" href="/tag/gc/index.html">gc</a><a class="tag" href="/tag/java/index.html">java</a>
                             </span>
                         </section>
                     </li>
@@ -67,7 +89,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/virtualization/index.html">virtualization</a><a class="tag" href="/tag/xen/index.html">xen</a><a class="tag" href="/tag/translation/index.html">translation</a>
+                            <a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/virtualization/index.html">virtualization</a><a class="tag" href="/tag/xen/index.html">xen</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/kernel/index.html">kernel</a>
                             </span>
                         </section>
                     </li>
@@ -84,7 +106,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/programming/index.html">programming</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/design%20pattern/index.html">design pattern</a><a class="tag" href="/tag/kernel/index.html">kernel</a>
+                            <a class="tag" href="/tag/programming/index.html">programming</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/design%20pattern/index.html">design pattern</a><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a>
                             </span>
                         </section>
                     </li>
@@ -118,7 +140,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/security/index.html">security</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a>
+                            <a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/security/index.html">security</a><a class="tag" href="/tag/translation/index.html">translation</a>
                             </span>
                         </section>
                     </li>
@@ -135,7 +157,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/XI2/index.html">XI2</a><a class="tag" href="/tag/xorg/index.html">xorg</a><a class="tag" href="/tag/graphic/index.html">graphic</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/translation/index.html">translation</a>
+                            <a class="tag" href="/tag/graphic/index.html">graphic</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/XI2/index.html">XI2</a><a class="tag" href="/tag/xorg/index.html">xorg</a>
                             </span>
                         </section>
                     </li>
@@ -152,7 +174,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/avro/index.html">avro</a><a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/mapreduce/index.html">mapreduce</a>
+                            <a class="tag" href="/tag/avro/index.html">avro</a><a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/mapreduce/index.html">mapreduce</a><a class="tag" href="/tag/translation/index.html">translation</a>
                             </span>
                         </section>
                     </li>
@@ -203,7 +225,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/nosql/index.html">nosql</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/cassandra/index.html">cassandra</a><a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/hbase/index.html">hbase</a>
+                            <a class="tag" href="/tag/cassandra/index.html">cassandra</a><a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/hbase/index.html">hbase</a><a class="tag" href="/tag/nosql/index.html">nosql</a><a class="tag" href="/tag/translation/index.html">translation</a>
                             </span>
                         </section>
                     </li>

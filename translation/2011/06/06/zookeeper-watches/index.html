@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="zookeeper,分布式系统,hadoop,programming,translation,">
+        <meta name="keywords" content="hadoop,programming,translation,zookeeper,分布式系统,">
         <meta name="description" content="ZooKeeper Watches">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>ZooKeeper Watches</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">ZooKeeper Watches</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/zookeeper/index.html">zookeeper</a><a class="tag" href="/tag/%e5%88%86%e5%b8%83%e5%bc%8f%e7%b3%bb%e7%bb%9f/index.html">分布式系统</a><a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/programming/index.html">programming</a><a class="tag" href="/tag/translation/index.html">translation</a></span>
+                    <span class="tags"><a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/programming/index.html">programming</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/zookeeper/index.html">zookeeper</a><a class="tag" href="/tag/%e5%88%86%e5%b8%83%e5%bc%8f%e7%b3%bb%e7%bb%9f/index.html">分布式系统</a></span>
                 </section>
                 <article class="content"><p><em>按：王旭（http://wangxu.me/blog, @gnawux）于2011年6月6日译自 ZooKeeper程序员指南 （<a href="http://zookeeper.apache.org/doc/r3.3.3/zookeeperProgrammers.html">http://zookeeper.apache.org/doc/r3.3.3/zookeeperProgrammers.html</a>）的同名章节。似乎很少有文档提这个啊，我其实在看这个之前一直不明白这东东是怎么用的。</em></p>
 

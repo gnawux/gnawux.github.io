@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="translation,strace,tools,">
+        <meta name="keywords" content="strace,tools,translation,">
         <meta name="description" content="[译文]strace:系统调用跟踪与信号报告工具">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>[译文]strace:系统调用跟踪与信号报告工具</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">[译文]strace:系统调用跟踪与信号报告工具</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/strace/index.html">strace</a><a class="tag" href="/tag/tools/index.html">tools</a></span>
+                    <span class="tags"><a class="tag" href="/tag/strace/index.html">strace</a><a class="tag" href="/tag/tools/index.html">tools</a><a class="tag" href="/tag/translation/index.html">translation</a></span>
                 </section>
                 <article class="content"><p>原文出处：http://linuxgazette.net/148/saha.html   <br />原文作者：<b><a href="http://linuxgazette.net/authors/saha.html">Amit Kumar Saha</a> and <a href="http://linuxgazette.net/authors/ghosh1.html">Sayantini Ghosh</a></b>    <br />翻译时间：2008年3月3日    <br />译者：王旭 &lt;gnawux (at) gmail.com&gt;</p>
 

@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
@@ -38,6 +60,23 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/life/2010/08/12/%e4%b8%8a%e6%b5%b7%e6%95%85%e4%ba%8b/index.html">上海故事</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            <span class="date" data-time="1281547170">
+                                <span class="from"></span>
+                                
+                            </span>
+                            <span class="tags">
+                            <a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/%e4%b8%8a%e6%b5%b7/index.html">上海</a><a class="tag" href="/tag/%e5%87%ba%e5%b7%ae/index.html">出差</a><a class="tag" href="/tag/%e5%8d%97%e4%ba%ac%e8%b7%af/index.html">南京路</a><a class="tag" href="/tag/%e5%9c%b0%e9%93%81/index.html">地铁</a><a class="tag" href="/tag/%e5%a4%96%e6%bb%a9/index.html">外滩</a><a class="tag" href="/tag/%e5%ae%b6%e5%ba%ad/index.html">家庭</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/life/2010/08/09/%e4%b8%8d%e5%a4%aa%e7%88%bd%e7%9a%84%e6%b5%b7%e8%be%b9%e4%b9%8b%e8%a1%8c/index.html">不太爽的海边之行</a>
@@ -68,7 +107,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/scheduler/index.html">scheduler</a><a class="tag" href="/tag/SSD/index.html">SSD</a><a class="tag" href="/tag/storage/index.html">storage</a><a class="tag" href="/tag/%e5%bc%a0%e6%99%93%e4%b8%9c/index.html">张晓东</a>
+                            <a class="tag" href="/tag/%e5%bc%a0%e6%99%93%e4%b8%9c/index.html">张晓东</a><a class="tag" href="/tag/scheduler/index.html">scheduler</a><a class="tag" href="/tag/SSD/index.html">SSD</a><a class="tag" href="/tag/storage/index.html">storage</a>
                             </span>
                         </section>
                     </li>
@@ -85,7 +124,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/Diamond/index.html">Diamond</a><a class="tag" href="/tag/htc/index.html">htc</a><a class="tag" href="/tag/%e4%b9%b0%e5%8d%96/index.html">买卖</a><a class="tag" href="/tag/%e4%ba%8c%e6%89%8b/index.html">二手</a><a class="tag" href="/tag/%e6%89%8b%e6%9c%ba/index.html">手机</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/c2c/index.html">c2c</a><a class="tag" href="/tag/cnc2c/index.html">cnc2c</a>
+                            <a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/c2c/index.html">c2c</a><a class="tag" href="/tag/cnc2c/index.html">cnc2c</a><a class="tag" href="/tag/Diamond/index.html">Diamond</a><a class="tag" href="/tag/htc/index.html">htc</a><a class="tag" href="/tag/%e4%b9%b0%e5%8d%96/index.html">买卖</a><a class="tag" href="/tag/%e4%ba%8c%e6%89%8b/index.html">二手</a><a class="tag" href="/tag/%e6%89%8b%e6%9c%ba/index.html">手机</a>
                             </span>
                         </section>
                     </li>
@@ -102,7 +141,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/%e7%ba%aa%e5%bf%b5%e6%97%a5/index.html">纪念日</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/%e5%ae%b6%e5%ba%ad/index.html">家庭</a><a class="tag" href="/tag/%e6%96%af%e5%b1%b9/index.html">斯屹</a>
+                            <a class="tag" href="/tag/%e5%ae%b6%e5%ba%ad/index.html">家庭</a><a class="tag" href="/tag/%e6%96%af%e5%b1%b9/index.html">斯屹</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/%e7%ba%aa%e5%bf%b5%e6%97%a5/index.html">纪念日</a><a class="tag" href="/tag/life/index.html">life</a>
                             </span>
                         </section>
                     </li>
@@ -136,7 +175,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/%e6%96%af%e5%b1%b9/index.html">斯屹</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/%e5%ae%b6%e5%ba%ad/index.html">家庭</a>
+                            <a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/%e5%ae%b6%e5%ba%ad/index.html">家庭</a><a class="tag" href="/tag/%e6%96%af%e5%b1%b9/index.html">斯屹</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a>
                             </span>
                         </section>
                     </li>
@@ -153,7 +192,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/cassandra/index.html">cassandra</a><a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/data%20model/index.html">data model</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/%e4%ba%91%e8%ae%a1%e7%ae%97/index.html">云计算</a><a class="tag" href="/tag/%e6%95%b0%e6%8d%ae%e6%a8%a1%e5%9e%8b/index.html">数据模型</a>
+                            <a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/data%20model/index.html">data model</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/%e4%ba%91%e8%ae%a1%e7%ae%97/index.html">云计算</a><a class="tag" href="/tag/%e6%95%b0%e6%8d%ae%e6%a8%a1%e5%9e%8b/index.html">数据模型</a><a class="tag" href="/tag/cassandra/index.html">cassandra</a>
                             </span>
                         </section>
                     </li>
@@ -188,23 +227,6 @@
                             </span>
                             <span class="tags">
                             <a class="tag" href="/tag/reading/index.html">reading</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/%e4%ba%91%e8%ae%a1%e7%ae%97/index.html">云计算</a><a class="tag" href="/tag/cassandra/index.html">cassandra</a><a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/nosql/index.html">nosql</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/linux/2010/04/28/linuxfb%e7%89%88%e8%81%9a%e6%80%bb%e7%bb%93/index.html">LinuxFB版聚总结</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            <span class="date" data-time="1272470339">
-                                <span class="from"></span>
-                                
-                            </span>
-                            <span class="tags">
-                            <a class="tag" href="/tag/ocfs2/index.html">ocfs2</a><a class="tag" href="/tag/SSD/index.html">SSD</a><a class="tag" href="/tag/vfs/index.html">vfs</a><a class="tag" href="/tag/VPN/index.html">VPN</a><a class="tag" href="/tag/debug/index.html">debug</a><a class="tag" href="/tag/filesystem/index.html">filesystem</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/linuxfb/index.html">linuxfb</a>
                             </span>
                         </section>
                     </li>

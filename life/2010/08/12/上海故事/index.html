@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="出差,南京路,地铁,外滩,家庭,生活,life,上海,">
+        <meta name="keywords" content="life,上海,出差,南京路,地铁,外滩,家庭,生活,">
         <meta name="description" content="上海故事">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>上海故事</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">上海故事</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/%e5%87%ba%e5%b7%ae/index.html">出差</a><a class="tag" href="/tag/%e5%8d%97%e4%ba%ac%e8%b7%af/index.html">南京路</a><a class="tag" href="/tag/%e5%9c%b0%e9%93%81/index.html">地铁</a><a class="tag" href="/tag/%e5%a4%96%e6%bb%a9/index.html">外滩</a><a class="tag" href="/tag/%e5%ae%b6%e5%ba%ad/index.html">家庭</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/%e4%b8%8a%e6%b5%b7/index.html">上海</a></span>
+                    <span class="tags"><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/%e4%b8%8a%e6%b5%b7/index.html">上海</a><a class="tag" href="/tag/%e5%87%ba%e5%b7%ae/index.html">出差</a><a class="tag" href="/tag/%e5%8d%97%e4%ba%ac%e8%b7%af/index.html">南京路</a><a class="tag" href="/tag/%e5%9c%b0%e9%93%81/index.html">地铁</a><a class="tag" href="/tag/%e5%a4%96%e6%bb%a9/index.html">外滩</a><a class="tag" href="/tag/%e5%ae%b6%e5%ba%ad/index.html">家庭</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a></span>
                 </section>
                 <article class="content"><p>首先感谢国家，感谢CCSA，让我在上海度过一个生日，而且是30大整的生日，嗯，说到这要感谢各位朋友的祝福，回到主线，聊聊这两天在上海的出差之外的生活吧。</p>
 

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="open source,chrome os,google,linux,">
+        <meta name="keywords" content="chrome os,google,linux,open source,">
         <meta name="description" content="Chrome OS, Another Linux Distro?">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>Chrome OS, Another Linux Distro?</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">Chrome OS, Another Linux Distro?</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/open%20source/index.html">open source</a><a class="tag" href="/tag/chrome%20os/index.html">chrome os</a><a class="tag" href="/tag/google/index.html">google</a><a class="tag" href="/tag/linux/index.html">linux</a></span>
+                    <span class="tags"><a class="tag" href="/tag/chrome%20os/index.html">chrome os</a><a class="tag" href="/tag/google/index.html">google</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/open%20source/index.html">open source</a></span>
                 </section>
                 <article class="content"><p>Google OS 是个流传已久的噱头了，可当 Chrome OS 真的被 Announce 出来的时候，还是瞬间成为了讨论的热点，这里也谈谈我的看法。</p>
 

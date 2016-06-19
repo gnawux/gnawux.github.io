@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="deb,module,module-assistant,unleashed,debian,kernel,package,ubuntu,linux,">
+        <meta name="keywords" content="unleashed,deb,kernel,module-assistant,package,ubuntu,linux,debian,module,">
         <meta name="description" content="创建 Debian/Ubuntu 风格的内核模块包">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>创建 Debian/Ubuntu 风格的内核模块包</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">创建 Debian/Ubuntu 风格的内核模块包</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/deb/index.html">deb</a><a class="tag" href="/tag/module/index.html">module</a><a class="tag" href="/tag/module-assistant/index.html">module-assistant</a><a class="tag" href="/tag/unleashed/index.html">unleashed</a><a class="tag" href="/tag/debian/index.html">debian</a><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/package/index.html">package</a><a class="tag" href="/tag/ubuntu/index.html">ubuntu</a><a class="tag" href="/tag/linux/index.html">linux</a></span>
+                    <span class="tags"><a class="tag" href="/tag/unleashed/index.html">unleashed</a><a class="tag" href="/tag/deb/index.html">deb</a><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/module-assistant/index.html">module-assistant</a><a class="tag" href="/tag/package/index.html">package</a><a class="tag" href="/tag/ubuntu/index.html">ubuntu</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/debian/index.html">debian</a><a class="tag" href="/tag/module/index.html">module</a></span>
                 </section>
                 <article class="content"><p>很久不深入玩Debian系的东西了，最近，乘着工作之便，又打了个deb包，而且是我之前没干过的内核模块的deb包，恩，记一下吧。</p>
 

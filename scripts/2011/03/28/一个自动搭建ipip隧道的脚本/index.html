@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="route,scripts,tunnel,ipip,linux,">
+        <meta name="keywords" content="ipip,linux,route,scripts,tunnel,">
         <meta name="description" content="一个自动搭建ipip隧道的脚本">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>一个自动搭建ipip隧道的脚本</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">一个自动搭建ipip隧道的脚本</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/route/index.html">route</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/tunnel/index.html">tunnel</a><a class="tag" href="/tag/ipip/index.html">ipip</a><a class="tag" href="/tag/linux/index.html">linux</a></span>
+                    <span class="tags"><a class="tag" href="/tag/ipip/index.html">ipip</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/route/index.html">route</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/tunnel/index.html">tunnel</a></span>
                 </section>
                 <article class="content"><p>场景是这样的，两台机器A和B，通过缺省路由互相可达；希望A通过B的连接出去；A的地址为动态分配，且A可能的interface不缺定，因此，上来先给点先决条件：</p>
 

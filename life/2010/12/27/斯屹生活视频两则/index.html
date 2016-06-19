@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="巴克球,斯屹,生活,life,bucky,家庭,">
+        <meta name="keywords" content="斯屹,生活,life,bucky,家庭,巴克球,">
         <meta name="description" content="斯屹生活视频两则">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>斯屹生活视频两则</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">斯屹生活视频两则</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/%e5%b7%b4%e5%85%8b%e7%90%83/index.html">巴克球</a><a class="tag" href="/tag/%e6%96%af%e5%b1%b9/index.html">斯屹</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/bucky/index.html">bucky</a><a class="tag" href="/tag/%e5%ae%b6%e5%ba%ad/index.html">家庭</a></span>
+                    <span class="tags"><a class="tag" href="/tag/%e6%96%af%e5%b1%b9/index.html">斯屹</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/bucky/index.html">bucky</a><a class="tag" href="/tag/%e5%ae%b6%e5%ba%ad/index.html">家庭</a><a class="tag" href="/tag/%e5%b7%b4%e5%85%8b%e7%90%83/index.html">巴克球</a></span>
                 </section>
                 <article class="content"><h2>巴克球是每个人的</h2>
 

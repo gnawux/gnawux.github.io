@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
@@ -84,7 +106,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/HIC2010/index.html">HIC2010</a><a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/hdfs/index.html">hdfs</a>
+                            <a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/hdfs/index.html">hdfs</a><a class="tag" href="/tag/HIC2010/index.html">HIC2010</a>
                             </span>
                         </section>
                     </li>
@@ -101,7 +123,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/csdn/index.html">csdn</a><a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/hdfs/index.html">hdfs</a><a class="tag" href="/tag/map/index.html">map</a><a class="tag" href="/tag/tup/index.html">tup</a><a class="tag" href="/tag/cloud/index.html">cloud</a>
+                            <a class="tag" href="/tag/tup/index.html">tup</a><a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/csdn/index.html">csdn</a><a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/hdfs/index.html">hdfs</a><a class="tag" href="/tag/map/index.html">map</a>
                             </span>
                         </section>
                     </li>
@@ -118,7 +140,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/hdfs/index.html">hdfs</a><a class="tag" href="/tag/xmind/index.html">xmind</a><a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/FSDataset/index.html">FSDataset</a>
+                            <a class="tag" href="/tag/FSDataset/index.html">FSDataset</a><a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/hdfs/index.html">hdfs</a><a class="tag" href="/tag/xmind/index.html">xmind</a><a class="tag" href="/tag/cloud/index.html">cloud</a>
                             </span>
                         </section>
                     </li>

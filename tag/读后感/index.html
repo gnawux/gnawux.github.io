@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
@@ -84,7 +106,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/%e8%af%bb%e5%90%8e%e6%84%9f/index.html">读后感</a><a class="tag" href="/tag/%e5%ad%99%e5%ad%90%e5%85%b5%e6%b3%95/index.html">孙子兵法</a><a class="tag" href="/tag/%e8%af%bb%e4%b9%a6/index.html">读书</a>
+                            <a class="tag" href="/tag/%e5%ad%99%e5%ad%90%e5%85%b5%e6%b3%95/index.html">孙子兵法</a><a class="tag" href="/tag/%e8%af%bb%e4%b9%a6/index.html">读书</a><a class="tag" href="/tag/%e8%af%bb%e5%90%8e%e6%84%9f/index.html">读后感</a>
                             </span>
                         </section>
                     </li>

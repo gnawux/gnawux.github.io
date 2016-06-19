@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="blog,github,jekyll,meta,">
+        <meta name="keywords" content="github,jekyll,meta,blog,">
         <meta name="description" content="Blog 系统更新完毕">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>Blog 系统更新完毕</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">Blog 系统更新完毕</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/blog/index.html">blog</a><a class="tag" href="/tag/github/index.html">github</a><a class="tag" href="/tag/jekyll/index.html">jekyll</a><a class="tag" href="/tag/meta/index.html">meta</a></span>
+                    <span class="tags"><a class="tag" href="/tag/github/index.html">github</a><a class="tag" href="/tag/jekyll/index.html">jekyll</a><a class="tag" href="/tag/meta/index.html">meta</a><a class="tag" href="/tag/blog/index.html">blog</a></span>
                 </section>
                 <article class="content"><p>这个 Blog 在主机到期，迁出 wordpress 引擎之后，就放到了 github，不过，因为迁移程序的问题，文章的 url 一直是不 work 的，好几个月之后（可能有），终于修复了这些 URL。</p>
 

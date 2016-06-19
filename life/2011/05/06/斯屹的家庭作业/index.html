@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="openshot,siyi,video,ffmpeg,life,">
+        <meta name="keywords" content="ffmpeg,life,openshot,siyi,video,">
         <meta name="description" content="斯屹的家庭作业">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>斯屹的家庭作业</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">斯屹的家庭作业</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/openshot/index.html">openshot</a><a class="tag" href="/tag/siyi/index.html">siyi</a><a class="tag" href="/tag/video/index.html">video</a><a class="tag" href="/tag/ffmpeg/index.html">ffmpeg</a><a class="tag" href="/tag/life/index.html">life</a></span>
+                    <span class="tags"><a class="tag" href="/tag/ffmpeg/index.html">ffmpeg</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/openshot/index.html">openshot</a><a class="tag" href="/tag/siyi/index.html">siyi</a><a class="tag" href="/tag/video/index.html">video</a></span>
                 </section>
                 <article class="content"><p>发到这里了：<a href="http://wangsiyi.net/siyi/p/51">http://wangsiyi.net/siyi/p/51</a></p>
 

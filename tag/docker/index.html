@@ -28,12 +28,34 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
                     
                         <h1 class="tag">docker</h1>
-                        <h2 class="tag-sub">2 篇文章</h2>
+                        <h2 class="tag-sub">3 篇文章</h2>
                     
                 </header>
                 <ul class="article-list">
@@ -50,7 +72,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/container/index.html">container</a><a class="tag" href="/tag/docker/index.html">docker</a><a class="tag" href="/tag/Orchestration/index.html">Orchestration</a><a class="tag" href="/tag/%e4%ba%91%e8%ae%a1%e7%ae%97/index.html">云计算</a><a class="tag" href="/tag/cloud/index.html">cloud</a>
+                            <a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/container/index.html">container</a><a class="tag" href="/tag/docker/index.html">docker</a><a class="tag" href="/tag/Orchestration/index.html">Orchestration</a><a class="tag" href="/tag/%e4%ba%91%e8%ae%a1%e7%ae%97/index.html">云计算</a>
                             </span>
                         </section>
                     </li>
@@ -67,7 +89,24 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/docker/index.html">docker</a><a class="tag" href="/tag/unikernel/index.html">unikernel</a><a class="tag" href="/tag/hypervisor/index.html">hypervisor</a><a class="tag" href="/tag/hyper/index.html">hyper</a><a class="tag" href="/tag/container/index.html">container</a>
+                            <a class="tag" href="/tag/container/index.html">container</a><a class="tag" href="/tag/docker/index.html">docker</a><a class="tag" href="/tag/unikernel/index.html">unikernel</a><a class="tag" href="/tag/hypervisor/index.html">hypervisor</a><a class="tag" href="/tag/hyper/index.html">hyper</a>
+                            </span>
+                        </section>
+                    </li>
+                    
+                    <li class="article">
+                        <a class="title" href="/hyper/2016/06/17/runv-docker-integration/index.html">RunV: 让 Docker 支持虚拟化容器</a>
+                        
+                        <section class="preview content">在此，我们很高兴地告知各位，我们已经初步完成了 runV (OCI 的基于虚拟化技术的容器运行时引擎) 与 Docker 的集成。这里，我们感谢 runV 团队的优秀工作，而且这次更新的一个特别之处在于，这些更新是由 Hyper 的开发团队和来自社区的参与者共同完成的，他们也是 runV 社区的重要部分，并在此接受致谢。...</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            <span class="date" data-time="1466147168">
+                                <span class="from"></span>
+                                
+                            </span>
+                            <span class="tags">
+                            <a class="tag" href="/tag/hyper/index.html">hyper</a><a class="tag" href="/tag/announcement/index.html">announcement</a><a class="tag" href="/tag/runv/index.html">runv</a><a class="tag" href="/tag/docker/index.html">docker</a><a class="tag" href="/tag/containerd/index.html">containerd</a><a class="tag" href="/tag/container/index.html">container</a><a class="tag" href="/tag/oci/index.html">oci</a><a class="tag" href="/tag/work/index.html">work</a>
                             </span>
                         </section>
                     </li>

@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
@@ -50,7 +72,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/pdflush/index.html">pdflush</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/filesystem/index.html">filesystem</a><a class="tag" href="/tag/flusher/index.html">flusher</a><a class="tag" href="/tag/kernel/index.html">kernel</a>
+                            <a class="tag" href="/tag/flusher/index.html">flusher</a><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/pdflush/index.html">pdflush</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/filesystem/index.html">filesystem</a>
                             </span>
                         </section>
                     </li>
@@ -67,7 +89,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/PS/index.html">PS</a><a class="tag" href="/tag/psr/index.html">psr</a><a class="tag" href="/tag/shell/index.html">shell</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/affinity/index.html">affinity</a><a class="tag" href="/tag/cmdline/index.html">cmdline</a>
+                            <a class="tag" href="/tag/psr/index.html">psr</a><a class="tag" href="/tag/shell/index.html">shell</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/affinity/index.html">affinity</a><a class="tag" href="/tag/cmdline/index.html">cmdline</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/PS/index.html">PS</a>
                             </span>
                         </section>
                     </li>
@@ -84,7 +106,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/linuxfb/index.html">linuxfb</a>
+                            <a class="tag" href="/tag/linuxfb/index.html">linuxfb</a><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a>
                             </span>
                         </section>
                     </li>
@@ -101,7 +123,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/emacs/index.html">emacs</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/linuxfb/index.html">linuxfb</a><a class="tag" href="/tag/vim/index.html">vim</a>
+                            <a class="tag" href="/tag/vim/index.html">vim</a><a class="tag" href="/tag/emacs/index.html">emacs</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/linuxfb/index.html">linuxfb</a>
                             </span>
                         </section>
                     </li>
@@ -118,7 +140,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/admin/index.html">admin</a><a class="tag" href="/tag/ip/index.html">ip</a><a class="tag" href="/tag/iproute2/index.html">iproute2</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/networking/index.html">networking</a><a class="tag" href="/tag/route/index.html">route</a>
+                            <a class="tag" href="/tag/iproute2/index.html">iproute2</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/networking/index.html">networking</a><a class="tag" href="/tag/route/index.html">route</a><a class="tag" href="/tag/admin/index.html">admin</a><a class="tag" href="/tag/ip/index.html">ip</a>
                             </span>
                         </section>
                     </li>
@@ -135,7 +157,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/deb/index.html">deb</a><a class="tag" href="/tag/module/index.html">module</a><a class="tag" href="/tag/module-assistant/index.html">module-assistant</a><a class="tag" href="/tag/unleashed/index.html">unleashed</a><a class="tag" href="/tag/debian/index.html">debian</a><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/package/index.html">package</a><a class="tag" href="/tag/ubuntu/index.html">ubuntu</a><a class="tag" href="/tag/linux/index.html">linux</a>
+                            <a class="tag" href="/tag/unleashed/index.html">unleashed</a><a class="tag" href="/tag/deb/index.html">deb</a><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/module-assistant/index.html">module-assistant</a><a class="tag" href="/tag/package/index.html">package</a><a class="tag" href="/tag/ubuntu/index.html">ubuntu</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/debian/index.html">debian</a><a class="tag" href="/tag/module/index.html">module</a>
                             </span>
                         </section>
                     </li>
@@ -152,7 +174,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/hostapd/index.html">hostapd</a><a class="tag" href="/tag/ipw2100/index.html">ipw2100</a><a class="tag" href="/tag/nl80211/index.html">nl80211</a><a class="tag" href="/tag/ubuntu/index.html">ubuntu</a><a class="tag" href="/tag/wifi/index.html">wifi</a><a class="tag" href="/tag/%e6%8b%86%e6%9c%ba/index.html">拆机</a><a class="tag" href="/tag/b43/index.html">b43</a><a class="tag" href="/tag/bcm4318/index.html">bcm4318</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/mac80211/index.html">mac80211</a>
+                            <a class="tag" href="/tag/bcm4318/index.html">bcm4318</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/nl80211/index.html">nl80211</a><a class="tag" href="/tag/ubuntu/index.html">ubuntu</a><a class="tag" href="/tag/wifi/index.html">wifi</a><a class="tag" href="/tag/b43/index.html">b43</a><a class="tag" href="/tag/ipw2100/index.html">ipw2100</a><a class="tag" href="/tag/mac80211/index.html">mac80211</a><a class="tag" href="/tag/%e6%8b%86%e6%9c%ba/index.html">拆机</a><a class="tag" href="/tag/hostapd/index.html">hostapd</a>
                             </span>
                         </section>
                     </li>
@@ -169,7 +191,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/ubuntu/index.html">ubuntu</a><a class="tag" href="/tag/bcache/index.html">bcache</a><a class="tag" href="/tag/initramfs/index.html">initramfs</a>
+                            <a class="tag" href="/tag/bcache/index.html">bcache</a><a class="tag" href="/tag/initramfs/index.html">initramfs</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/ubuntu/index.html">ubuntu</a>
                             </span>
                         </section>
                     </li>
@@ -186,7 +208,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/block/index.html">block</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/bcache/index.html">bcache</a><a class="tag" href="/tag/dm/index.html">dm</a><a class="tag" href="/tag/dm-cache/index.html">dm-cache</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lsfmm/index.html">lsfmm</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/storage/index.html">storage</a>
+                            <a class="tag" href="/tag/lsfmm/index.html">lsfmm</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/bcache/index.html">bcache</a><a class="tag" href="/tag/dm/index.html">dm</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/block/index.html">block</a><a class="tag" href="/tag/dm-cache/index.html">dm-cache</a><a class="tag" href="/tag/storage/index.html">storage</a>
                             </span>
                         </section>
                     </li>

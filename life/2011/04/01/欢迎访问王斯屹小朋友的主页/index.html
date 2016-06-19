@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="链接,life,斯屹,网站,">
+        <meta name="keywords" content="斯屹,网站,链接,life,">
         <meta name="description" content="欢迎访问王斯屹小朋友的主页">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>欢迎访问王斯屹小朋友的主页</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">欢迎访问王斯屹小朋友的主页</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/%e9%93%be%e6%8e%a5/index.html">链接</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/%e6%96%af%e5%b1%b9/index.html">斯屹</a><a class="tag" href="/tag/%e7%bd%91%e7%ab%99/index.html">网站</a></span>
+                    <span class="tags"><a class="tag" href="/tag/%e6%96%af%e5%b1%b9/index.html">斯屹</a><a class="tag" href="/tag/%e7%bd%91%e7%ab%99/index.html">网站</a><a class="tag" href="/tag/%e9%93%be%e6%8e%a5/index.html">链接</a><a class="tag" href="/tag/life/index.html">life</a></span>
                 </section>
                 <article class="content"><p>主页网志就是小朋友的名字：</p>
 

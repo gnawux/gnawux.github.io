@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="bug,centos,disable_msi,linux,msi-x,rhel,bcm5709,bnx2,">
+        <meta name="keywords" content="bnx2,bug,centos,disable_msi,linux,msi-x,rhel,bcm5709,">
         <meta name="description" content="CentOS/RHEL 5.4 BCM5709网卡问题">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>CentOS/RHEL 5.4 BCM5709网卡问题</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">CentOS/RHEL 5.4 BCM5709网卡问题</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/bug/index.html">bug</a><a class="tag" href="/tag/centos/index.html">centos</a><a class="tag" href="/tag/disable_msi/index.html">disable_msi</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/msi-x/index.html">msi-x</a><a class="tag" href="/tag/rhel/index.html">rhel</a><a class="tag" href="/tag/bcm5709/index.html">bcm5709</a><a class="tag" href="/tag/bnx2/index.html">bnx2</a></span>
+                    <span class="tags"><a class="tag" href="/tag/bnx2/index.html">bnx2</a><a class="tag" href="/tag/bug/index.html">bug</a><a class="tag" href="/tag/centos/index.html">centos</a><a class="tag" href="/tag/disable_msi/index.html">disable_msi</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/msi-x/index.html">msi-x</a><a class="tag" href="/tag/rhel/index.html">rhel</a><a class="tag" href="/tag/bcm5709/index.html">bcm5709</a></span>
                 </section>
                 <article class="content"><p>前不久我们的一批使用 Broadcom NetXtreme II BCM5709 千兆网卡的 CentOS 5.4 机器的网卡在大负载下频频挂掉，无法ping通任何其他机器，但可以ping通自己，只要重启网卡即可恢复，实在让人费解。</p>
 

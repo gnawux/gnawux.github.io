@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="linux,apache,hadoop,mirror,revprop,subversion,svm,svn,">
+        <meta name="keywords" content="apache,hadoop,mirror,revprop,subversion,svm,svn,linux,">
         <meta name="description" content="用SVM同步SVN仓库及解决锁问题">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>用SVM同步SVN仓库及解决锁问题</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">用SVM同步SVN仓库及解决锁问题</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/apache/index.html">apache</a><a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/mirror/index.html">mirror</a><a class="tag" href="/tag/revprop/index.html">revprop</a><a class="tag" href="/tag/subversion/index.html">subversion</a><a class="tag" href="/tag/svm/index.html">svm</a><a class="tag" href="/tag/svn/index.html">svn</a></span>
+                    <span class="tags"><a class="tag" href="/tag/apache/index.html">apache</a><a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/mirror/index.html">mirror</a><a class="tag" href="/tag/revprop/index.html">revprop</a><a class="tag" href="/tag/subversion/index.html">subversion</a><a class="tag" href="/tag/svm/index.html">svm</a><a class="tag" href="/tag/svn/index.html">svn</a><a class="tag" href="/tag/linux/index.html">linux</a></span>
                 </section>
                 <article class="content"><p>这两天用svm同步hadoop上游的svn仓库的时候遇到个小问题，刚刚fix了，特此贴出来：</p>
 

@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
@@ -67,7 +89,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/%e5%87%ba%e7%89%88/index.html">出版</a><a class="tag" href="/tag/%e6%9c%8b%e5%8f%8b/index.html">朋友</a><a class="tag" href="/tag/unleashed/index.html">unleashed</a><a class="tag" href="/tag/%e5%85%ab%e5%8d%a6/index.html">八卦</a>
+                            <a class="tag" href="/tag/unleashed/index.html">unleashed</a><a class="tag" href="/tag/%e5%85%ab%e5%8d%a6/index.html">八卦</a><a class="tag" href="/tag/%e5%87%ba%e7%89%88/index.html">出版</a><a class="tag" href="/tag/%e6%9c%8b%e5%8f%8b/index.html">朋友</a>
                             </span>
                         </section>
                     </li>
@@ -84,7 +106,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/cassandra/index.html">cassandra</a><a class="tag" href="/tag/Cassandra%e6%9d%83%e5%a8%81%e6%8c%87%e5%8d%97/index.html">Cassandra权威指南</a><a class="tag" href="/tag/feeling/index.html">feeling</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/%e5%87%ba%e7%89%88/index.html">出版</a>
+                            <a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/%e5%87%ba%e7%89%88/index.html">出版</a><a class="tag" href="/tag/cassandra/index.html">cassandra</a><a class="tag" href="/tag/Cassandra%e6%9d%83%e5%a8%81%e6%8c%87%e5%8d%97/index.html">Cassandra权威指南</a><a class="tag" href="/tag/feeling/index.html">feeling</a><a class="tag" href="/tag/life/index.html">life</a>
                             </span>
                         </section>
                     </li>

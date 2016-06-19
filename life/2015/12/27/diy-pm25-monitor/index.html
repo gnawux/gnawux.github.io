@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="raspberry pi,arduino,life,air,PM 2.5,">
+        <meta name="keywords" content="life,air,PM 2.5,raspberry pi,arduino,">
         <meta name="description" content="DIY PM 2.5 监测仪 (1): 采集和显示">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>DIY PM 2.5 监测仪 (1): 采集和显示</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">DIY PM 2.5 监测仪 (1): 采集和显示</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/raspberry%20pi/index.html">raspberry pi</a><a class="tag" href="/tag/arduino/index.html">arduino</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/air/index.html">air</a><a class="tag" href="/tag/PM%202.5/index.html">PM 2.5</a></span>
+                    <span class="tags"><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/air/index.html">air</a><a class="tag" href="/tag/PM%202.5/index.html">PM 2.5</a><a class="tag" href="/tag/raspberry%20pi/index.html">raspberry pi</a><a class="tag" href="/tag/arduino/index.html">arduino</a></span>
                 </section>
                 <article class="content"><blockquote>
 <p>如今北京的空气，嗯，关注点空气质量自我保护吧，废话不多说了，开工吧。</p>

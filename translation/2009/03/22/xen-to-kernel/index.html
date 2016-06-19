@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="kernel,linux,lwn,virtualization,xen,translation,">
+        <meta name="keywords" content="linux,lwn,virtualization,xen,translation,kernel,">
         <meta name="description" content="[译文] Xen: 完成工作">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>[译文] Xen: 完成工作</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">[译文] Xen: 完成工作</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/virtualization/index.html">virtualization</a><a class="tag" href="/tag/xen/index.html">xen</a><a class="tag" href="/tag/translation/index.html">translation</a></span>
+                    <span class="tags"><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/virtualization/index.html">virtualization</a><a class="tag" href="/tag/xen/index.html">xen</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/kernel/index.html">kernel</a></span>
                 </section>
                 <article class="content"><p><a href="http://lwn.net/Articles/321696/">http://lwn.net/Articles/321696/</a><br />
 By <strong>Jonathan Corbet</strong><br />

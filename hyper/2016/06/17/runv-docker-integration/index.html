@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="hyper,announcement,runv,docker,containerd,container,oci,work,">
+        <meta name="description" content="RunV: 让 Docker 支持虚拟化容器">
+        <link rel="stylesheet" href="/bundle/index.css">
+        <title>RunV: 让 Docker 支持虚拟化容器</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+</script>
+
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
+
+            <article class="main article">
+                <h1 class="title">RunV: 让 Docker 支持虚拟化容器</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1466147168">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/hyper/index.html">hyper</a><a class="tag" href="/tag/announcement/index.html">announcement</a><a class="tag" href="/tag/runv/index.html">runv</a><a class="tag" href="/tag/docker/index.html">docker</a><a class="tag" href="/tag/containerd/index.html">containerd</a><a class="tag" href="/tag/container/index.html">container</a><a class="tag" href="/tag/oci/index.html">oci</a><a class="tag" href="/tag/work/index.html">work</a></span>
+                </section>
+                <article class="content"><p>在此，我们很高兴地告知各位，我们已经初步完成了 runV (OCI 的基于虚拟化技术的容器运行时引擎) 与 Docker 的集成。这里，我们感谢 runV 团队的优秀工作，而且这次更新的一个特别之处在于，这些更新是由 Hyper 的开发团队和来自社区的参与者共同完成的，他们也是 runV 社区的重要部分，并在此接受致谢。</p>
+
+<p>从去年夏末 OCI （开放容器促进组织）在 Linux 基金会下成立的时候起，Hyper 的 runV 就成为了 <a href="https://github.com/opencontainers/runtime-spec/blob/master/implementations.md">OCI 官方的基于虚拟化技术的容器运行时引擎实现[1]</a>，而另一个基于容器的实现就是 Docker 的 runC。很久以来，大家都期盼着能用 Docker 命令行同时启动 runC 和 runV 容器，不过，由于 Docker 的执行引擎在按照他们的节奏向前推进，这个愿望一直未能实现。</p>
+
+<p>今年四月，<a href="[https://blog.docker.com/2016/04/docker-engine-1-11-runc/">docker 发布了 1.11，集成了 containerd，连接了 runC [2]</a>，这为支持更多的 runtime 铺就了道路，于是，runV 与 Docker/Containerd 的集成就再次提上了台面。</p>
+
+<p>作为基于 hypervisor 的 OCI runtime，Hyper 的 runV 与 Docker 1.11+/Containerd 的集成工作是比较容易的，<a href="https://github.com/hyperhq/runv#run-it-with-docker">经过简单的调试，就可以让 Docker 和 containerd 直接对接到 runv 上[3]</a>。但由于 containerd 是为 runC 量身定制的， runC本身也是一个不断改进中的实现，命令行会不断变化，并且包含一些专有的特性，这个集成有不少局限，对于 tty, exec, 网络等方面的支持仍有不足。</p>
+
+<p>不过，得益于 docker/containerd 提供的良好接口，我们给出了一个对 tty, exec, 网络等方面兼容性更好的过渡方案 —— 我们在 runv 中附带了 <a href="[https://github.com/hyperhq/runv/blob/master/containerd/README.md">runv-containerd 程序 [4]</a>，基于 containerd并针对 hypervisor 进行了一些调整， 利用 runV ，现在 docker 可以直接创建功能齐备的虚拟化容器了。</p>
+
+<pre><code># in terminal #1
+runv-containerd --debug --driver libvirt --kernel /opt/hyperstart/build/kernel --initrd /opt/hyperstart/build/hyper-initrd.img
+# in terminal #2
+docker daemon -D -l debug --containerd=/run/runv-containerd/containerd.sock
+# in terminal #3 for trying it
+docker run -ti busybox
+# ls   # (already in the terminal of the busybox container)
+# exit # (quit the container)
+</code></pre>
+
+<p>未来随着 OCI/containerd/runV 的进一步发展，相信我们还可以做到更好更完美的集成。</p>
+
+<p>[1] <a href="https://github.com/opencontainers/runtime-spec/blob/master/implementations.md">https://github.com/opencontainers/runtime-spec/blob/master/implementations.md</a></p>
+
+<p>[2] <a href="https://blog.docker.com/2016/04/docker-engine-1-11-runc/">https://blog.docker.com/2016/04/docker-engine-1-11-runc/</a></p>
+
+<p>[3] <a href="https://github.com/hyperhq/runv#run-it-with-docker">https://github.com/hyperhq/runv#run-it-with-docker</a></p>
+
+<p>[4] <a href="https://github.com/hyperhq/runv/blob/master/containerd/README.md">https://github.com/hyperhq/runv/blob/master/containerd/README.md</a></p>
+
+<p> </p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    
+                    <section class="nav next">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/container/2016/02/06/hyper-0-5/index.html">Hyper 0.5 Released</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>

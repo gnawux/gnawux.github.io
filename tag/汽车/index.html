@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
@@ -50,7 +72,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/car/index.html">car</a><a class="tag" href="/tag/%e8%a1%8c%e8%bd%a6%e8%ae%b0%e5%bd%95%e4%bb%aa/index.html">行车记录仪</a><a class="tag" href="/tag/%e6%b1%bd%e8%bd%a6/index.html">汽车</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a>
+                            <a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/car/index.html">car</a><a class="tag" href="/tag/%e8%a1%8c%e8%bd%a6%e8%ae%b0%e5%bd%95%e4%bb%aa/index.html">行车记录仪</a><a class="tag" href="/tag/%e6%b1%bd%e8%bd%a6/index.html">汽车</a>
                             </span>
                         </section>
                     </li>

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="武夷山,life,家庭,斯屹,旅游,">
+        <meta name="keywords" content="斯屹,旅游,武夷山,life,家庭,">
         <meta name="description" content="武夷山游记">
         <link rel="stylesheet" href="/bundle/index.css">
         <title>武夷山游记</title>
@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">武夷山游记</h1>
@@ -38,7 +60,7 @@
                         <span class="from"></span>
                         
                     </span>
-                    <span class="tags"><a class="tag" href="/tag/%e6%ad%a6%e5%a4%b7%e5%b1%b1/index.html">武夷山</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/%e5%ae%b6%e5%ba%ad/index.html">家庭</a><a class="tag" href="/tag/%e6%96%af%e5%b1%b9/index.html">斯屹</a><a class="tag" href="/tag/%e6%97%85%e6%b8%b8/index.html">旅游</a></span>
+                    <span class="tags"><a class="tag" href="/tag/%e6%96%af%e5%b1%b9/index.html">斯屹</a><a class="tag" href="/tag/%e6%97%85%e6%b8%b8/index.html">旅游</a><a class="tag" href="/tag/%e6%ad%a6%e5%a4%b7%e5%b1%b1/index.html">武夷山</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/%e5%ae%b6%e5%ba%ad/index.html">家庭</a></span>
                 </section>
                 <article class="content"><p>抓紧时间记一下，迟了就忘了⋯⋯</p>
 

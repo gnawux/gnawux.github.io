@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
@@ -38,6 +60,23 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/hyper/2016/06/17/runv-docker-integration/index.html">RunV: 让 Docker 支持虚拟化容器</a>
+                        
+                        <section class="preview content">在此，我们很高兴地告知各位，我们已经初步完成了 runV (OCI 的基于虚拟化技术的容器运行时引擎) 与 Docker 的集成。这里，我们感谢 runV 团队的优秀工作，而且这次更新的一个特别之处在于，这些更新是由 Hyper 的开发团队和来自社区的参与者共同完成的，他们也是 runV 社区的重要部分，并在此接受致谢。...</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            <span class="date" data-time="1466147168">
+                                <span class="from"></span>
+                                
+                            </span>
+                            <span class="tags">
+                            <a class="tag" href="/tag/hyper/index.html">hyper</a><a class="tag" href="/tag/announcement/index.html">announcement</a><a class="tag" href="/tag/runv/index.html">runv</a><a class="tag" href="/tag/docker/index.html">docker</a><a class="tag" href="/tag/containerd/index.html">containerd</a><a class="tag" href="/tag/container/index.html">container</a><a class="tag" href="/tag/oci/index.html">oci</a><a class="tag" href="/tag/work/index.html">work</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/container/2016/02/06/hyper-0-5/index.html">Hyper 0.5 Released</a>
@@ -51,7 +90,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/container/index.html">container</a><a class="tag" href="/tag/hyper/index.html">hyper</a>
+                            <a class="tag" href="/tag/hyper/index.html">hyper</a><a class="tag" href="/tag/container/index.html">container</a>
                             </span>
                         </section>
                     </li>
@@ -68,7 +107,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/docker/index.html">docker</a><a class="tag" href="/tag/unikernel/index.html">unikernel</a><a class="tag" href="/tag/hypervisor/index.html">hypervisor</a><a class="tag" href="/tag/hyper/index.html">hyper</a><a class="tag" href="/tag/container/index.html">container</a>
+                            <a class="tag" href="/tag/container/index.html">container</a><a class="tag" href="/tag/docker/index.html">docker</a><a class="tag" href="/tag/unikernel/index.html">unikernel</a><a class="tag" href="/tag/hypervisor/index.html">hypervisor</a><a class="tag" href="/tag/hyper/index.html">hyper</a>
                             </span>
                         </section>
                     </li>
@@ -85,7 +124,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/raspberry%20pi/index.html">raspberry pi</a><a class="tag" href="/tag/arduino/index.html">arduino</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/air/index.html">air</a><a class="tag" href="/tag/PM%202.5/index.html">PM 2.5</a>
+                            <a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/air/index.html">air</a><a class="tag" href="/tag/PM%202.5/index.html">PM 2.5</a><a class="tag" href="/tag/raspberry%20pi/index.html">raspberry pi</a><a class="tag" href="/tag/arduino/index.html">arduino</a>
                             </span>
                         </section>
                     </li>
@@ -119,7 +158,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/hyper/index.html">hyper</a><a class="tag" href="/tag/kubernetes/index.html">kubernetes</a><a class="tag" href="/tag/hypernetes/index.html">hypernetes</a><a class="tag" href="/tag/openstack/index.html">openstack</a><a class="tag" href="/tag/cloud/index.html">cloud</a>
+                            <a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/hyper/index.html">hyper</a><a class="tag" href="/tag/kubernetes/index.html">kubernetes</a><a class="tag" href="/tag/hypernetes/index.html">hypernetes</a><a class="tag" href="/tag/openstack/index.html">openstack</a>
                             </span>
                         </section>
                     </li>
@@ -136,7 +175,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/blog/index.html">blog</a><a class="tag" href="/tag/github/index.html">github</a><a class="tag" href="/tag/jekyll/index.html">jekyll</a><a class="tag" href="/tag/meta/index.html">meta</a>
+                            <a class="tag" href="/tag/github/index.html">github</a><a class="tag" href="/tag/jekyll/index.html">jekyll</a><a class="tag" href="/tag/meta/index.html">meta</a><a class="tag" href="/tag/blog/index.html">blog</a>
                             </span>
                         </section>
                     </li>
@@ -153,7 +192,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/%e8%8d%89%e5%8e%9f/index.html">草原</a><a class="tag" href="/tag/siyi/index.html">siyi</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/%e6%96%af%e5%b1%b9/index.html">斯屹</a><a class="tag" href="/tag/children/index.html">children</a><a class="tag" href="/tag/travel/index.html">travel</a><a class="tag" href="/tag/%e6%97%85%e6%b8%b8/index.html">旅游</a><a class="tag" href="/tag/%e5%ae%b6%e5%ba%ad/index.html">家庭</a><a class="tag" href="/tag/family/index.html">family</a>
+                            <a class="tag" href="/tag/children/index.html">children</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/travel/index.html">travel</a><a class="tag" href="/tag/%e6%97%85%e6%b8%b8/index.html">旅游</a><a class="tag" href="/tag/%e8%8d%89%e5%8e%9f/index.html">草原</a><a class="tag" href="/tag/siyi/index.html">siyi</a><a class="tag" href="/tag/%e5%ae%b6%e5%ba%ad/index.html">家庭</a><a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/%e6%96%af%e5%b1%b9/index.html">斯屹</a>
                             </span>
                         </section>
                     </li>
@@ -170,7 +209,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/car/index.html">car</a><a class="tag" href="/tag/%e8%a1%8c%e8%bd%a6%e8%ae%b0%e5%bd%95%e4%bb%aa/index.html">行车记录仪</a><a class="tag" href="/tag/%e6%b1%bd%e8%bd%a6/index.html">汽车</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a>
+                            <a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/car/index.html">car</a><a class="tag" href="/tag/%e8%a1%8c%e8%bd%a6%e8%ae%b0%e5%bd%95%e4%bb%aa/index.html">行车记录仪</a><a class="tag" href="/tag/%e6%b1%bd%e8%bd%a6/index.html">汽车</a>
                             </span>
                         </section>
                     </li>
@@ -187,24 +226,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/%e6%90%ac%e5%ae%b6/index.html">搬家</a><a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/%e5%ae%b6/index.html">家</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/life/2014/06/22/%e6%8e%a8%e8%8d%90%e4%b8%a4%e6%ac%be%e5%80%bc%e5%be%97%e4%b9%b0%e7%9a%84-android-%e5%ba%94%e7%94%a8/index.html">推荐两款值得买的 Android 应用</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            <span class="date" data-time="1403452611">
-                                <span class="from"></span>
-                                
-                            </span>
-                            <span class="tags">
-                            <a class="tag" href="/tag/android/index.html">android</a><a class="tag" href="/tag/app/index.html">app</a><a class="tag" href="/tag/betterbatterystats/index.html">betterbatterystats</a><a class="tag" href="/tag/xpravicy/index.html">xpravicy</a><a class="tag" href="/tag/%e5%ba%94%e7%94%a8/index.html">应用</a><a class="tag" href="/tag/life/index.html">life</a>
+                            <a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/%e5%ae%b6/index.html">家</a><a class="tag" href="/tag/%e6%90%ac%e5%ae%b6/index.html">搬家</a><a class="tag" href="/tag/family/index.html">family</a>
                             </span>
                         </section>
                     </li>

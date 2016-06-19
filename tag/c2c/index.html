@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
@@ -50,7 +72,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/Diamond/index.html">Diamond</a><a class="tag" href="/tag/htc/index.html">htc</a><a class="tag" href="/tag/%e4%b9%b0%e5%8d%96/index.html">买卖</a><a class="tag" href="/tag/%e4%ba%8c%e6%89%8b/index.html">二手</a><a class="tag" href="/tag/%e6%89%8b%e6%9c%ba/index.html">手机</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/c2c/index.html">c2c</a><a class="tag" href="/tag/cnc2c/index.html">cnc2c</a>
+                            <a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/c2c/index.html">c2c</a><a class="tag" href="/tag/cnc2c/index.html">cnc2c</a><a class="tag" href="/tag/Diamond/index.html">Diamond</a><a class="tag" href="/tag/htc/index.html">htc</a><a class="tag" href="/tag/%e4%b9%b0%e5%8d%96/index.html">买卖</a><a class="tag" href="/tag/%e4%ba%8c%e6%89%8b/index.html">二手</a><a class="tag" href="/tag/%e6%89%8b%e6%9c%ba/index.html">手机</a>
                             </span>
                         </section>
                     </li>

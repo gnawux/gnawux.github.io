@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
@@ -50,7 +72,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/amazon/index.html">amazon</a><a class="tag" href="/tag/bash/index.html">bash</a><a class="tag" href="/tag/book/index.html">book</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/sed/index.html">sed</a>
+                            <a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/sed/index.html">sed</a><a class="tag" href="/tag/amazon/index.html">amazon</a><a class="tag" href="/tag/bash/index.html">bash</a><a class="tag" href="/tag/book/index.html">book</a>
                             </span>
                         </section>
                     </li>
@@ -67,7 +89,7 @@
                                 
                             </span>
                             <span class="tags">
-                            <a class="tag" href="/tag/process%20sub/index.html">process sub</a><a class="tag" href="/tag/script/index.html">script</a><a class="tag" href="/tag/substitute/index.html">substitute</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/bash/index.html">bash</a><a class="tag" href="/tag/command%20sub/index.html">command sub</a><a class="tag" href="/tag/pipe/index.html">pipe</a>
+                            <a class="tag" href="/tag/command%20sub/index.html">command sub</a><a class="tag" href="/tag/pipe/index.html">pipe</a><a class="tag" href="/tag/process%20sub/index.html">process sub</a><a class="tag" href="/tag/script/index.html">script</a><a class="tag" href="/tag/substitute/index.html">substitute</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/bash/index.html">bash</a>
                             </span>
                         </section>
                     </li>
