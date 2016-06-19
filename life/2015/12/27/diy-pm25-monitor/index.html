@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="raspberry pi,arduino,life,air,PM 2.5,">
+        <meta name="description" content="DIY PM 2.5 监测仪 (1): 采集和显示">
+        <link rel="stylesheet" href="/bundle/index.css">
+        <title>DIY PM 2.5 监测仪 (1): 采集和显示</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+</script>
+
+
+            <article class="main article">
+                <h1 class="title">DIY PM 2.5 监测仪 (1): 采集和显示</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1451174888">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/raspberry%20pi/index.html">raspberry pi</a><a class="tag" href="/tag/arduino/index.html">arduino</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/air/index.html">air</a><a class="tag" href="/tag/PM%202.5/index.html">PM 2.5</a></span>
+                </section>
+                <article class="content"><blockquote>
+<p>如今北京的空气，嗯，关注点空气质量自我保护吧，废话不多说了，开工吧。</p>
+</blockquote>
+
+<h2>基本原理</h2>
+
+<p>有一定精确性但成本比较低的颗粒物检测方法差不多都用的是同一个原理——由于细颗粒物的直径（微米级）和光的波长（可见光的波长是 0.39-0.7 微米）比较接近，所以细颗粒物会对光产生比较强烈的散射，这也就是 PM 2.5 高的时候，空气的能见度一定不好的原因。当然，PM 2.5 高对能见度不好是充分非必要条件，其他因素也可能导致空气能见度不佳。</p>
+
+<p>基于这个原理，发射一束激光，在一定角度上观测散射光的强度，就可以判断出颗粒物的浓度，当然，这个方法要求对空气中颗粒物直径分布模型、产生散射的物质的成分等有一个假设，同时还受限于光强度测量的精确性，因此，这个测量的精确度是受限的，对于科研可能不太够，但对日常生活的空气检测来说，应该是比较有效和准确的。这次我们的监测仪使用的就是采用这个原理制成的一个模块。</p>
+
+<h2>准备材料</h2>
+
+<ul>
+<li>raspberry pi 或 arduino，目前测试用的是 rpi 2 和 arduino uno，订的 arduino nano 正在路上，nano 就又小又便宜了。</li>
+<li>传感器，我用的是淘宝上买的 PMS1003，大家自行搜索 PM2.5 传感器吧，关键字是“激光”或 laser。不同的传感器接口啥的可能不太一样，我这个传感器自带 UART 输出，所以可以从串口直接读取数据。</li>
+<li>LCD1602 液晶显示，我用了一块 8574 转换电路，转成了 I2C 接口，这样比较省接口。可以直接买一个带 I2C 的 LCD，也可以分别买了自己连，嗯，我是分两次买自己连的，因为我最早（去年？）不知道有 I2C 的……</li>
+<li>连接线</li>
+</ul>
+
+<h2>硬件链接</h2>
+
+<p>因为插接件不太兼容，我把传感器的连接线一端截开焊在了一块板子上，连上插针，方便连接，如果手头有合适插接件的话，可能不用动烙铁了。具体连接很简单：</p>
+
+<h3>传感器连接</h3>
+
+<ul>
+<li>5V 供电</li>
+<li>地</li>
+<li>Setting 管脚，这个接在 Pi 的一个 GPIO 接口上（比如 GPIO 17）或 Arduino 的一个接口上，比如这次用的是 IO 2。这个管脚拉高，模块处于工作状态</li>
+<li>TXD 连接到 Pi 的 RXD 或 Arduino 的 RXD 上，做采集</li>
+</ul>
+
+<h3>LCD</h3>
+
+<ul>
+<li>SDA/SCL I2C 的数据和时钟，接在 Pi 或者 Arduino 的 数据和时钟上</li>
+<li>Vcc/GND 接 5V 电源和地，实测接 3.3V 会供电不足</li>
+</ul>
+
+<h2>软件环境</h2>
+
+<p>Pi 的话需要准备下，要把缺省关闭的 I2C 打开，并且把 console 连接的串口去掉，空出串口来给我们采集数据用。</p>
+
+<p>其他的就是要查一下 LCD 的 I2C 地址。</p>
+
+<h2>主体流程</h2>
+
+<ul>
+<li>初始化
+
+<ul>
+<li>液晶初始化：设置合适的格式和背光</li>
+<li>模块初始化：初始化串口，找到 <code>0x42</code>, <code>0x4d</code> 作为帧的开始，一帧 32 个字节（不同模块参考相应的手册）</li>
+</ul></li>
+<li>采集
+
+<ul>
+<li>采集对应字节的数据，从大结尾转为短整型，然后显示在液晶屏上</li>
+</ul></li>
+</ul>
+
+<p>如此而已，非常简单，以后我们再考虑用蓝牙讲数据发送出来。</p>
+
+<h2>源码清单</h2>
+
+<p>Pi 和 Arduino 的源码如下：</p>
+
+<h3>Pi 源码</h3>
+
+<p>主程序：</p>
+
+<pre>
+#!/usr/bin/env python
+
+import RPi.GPIO as GPIO
+import serial
+import pylcdlib
+# pylcdlib from https://gist.github.com/gnawux/4f68b8e301b203489336
+
+def readbe16(s, pos):
+    return ( ord(s[pos])<<8) + ord(s[pos+1])
+
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(17, GPIO.OUT)
+GPIO.output(17, True)
+
+# define bus address, port, and pins
+display = pylcdlib.lcd(0x27,1, Rs=0, Rw=1, En=2, Backlight=3, D4=4, D5=5, D6=6, D7=7)
+display.lcd_clear()
+
+ser = serial.Serial("/dev/ttyAMA0")
+ser.baudrate=9600
+data = ser.read(32)
+pos  = 0
+while True:
+    pos = data[pos:].index(chr(0x42))
+    if ord(data[(pos+1)&31]) == 0x4d:
+        print('found BM at %d' % (pos))
+        ser.read(pos)
+    break
+    pos = pos + 1
+    if pos > 31:
+        print('frame format error')
+        exit(1)
+
+l1d=-1
+l2d=-1
+
+while True:
+    data = ser.read(32)
+    if data[0] != 'B' or data[1] != 'M':
+        print('frame format error while reading data: %s, %s' % (data[:2], data))
+        exit(1)
+    length = readbe16(data, 2)
+    if length != 28:
+        print('length error : %d' % (length))
+        exit(1)
+
+    pm25std = readbe16(data, 6)
+    pm25atm = readbe16(data, 12)
+
+    if l1d != pm25std:
+        l1d = pm25std
+        display.lcd_puts('std: %d ug/m3' % l1d,1)
+    if l2d != pm25atm:
+        l2d = pm25atm
+        display.lcd_puts('atm: %d ug/m3'% l2d,2)
+</pre>
+
+<p>LCD显示库</p>
+
+<pre>
+#!/usr/bin/env python
+"""
+original from http://www.rpiblog.com/2012/07/interfacing-16x2-lcd-with-raspberry-pi.html
+I modified it, thus you can set customized pin defines, such as
+   lcd(0x27,1, Rs=0, Rw=1, En=2, Backlight=3, D4=4, D5=5, D6=6, D7=7)
+
+   address 0x27
+   port    1
+
+   P0 - Rs
+   P1 - RW
+   P2 - En
+   P3 - Backlight
+   P4-P7 - D4-D7
+"""
+import smbus
+from time import  *
+
+#  General  i2c  device  class  so  that  other  devices  can  be  added  easily
+class i2c_device:
+  def __init__(self, addr, port):
+    self.addr = addr
+    self.bus = smbus.SMBus(port)
+
+  def write(self, byte):
+    self.bus.write_byte(self.addr, byte)
+
+  def read(self):
+    return self.bus.read_byte(self.addr)
+
+  def read_nbytes_data(self, data, n):  #  For  sequential  reads  >  1  byte
+    return self.bus.read_i2c_block_data(self.addr,  data,  n)
+
+
+class  lcd:
+  #initializes  objects  and  lcd
+  def  __init__(self, addr, port, **kwarg):
+    self.pin = {}
+    self.lcd_device = i2c_device(addr, port)
+    self.config(**kwarg)
+    self.Backlight = True
+    self.low_level_write(En=False, Rs=False, Rw=False, data=3)
+    self.lcd_strobe()
+    sleep(0.0005)
+    self.lcd_strobe()
+    sleep(0.0005)
+    self.lcd_strobe()
+    sleep(0.0005)
+    self.low_level_write(En=False, Rs=False, Rw=False, data=2)
+    self.lcd_strobe()
+    sleep(0.0005)
+
+    self.lcd_write(0x28)
+    self.lcd_write(0x08)
+    self.lcd_write(0x01)
+    self.lcd_write(0x06)
+    self.lcd_write(0x0C)
+    self.lcd_write(0x0F)
+
+  def config(self, **kwarg):
+    self.pin['Rs'] = kwarg.get('Rs', 4)
+    self.pin['Rw'] = kwarg.get('Rw', 5)
+    self.pin['En'] = kwarg.get('En', 6)
+    self.pin['Backlight'] = kwarg.get('Backlight', 7)
+    self.pin['D4'] = kwarg.get('D4', 0)
+    self.pin['D5'] = kwarg.get('D5', 1)
+    self.pin['D6'] = kwarg.get('D6', 2)
+    self.pin['D7'] = kwarg.get('D7', 3)
+
+  def backlight(self, on=True):
+    self.backlight = on
+
+  def low_level_write(self, En, Rs, Rw, data):
+    byte = 0
+    if En:
+      byte = byte | 1 << self.pin['En']
+    if Rs:
+      byte = byte | 1 << self.pin['Rs']
+    if Rw:
+      byte = byte | 1 << self.pin['Rw']
+    if self.backlight:
+      byte = byte | 1 << self.pin['Backlight']
+    if data & 0x01 :
+      byte = byte | 1 << self.pin['D4']
+    if data & 0x02 :
+      byte = byte | 1 << self.pin['D5']
+    if data & 0x04 :
+      byte = byte | 1 << self.pin['D6']
+    if data & 0x08 :
+      byte = byte | 1 << self.pin['D7']
+    self.lcd_device.write(byte)
+
+  #  clocks  EN  to  latch  command
+  def  lcd_strobe(self):
+    self.lcd_device.write(self.lcd_device.read()  |  1 << self.pin['En'] )
+    self.lcd_device.write(self.lcd_device.read()  &  (0xFF - (1<< self.pin['En'])) )
+
+  #  write  a  command  to  lcd
+  def  lcd_write(self,  cmd):
+    self.low_level_write(En=False, Rs=False, Rw=False, data=(cmd>>4))
+    self.lcd_strobe()
+    self.low_level_write(En=False, Rs=False, Rw=False, data=(cmd&0x0F))
+    self.lcd_strobe()
+    self.low_level_write(En=False, Rs=False, Rw=False, data=0)
+
+  #  write  a  character  to  lcd  (or  character  rom)
+  def  lcd_write_char(self,  charvalue):
+    self.low_level_write(En=False, Rs=True, Rw=False, data=(charvalue>>4))
+    self.lcd_strobe()
+    self.low_level_write(En=False, Rs=True, Rw=False, data=(charvalue&0x0F))
+    self.lcd_strobe()
+    self.low_level_write(En=False, Rs=False, Rw=False, data=0)
+
+  #  put  char  function
+  def  lcd_putc(self,  char):
+    self.lcd_write_char(ord(char))
+
+  #  put  string  function
+  def  lcd_puts(self,  string,  line):
+    if  line  ==  1:
+      self.lcd_write(0x80)
+    if  line  ==  2:
+      self.lcd_write(0xC0)
+    if  line  ==  3:
+      self.lcd_write(0x94)
+    if  line  ==  4:
+      self.lcd_write(0xD4)
+
+    for  char  in  string:
+      self.lcd_putc(char)
+
+  #  clear  lcd  and  set  to  home
+  def  lcd_clear(self):
+    self.lcd_write(0x1)
+    self.lcd_write(0x2)
+
+  #  add  custom  characters  (0  -  7)
+  def  lcd_load_custon_chars(self,  fontdata):
+    self.lcd_device.bus.write(0x40);
+    for  char  in  fontdata:
+      for  line  in  char:
+        self.lcd_write_char(line)
+
+if __name__ == '__main__':
+  # define bus address, port, and pins
+  display = lcd(0x27,1, Rs=0, Rw=1, En=2, Backlight=3, D4=4, D5=5, D6=6, D7=7)
+  display.lcd_clear()
+  # line 1 and line 2
+  display.lcd_puts("I2C LCD on R-Pi",1)
+  display.lcd_puts("       by gnawux",2)
+</pre>
+
+<h3>Arduino 源码</h3>
+
+<p>主程序:</p>
+
+<pre>
+#include <Wire.h>
+#include <LCD.h>
+#include <LiquidCrystal_I2C.h>  // F Malpartida's NewLiquidCrystal library
+
+#define I2C_ADDR    0x27  // Define I2C Address for controller
+#define BACKLIGHT_PIN  3
+#define En_pin  2
+#define Rw_pin  1
+#define Rs_pin  0
+#define D4_pin  4
+#define D5_pin  5
+#define D6_pin  6
+#define D7_pin  7
+
+#define  LED_OFF  0
+#define  LED_ON  1
+
+const int SetPin = 2;
+char frame[32];
+
+LiquidCrystal_I2C  lcd(I2C_ADDR,En_pin,Rw_pin,Rs_pin,D4_pin,D5_pin,D6_pin,D7_pin,BACKLIGHT_PIN,POSITIVE);
+
+char banner1[17];
+char banner2[17];
+
+void banner_init() {
+  for(int i = 0; i<16;i++) {
+    banner1[i] = ' ';
+    banner2[i] = ' ';
+  }
+  banner1[16] = '\0';
+  banner2[16] = '\0';
+}
+
+void banner_display() {
+  lcd.setCursor(0,0);
+  lcd.print(banner1);
+  lcd.setCursor(0,1);
+  lcd.print(banner2);
+}
+
+void debug(const char* str) {
+  lcd.setCursor(0,0);
+  lcd.print(str);
+}
+
+void initPanTower() {
+  debug("begin");
+  while (1) {
+    if (!Serial.available()) {
+      delay(100);
+      debug("wating serial");
+      continue;
+    }
+    debug("got serial");
+    int len = 0;
+    int nr = Serial.readBytes(frame, 32);
+    while (len + nr < 32) {
+      len = len + nr;
+      nr = Serial.readBytes(frame + len, 32 - len);
+    }
+    debug("got frame");
+    for (int diff = 0; diff < 32 ; diff++ ) {
+      if (frame[diff] == 'B' && frame[(diff+1)%32] == 'M') {
+        nr = len = 0;
+        while (len + nr < diff) {
+          len = len +nr;
+          nr = Serial.readBytes(frame + len, diff - len);
+        }
+        digitalWrite(LED_BUILTIN, HIGH);
+        return;
+      }
+    }
+  }  
+}
+
+void setup()
+{
+  //Initialize LCD
+  lcd.begin (16,2);  // initialize the lcd
+  lcd.backlight();
+  banner_init();
+
+  //Enable Monitor Module
+  pinMode(SetPin, OUTPUT);
+  digitalWrite(SetPin, HIGH);
+
+  //shut the led
+  pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(LED_BUILTIN, LOW);
+
+  //Start Serial Port
+  Serial.begin(9600);
+  initPanTower();
+}
+
+void loop()  
+{
+  if (Serial.available()) {
+    int len = 0;
+    int nr = Serial.readBytes(frame, 32);
+    while (len + nr < 32) {
+      len = len + nr;
+      nr = Serial.readBytes(frame + len, 32 - len);
+    }
+
+    int d1 = ((int)frame[6] << 8) + frame[7];
+    int d2 = ((int)frame[12] << 8) + frame[13];
+
+    snprintf(banner1, 16, "std: %d ug/m3    ", d1);
+    snprintf(banner2, 16, "atm: %d ug/m3    ", d2);
+    banner_display();
+  }
+}
+</pre>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/container/2016/01/23/unikernel-critics/index.html">关于 Unikernel，你注意到或没注意到的一些东西</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/cloud/2015/11/03/kubernetes-service-account/index.html">Kubernetes 中的 Service Account</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="iscsi,linux,lwn,translation,">
+        <meta name="description" content="[译文] SCSI Target 之双城记">
+        <link rel="stylesheet" href="/bundle/index.css">
+        <title>[译文] SCSI Target 之双城记</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+</script>
+
+
+            <article class="main article">
+                <h1 class="title">[译文] SCSI Target 之双城记</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1321545845">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/iscsi/index.html">iscsi</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/translation/index.html">translation</a></span>
+                </section>
+                <article class="content"><pre>作者：Goldwyn Rodrigues
+原文发布日期：January 22, 2011
+来源：http://lwn.net/Articles/424004/
+译者：王旭( http://wangxu.me , @gnawux )
+翻译时间：2011年11月17日</pre>
+
+<blockquote><p><em>按：上次翻译 LWN 的文章似乎还是<a title="[译文] 空指针的乐趣（2）" href="http://wangxu.me/blog/p/46" target="_blank"> 两年前翻译空指针的乐趣</a>的事呢，时间好快，这次来深圳高交会看展台，晚上无聊，就翻译了这个。作为这个故事的结局，LIO已经在 2.6.38 进入 kernel 了。</em></p></blockquote>
+
+<p><em></em>2010年底，<a href="http://lwn.net/Articles/420691" target="_blank">LIO 项目获选成为新的内核态的 SCSI target</a>，取代原有的用户态的 STGT 项目。当时有两个主要的竞争项目（LIO和SCST），都在努力将代码并入主线内核。本文将比较着两个项目，并尽力描述他们都提供了什么东西。</p>
+
+<h2>什么是 SCSI Target？</h2>
+
+<p>SCSI 子系统使用了一种客户机-服务器（C/S）模型。通常，一台计算机是这个模型中的客户机，称为 initiator（发起者），想 target （目标）发起块操作请求，这个 target 通常是一个存储设备。SCSI Target 子系统可以让一台计算机作为一台 SCSI 存储设备来工作，响应其他 SCSI initiator 节点的存储请求。这样就可以定制 SCSI 存储设备，并让存储设备工作得更加“智能”了。</p>
+
+<p>一个智能 SCSI Target 的例子是<a href="http://www.datadomain.com/products/appliances.html" target="_blank">Data Domain的在线备份设备</a>，它具有数据排重的功能，可以节约空间。这个设备从功能上说是个 SCSI target，但它实际是一台智能的计算机，它只存储那些还没有的数据块，对于已经存在的数据，只是增加引用计数，这样只写入那些上次备份之后有变动的块。而在 SCSI 连接的另一边，initiator 看到的设备就是一个普通的、共享的 SCSI 存储设备，只要使用任意的备份软件，将备份写向这个 target就行了。</p>
+
+<p>最常见的 SCSI target 子系统的实现是 iSCSI 服务器，它使用标准的 TCP/IP 来封装 SCSI 指令，通过网络来提供一个 SCSI 设备。大多数 SCSI target 项目在最初都会先支持 iSCSI 协议。这事因为 iSCSI initiator 和 iSCSI target 之间只需要一个网络连接，差不多所有计算机都可以使用，对它的支持不需要任何特殊硬件。不过，大部分的 SCSI target 还能支持已有的 initiator 卡，所以，如果你又一个光纤通道、SAS 或并行 SCSI 卡，可能某个 SCSI target 项目可以支持这些特定设备的 SCSI 总线。</p>
+
+<h2>当前状态</h2>
+
+<p>当前 Linux 内核的 SCSI 子系统使用 STGT 来实现 SCSI target 功能；STGT 是在 2006 年末，由 Fujita Tomonori 引入的。它在内核中有一个库，来配合内核中的 target 驱动工作。而所有的 target 处理都在用户空间完成，这可能回带来一些性能瓶颈。</p>
+
+<p>有两个还没有并入内核的 SCSI target 实现尅考虑用来替换 STGT：<a href="http://www.linux-iscsi.org/" target="_blank">LIO</a> 和<a href="http://scst.sourceforge.net/" target="_blank"> SCST</a>。SCST 至少在2008年就<a href="http://thread.gmane.org/gmane.linux.kernel/628313/focus=640460" target="_blank">试图推入 Linux 内核</a>。当时认为 STGT 项目海可以为内核服务稍长一段时间。但随着时间的推移，STGT 的设计局限被发现，并且有了一个可用的替换方案。替换 SCSI target 子系统的主要条件是由 James Bottomley 确定的，他是 SCSI 的维护者，条件如下：</p>
+
+<ol>
+
+<li>它将更换掉已有的 STGT，因为只能有一个 SCSI target 基础设施。</li>
+
+<li>要使用现代的、基于 sysfs 的控制与配置方式。</li>
+
+<li>代码要被仔细审查，确定足够干净、可以进入内核。</li>
+
+</ol>
+
+<p>第一个条件被证实太过于严苛了，会不可避免地破坏整个 ABI。所以，当前的目标变成了寻找一种方法，来让 STGT 用户平滑地过渡到新接口上来。</p>
+
+<p>LIO 替代 STGT 的项目开始于 2010 年的<a href="http://lwn.net/Articles/400589/" target="_blank"> Linux 存储与文件系统峰会（LSF 2010）</a>。Cristoph Hellwig 志愿来审阅并清理代码，他尽力将代码缩减到一万行以内，使之可以被并入内核。</p>
+
+<h2>对比</h2>
+
+<p>两个项目都在他们的官方网站（LIO 和 SCST）上提供了他们的特性对比图表。不过，在探讨它们的不同之前，先来看一下相似性吧。两个项目都实现了一个内核态的 SCSI target 核心。他们都提供了类似 loop device 的本地 SCSI target，这让使用他们的 target 创建虚拟设备变得很方便。两个项目都支持 iSCSI，这是他们的项目的最初的也是最主要的动机。</p>
+
+<p>两个项目的后端存储管理都可以在内核空间或是用户控件进行。后端存储管理器让 target 的管理员可以控制设备如何输出服务给 initiator。比如，pass-through 后端允许将一个 SCSI 硬件直接提供给用户，而不屏蔽掉这个设备的任何细节；而 virtual-disk 后端则允许将一个文件作为虚拟磁盘来输出给 initiator。</p>
+
+<p>两个项目都支持永久性预留（Persistent Reservation, PR）；这是一个用于高可用集群中的存储设备的 I/O 隔离与存储设备故障切换、接管的特性。通过使用 PR 命令，initiator 可以在一个 target 上建立、抢占、查询、重置预留策略。在故障接管过程中，新的虚拟资源可以重置老的虚拟资源的预留策略，从而让故障切换更快、更容易地进行。</p>
+
+<h3>SCST</h3>
+
+<p>SCSI target 子系统的主要用户是提供存储解决方案的存储公司。大部分这些存储解决方案都提供了即插即用的设备，可以只进行很少的配置，甚至是无需配置，就被加入到一个存储网络。SCST 拥有更广泛的用户群，这可能是因为它们支持更多的传输方式。</p>
+
+<p>SCST 支持 Qlogic 和 Emulex 的光纤通道卡，而 LIO 目前只支持 Qlogic 的 target 驱动，并且这个驱动也还在 beta 测试截断。SCST 支持 SCSI RDMA 协议（SRP），并宣称对于以太网传输的光纤通道协议（FCoE）、LSI 的并行 SCSI 光纤通道以及串行 SCSI（SAS）等协议的的开发也处于领先地位。目前，它已经对 IBM pSeries 的虚拟 SCSI 提供了支持。目前，Scalable Informatics、Storewize、Open-e 等公司都基于 SCST target 开发了它们的即插即用设备。</p>
+
+<p>SCST 可以使用异步事件通知（AEN）来通告会话状态的变更。AEN 是一个 SCSI target 用来向 initiator 进行 target 端的事件告知的协议特性，即使在没有服务请求的时候也可以进行。于是 initiator 就可以在 target 端发生事件时，如设备插入、移除、调整尺寸或更换介质时，可以得到通知。这让 initiator 可以以即插即用的方式看到 target 的变化。</p>
+
+<p>SCST 的开发者声称，它们的设计在健壮性和安全性方面更加符合 SCSI 标准。SCSI 协议要求，如果一个 initiator 要清除另一个 initiator 的预留资源时，预留者必须要得到清除通知，否则，多个 initiator 都可能来改变预留数据，就可能会破坏数据。SCST 可以实现安全的预留、释放操作，避免类似事情发生。</p>
+
+<p>依照 SCSI 协议，initiator 和 target 可以协商决定传输尺寸。一个 initiator 端错误的传输尺寸通信可能会导致 target 设备端的锁死或是崩溃。SCST 的安全保障机制可以在传输尺寸或方向出错时避免这个问题。他们的代码中具有良好的内存管理策略来避免内存耗尽的情况。还可以限制介入 target 的 initiator 的数量，避免过多连接占用资源。SCST 还支持每个 portal 的可见性管理，也就是说，可以让一个 target 只对一组 initiator 可见。</p>
+
+<h3>LIO</h3>
+
+<p>LIO 项目最初是以 iSCSI 作为核心目标的，创建了一个支持 iSCSI 的通用 SCSI target 子系统。简单性是项目的一个重要设计目标，因此，LIO 也更容易理解。除此之外，LIO 的开发者表现得更乐于和内核开发者合作，正如 James 对 SCST 的维护者 Vladislav Bolkhovitin 所<a href="http://www.spinics.net/lists/linux-scsi/msg49038.html" target="_blank">指出</a>的：</p>
+
+<blockquote><p>来，让我们把事情说得简单一点：在这个社区里，不是让你直接把菜上到桌上就行了，你需要加入到这个社区当中来，称为 linux 内核社区的一部分。更广泛的社区焦炉是开源项目成功的必要条件。你曾经有过这样的机会了：我们在其他地方已经使用了 sysfs，但在 STGT 这里，你就说了一句——这事我们的接口，用它好了。而 LIO 则问了他们所需要的东西，并设法来使用 sysfs 接口。事已至此，你为什么还会对 STGT 的人更倾向于 LIO 而表示大惊小怪呢？</p></blockquote>
+
+<p>LIO 项目还提供了一些 SCST 没有或刚刚开始开发的特性。比如，LIO 支持非对称逻辑卷分配（ALUA）。ALUA 允许 target 管理员来管理 target 的访问状态和路径属性。这让多路径路由机制可以选择最好的路径，从而根据 target 的访问状态，优化带宽的使用。换句话说，在多路径环境下，target 管理员可以通过改变访问状态来调整 initiator 的路径。</p>
+
+<p>LIO 海支持管理信息数据库（MIB），会让管理 SCSI 设备更简单。SCSI target 设备可以按照 RFC4455 SCSI MIB 的描述方式来输出管理信息，这些信息会被 SNMP agent 收集起来。这个特性扩展了 iSCSI 设备，在管理有很多 SCSI 的存储网络时好处会更加明显。</p>
+
+<p>iSCSI 连接的错误可能会发生在三个层面上：会话、校验或是连接层。错误恢复工作也可以在这三个层面开始进行，这样就可以在当前的层面开始进行恢复，不会让错误到达下一个层面。错误恢复首先是检查断开的连接。在这种情况下，iSCSI initiator 驱动会主动建立新的到 target 的 TCP 连接它会告诉 target，SCSI 指令路径已经变到新的连接上了。这样 target 就可以在新的连接上处理 SCSI 命令了。这时，上层的 SCSI 驱动对新的连接已经建立、控制信息已经通过新连接传输的事还是毫无知觉的。iSCSI 会话在这期间会保持正常，不会重新变换状态。LIO 支持的最大错误恢复级别（ERL）为2，这就是说，它可以在会话、校验或连接层进行错误恢复。而SCST 支持的 ERL 为 0，也就是说，它智能恢复会话级别的错误，所有连接层面的错误都会转到 SCSI 驱动层面来处理。</p>
+
+<p>LIO 还支持“会话多连接”（MC/S）。MC/S 让 initiator 可以和 target 在一条或多条物理路径上建立多条连接。这样，在一条路径发生错误的时候，已经建立好的会话可以不中断会话，直接使用其他的路径。MC/S 还可以用来进行所有连接之间的负载均衡。这种情况下，会在所有通信路径上保持会话命令的顺序性。</p>
+
+<p>LIO 还宣称，他们的代码被用于了<a href="http://www.linux-iscsi.org/wiki/Ecosystem" target="_blank">很多设备</a>之中，虽然他们的用户看起来和 SCST 的差不多。</p>
+
+<p>没有性能对比的对比不是个完整的对比。SCST 的开发者经常会<a href="http://article.gmane.org/gmane.linux.scsi/38108" target="_blank">放出</a>他们的性能数据。但是，所有数据都是和 STGT 进行的对比。SCST 的对比页面说，他们的性能好于 LIO，但是是根据代码研究而非真实世界测试的结果。SCST 指责 LIO 没有发布数据，（在我的印象里）确实没有性能数据来在两者之间进行直接对比。</p>
+
+<p>不过最后，决定已经做出了，虽然有一点反对的声音。现在的任务就是把所有 LIO 没有但有用的特性从 SCST 移植到 LIO 来。尽管这个决定有些争议，但这俨然又是一次试图把不能和内核社区合作的代码并入内核的失败尝试。</p>
+
+<p>&nbsp;</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/cloud/2011/11/18/%e7%9c%8b%e5%b1%95%e5%8f%b0%e7%9a%84%e7%83%a6%e5%bf%83%e4%ba%8b/index.html">看展台的烦心事</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/life/2011/09/16/%e4%b8%8d%e5%ae%a2%e8%a7%82%e5%9c%b0%e5%af%b9%e6%af%94%e4%b8%80%e4%b8%8b%e7%a7%bb%e5%8a%a8edge%e5%92%8c%e8%81%94%e9%80%9awcdma%e7%9a%84%e4%b8%9a%e5%8a%a1/index.html">不客观地对比一下移动Edge和联通WCDMA的业务</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>

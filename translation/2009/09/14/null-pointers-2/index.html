@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="lwn,security,translation,kernel,linux,">
+        <meta name="description" content="[译文] 空指针的乐趣（2）">
+        <link rel="stylesheet" href="/bundle/index.css">
+        <title>[译文] 空指针的乐趣（2）</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+</script>
+
+
+            <article class="main article">
+                <h1 class="title">[译文] 空指针的乐趣（2）</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1252939611">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/security/index.html">security</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a></span>
+                </section>
+                <article class="content"><p>作者：<strong>Jonathan Corbet</strong><br />
+原文发布日期：July 21, 2009<br />
+来源：<a title="http://lwn.net/Articles/342420/" href="http://lwn.net/Articles/342420/">http://lwn.net/Articles/342420/</a><br />
+译者：王旭 ( <a href="http://wangxu.me">http://wangxu.me</a> , <a href="http://twitter.com/gnawux">@gnawux</a> )<br />
+翻译时间：2009年9月14日</p>
+
+<blockquote><p>译者注：本来没准备翻译本系列的2，翻译文章实际上是译者的一种自我消遣方式，不过，翻译了1之后，有很多朋友的反应很不错，也有朋友在期待2，所以，就接着把2翻译了，时间仓促，翻译得不一定到位，请各位将就着看吧 :)</p></blockquote>
+
+<p><a href="http://wangxu.me/blog/?p=39">本系列的第一篇</a>详细分析了一长串的偶然错误，利用它们可以用一个空指针解引用来对内核进行攻击。清除这个 bug 本身可以直接修改；实际上在这个问题的本质被大部分人所理解之前就已经修正了。从这个意义上讲，这个问题本身相当小，很少有发布版带有有问题的内核版本。但是，这个攻击证明了，内核中会有一大类类似的问题，在被修正之前，绝对有攻击者有机会可以发现这些错误并利用它们。</p>
+
+<p>一个显而易见的问题是，<span style="text-decoration: line-through;">当安全模块机制被配置入内核的时候，管理员指定的最小合法用户控件虚拟地址会被忽略，</span>安全模块允许覆盖管理员指定的最小合法用户空间地址限制（(<tt>mmap_min_addr</tt>）。这个行为颠覆了人们对安全模块工作的理解：它们被认为能够限制权限而从不增加权限。而在这种情况下，SELinux 的存在实际是增加了权限，大部分部署的 SELinux 都没能关闭这个漏洞（攻击代码的注释中指出，AppAmor 也不会更好）。</p>
+
+<p>此外，当完全不配置安全模块的 时候，<tt>mmap_min_addr</tt> 也没有被完全强制执行。目前主线（译注：2.6.31）内核有一个补丁来保证 <tt>map_min_addr</tt> sysctl 设置永远可用，这个补丁同时也被提交进入 2.6.27.27 和 2.6.30.2 更新了（以及其他的地方）。</p>
+
+<p>问题同时也<a href="http://blog.namei.org/2009/07/18/a-brief-note-on-the-2630-kernel-null-pointer-vulnerability/">在SELinux层面进行了修复</a>。Red Hat 未来的版本的 SELinux 将不再允许无限制的（在其他方面却无特权的）进程将页面映射到地址空间底端。虽然这里仍然有<a href="http://lwn.net/Articles/342573/">一些未解决问题</a>，特别是像WINE这样的程序将陷入混乱。目前仍然不确定如何让系统安全地支持一小撮需要映射到0页面的程序。有个想法是让 WINE 以 root 权限运行，这样，或许太过类似 Windows 的行为了，这些想法只收到很少的关注。</p>
+
+<p>另一个关于 <tt>map_min_addr</tt> 的方法也必须要谈到：一个带有 SVR4 个性化的特权进程在 <tt>exec()</tt> 的时候，会有一个只读页面映射到0页面。在十分罕见的情况下，一些老的 SVR4 程序会需要那里有这么一个页面，但是，它实际让空指针攻击成为了可能。于是，另一个被并入主线和稳定版更新中的补丁用来在 setuid 的程序运行的时候重置 SVR4 个性化（或者，至少重置那个关于映射0页面的部分）。</p>
+
+<p>这个改变对有些用户仍然不够，他们<a href="http://lwn.net/Articles/342425/">要求</a>能够完全关闭这个个性化功能。这个能力用于直接运行基于 386 的 Unix 的程序，其实已经没有它 1995 年的时候所拥有的重要性了，所以，很多人质疑是否值得为这个个性化特征付出这样的代价了。Linus <a href="http://lwn.net/Articles/342427/">答道</a>：</p>
+
+<blockquote><p>我们可能可以扔掉那个愚蠢的特征。它已经不再那么重要了。有人真的关心么？同时，这么多年来，我们已经发展出了很多<strong>其他</strong>个性化标志，其中有些仍然是有用的。</p></blockquote>
+
+<p>特别的，禁止地址空间随机化（一个个性化特征）的能力在很多情况下是很有用的。所以 <tt>personality()</tt> 应该被留下来，不过，0页映射的特征可能要一去不返了。</p>
+
+<p>这一连串错误中的一个就是被编译器优化掉的空指针校验。这个校验可以阻止攻击，但 GCC 却把它优化掉了，因为理论上说这个指针不应该是空的（因为它已经被正常的解引用过了）。GCC（本身）有一个标志可以禁止某种特殊优化；所以，从现在开始，内核将缺省使用 <tt>-fno-delete-null-pointer-checks</tt> 编译开关。由于在内核中空指针的确可能是个合法的指针，无限地禁止这种优化史合理的。</p>
+
+<p>有人可能会提出，虽然所有上面的改变都是好的，但可能部分地没有切中要害：高质量的内核不应该在第一次发生的地方允许解引用空指针。这些解引用本身确实是 bug，这里才是最该修正的地方。这有些有趣的历史，实际上内核开发者们常常<a href="http://lkml.org/lkml/2008/2/1/74">被</a><a href="http://lkml.org/lkml/2008/2/13/71">建议</a>忽略空指针校验。比如，如下 <tt>BUG_ON()</tt> 代码：</p>
+
+<pre>    BUG_ON(some_pointer == NULL);
+    /* dereference some_pointer */</pre>
+
+<p>经常被以这样的注释而删除掉：</p>
+
+<blockquote><p>如果我们解引用 NULL，那么内核将基本上会和 BUG 一样显示一个信息，也会采取相同的措施。所以添加一个 BUG_ON 实际无法得到任何收益。</p></blockquote>
+
+<p>这是因为，解引用空指针会导致一个内核 oops。表面上，这是合理的：如果我们的硬件可以检测到空指针解引用，那么添加软件开销来检测它没什么意义。但这个原因实际上不是无懈可击的，这次的攻击代码就说明了这一点。映射到0页确实是有一定原因的，所以，一个空指针未必总是非法的。你可能会假设所有相关开发者都理解这一点，但实际上内核中仍然有很多地方确实有游泳的空指针检验代码被删除掉了。</p>
+
+<p>虽然如此，大部分内核中的空指针问题可能仅仅就是失察造成的。如果没有方法在相关代码中实际使用空指针的话，大部分的空指针问题是不可被利用的，缺少检验并不能带来什么。不过，如果能把它们全都修复肯定是件好事。</p>
+
+<p>发现这些问题可能可以通过 <a href="http://smatch.sourceforge.net/">Smatch</a> 静态代码分析工具。Smatch悄无声息很多年了，不过 Dan Carpenter 正在让它死灰复燃；他最近发布了 Smatch 为他发现的<a href="http://lwn.net/Articles/342439/">一个空指针 bug</a>。如果 Smatch 能成为一个通用的发现此类错误的工具的话，内核将会更加安全。但不幸的是，这个检查器似乎没有吸引开发者们的很多兴趣，自由软件依旧落后这个领域中的先进技术很远，这让我们都很受伤。</p>
+
+<p>另一个方法由 Kulia Lawall 所采用，她使用一个 <a href="http://lwn.net/Articles/315686/">Coccinelle</a> “语义补丁”来发现并修复 TUN 驱动中发现的这种先解引用再检查的 bug。一系列补丁（<a href="http://lwn.net/Articles/342440/">例</a>）被发布出来，用于修复一系列类似 bug。指针在检查之前被解引用可能只是内核中的空指针问题的一个子集，但每个都被程序员们认为有可能出现空指针，并且是有问题的。所以它们显然是应该被修复的。</p>
+
+<p>总之，这个攻击代码可以看做是内核社区的一个起床号，十分幸运，它将帮助清理很多代码，并消灭很多安全问题。攻击代码的作者 Brad Spengler 还明确的希望得到更多：他经常会发布一些对于内核安全问题的关切：严重的内核安全 bug 被悄悄地修复，或在最差情况下被变为拒绝服务的问题。这个问题是否会改变现状呢，在内核环境中，很多 bug 会造成安全隐患，这些在 bug 被修复的时候并不会立刻显现出来。所以我们无法看到更多 bug 被以安全问题的方式被发布出来，不过幸运的是，我们将会看到更多的 bug 被修复。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/misc/2009/09/15/%e4%b8%8a%e6%9e%b6%e5%95%a6%ef%bc%81/index.html">上架啦！</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/misc/2009/09/07/a-terrible-day/index.html">心有余悸</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>

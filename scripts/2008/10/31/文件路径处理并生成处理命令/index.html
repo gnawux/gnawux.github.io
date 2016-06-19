@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="shell,find,regexp,scripts,sed,">
+        <meta name="description" content="文件路径处理并生成处理命令">
+        <link rel="stylesheet" href="/bundle/index.css">
+        <title>文件路径处理并生成处理命令</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+</script>
+
+
+            <article class="main article">
+                <h1 class="title">文件路径处理并生成处理命令</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1225458480">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/shell/index.html">shell</a><a class="tag" href="/tag/find/index.html">find</a><a class="tag" href="/tag/regexp/index.html">regexp</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/sed/index.html">sed</a></span>
+                </section>
+                <article class="content"><p>这也是个一行命令</p>
+
+<blockquote><p>find ../hadoop-0.18.1/ \     <br />'(' -name &quot;*.jar&quot; -o -name &quot;*.a&quot; -o -name &quot;*.so*&quot; -o -name &quot;*.gif&quot;&#160; -o -name &quot;*.png&quot; -o -name &quot;*.jpg&quot; -o -name &quot;*.pdf&quot;&#160; ')' \      <br />-exec 'echo' '{}' '{}' ';' | \      <br />sed -ne 's/\([^ ]*\) \.\.\/hadoop-[\.0-9]*\/\([^\ ]*\)/cp \1 \.\/\2/p' | \      <br />/bin/sh</p>
+
+</blockquote>
+
+<p>这个命令的 find 部分从平级的一个子目录中寻找各种二进制文件，然后把文件路径完整地输出两次，而之后用 sed 把第二遍的目录前缀去掉，换到本目录中的相同位置，再在前面加上 cp 命令，这就构成了一个复制命令。</p>
+
+<p>嗯，这个命令算不算变态要看有多少文件要处理，并且要处理多少次类似操作，如果多的话，费这么点力气写个超长命令行还是值得的。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/works/2008/11/14/linux%e4%b8%8b%e7%9a%84wpa%e6%97%a0%e7%ba%bf%e8%ae%a4%e8%af%81/index.html">Linux下的WPA无线认证</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/scripts/2008/10/31/%e6%b8%85%e7%90%86svn%e4%bb%93%e5%ba%93%e7%9a%84%e5%bc%82%e5%b8%b8%e7%8a%b6%e6%80%81%e6%96%87%e4%bb%b6/index.html">清理svn仓库的异常状态文件</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="scripts,shell,xargs,grep,">
+        <meta name="description" content="按路径选择文件">
+        <link rel="stylesheet" href="/bundle/index.css">
+        <title>按路径选择文件</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+</script>
+
+
+            <article class="main article">
+                <h1 class="title">按路径选择文件</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1224680040">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/shell/index.html">shell</a><a class="tag" href="/tag/xargs/index.html">xargs</a><a class="tag" href="/tag/grep/index.html">grep</a></span>
+                </section>
+                <article class="content"><p>选取上层目录下的 global 和 util 两个子目录之外的所有子目录的 c 源文件，并送至某程序（这里用 echo 代替）的命令行</p>
+
+<p>ls ../*/*.c | grep -v &quot;^../\(global/\|util/\)&quot; | xargs echo</p>
+
+<p>这里主要是 grep 的或操作需要注意一下，其余没有什么特别的。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/works/2008/10/23/%e4%ba%ba%e4%b8%8d%e8%83%bd%e6%97%a0%e8%80%bb%e5%88%b0%e8%bf%99%e4%b8%aa%e5%9c%b0%e6%ad%a5/index.html">人不能无耻到这个地步</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/scripts/2008/10/16/%e7%94%a8expect%e8%bf%9b%e8%a1%8cilo%e8%bf%9c%e7%a8%8b%e9%85%8d%e7%bd%ae/index.html">用expect进行iLO远程配置</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>

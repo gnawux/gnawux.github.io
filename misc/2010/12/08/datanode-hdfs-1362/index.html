@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="hadoop,jira,volume,datanode,">
+        <meta name="description" content="DataNode的磁盘管理以及HDFS-1362">
+        <link rel="stylesheet" href="/bundle/index.css">
+        <title>DataNode的磁盘管理以及HDFS-1362</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+</script>
+
+
+            <article class="main article">
+                <h1 class="title">DataNode的磁盘管理以及HDFS-1362</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1291814540">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/jira/index.html">jira</a><a class="tag" href="/tag/volume/index.html">volume</a><a class="tag" href="/tag/datanode/index.html">datanode</a></span>
+                </section>
+                <article class="content"><p>按：<a title="DataNode Volume Refreshment in HDFS-1362" href="http://gnawux.info/hadoop/2010/12/datanode-volume-refreshment-in-hdfs-1362/">英文版在这里</a></p>
+
+<p>前不久发到JIRA的HDFS-1362是一个关于DataNode的磁盘管理的小Feature，简单的说，就是根据配置文件，重新刷新服务，让新加入的硬盘提供服务，这一切不需要重启计算机或重启DN服务。</p>
+
+<h2>动机</h2>
+
+<p>和其他的PC集群一样，研究院大云团队的Hadoop集群也常常遇到磁盘故障，更换磁盘会导致节点暂时退服，进而造成不必要的块迁移，因此在线更换硬盘是一个有用的功能。当前的DataNode，实际是FSDataset已经可以在线去掉无法提供服务的磁盘了，不过不能在线激活新的硬盘。要知道，大部分现代的服务器和SATA硬盘都是支持热插拔的，所以，为啥不动手提供这个功能呢？</p>
+
+<p>一开始我们提供了一个简单的接口，可以通过命令行列出、加入、删除卷。不过在11月和Tom White和Todd Lipcon讨论之后，我们决定转而利用HADOOP-7001提供的在线更新配置的机制，提供一个单一的刷新接口，这样也不用担心配置文件和运行的服务不一致这个问题了。</p>
+
+<h2>DataNode的卷管理</h2>
+
+<p>DataNode实际使用了双重的卷管理。在启动时，DataStorage加载配置的目录，检查这些目录是否存在、是否可用、结构是否正确、版本是否有问题等，并针对目录的情况、依据启动的参数进行升级、回滚、格式化等必要操作。这些卷被存储为一个列表，并提供一个Iterator&lt;StorageDirectory&gt;，用于外部访问。</p>
+
+<p>装载这些目录之后，DN会构造FSDataset来管理卷和卷中的块。FSDataset之中的FSVolumeSet有一个卷的数组，存放着可用的卷，FSDataset中还有一个map，以BlockID为索引，存放着所有的块信息。这个map并没有按照卷的索引，所以，如果要删掉一个卷，需要遍历整个map，才能删掉所有的块，事实上现在的那个删除卷的操作也就是这么干的。</p>
+
+<p>注意上面说的，块加载的时间依赖于卷里面有多少个块，如果卷很满的话，就要花很长时间。</p>
+
+<h2>基本思路</h2>
+
+<p>HDFS-1362里，大概分四步来进行卷刷新工作：</p>
+
+<p>• 首先读取配置文件，加入到一个新目录的List里面；</p>
+
+<p>• 遍历DataStorage中的StorageDirectory：</p>
+
+<blockquote><p>• 如果这个sd没在FSDataset的FSVolumeSet的数组中的话，说明它已经因故障被删掉了，所以，从DataStorage里删掉它；</p></blockquote>
+
+<blockquote><p>• 如果这个sd包含在上面的新目录列表里的话，从新目录列表里删掉它，因为它已经在提供服务了，不用添加；</p></blockquote>
+
+<blockquote><p>• 相反，如果这个sd不包含在新目录列表里的话，也就是说一个在服务中的目录居然没在新的配置列表里，是要删除一个卷么？目前的版本，我们只是留一条warning，不会让卷退服。</p></blockquote>
+
+<p>• 把剩下的真的新目录添加到DataStorage里面去.</p>
+
+<p>• 把这些卷添加到FSDataset里面去.</p>
+
+<h2>加载卷</h2>
+
+<p>加载卷操作是基于 DataStorage.revoverTransitionRead来做的，我只是基于它修改了一个revoverTransitionAdditionalRead来加载卷，两者有这么几个区别：</p>
+
+<p>• 不需要初始化 StorageID 和 StorageDirectory 列表;</p>
+
+<p>• 不对所有的SD进行 doTransition ，只针对新加入的;</p>
+
+<p>• 不使用writeAll, 只对新加入的SD执行write;</p>
+
+<p>• 返回一个新加入SD的Collection, 用于FSDataset的重新加载</p>
+
+<p>这里没有用一个函数完成这两个功能的原因其实就是关于writeAll和transition操作，我担心这两者的操作方式差别可能比较大。</p>
+
+<h2>让FSDataset加载新卷上的块</h2>
+
+<p>这个操作不外乎就是给FSVolumeSet的数组添加卷、载入块的map。不过这里将来可能可以有块加载的优化。</p>
+
+<h2>异步服务</h2>
+
+<p>FSDataset 使用了 FSDatasetAsyncDiskService 来进行某些在每个卷上执行的异步任务，这个类是基于HashMap管理每个卷上的操作的，所以，只要把构造函数里的添加卷操作剥离出来成为一个单独的函数，让我们的刷新操作也能使用这个函数就可以了。</p>
+
+<h2>下一步工作</h2>
+
+<p>目前我们对于去掉卷的需求就是给了一个WARNING，将来可以继续讨论，是否可以通过这个接口让卷退服。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/linux/2010/12/13/centos-rhel-5.4-bcm5709%e7%bd%91%e5%8d%a1%e9%97%ae%e9%a2%98/index.html">CentOS/RHEL 5.4 BCM5709网卡问题</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/cloud/2010/12/06/%e5%89%8d%e4%b8%a4%e5%a4%a9%e5%9b%9e%e5%ad%a6%e6%a0%a1%e5%96%b7%e4%ba%86.../index.html">前两天回学校喷了...</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>

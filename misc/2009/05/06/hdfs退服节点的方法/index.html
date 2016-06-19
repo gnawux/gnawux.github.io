@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="hadoop,hdfs,管理,">
+        <meta name="description" content="HDFS退服节点的方法">
+        <link rel="stylesheet" href="/bundle/index.css">
+        <title>HDFS退服节点的方法</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+</script>
+
+
+            <article class="main article">
+                <h1 class="title">HDFS退服节点的方法</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1241591980">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/hdfs/index.html">hdfs</a><a class="tag" href="/tag/%e7%ae%a1%e7%90%86/index.html">管理</a></span>
+                </section>
+                <article class="content"><div style="color: #000000;" dir="ltr"><span style="font-family: 宋体;"><span style="font-size: x-small;"><span class="921042102-06052009">目前版本的dfsadmin的帮助信息是没写清楚的，已经</span></span></span><a href="http://https//issues.apache.org/jira/browse/HADOOP-5778" target="_blank">file了一个bug</a><span style="font-family: 宋体;"><span style="font-size: x-small;"><span class="921042102-06052009">了，正确的方法如下：</p>
+
+<p>1. </span>将<span class="921042102-06052009"> dfs.hosts  置为当前的 slaves，文件名用完整路径，注意，列表中的节点主机名要用大名，即 uname -n 可以得到的那个。</span></span></span></div>
+
+<div style="color: #000000;" dir="ltr"><span style="font-family: 宋体;"><span style="font-size: x-small;"><span class="921042102-06052009">2. 将 slaves 中要被退服的节点的全名列表放在另一个文件里，如 slaves.ex，使用  dfs.host.exclude 参数指向这个文件的完整路径</span></span></span></div>
+
+<div style="color: #000000;" dir="ltr"><span style="font-family: 宋体;"><span style="font-size: x-small;"><span class="921042102-06052009">3. 运行命令 bin/hadoop dfsadmin  -refreshNodes</span></span></span></div>
+
+<div style="color: #000000;" dir="ltr"><span style="font-family: 宋体;"><span style="font-size: x-small;"><span class="921042102-06052009">4. web界面或 bin/hadoop dfsadmin -report 可以看到退服节点的状态是  Decomission in progress，直到需要复制的数据复制完成为止</span></span></span></div>
+
+<div style="color: #000000;" dir="ltr"><span style="font-family: 宋体;"><span style="font-size: x-small;"><span class="921042102-06052009">5. 完成之后，从 slaves 里（指 dfs.hosts  指向的文件）去掉已经退服的节点</span></span></span></div>
+
+<div style="color: #000000;" dir="ltr"><span style="font-family: 宋体;"><span style="font-size: x-small;"></span></span></div>
+
+<div style="color: #000000;" dir="ltr"><span style="font-family: 宋体;"><span style="font-size: x-small;"><span class="921042102-06052009">附带说一下 -refreshNodes  命令的另外三种用途：</span></span></span></div>
+
+<div style="color: #000000;" dir="ltr"><span style="font-family: 宋体;"><span style="font-size: x-small;"><span class="921042102-06052009">2. 添加允许的节点到列表中（添加主机名到 dfs.hosts  里来）</span></span></span></div>
+
+<div style="color: #000000;" dir="ltr"><span style="font-family: 宋体;"><span style="font-size: x-small;"><span class="921042102-06052009">3. 直接去掉节点，不做数据副本备份（在 dfs.hosts  里去掉主机名）</span></span></span></div>
+
+<div style="color: #000000;" dir="ltr"><span style="font-family: 宋体;"><span style="font-size: x-small;"><span class="921042102-06052009">4. 退服的逆操作——停止 exclude 里面和 dfs.hosts 里面都有的，正在进行  decomission 的节点的退服，也就是把 Decomission in progress 的节点重新变为 Normal （在 web 界面叫 in  service)</span></span></span></div>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/misc/2009/05/10/%e7%bb%88%e4%ba%8e%e6%98%8e%e7%99%bdsubclipse%e6%80%8e%e4%b9%88%e7%94%a8%e4%ba%86/index.html">终于明白subclipse怎么用了</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/misc/2009/05/04/%e5%bc%80%e5%a7%8b%e6%82%84%e6%82%84%e6%8e%a8%e8%8d%90%e6%88%91%e7%9a%84%e7%bd%91%e7%ab%99/index.html">开始悄悄推荐我的网站</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>
