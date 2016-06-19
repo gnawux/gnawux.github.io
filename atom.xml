@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>http://wangxu.me/</id>
-  <updated>2016-06-19T03:09:26-07:00</updated>
+  <updated>2016-06-19T03:16:04-07:00</updated>
   <subtitle>某创业公司的看门大爷</subtitle>
   <link href="http://wangxu.me/"></link>
   <author>
@@ -43,6 +43,16 @@
     <id>tag:wangxu.me,2016-04-16:/life/2016/04/16/just-for-fun/index.html</id>
     <content type="html">&lt;p&gt;前两天，用友UDN的白总来找我做了一个关于开源创业的访谈，是啊，做&lt;a href=&#34;https://github.com/hyperhq/hyperd/&#34;&gt;Hyper_项目&lt;/a&gt;一年出头的时间了，自己想想也很刺激呢，那就动笔写点什么吧。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;&lt;img data-src=&#34;http://7xpvay.com1.z0.glb.clouddn.com/e68a6670-06a1-11e6-94da-7347a1de0463&#34; alt=&#34;enter image description here&#34; /&gt;&lt;/p&gt;&#xA;&#xA;&lt;p&gt;这里引用上面图片里 Daocloud 联合创始人孙宏亮的一句话吧。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;做开源，辛苦有，好玩也有，今天就说点好玩的。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;##开源的造神运动&lt;/p&gt;&#xA;&#xA;&lt;p&gt;如果你有一点水平，开源对于树立个人威望是非常有好处的。正如西乔的BetaCat漫画道出的一个真谛——复杂 patch 是很少有人 review 的——只要你做了比较多的工作，那你就毫无疑问是个大牛了。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;就拿我自己举例子吧，我自认为自己的水平还是有的，在看门大爷里也算是会写程序的了，还有点自己的小看法，但“大牛”还是差得很远的。这方面我觉得我老婆的眼光特别犀利客观，她一直就觉得我不过尔尔，哪天我敢在家得瑟，绝对被她扑灭，所以我仍然能看到自己的SB之处。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;我说这些的意思并不是说开源圈很不堪，恰恰相反，我司活跃在开源社区的牛牛们就各个身手不凡，我所认识的那些大牛也真的让人高山仰止。我的意思是，即使一个如我这样的平凡人，参与开源，你也可以和这些真神们称兄道弟乃至于偷学两手，甚至像我这样出来装神弄鬼，这绝对是个捷径吧。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;##“敌我不分”的开源圈&lt;/p&gt;&#xA;&#xA;&lt;p&gt;开源项目有意思的一面就在于——它不是你一个人的，所以，开源前，它是你的兴趣，开源后就是整个社区的了，有点意思的项目，会有很多人来一起打理。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;国内容器圈是个不大不小的圈子，好几家创业公司，多少有点竞争关系，但是各位知道不，有两家容器创业公司的联合创始人都来给我们提过issue/PR，他们说，他们觉得这个项目有意思——难得有个国内创业公司做底层开源，他们也为此兴奋呢。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;##痛并快乐着&lt;/p&gt;&#xA;&#xA;&lt;p&gt;刚才说，项目开源了就不是自己的了，这也有一些“负面”作用，当你做一些大调整时，会有人站出来质疑你。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;比如因为我们上公有云，为避免命名上的混淆，我们调整了项目仓库的名字和文档URL，不仅有国内的林帆等熟人过来核实，更有人直接在GitHub上发issue抗议。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;诚然宝宝心里有不得不做的苦，自家孩子还被别人约束的委屈，但另一方面，有人有在关心你的一举一动，对于开源项目来说不正是它的存在感么。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;如今的 hyper 的项目开源已经接近一年，有其他创业公司小伙伴的支持和参与，有另一些国外朋友使用和积极跟进，也有一些大公司，在开源界朋友的推动下来发PR贡献，更有日渐强大的团队推进开发，并让自己的产品运行在开源项目之上并回馈开源，作为一个开源项目，越来越成熟了。&lt;/p&gt;&#xA;</content>
     <link href="http://wangxu.me/life/2016/04/16/just-for-fun/index.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
+  <entry>
+    <title>不愿回忆，害怕忘记</title>
+    <updated>2016-02-29T01:10:08+08:00</updated>
+    <id>tag:wangxu.me,2016-02-29:/family/2016/02/29/forget-or-not/index.html</id>
+    <content type="html">&lt;p&gt;不愿回忆，害怕忘记，这是一种会呼吸的痛。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;三七将至，爸爸离开这么多天了，生活其实没有什么大不同，就好象之前不在他身边的日子一样，好像第二天又会在他身边。只是偶尔神经会被触到，猛然感到一种压在胸口的痛感，久久无法释怀。理智如我，仍然在逃避回忆。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;母亲是个特别豁达的人，豁达到不可思议，甚至似乎我感性的妻子都比母亲更伤心。可是，当我看到早晨她哭过的双眼时，我知道她又回到回忆之中了。正如我无法释怀父亲最后的话，无法忘记他最后留给我的温度一样。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;虽然我在躲藏，可回忆却像开着的机器，趁我不注意，悄悄地反复播映。不止是我自己，身边的人也常在不经意间回忆起来。两岁的女儿并不知道发生了什么，但她会不时发现和爷爷有关的东西，说出“爷爷的”；二年级的儿子，也会在玩牌时脱口而出“爷爷教的”……&lt;/p&gt;&#xA;&#xA;&lt;p&gt;我小心地留着相关的东西，像揭开伤口的痂一样，偷偷地回忆——虽然会痛，却也害怕忘掉，害怕失去他留给我的最后的印记。但时间还是会冲淡一切，看看儿子，已经不为失去爷爷而痛哭了；想想女儿，将来大概会完全不记得她一度最喜欢的爷爷了。爱也会被忘掉，每当想到这个残酷的事实时，都让我感到更加心碎。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;在这里悄悄记下这些，也是我害怕忘记这份悲痛，曾经的爱与欢乐，曾经的痛与追思，希望这份情凝固在文字里，永不逝去。&lt;/p&gt;&#xA;</content>
+    <link href="http://wangxu.me/family/2016/02/29/forget-or-not/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2015-11-02:/cloud/2015/11/02/summit/index.html</id>
     <content type="html">&lt;blockquote&gt;&#xA;&lt;p&gt;广告放最前：作为一家新的、小的、有梦想的、不做“Copy-to-China”的创业公司，我们欢迎想创新的、有想法的、有技术的小伙伴加盟，并且我们允许远程办公。&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;p&gt;10月最后一周，一年两度的 OpenStack Summit 移师东京，转瞬间朋友圈里开始有各种各样的文章出现，有些相当干的干货，比如&lt;a href=&#34;http://www.wzxue.com/openstack-tokyo-summit/&#34;&gt;王豪迈关于存储方面的这篇&lt;/a&gt;，这可是核心开发人员深入参与Design Summit，回来写的文章；当然也有一些水水的公关稿，甚至……（此处省略若干字）&lt;/p&gt;&#xA;&#xA;&lt;p&gt;这里，我也忍不住想要聊两句我们 Hyper 和 Hypernetes。&lt;/p&gt;&#xA;&#xA;&lt;h2&gt;Hypernetes&lt;/h2&gt;&#xA;&#xA;&lt;p&gt;我们 Hyper 这次参会，带去的新产品就是 &lt;a href=&#34;http://hypernetes.com&#34;&gt;Hypernetes&lt;/a&gt;，一个真正多租户的 &lt;a href=&#34;http://kubernetes.io&#34;&gt;Kubernetes&lt;/a&gt; Distro。Hypernetes&lt;/p&gt;&#xA;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;使用我们的 &lt;a href=&#34;https://hyper.sh&#34;&gt;Hyper&lt;/a&gt; 做计算隔离，轻量级虚机可以提供良好的隔离&lt;/li&gt;&#xA;&lt;li&gt;使用 OpenStack Neutron 进行网络隔离，为每个 k8s namespace 提供独立的二层网络&lt;/li&gt;&#xA;&lt;li&gt;使用 OpenStack Cinder 提供持久化的数据卷&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&#xA;&lt;p&gt;我们在 Demo Theater 进行了演示，在我们的展台进行展示，和一些公司进行了交流，同时也在 Hacker News 上进行了发布，总的说，社区对我们的努力还是肯定的，比如，Kubernetes 项目的发起人之一、头号贡献者 Brendan Burns 就在 Twitter 远程表达了他的兴趣&lt;/p&gt;&#xA;&#xA;&lt;p&gt;&lt;img src=&#34;/assets/brendan.jpg&#34; alt=&#34;quote pic&#34; style=&#34;width: 300px;&#34;/&gt;&lt;/p&gt;&#xA;&#xA;&lt;p&gt;技术媒体们对此也有报道，比如 &lt;a href=&#34;http://www.infoworld.com/article/2997770/application-virtualization/hypernetes-unites-kubernetes-openstack-for-multitenant-container-management.html&#34;&gt;InfoWorld&lt;/a&gt; 这篇，不是公关稿，纯粹是社区对我们工作的反馈。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;加上现场到访展台、会议上交流的公司，整个社区对我们的兴趣有点超出我的预期，感谢全体 Hyper 团队在过去两个月中的非凡努力。对我们来说，接下来就是继续努力工作，在接下来的时间里，尽快从 Demo 到可用产品。&lt;/p&gt;&#xA;&#xA;&lt;h2&gt;对 OpenStack 社区与容器的看法&lt;/h2&gt;&#xA;&#xA;&lt;p&gt;这次峰会上，OpenStack 社区的领头羊 Rackspace 发布了他们家的容器服务 &lt;a href=&#34;https://getcarina.com&#34;&gt;Carina&lt;/a&gt;，Magnum 项目的领头人 Adrian Otto 甚至为此在 Keynote 上秀了一段娃，不过，对这个产品，大家的反馈似乎都是很奇怪、为啥还是这样…… 链接已给出，有兴趣的同学可以看看。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;至于 Magnum 项目，仍然处在一种很迷茫的状态，Design Summit 上，项目陈述自己的观点是——不改变用户使用习惯、暴露原生接口给用户；不增加 OpenStack 特定的工具和新元素。同时，会上，当我问及 Adrain ，是否考虑引入通用的容器模型时，Adrain 直接表示，Magnum 将会是 k8s, swarm, marathon 的超集，你可以使用 pod，当然只能落在 k8s 上，也能使用 compose，当然这是 swarm-only 的。在这样的形势下，感觉 Magnum 似乎在沦为一个 Heat Template，不要忘了，对很多人来说，Heat 也是不成熟的。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;相比之下，我倒是觉得 Kuryr 项目把 Neutron 作为 Docker 的 Network Provider，这个项目还是更有意义一些。&lt;/p&gt;&#xA;&#xA;&lt;h2&gt;对 OpenStack 其他项目的一些零星感受&lt;/h2&gt;&#xA;&#xA;&lt;p&gt;第一天会上，某巨头的同学透露他们在网络方面的工作更主要集中在 Open Daylight (ODL)项目上，而将 Neutron 作为一个 API 代理，这让我们看到 OpenStack 社区的参与者们开始筹划新的框架了。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;而后，豪迈同学透露 Cinder 社区有独立的念头，希望摆脱对 OpenStack 的其他项目的依赖（参见开头处的链接），这真是让我们一众唯恐天下不乱的 startup 喜闻乐见啊。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;其后，前面说的那位同学也提到，其实 neutron 也有摆脱对其他项目依赖的想法。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;这里，如果用知乎体问我“对于网络和存储社区想要和OpenStack划清界限一事有什么看法？”，我想说&lt;/p&gt;&#xA;&#xA;&lt;p&gt;首先，这是 OpenStack 社区中，Nova 项目过于核心的结果，Nova 是一切的核心，于是网络和存储项目都和 Nova 紧密耦合，这本身就是软件工程的灾难。如今，斗转星移，容器开始唱主角的时候，当 “新星（nova）”已经不太创新的时候，是时候引入第二个计算框架了，k8s 可能无法取代 nova，或者说容器无法取代传统虚机，但容器化的架构，或者说 Immutable 的基础设施，必将占有一个相当大的份额，在此情形之下，Cinder 如此做是顺应潮流的举动，反过来看，neutron 在有了 ODL 这样的项目之后再想划清界限就有点晚了。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;但是，不论 OpenStack 开源项目的演进如何，都不能阻挡基金会仍然是成功的，作为大厂商媾和的标准化组织，即使是 Nova 被劈腿了，或者 Cinder 去除唯一依赖了，基金会仍然会通过改变自己，增加新的项目，让基金会向前演进，一个项目不是 OpenStack 的全部，OpenStack 的意义在于厂商们将 IT 基础设施互操作接口标准化的决心。&lt;/p&gt;&#xA;&#xA;&lt;h2&gt;最后&lt;/h2&gt;&#xA;&#xA;&lt;p&gt;最后，广告再来一遍——作为一家新的、小的、有梦想的、不做“Copy-to-China”的创业公司，我们欢迎想创新的、有想法的、有技术的小伙伴加盟，并且我们允许远程办公。&lt;/p&gt;&#xA;</content>
     <link href="http://wangxu.me/cloud/2015/11/02/summit/index.html"></link>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>Blog 系统更新完毕</title>
-    <updated>2015-02-24T08:08:08+08:00</updated>
-    <id>tag:wangxu.me,2015-02-24:/meta/2015/02/24/blog-update/index.html</id>
-    <content type="html">&lt;p&gt;这个 Blog 在主机到期，迁出 wordpress 引擎之后，就放到了 github，不过，因为迁移程序的问题，文章的 url 一直是不 work 的，好几个月之后（可能有），终于修复了这些 URL。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;虽然发布频率已经低到不能再低，但这个 blog 仍然活着。&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/meta/2015/02/24/blog-update/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
