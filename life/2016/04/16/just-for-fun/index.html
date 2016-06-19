@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="opensource,hyper,fun,life,">
+        <meta name="description" content="Just for Fun">
+        <link rel="stylesheet" href="/bundle/index.css">
+        <title>Just for Fun</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+</script>
+
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
+
+            <article class="main article">
+                <h1 class="title">Just for Fun</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1460801888">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/opensource/index.html">opensource</a><a class="tag" href="/tag/hyper/index.html">hyper</a><a class="tag" href="/tag/fun/index.html">fun</a><a class="tag" href="/tag/life/index.html">life</a></span>
+                </section>
+                <article class="content"><p>前两天，用友UDN的白总来找我做了一个关于开源创业的访谈，是啊，做<a href="https://github.com/hyperhq/hyperd/">Hyper_项目</a>一年出头的时间了，自己想想也很刺激呢，那就动笔写点什么吧。</p>
+
+<p><img data-src="http://7xpvay.com1.z0.glb.clouddn.com/e68a6670-06a1-11e6-94da-7347a1de0463" alt="enter image description here" /></p>
+
+<p>这里引用上面图片里 Daocloud 联合创始人孙宏亮的一句话吧。</p>
+
+<p>做开源，辛苦有，好玩也有，今天就说点好玩的。</p>
+
+<p>##开源的造神运动</p>
+
+<p>如果你有一点水平，开源对于树立个人威望是非常有好处的。正如西乔的BetaCat漫画道出的一个真谛——复杂 patch 是很少有人 review 的——只要你做了比较多的工作，那你就毫无疑问是个大牛了。</p>
+
+<p>就拿我自己举例子吧，我自认为自己的水平还是有的，在看门大爷里也算是会写程序的了，还有点自己的小看法，但“大牛”还是差得很远的。这方面我觉得我老婆的眼光特别犀利客观，她一直就觉得我不过尔尔，哪天我敢在家得瑟，绝对被她扑灭，所以我仍然能看到自己的SB之处。</p>
+
+<p>我说这些的意思并不是说开源圈很不堪，恰恰相反，我司活跃在开源社区的牛牛们就各个身手不凡，我所认识的那些大牛也真的让人高山仰止。我的意思是，即使一个如我这样的平凡人，参与开源，你也可以和这些真神们称兄道弟乃至于偷学两手，甚至像我这样出来装神弄鬼，这绝对是个捷径吧。</p>
+
+<p>##“敌我不分”的开源圈</p>
+
+<p>开源项目有意思的一面就在于——它不是你一个人的，所以，开源前，它是你的兴趣，开源后就是整个社区的了，有点意思的项目，会有很多人来一起打理。</p>
+
+<p>国内容器圈是个不大不小的圈子，好几家创业公司，多少有点竞争关系，但是各位知道不，有两家容器创业公司的联合创始人都来给我们提过issue/PR，他们说，他们觉得这个项目有意思——难得有个国内创业公司做底层开源，他们也为此兴奋呢。</p>
+
+<p>##痛并快乐着</p>
+
+<p>刚才说，项目开源了就不是自己的了，这也有一些“负面”作用，当你做一些大调整时，会有人站出来质疑你。</p>
+
+<p>比如因为我们上公有云，为避免命名上的混淆，我们调整了项目仓库的名字和文档URL，不仅有国内的林帆等熟人过来核实，更有人直接在GitHub上发issue抗议。</p>
+
+<p>诚然宝宝心里有不得不做的苦，自家孩子还被别人约束的委屈，但另一方面，有人有在关心你的一举一动，对于开源项目来说不正是它的存在感么。</p>
+
+<p>如今的 hyper 的项目开源已经接近一年，有其他创业公司小伙伴的支持和参与，有另一些国外朋友使用和积极跟进，也有一些大公司，在开源界朋友的推动下来发PR贡献，更有日渐强大的团队推进开发，并让自己的产品运行在开源项目之上并回馈开源，作为一个开源项目，越来越成熟了。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/hyper/2016/05/25/hyper-birthday/index.html">Hyper 一岁了</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/container/2016/02/06/hyper-0-5/index.html">Hyper 0.5 Released</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>
