@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="dotNetFx,msicuu2,windows,卸载,">
+        <meta name="description" content="昨晚险些重装XP">
+        <link rel="stylesheet" href="/css/index.css">
+        <link rel="stylesheet" href="/css/github.css">
+        <title>昨晚险些重装XP</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    
+</ul>
+
+            <article class="main article">
+                <h1 class="title">昨晚险些重装XP</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="2009-05-21 17:01:59 -0700 PDT">
+                        <span class="from"></span>
+                        <span class="date" data-time="0001-01-01 00:00:00 &#43;0000 UTC">(<span class="from"></span> 更新)</span>
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/dotNetFx/index.html">dotNetFx</a><a class="tag" href="/tag/msicuu2/index.html">msicuu2</a><a class="tag" href="/tag/windows/index.html">windows</a><a class="tag" href="/tag/%e5%8d%b8%e8%bd%bd/index.html">卸载</a></span>
+                </section>
+                <article class="content"><p>情况异常惊险，已经进入Windows安装程序了，不过XP的安装盘似乎不支持串口硬盘，又没准备驱动，所以作罢。之前本来想用Thinkpad的系统恢复来着，但我的这个居然只能整盘恢复出厂状态，代价太大，没敢尝试。再之前想一键恢复来着，但似乎装过grub之后，就无法一键恢复了。</p>
+
+<p>回来说为啥想重装——原因很简单——很多软件都不能正常工作了，影响最大的是.Net Framework，导致一系列程序都不能工作。这件事情的起因是因为我为了腾磁盘空间，把系统目录里的一些以往的安装文件删掉了，没想到这些东西删掉虽然不影响运行，但会影响删除程序。后来某天想尝试blu（一个twitter客户端），不得不升级dotNetFx到3.5，这时问题就出现了，系统中已有2.0版本，于是dotNetFx就进入了一个</p>
+
+<blockquote><p>欲删不可，欲装不能</p></blockquote>
+
+<p>的状态，包括飞信、Paint.Net等大量日常生活用品都不能启动了，于是，忍了俩月之后，昨天终于下决心要重装了。</p>
+
+<p>由于开头所说的囧原因，重装未果，只好回来想法修正，想法倒是很简单——想办法清除dotNetFx的一些信息，主要应该在注册表，只要让系统觉得没有装过它，就可以直接覆盖安装了。不过，手工编辑注册表确实太挑战了一些，于是，再次求助搜索引擎。</p>
+
+<p>终于，有<a title="飞信不能启动-双击fetion.exe文件无反应(解决办法)" href="http://hi.baidu.com/%D2%F8%C9%AB%CA%A5%C6%EF%CA%BF/blog/item/c79d4c95157110007bf480ca.html" target="_blank">先行者提供了方法</a>，使用<a title="Windows Installer 清理实用工具说明" href="http://support.microsoft.com/kb/290301" target="_blank">微软安装程序清理工具（msicuu2, windows installer cleanup utility）</a>可以清除包括dotNetFx, MS Office等各种因为丢失安装文件无法卸载、重装的软件。</p>
+
+<p>删除dotNetFx之后，重新安装就可以了。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/misc/2009/06/24/2009-06-25-%e5%94%89%ef%bc%8c%e9%99%a4%e4%ba%86%e7%bb%bf%e5%9d%9d%e5%b0%b1%e6%98%afgfw.html">唉，除了绿坝就是GFW</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/misc/2009/05/10/%e4%bb%8a%e5%a4%a9%e8%a3%85%e6%b0%b4%e6%a7%bd.html">今天装水槽</a>
+                    </section>
+                    
+                </section>
+                <section id="disqus_thread"></section>
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/js/jquery-1.11.2.min.js"></script>
+        <script src="/js/highlight.pack.js"></script>
+        <script src="/js/jquery.unveil.js"></script>
+        <script src="/js/index.js"></script>
+        <script type="text/javascript">
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//gnawux.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+    </body>
+</html>

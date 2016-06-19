@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="kernel,mount,works,">
+        <meta name="description" content="2.6.26内核新特性：Read-only bind mounts">
+        <link rel="stylesheet" href="/css/index.css">
+        <link rel="stylesheet" href="/css/github.css">
+        <title>2.6.26内核新特性：Read-only bind mounts</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+
+            <article class="main article">
+                <h1 class="title">2.6.26内核新特性：Read-only bind mounts</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1216015260">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/mount/index.html">mount</a><a class="tag" href="/tag/works/index.html">works</a></span>
+                </section>
+                <article class="content"><p>原来还真没注意，原来的 bind mount 不能只读挂载，嗯，无所谓了，2.6.26的可以了。</p>
+
+<p>我一般是在这么几种情况下用 bind mount 的：</p>
+
+<ul>
+
+<li>chroot 的时候 bind mount&#160; /dev 和 /proc，不过经检验 proc 不用 bind，直接再 mount 一个出来就行，不过 /dev 似乎还是要 bind 的吧。whatever，这里应该不用只读 </li>
+
+<li>复制整个系统的时候 bind mount 一下 /，这样，/ 下面的其他分区（如果有的话，比如 /home, /usr, /var, /boot 之类的）就不会出现在新挂载点下面了，这样 tar 不会涉及到其他分区，正好适合备份。<strong>这种情况下，read-only bind mount 应该比较有用，而且更安全</strong>。</li>
+
+</ul>
+
+<p>嗯，就是这样。</p>
+
+<p>哦，kernel.org 上，2.6.26 已经发布了，2008-07-13 22:44 UTC，距离现在两个多小时吧，算是个新闻哦。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/translation/2008/08/04/xen-%e7%bb%84%e7%bd%91.html">Xen 组网</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/misc/2008/07/08/%e9%81%97%e5%a4%b1%e7%9a%84%e5%88%9b%e9%80%a0%e5%8a%9b.html">遗失的创造力</a>
+                    </section>
+                    
+                </section>
+                <section id="disqus_thread"></section>
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/js/jquery-1.11.2.min.js"></script>
+        <script src="/js/highlight.pack.js"></script>
+        <script src="/js/jquery.unveil.js"></script>
+        <script src="/js/index.js"></script>
+        <script type="text/javascript">
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//gnawux.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+    </body>
+</html>

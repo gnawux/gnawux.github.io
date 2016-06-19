@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="memcached,python,scripts,tornado,">
+        <meta name="description" content="再次改动了 tornado-memcache">
+        <link rel="stylesheet" href="/css/index.css">
+        <link rel="stylesheet" href="/css/github.css">
+        <title>再次改动了 tornado-memcache</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+
+            <article class="main article">
+                <h1 class="title">再次改动了 tornado-memcache</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1362618547">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/memcached/index.html">memcached</a><a class="tag" href="/tag/python/index.html">python</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/tornado/index.html">tornado</a></span>
+                </section>
+                <article class="content"><p>在上次(<a href="http://wangxu.me/blog/p/758">http://wangxu.me/blog/p/758</a>)之后，再次改动了 tornado-memcache 模块，<a href="https://github.com/gnawux/tornado-memcache/commit/10c5236cb7df764e20986db5cca6868c26e845a7" target="_blank">commit 信息</a>如下：</p>
+
+<blockquote><p>Add gets method and simplify connection estabilish</p>
+
+<div>
+
+<pre>- simplify connection estabilish procedure, as tornado.iostream
+  permit write before connection estabilished, I removed the
+  callback and connection timeout procedure in _get_server()
+- add `gets(self, keys, callback, failcallback)` method, receive
+  a list of keys as parameter and return a dictionary of results
+  result = {key1:value1, key2:value2...}, only return the got
+  keys from memcached
+- some debug info, might be cleanup later
+
+Signed-off-by: Wang Xu &lt;gnawux……</pre>
+
+</div>
+
+</blockquote>
+
+<p>简单地说就是两件事情：</p>
+
+<ul>
+
+<li><span style="line-height: 13px;">读了<a href="http://www.tornadoweb.org/documentation/iostream.html#tornado.iostream.IOStream.connect" target="_blank">文档</a>，发现 tornado 的 iostream 允许在连接建立未完成的时候就write，既然我之前已经用 iostream 管理 socket 了，这里就省掉上次在这里加上的callback 和 timeout，直接 write command，等 write 的超时或返回就好了；</span></li>
+
+<li>读了<a href="https://github.com/memcached/memcached/blob/master/doc/protocol.txt" target="_blank">memcached 协议</a>，发现取信息(get)，是支持一次取多条信息的，于是加入了这个支持，这样，批处理操作时会提高不少效率。</li>
+
+</ul>
+
+<p>里面还插入了好多调试的时候的 debug 信息，差不多都注掉了，回头都稳定了再清理一下。</p>
+
+<p>嗯，代码都在 github 了：<a href="https://github.com/gnawux/tornado-memcache" target="_blank">https://github.com/gnawux/tornado-memcache</a></p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/%e8%af%bb%e5%90%8e%e6%84%9f/2013/04/12/%e7%bb%99%e4%ba%92%e8%81%94%e7%bd%91%e5%9c%88%e5%ad%90%e7%9a%84%e6%9c%8b%e5%8f%8b%e4%bb%ac%e4%bb%8b%e7%bb%8d%e4%b8%8b%e8%bf%90%e8%90%a5%e5%95%86%e7%bd%91%e7%bb%9c.html">给互联网圈子的朋友们介绍下运营商网络</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/scripts/2013/02/23/tornado-stack-context.html">Tornado 的 stack context</a>
+                    </section>
+                    
+                </section>
+                <section id="disqus_thread"></section>
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/js/jquery-1.11.2.min.js"></script>
+        <script src="/js/highlight.pack.js"></script>
+        <script src="/js/jquery.unveil.js"></script>
+        <script src="/js/index.js"></script>
+        <script type="text/javascript">
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//gnawux.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+    </body>
+</html>

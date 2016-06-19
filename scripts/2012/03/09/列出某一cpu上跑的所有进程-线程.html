@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="cmdline,linux,PS,psr,shell,scripts,affinity,">
+        <meta name="description" content="列出某一CPU上跑的所有进程/线程">
+        <link rel="stylesheet" href="/css/index.css">
+        <link rel="stylesheet" href="/css/github.css">
+        <title>列出某一CPU上跑的所有进程/线程</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+
+            <article class="main article">
+                <h1 class="title">列出某一CPU上跑的所有进程/线程</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1331290276">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/cmdline/index.html">cmdline</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/PS/index.html">PS</a><a class="tag" href="/tag/psr/index.html">psr</a><a class="tag" href="/tag/shell/index.html">shell</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/affinity/index.html">affinity</a></span>
+                </section>
+                <article class="content"><p>比如 CPU2 上的：</p>
+
+<pre class="brush: bash; gutter: true">ps -eLo pid,psr,command |sed -ne &#039;/^\W[0-9]\W2\W/p&#039;</pre>
+
+<p>嗯，后面 sed 匹配串里选第几个CPU，嗯前面的参数里，psr 是 CPU 号，嗯。</p>
+
+<p>&nbsp;</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/life/2012/03/20/%e7%94%9f%e6%97%a5%e5%bf%ab%e4%b9%90%ef%bc%8c%e6%96%af%e5%b1%b9.html">生日快乐，斯屹</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/life/2012/02/17/galaxy-note%e5%85%a5%e6%89%8b%e4%bd%93%e9%aa%8c.html">Galaxy Note入手体验</a>
+                    </section>
+                    
+                </section>
+                <section id="disqus_thread"></section>
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/js/jquery-1.11.2.min.js"></script>
+        <script src="/js/highlight.pack.js"></script>
+        <script src="/js/jquery.unveil.js"></script>
+        <script src="/js/index.js"></script>
+        <script type="text/javascript">
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//gnawux.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+    </body>
+</html>

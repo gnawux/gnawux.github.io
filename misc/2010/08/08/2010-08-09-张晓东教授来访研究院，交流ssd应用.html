@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="scheduler,SSD,storage,张晓东,">
+        <meta name="description" content="张晓东教授来访研究院，交流SSD应用">
+        <link rel="stylesheet" href="/css/index.css">
+        <link rel="stylesheet" href="/css/github.css">
+        <title>张晓东教授来访研究院，交流SSD应用</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    
+</ul>
+
+            <article class="main article">
+                <h1 class="title">张晓东教授来访研究院，交流SSD应用</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="2010-08-08 23:49:08 -0700 PDT">
+                        <span class="from"></span>
+                        <span class="date" data-time="0001-01-01 00:00:00 &#43;0000 UTC">(<span class="from"></span> 更新)</span>
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/scheduler/index.html">scheduler</a><a class="tag" href="/tag/SSD/index.html">SSD</a><a class="tag" href="/tag/storage/index.html">storage</a><a class="tag" href="/tag/%e5%bc%a0%e6%99%93%e4%b8%9c/index.html">张晓东</a></span>
+                </section>
+                <article class="content"><p>张教授的背景<strike>我就不多介绍了，有兴趣的自己去搜吧</strike>可以<a href="http://www.cse.ohio-state.edu/~zhang/">参考此链接</a>，总之是让人很兴奋的一次交流。</p>
+
+<p><a href="http://wangxu.me/blog/wp-content/uploads/2010/08/199.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="199" border="0" alt="199" src="/assets/199_thumb.jpg" width="244" height="139" /></a> </p>
+
+<p>这次交流之前，我大致准备了三个问题，不过基本都没有得到提问的机会，张教授就已经把这些问题都提到了：</p>
+
+<blockquote><ul>
+
+<li>Hybrid SSD/HDD的意义?</li>
+
+<li>Firmware or Software? Open vs. Optimistic</li>
+
+<li>Challenge to fs and block drivers</li>
+
+</ul>
+
+</blockquote>
+
+<p>下面我基本按照张教授介绍的顺序把这些我们关心的问题提到。</p>
+
+<p>张教授和 Intel lab、NSF 都进行了合作，致力于改善 SSD 的应用，释放 SSD 的最大潜能，进而推进 SSD 的应用。下面是正文：</p>
+
+<p>张教授介绍的第一项工作是使用一个用户态程序来通过读写特征匹配来判断 SSD 的内部结构，主要是SSD读写的并发程度，从而确定对 SSD 可以进行何种优化。这方面，主要是对 SSD 内部的读写并发程度的判定，从而最大限度的利用SSD的能力。在这方面，张教授还回答了我关于开放一部分 firmware 的功能给软件来完成的可能性，张教授的判断是，这方面如果可以开放给操作系统应该是最好的方案，这个工具也就没必要了，但是各个厂商出于利益考虑，短时间内不会公开这一架构。</p>
+
+<p>张教授介绍的第二项工作是同时使用 SSD 和 HDD，提供最佳应用组合，项目名叫 Hystor，在 block layer入手，将 HDD/SSD 以统一界面呈现给上层，调度热/小数据存放在 SSD，将大数据存放于 HDD，利用其大块连续数据读写的优势。对于某厂商的 Hybrid 方式，张教授表示不看好其单纯将 SSD 应用为 HDD 的 Cache 的方式。对于张教授的使用方式，其中会存在根据应用情况，将数据在不同容器间进行迁移的可能性，感觉上这方面是仍然不太成熟的方面，似乎还在改进中。</p>
+
+<p>张教授介绍的第三项工作大致是根据第一项工作，对SSD的使用进行优化，包括一些预取机制，可以在 iosched 层面进行并行化的优化，充分利用SSD内部的读写并行化特征，对很多典型应用的性能有数倍的提升，可见目前的SSD应用的性能潜力还是蛮大的。</p>
+
+<p>来一些花絮：</p>
+
+<blockquote><ul>
+
+<li>张教授在我某同事一进门的时候就认出他来，他04年到访中科大时，我们这位同事还在中科大念书呢，张教授不仅记得他有拉丁舞绝技，甚至还记得他的名字，叫我们这些记不住人的晚辈情何以堪啊</li>
+
+<li>张教授使用的SSD是Intel X-25E，不太常见的高端设备，不过刚好我手里也有几块，呵呵，可以借鉴很多参数啊；</li>
+
+<li>张教授是我在工大的校友，呵呵，工大的牛人还是挺多的，并不罕见，不过主要集中在80年代初期，呵呵；</li>
+
+<li>后来的交流中，张教授多次提到了吴峰光、Colyli等大牛，呵呵，和国内的开发者还是有很多交流的。</li>
+
+</ul>
+
+</blockquote>
+
+<p>此外，有点遗憾的是当天晚上有好几个活要干，我没坚持到最后，六点多溜了，呵呵。</p>
+
+<p>Update：感谢张教授授权介绍讲座内容，并指出一些被我遗漏的花絮。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/life/2010/08/09/%e4%b8%8d%e5%a4%aa%e7%88%bd%e7%9a%84%e6%b5%b7%e8%be%b9%e4%b9%8b%e8%a1%8c.html">不太爽的海边之行</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/misc/2010/08/01/2010-08-02-%e5%87%86%e5%a4%87%e5%87%ba%e6%88%91%e7%9a%84diamond.html">准备出我的Diamond</a>
+                    </section>
+                    
+                </section>
+                <section id="disqus_thread"></section>
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/js/jquery-1.11.2.min.js"></script>
+        <script src="/js/highlight.pack.js"></script>
+        <script src="/js/jquery.unveil.js"></script>
+        <script src="/js/index.js"></script>
+        <script type="text/javascript">
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//gnawux.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+    </body>
+</html>

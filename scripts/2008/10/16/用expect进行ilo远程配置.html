@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="expect,iLO,scripts,ssh,">
+        <meta name="description" content="用expect进行iLO远程配置">
+        <link rel="stylesheet" href="/css/index.css">
+        <link rel="stylesheet" href="/css/github.css">
+        <title>用expect进行iLO远程配置</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+
+            <article class="main article">
+                <h1 class="title">用expect进行iLO远程配置</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1224162240">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/expect/index.html">expect</a><a class="tag" href="/tag/iLO/index.html">iLO</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/ssh/index.html">ssh</a></span>
+                </section>
+                <article class="content"><p>这里是脚本，用途是用 SSH 访问一组指定 ip 的 ilo，执行指定的一组命令，这个例子里是重新设置 IP</p>
+
+<p>#!/usr/bin/expect   <br />set hostfile&#160;&#160;&#160;&#160; [open [lindex $argv 0] ]    <br />set cmdfile&#160;&#160;&#160;&#160; [open [lindex $argv 1] ]    <br />set prompt&#160;&#160;&#160;&#160; &quot;.*iLO-&gt;\ &quot;    <br />set passprompt&#160;&#160;&#160;&#160; &quot;.*password:\ &quot;    <br />set rejprompt&#160;&#160;&#160;&#160; &quot;.*refused&quot;    <br />set password&#160;&#160;&#160; &quot;mypasswd\r&quot;    <br />set timeout&#160;&#160;&#160; 20    <br />set origprefix 192.168.1.    <br />set newprefix 192.168.39.    <br />while {[gets $hostfile h] &gt;0} {    <br />&#160;&#160;&#160; seek $cmdfile 0    <br />&#160;&#160;&#160; spawn ssh $origprefix$h    <br />&#160;&#160;&#160; for {} {1} {} {    <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; expect {    <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &quot;$rejprompt&quot; { puts &quot;refused&quot;;break }    <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &quot;$passprompt&quot; { send &quot;$password&quot; }    <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &quot;$prompt&quot; {     <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; while { [gets $cmdfile c] &gt; 0 } {    <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; send &quot;$c\r&quot; ;     <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; }     <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; send &quot;set SubnetMask=255.255.248.0 IPv4Address=$newprefix$h\r&quot;    <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; expect $prompt    <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; break    <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; }    <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; timeout {puts &quot;timeout&quot;; break}    <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; }    <br />&#160;&#160;&#160; }    <br />}    <br />close $hostfile    <br />close $cmdfile</p>
+
+<p>这个脚本接受两个参数，ip尾号列表文件，如下：</p>
+
+<p>85   <br />86    <br />87    <br />88    <br />89    <br />90    <br />91</p>
+
+<p>和 iLO 命令列表文件：</p>
+
+<p>cd map1   <br />cd enetport1    <br />cd lanendpt1    <br />cd ipendpt1</p>
+
+<p>这个脚本有一点特别之处——最后一个操作是设置 IP 地址，设置生效之后 SSH 连接就会自动断开，因此没有 close。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/scripts/2008/10/22/%e6%8c%89%e8%b7%af%e5%be%84%e9%80%89%e6%8b%a9%e6%96%87%e4%bb%b6.html">按路径选择文件</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/scripts/2008/10/15/%e5%8f%af%e7%94%a8ip%e5%88%97%e8%a1%a8%e7%94%9f%e6%88%90.html">可用IP列表生成</a>
+                    </section>
+                    
+                </section>
+                <section id="disqus_thread"></section>
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/js/jquery-1.11.2.min.js"></script>
+        <script src="/js/highlight.pack.js"></script>
+        <script src="/js/jquery.unveil.js"></script>
+        <script src="/js/index.js"></script>
+        <script type="text/javascript">
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//gnawux.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+    </body>
+</html>

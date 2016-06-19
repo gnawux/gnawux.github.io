@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="graphic,kernel,kms,linux,phoronix,translation,">
+        <meta name="description" content="[译文] 技术预览：基于内核的显示模式设定">
+        <link rel="stylesheet" href="/css/index.css">
+        <link rel="stylesheet" href="/css/github.css">
+        <title>[译文] 技术预览：基于内核的显示模式设定</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+
+            <article class="main article">
+                <h1 class="title">[译文] 技术预览：基于内核的显示模式设定</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1208874180">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/graphic/index.html">graphic</a><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/kms/index.html">kms</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/phoronix/index.html">phoronix</a><a class="tag" href="/tag/translation/index.html">translation</a></span>
+                </section>
+                <article class="content"><p><b>原文链接：http://www.phoronix.com/scan.php?page=article&amp;item=kernel_modesetting     <br />原文发表时间：2008年4月19日      <br />原作者：</b><b>Michael Larabel</b>    <br /><b>翻译时间：2008年4月22日     <br />译者：王旭 gnawux(at)gmail.com      <br /></b></p>
+
+<p><i>译者按：2008年9月19日，证实了一下，由于 TTM 到 GEM 的变化，kernel modesetting 没有进入到 2.6.27 之中，并且，刚刚尝试了一下，发现这个还很不成熟，不知道什么时候才能真的实用起来，可能需要 X driver 和 kernel, drm 等同时步进到一个稳定状态才行，这样看来，可能要到明年了。</i></p>
+
+<p>X.Org 社区之中，不少新颖的技术都在萌芽之中——其中有Gallium3D （译注：新一代Linux 3D图形驱动框架）, TTM 显存管理器（译注：用于GPU的显存管理），MPX （允许 X 拥有多个鼠标指针和键盘焦点）。不过，这些特色之中那个已经向着列表顶端进发、并给最终用户带来可以看到的好处的正是基于内核的显示模式设置（mode- setting）。正如其名字所表述的，基于内核的模式设置将显卡的模式设置代码从用户控件的X服务器驱动挪到了Linux内核。这个话题对最终用户似乎没什么意义，不过，将模式设置代码移动到内核将展现一个更简洁更漂亮的启动过程，增强挂起和恢复的支持，并提供更可靠的虚拟终端切换（等等）。内核的模式设置还没有进入主线内核，它的API也还没有冻结，不过，下个月将要发布的 Fedora 9 就将成为首个带有这一支持的主流发布版。本文中，我们将近距离观察配合 Intel X.Org 驱动的内核的模式设置及其工作时的视频（译注：译文将略过视频，请见谅）。</p>
+
+<p><a href="http://www.phoronix.com/scan.php?page=news_item&amp;px=NjIzNw">Radeon 驱动的移植工作</a> 仍在进行中（驱动命名为 radeon_ms），不过 Fedora 9 将只包含带有这项支持的 Intel 开源 X.Org 驱动。内核的模式支持交互不是主线内核的内容，不过 Fedora 9 Intel 启动基于 intel-kernelmode 分支。intel-kernelmode 分支目前正在转向基于 intel-batchbuffer 分支。而 Intel-batchbuffer 也正是包含初始 <a href="http://www.phoronix.com/scan.php?page=news_item&amp;px=NjQxMQ">DRI2</a> 支持，TTM 现存管理，<a href="http://www.phoronix.com/scan.php?page=news_item&amp;px=NjM4OQ">Render</a> 改进，以及其他新鲜的改进的分支。在 Mesa/DRM 这边有一个 modesetting-101 分支。</p>
+
+<p>因为内核不再依赖于外部资源来恢复显卡了，挂起和恢复的支持将有很大提高。因为这个过程如今在内核之中了，它能自动并且更快速恢复显示模式。类似地，虚拟终端的切换也因此被提高了。内核模式设置还将提升 debug 表现，这将可以消除所谓的“硬挂（hard hang）”，并将使显示图形化的错误信息成为可能（想象一下在 Linux 中来一个蓝屏死机）。有了这项技术，启动时只需要设置一次显示模式，而无需在开始启动过程的时候（对于Fedora来说，就是RH图形化启动）启动或关闭，然后再在X Server启动、显示GDM时再次初始化设备。基于内核的模式设置是 Intel 的 Keith Packard 列出的<a href="http://www.phoronix.com/scan.php?page=news_item&amp;px=NjM1Nw">让人满意的 Linux 桌面的应有功能</a>的项目列表之一。</p>
+
+<p><img title="A Preview Of Kernel-Based Mode-Setting" src="/assets/image.php?id=kernel_modesetting&amp;image=intel_km_grub" /></p>
+
+<p>基于内核的模式设置组间被缺省包含在 Fedora 9 之中了，但 Intel 的内核模式设置并不会缺省启动。要打开这个设置，需要在启动时在 grub 内参数列表里添上 i915.modeset=1，或是修改 /boot/grub/grub.conf （译注：对其他发布版可能应该是 menu.lst，另外，怀疑这个参数可以通过 modprobe.d 和 initramfs 设置，未经试验，纯属译者猜测）。除非有一天内核的显示模式设置被缺省使用了，这行命令才能省掉，否则总需要这条命令来让系统使用内核态模式设置而不是用户空间的 X 驱动。</p>
+
+<p>Fedora 9 是惟一的一个今年春天发布的带有内核态模式设置功能的发布版。2.6.26 内核的 merge window 马上就要打开了，不过大家的一致看法是这一功能恐怕无法在 2.6.26 进入主线内核。这样，它进入主线内核的时间表将是这个秋天的 2.6.27，不过这恐怕对 <a href="http://www.phoronix.com/scan.php?page=news_item&amp;px=NjM0Mg">Ubuntu 8.10 &quot;Intrepid Ibex&quot;</a> 来说太迟了。Fedora 9 里面包含的只是个功能演示版。Red Hat 和 David Airlie 计划在 Fedora 10 中用内核态的模式设置来支持快速用户切换。</p>
+
+<p><img title="A Preview Of Kernel-Based Mode-Setting" src="/assets/image.php?id=kernel_modesetting&amp;image=intel_km_sys" /></p>
+
+<p>Intel-kernelmode 驱动支持 Intel 915 IGP 及更新的 Intel 显示芯片。为了这篇文章，我们在华擎<a href="http://www.phoronix.com/vr.php?view=10755">ConRoe1333-DVI/H</a> 主板上测试了刚刚发布的 Fedora 9 预览版，板载 Intel 945G 整合显卡，带有 VGA 和 DVI 接口。当连接到数字显示器并打开内核态模式设置时，启动过程是白了。RH图形化启动程序无法正确初始化显卡，到了启动GDM的时候，屏幕将闪动数次，但无法成功启动。而使用模拟显示器的时候，i915.modeset=1 可以顺利启动。不过，支持仍然不很完美。当使用内核态的模式设置驱动的时候，drmWaitVBlank 和 IRQ 仍有问题。</p>
+
+<p><img title="A Preview Of Kernel-Based Mode-Setting" src="/assets/image.php?id=kernel_modesetting&amp;image=intel_km_glxinfo" /></p>
+
+<p>下面几页（译注：两页，四段 youtube 视频，略了）是内核态模式设置的工作视频。</p>
+
+<p>基于内核的模式设置是 Linux 和 X.Org 将带给最终用户的显而易见的体验的巨大进步——干净而没有屏幕闪烁的启动过程、快速而稳定的虚拟终端切换、更好的挂起与恢复支持，而且很快将让“快速用户切换”更快。而这些仅仅是冰山一尖，更多的好处，比如图形化调试功能，也将会作为基于内核的显示模式设置功能的引入而显现出来。不过，现在还不是庆祝的时间。Redhat 和所有参与到为 Fedora 9 添加这一功能的出示支持的<a href="http://www.phoronix.com/scan.php?page=article&amp;item=kernel_modesetting&amp;num=4#"><u>开发者</u></a>都应得到赞赏，但仍然需要一段时间才能让更多图形驱动转移到内核态模式设置和并让其他发布版也支持这个功能。将模式设置代码转移到内核中并不是一个快速而直接的过程，但到今年年底，有希望达到一个比较好的状态。Intel 向 X.Org 提交的内容让他们成为了这个恐怖功能的第一个可以工作的驱动。由于内核态模式设置终将被采用并进入主线内核，我们将继续向大家展现更多亮点。</p>
+
+<p>如果你尝试了 Intel 内核态模式设置，别忘了来 <a href="http://www.phoronix.com/forums/">Phoronix 论坛</a> 分享你的成果。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/misc/2008/04/30/unleashed%e7%9a%84%e9%81%97%e6%86%be.html">Unleashed的遗憾</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/works/2008/04/19/linux,-%e7%94%a8%e6%88%b7%e7%a9%ba%e9%97%b4,-%e5%92%8c%e5%be%ae%e5%86%85%e6%a0%b8.html">Linux, 用户空间, 和微内核</a>
+                    </section>
+                    
+                </section>
+                <section id="disqus_thread"></section>
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/js/jquery-1.11.2.min.js"></script>
+        <script src="/js/highlight.pack.js"></script>
+        <script src="/js/jquery.unveil.js"></script>
+        <script src="/js/index.js"></script>
+        <script type="text/javascript">
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//gnawux.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+    </body>
+</html>

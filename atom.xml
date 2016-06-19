@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
+  <title>我有分寸</title>
+  <id>http://wangxu.me/</id>
+  <updated>2016-06-19T00:09:06-07:00</updated>
+  <subtitle>某创业公司的看门大爷</subtitle>
+  <link href="http://wangxu.me/"></link>
+  <author>
+    <name>我有分寸</name>
+  </author>
+  <entry>
+    <title>Hyper 0.5 Released</title>
+    <updated>2016-02-06T08:08:08+08:00</updated>
+    <id>tag:,2016-02-06:/wangxu.me/container/2016/02/06/hyper-0-5.html</id>
+    <content type="html">Hyper 0.5，送给春节假期，祝各位开发者们节日休息的好、运维们节日别接告警。在接下来的时间里 Hyper 和 Hypernetes 都不会停下来，请大家期待我们不久后的下一次产品发布。</content>
+    <link href="http:/wangxu.me/container/2016/02/06/hyper-0-5.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
+  <entry>
+    <title>关于 Unikernel，你注意到或没注意到的一些东西</title>
+    <updated>2016-01-23T08:08:08+08:00</updated>
+    <id>tag:,2016-01-23:/wangxu.me/container/2016/01/23/unikernel-critics.html</id>
+    <content type="html">Docker 收购了 Unikernel System，引起讨论纷纷</content>
+    <link href="http:/wangxu.me/container/2016/01/23/unikernel-critics.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
+  <entry>
+    <title>DIY PM 2.5 监测仪 (1): 采集和显示</title>
+    <updated>2015-12-27T08:08:08+08:00</updated>
+    <id>tag:,2015-12-27:/wangxu.me/life/2015/12/27/diy-pm25-monitor.html</id>
+    <content type="html">通过串口从测试模块采集数据，并显示在 LCD 上</content>
+    <link href="http:/wangxu.me/life/2015/12/27/diy-pm25-monitor.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
+  <entry>
+    <title>Kubernetes 中的 Service Account</title>
+    <updated>2015-11-03T08:08:08+08:00</updated>
+    <id>tag:,2015-11-03:/wangxu.me/cloud/2015/11/03/kubernetes-service-account.html</id>
+    <content type="html">Service Account 是 Kubernetes 用于集群内运行的程序，进行服务发现时调用 API 的帐号</content>
+    <link href="http:/wangxu.me/cloud/2015/11/03/kubernetes-service-account.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
+  <entry>
+    <title>Hypernetes与OpenStack东京峰会见闻</title>
+    <updated>2015-11-02T08:08:08+08:00</updated>
+    <id>tag:,2015-11-02:/wangxu.me/cloud/2015/11/02/summit.html</id>
+    <content type="html">10月最后一周，一年两度的 OpenStack Summit 移师东京，转瞬间朋友圈里开始有各种各样的文章出现，这里，我也忍不住想要聊两句我们 Hyper 和 Hypernetes。</content>
+    <link href="http:/wangxu.me/cloud/2015/11/02/summit.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
+  <entry>
+    <title>Blog 系统更新完毕</title>
+    <updated>2015-02-24T08:08:08+08:00</updated>
+    <id>tag:,2015-02-24:/wangxu.me/meta/2015/02/24/blog-update.html</id>
+    <content type="html"></content>
+    <link href="http:/wangxu.me/meta/2015/02/24/blog-update.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
+  <entry>
+    <title>一次说走就走的旅行</title>
+    <updated>2014-10-18T08:08:08+08:00</updated>
+    <id>tag:,2014-10-18:/wangxu.me/life/2014/10/18/travel-in-aug.html</id>
+    <content type="html">木兰围场、克什克腾、锡林郭勒自驾游</content>
+    <link href="http:/wangxu.me/life/2014/10/18/travel-in-aug.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
+  <entry>
+    <title>第一次对汽车进行DIY</title>
+    <updated>2014-10-18T08:08:08+08:00</updated>
+    <id>tag:,2014-10-18:/wangxu.me/life/2014/10/18/car-recorder.html</id>
+    <content type="html">保险盒取电给行车记录仪供电</content>
+    <link href="http:/wangxu.me/life/2014/10/18/car-recorder.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
+  <entry>
+    <title>搬家</title>
+    <updated>2014-07-29T01:25:56+08:00</updated>
+    <id>tag:,2014-07-29:/wangxu.me/life/2014/07/29/搬家.html</id>
+    <content type="html"></content>
+    <link href="http:/wangxu.me/life/2014/07/29/搬家.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
+  <entry>
+    <title>推荐两款值得买的 Android 应用</title>
+    <updated>2014-06-22T23:56:51+08:00</updated>
+    <id>tag:,2014-06-22:/wangxu.me/life/2014/06/22/推荐两款值得买的-android-应用.html</id>
+    <content type="html"></content>
+    <link href="http:/wangxu.me/life/2014/06/22/推荐两款值得买的-android-应用.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
+</feed>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="git,translation,vcs,">
+        <meta name="description" content="GIT简要教程：第二部分">
+        <link rel="stylesheet" href="/css/index.css">
+        <link rel="stylesheet" href="/css/github.css">
+        <title>GIT简要教程：第二部分</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+
+            <article class="main article">
+                <h1 class="title">GIT简要教程：第二部分</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1209653100">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/git/index.html">git</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/vcs/index.html">vcs</a></span>
+                </section>
+                <article class="content"><p>阅读本教程之前，你应该已经阅读过<a href="http://wangxu.me/blog/?p=156">《GIT简要教程》</a>（译注：本人曾经翻译过）了。</p>
+
+<p>本教程将介绍GIT架构中的两个基础概念——对象数据库和索引文件——并为读者提供阅读其他GIT文档所需的基础知识。</p>
+
+<h4>GIT对象数据库</h4>
+
+<p>让我们从一个新项目开始，并加入少量的变更历史：</p>
+
+<pre>$ mkdir test-project<br />$ cd test-project<br />$ git init<br />Initialized empty Git repository in .git/<br />$ echo 'hello world' &gt; file.txt<br />$ git add .<br />$ git commit -a -m &quot;initial commit&quot;<br />Created initial commit 54196cc2703dc165cbd373a65a4dcf22d50ae7f7<br /> create mode 100644 file.txt<br />$ echo 'hello world!' &gt;file.txt<br />$ git commit -a -m &quot;add emphasis&quot;<br />Created commit c4d59f390b9cfd4318117afde11d601c1085f241</pre>
+
+<p>git 响应 commit 时给出的 40 位 16 进制数是什么？</p>
+
+<p>在教程的第一部分里我们就看到，commit 都有类似的 40 位 16 进制的名字。 git的版本历史中，每个对象都被使用这样一个字，它是对象内容的 SHA1 哈希结果；对于变更和其他各种东西来说，这样的名字保证了 git 永远不会把同样的东西保存两次 (因为同样的内容会产生同样的 SHA1 结果)，并且，一个 git 对象的内容的永远都不会改变 (因为内容改变了名字也就肯定会跟着变了)。</p>
+
+<p>当然，如果你重复上面的例子的话，将会得到不一样的 SHA1 哈希结果，因为创建 commit 的时间和人都不一样。</p>
+
+<p>我们可以用 cat-file 命令来向 git 查询这个对象。不要用上面那 40 位数字，应该用你自己的 commit 名字来做这个操作。事实上，你可以用开头几位数字，而不一定要敲全整个 40 位：</p>
+
+<pre>$ git-cat-file -t 54196cc2<br />commit<br />$ git-cat-file commit 54196cc2<br />tree 92b8b694ffb1675e5975148e1121810081dbdffe<br />author J. Bruce Fields &lt;bfields@puzzle.fieldses.org&gt; 1143414668 -0500<br />committer J. Bruce Fields &lt;bfields@puzzle.fieldses.org&gt; 1143414668 -0500<br /><br />initial commit</pre>
+
+<p>一个 tree 可以对应一个或多个 blob 对象，每个都对应于一个文件。此外，一个 tree 还可以对应于多个 tree 对象，从而可以创建一个目录树。可以通过 ls-tree 命令来查看树中的内容 (注意，一个足够长的 tree 名字的开始部分就足矣了)：</p>
+
+<pre>$ git ls-tree 92b8b694<br />100644 blob 3b18e512dba79e4c8300dd08aeb37f8e728b8dad    file.txt</pre>
+
+<p>这样，我们看到这个 tree 里面有一个文件。文件对应的 SHA1 哈希值是该文件内容的索引：</p>
+
+<pre>$ git cat-file -t 3b18e512<br />blob</pre>
+
+<p>blob 对应着文件数据，我们可以用 cat-file 来看其中的内容：</p>
+
+<pre>$ git cat-file blob 3b18e512<br />hello world</pre>
+
+<p>注意，这是那个老文件的内容；即 initial tree 这个 commit 对象里所对应的 tree 是当时记录下来的目录的状态。</p>
+
+<p>所有的对象都在 git 目录之中，以其 SHA1 名称存放：</p>
+
+<pre>$ find .git/objects/<br />.git/objects/<br />.git/objects/pack<br />.git/objects/info<br />.git/objects/3b<br />.git/objects/3b/18e512dba79e4c8300dd08aeb37f8e728b8dad<br />.git/objects/92<br />.git/objects/92/b8b694ffb1675e5975148e1121810081dbdffe<br />.git/objects/54<br />.git/objects/54/196cc2703dc165cbd373a65a4dcf22d50ae7f7<br />.git/objects/a0<br />.git/objects/a0/423896973644771497bdc03eb99d5281615b51<br />.git/objects/d0<br />.git/objects/d0/492b368b66bdabf2ac1fd8c92b39d3db916e59<br />.git/objects/c4<br />.git/objects/c4/d59f390b9cfd4318117afde11d601c1085f241</pre>
+
+<p>并且，这些文件的内容只是压缩数据和用来标识它们的类型和长度的头部。可能的类型包括 blob, tree, commit 和 tag。</p>
+
+<p>最容易被找到的 commit 是 HEAD commit，可以通过 .git/HEAD 找到：</p>
+
+<pre>$ cat .git/HEAD<br />ref: refs/heads/master</pre>
+
+<p>可以看到，这个命令给出了我们的当前分支，并且给出了 .git 目录下的一个文件名，该文件中包含着指向对应的 commit 对象的 SHA1 名字，这样我们就可以通过 cat-file 命令来查看这个 commit：</p>
+
+<pre>$ cat .git/refs/heads/master<br />c4d59f390b9cfd4318117afde11d601c1085f241<br />$ git cat-file -t c4d59f39<br />commit<br />$ git cat-file commit c4d59f39<br />tree d0492b368b66bdabf2ac1fd8c92b39d3db916e59<br />parent 54196cc2703dc165cbd373a65a4dcf22d50ae7f7<br />author J. Bruce Fields &lt;bfields@puzzle.fieldses.org&gt; 1143418702 -0500<br />committer J. Bruce Fields &lt;bfields@puzzle.fieldses.org&gt; 1143418702 -0500<br /><br />add emphasis</pre>
+
+<p>这里的 tree 对象对应着新的 tree 的状态：</p>
+
+<pre>$ git ls-tree d0492b36<br />100644 blob a0423896973644771497bdc03eb99d5281615b51    file.txt<br />$ git cat-file blob a0423896<br />hello world!</pre>
+
+<p>而 parent 对象对应着上一个 commit：</p>
+
+<pre>$ git-cat-file commit 54196cc2<br />tree 92b8b694ffb1675e5975148e1121810081dbdffe<br />author J. Bruce Fields &lt;bfields@puzzle.fieldses.org&gt; 1143414668 -0500<br />committer J. Bruce Fields &lt;bfields@puzzle.fieldses.org&gt; 1143414668 -0500<br /><br />initial commit</pre>
+
+<p>这里，tree 对象就是我们开始时看过的那个，这个 commit 比较特殊，没有 parent。</p>
+
+<p>大部分的 commit 都有且仅有一个 parent，不过一个 commit 有几个 parent 的情况也不少见。当一个 commit 表示一次合并的时候，parent 将指向被合并的各个分支的头部。</p>
+
+<p>介绍了 blob, tree 和 commit，惟一还没有介绍的对象类型就是 tag 了，这个我们就不在这里介绍了，可以参考它的手册页 <a href="http://www.kernel.org/pub/software/scm/git/docs/git-tag.html">git-tag(1)</a></p>
+
+<p>现在，我们总结一下 git 的版本历史中如何使用对象数据库：</p>
+
+<ul>
+
+<li>
+
+<p>commit 对象会指向一个 tree 对象，即当时的目录树的镜像，还会指向 parent commit，以表征项目的版本历史。 </p>
+
+</li>
+
+<li>
+
+<p>tree 对象代表一个目录的一个状态，将目录名与包含文件内容的 blob 对象和包含子目录信息的 tree 对象联系在一起。 </p>
+
+</li>
+
+<li>
+
+<p>blob 对象包含文件内容，没有其他结构。 </p>
+
+</li>
+
+<li>
+
+<p>每个分支的头部的 commit 对象的引用位于 .git/ref/heads/ 目录。 </p>
+
+</li>
+
+<li>
+
+<p>当前分支的名字存储在 .git/HEAD 文件之中。 </p>
+
+</li>
+
+</ul>
+
+<p>顺便提一句，很多命令都用一个 tree 作为参数。不过上面已经看到，tree 可以有多种指代方式——tree 的 SHA1 名称、指向该 tree 的 commit 名称，当该 tree 恰好是某分支头部时，该分支的名称，等等——大部分这样的命令都接受这些名字作为参数。</p>
+
+<p>在命令格式描述中，tree-ish 有时被用于表示这样的参数。</p>
+
+<h4>索引文件</h4>
+
+<p>上文中用于提交 commit 的主要方法是 &quot;git commit -a&quot;，这条命令将所有我们的工作拷贝中改动过的文件做成一个 commit。不过，如果我们只想提交部分文件怎么办？部分文件中的部分改动呢？</p>
+
+<p>如果看看幕后 commit 是怎么产生的，那我们将可以得到生成 commit 的更灵活的方法。</p>
+
+<p>继续我们的测试项目，现在再次修改 file.txt：</p>
+
+<pre>$ echo &quot;hello world, again&quot; &gt;&gt;file.txt</pre>
+
+<p>不过这次，我们不立刻 commit，让我们多做一个中间步骤，并查看 diff，看看都发生了什么：</p>
+
+<pre>$ git diff<br />--- a/file.txt<br />+++ b/file.txt<br />@@ -1 +1,2 @@<br /> hello world!<br />+hello world, again<br />$ git add file.txt<br />$ git diff</pre>
+
+<p>最后一个 diff 是空的，不过还没有进行 commit 呢，head 还没有包含这行新的内容呢：</p>
+
+<pre>$ git-diff HEAD<br />diff --git a/file.txt b/file.txt<br />index a042389..513feba 100644<br />--- a/file.txt<br />+++ b/file.txt<br />@@ -1 +1,2 @@<br /> hello world!<br />+hello world, again</pre>
+
+<p>所以，git diff 实际是在和 head 之外的什么东西比较。实际上，这个被比较的东西是索引文件，它以二进制形式存储在 .git/index 之中，其内容可以用 ls-files 查看：</p>
+
+<pre>$ git ls-files --stage<br />100644 513feba2e53ebbd2532419ded848ba19de88ba00 0       file.txt<br />$ git cat-file -t 513feba2<br />blob<br />$ git cat-file blob 513feba2<br />hello world!<br />hello world, again</pre>
+
+<p>我们的 git add 的实际工作是存储一个新的 blob ，之后将其索引信息放到索引文件中。如果我们再次修改文件，将会在 git-diff 中看到这些变更：</p>
+
+<pre>$ echo 'again?' &gt;&gt;file.txt<br />$ git diff<br />index 513feba..ba3da7b 100644<br />--- a/file.txt<br />+++ b/file.txt<br />@@ -1,2 +1,3 @@<br /> hello world!<br /> hello world, again<br />+again?</pre>
+
+<p>使用正确的参数，git diff 也可以显示出上次 commit 以来的变更或是索引和最后一次 commit 之间的变更：</p>
+
+<pre>$ git diff HEAD<br />diff --git a/file.txt b/file.txt<br />index a042389..ba3da7b 100644<br />--- a/file.txt<br />+++ b/file.txt<br />@@ -1 +1,3 @@<br /> hello world!<br />+hello world, again<br />+again?<br />$ git diff --cached<br />diff --git a/file.txt b/file.txt<br />index a042389..513feba 100644<br />--- a/file.txt<br />+++ b/file.txt<br />@@ -1 +1,2 @@<br /> hello world!<br />+hello world, again</pre>
+
+<p>我们随时都可以使用 (没有 -a 参数的) git commit 创建一个新的 commit，只提交包含在索引文件中的变更，而不包含工作拷贝中的其他变更：</p>
+
+<pre>$ git commit -m &quot;repeat&quot;<br />$ git diff HEAD<br />diff --git a/file.txt b/file.txt<br />index 513feba..ba3da7b 100644<br />--- a/file.txt<br />+++ b/file.txt<br />@@ -1,2 +1,3 @@<br /> hello world!<br /> hello world, again<br />+again?</pre>
+
+<p>缺省地，git commit 使用索引文件创建 commit，而不是工作拷贝；-a 参数的提交是首先使用工作拷贝中的全部变更更新索引，然后提交 commit。</p>
+
+<p>最后，有必要看看 git add 对索引文件的效果：</p>
+
+<pre>$ echo &quot;goodbye, world&quot; &gt;closing.txt<br />$ git add closing.txt</pre>
+
+<p>The effect of the &quot;git add&quot; was to add one entry to the index file:</p>
+
+<pre>$ git ls-files --stage<br />100644 8b9743b20d4b15be3955fc8d5cd2b09cd2336138 0       closing.txt<br />100644 513feba2e53ebbd2532419ded848ba19de88ba00 0       file.txt</pre>
+
+<p>并且，由于能够通过 cat-file 查看，新的一项指向了当前的文件内容：</p>
+
+<pre>$ git cat-file blob 8b9743b2<br />goodbye, world</pre>
+
+<p>status 命令是一个很有用的快速查看状态的方法：</p>
+
+<pre>$ git status<br /># On branch master<br /># Changes to be committed:<br />#   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)<br />#<br />#       new file: closing.txt<br />#<br /># Changed but not updated:<br />#   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)<br />#<br />#       modified: file.txt<br />#</pre>
+
+<p>由于 closing.txt 已经被缓存在索引文件中了，所以被列为将要提交的改动。而 file.txt 已经改动了但没被包含在索引中，它被标记为改动了但没有更新的。这时使用 git commit 将创建一个 commit 来添加 closing.txt (使用它的新内容)，但不会修改 file.txt 。</p>
+
+<p>此外，请记住 git diff 可以显示 file.txt 的变化，但不会显示 closing.txt 的变更，因为当前的 closing.txt 和索引文件中的是完全一致的。</p>
+
+<p>除了作为新 commit 的中间环节，索引文件还在 check out 一个新分支的时候从对象数据库中取出，也用于合并操作时保存相关的分支。这里请参考相关手册页和<a href="http://www.kernel.org/pub/software/scm/git/docs/core-tutorial.html">核心教程</a></p>
+
+<h4>下面是？</h4>
+
+<p>现在，你已经了解了阅读 git 所有手册页所需的全部知识；一个不错的起点是学习<a href="http://www.kernel.org/pub/software/scm/git/docs/everyday.html">每日 git</a>中的命令。不知道的名词应该可以从<a href="http://www.kernel.org/pub/software/scm/git/docs/glossary.html">词汇表</a>中找到.</p>
+
+<p><a href="http://www.kernel.org/pub/software/scm/git/docs/user-manual.html">Git 手册</a>包含了 git 的更全面介绍。</p>
+
+<p><a href="http://www.kernel.org/pub/software/scm/git/docs/cvs-migration.html">CVS 迁移</a> 文档解释了如何将一个 CVS 仓库加入到 git 中，以及如何以 CVS 的方式使用 git。</p>
+
+<p>对于一些有趣的 git 例子，可以看看<a href="http://www.kernel.org/pub/software/scm/git/docs/howto-index.html">HOWTO</a>。</p>
+
+<p>对于开发者，<a href="http://www.kernel.org/pub/software/scm/git/docs/core-tutorial.html">核心教程</a> 深度介绍了 git 的底层机制，比如，创建一个新的 commit。</p>
+
+<p>原文最后更新时间: 20-May-2007 09:08:18 UTC<br />
+  <br />王旭 (gnawux&lt;at&gt;gmail.com) 2008年5月1日 翻译 </p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/translation/2008/05/02/[%e8%af%91%e6%96%87]-git-%e7%ae%80%e8%a6%81%e6%95%99%e7%a8%8b--%e9%80%82%e7%94%a8%e4%ba%8e-1.5.1-%e6%88%96%e6%9b%b4%e6%96%b0%e7%89%88%e6%9c%ac-.html">[译文] git 简要教程 (适用于 1.5.1 或更新版本)</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/misc/2008/04/30/unleashed%e7%9a%84%e9%81%97%e6%86%be.html">Unleashed的遗憾</a>
+                    </section>
+                    
+                </section>
+                <section id="disqus_thread"></section>
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/js/jquery-1.11.2.min.js"></script>
+        <script src="/js/highlight.pack.js"></script>
+        <script src="/js/jquery.unveil.js"></script>
+        <script src="/js/index.js"></script>
+        <script type="text/javascript">
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//gnawux.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+    </body>
+</html>

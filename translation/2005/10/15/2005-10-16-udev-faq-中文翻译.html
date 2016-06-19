@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="faq,translation,udev,">
+        <meta name="description" content="udev-FAQ 中文翻译">
+        <link rel="stylesheet" href="/css/index.css">
+        <link rel="stylesheet" href="/css/github.css">
+        <title>udev-FAQ 中文翻译</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    
+</ul>
+
+            <article class="main article">
+                <h1 class="title">udev-FAQ 中文翻译</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="2005-10-15 22:05:00 -0700 PDT">
+                        <span class="from"></span>
+                        <span class="date" data-time="0001-01-01 00:00:00 &#43;0000 UTC">(<span class="from"></span> 更新)</span>
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/faq/index.html">faq</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/udev/index.html">udev</a></span>
+                </section>
+                <article class="content"><p>原文出处 http://www.kernel.org/pub/linux/utils/kernel/hotplug/udev-FAQ   <br />中文翻译 王旭 <a href="http://gnawux.blogchina.com">http://gnawux.blogchina.com</a> (如今是 <a href="http://wangxu.me/blog/">http://wangxu.me/blog/</a> 了)</p>
+
+<p>本文档遵循 GPL 2 及以后版本发布，修改、发布请保持许可证不变    <br />问: udev是什么? 它的目的何在?    <br />答: 看看那篇 OLS 2003 上的有关 udev 的文章吧，可以在 docs 目录里找到，也能在这    <br />里找到:    <br />OLS 2003 上还有一个关于 udev 的幻灯片，可以在这里找到:    </p>
+
+<p>问: udev 和 devfs 是什么关系   <br />答: udev 完全在用户态 (userspace) 工作，利用设备加入或移除时内核所发送的    <br />hotplug 事件 (event) 来工作。关于设备的详细信息是由内核输出 (export) 到位    <br />于 /sys 的 sysfs 文件系统的。所有的设备命名策略、权限控制和事件处理都是在    <br />用户态下完成的。与此相反，devfs 是作为内核的一部分工作的。    </p>
+
+<p>问: 如果 udev 不能完成所有 devfs 的工作的话，为什么把 devfs 标记为   <br />OBSOLETE/removed?    <br />答: 引用 Al Viro (Linux VFS 内核维护者):    <br />- devfs 所做的工作被确信可以在用户态来完成。    <br />- devfs 被加入内核之时，大家寄望它的质量可以迎头赶上。    <br />- devfs 被发现了一些可修复和无法修复的 bug。    <br />- 对于可修复的 bug，几个月前就已经被修复了，其维护者认为一切良好。    <br />- 对于后者，同样是相当常一段时间以来没有改观了。    <br />- devfs 的维护者和作者对它感到失望并且已经停止了对代码的维护工作。    </p>
+
+<p>问: 但是当一个并不存在的 /dev 节点被打开的时候，udev 并不能如 devfs 一样自动加   <br />载驱动程序。    <br />答: 的确如此，但 Linux 的设计是在设备被发现的时候加载模块，而不是当它被访问的时    <br />候。    </p>
+
+<p>问: 不过等等，我确实希望 udev 可以在不存在的节点被打开的时候自动加载驱动。这是   <br />我使用 devfs 的唯一原因了。给 udev 增加这个功能吧。    <br />答: 不，udev 是用来管理 /dev 的，不是用来加载内核驱动的。    </p>
+
+<p>问: 嗨，求你们了。这不难做到的。   <br />答: 这么个功能对于一个配置正确的计算机是多余的。系统中所有的设备都应该产生    <br />hotplug 事件、加载恰当的驱动，而 udev 将会注意到这点并且为它创建对应的    <br />设备节点。如果你不想让所有的设备驱动停留在内存之中，应该使用其它东西来    <br />管理你的模块 (如脚本, modules.conf, 等等) 这不是 udev 的工作。    </p>
+
+<p>问: 但是我真的喜欢那个功能，还是加上吧   <br />答: devfs 用的方法导致了大量无用的 modprobe 尝试，以此程序探测设备是否存在。    <br />每个试探性探测都新建一个运行 modprobe 的进程，而几乎所有这些都是无用的。    </p>
+
+<p>问: 我喜欢 devfs 的设备文件命名方式，udev 可以这样命名么?   <br />答: 可以，udev 可以使用 /dev 的命名策略来创建节点。通过一个配置文件，可以把内    <br />核缺省的名字映射到 devfs 的名字。可以看看 udev 中带的 udev.rules.devfs 文    <br />件。    <br />注意: devfs 的命名方式是不被建议并且不被官方支持的，因为它所用的简单枚举设    <br />备的方式在设备可能被随时加入或删除的情况下确实是一个比较笨的方法。这些编号    <br />带给你的将只有麻烦，而并不能用来确定设备。看看那个永久性磁盘 (persistent    <br />disk) 的规则就知道如何在用户态下正确的做这件事，而不是傻傻地列出设备。    </p>
+
+<p>问: udev 可以为哪些设备创建节点?   <br />答: 所有在 sysfs 中显示的设备都可以由 udev 来创建节点。如果内核中增加了其它设    <br />备的支持，udev 也就自动地可以为它们工作了。现在所有的块设备都在被支持之列，    <br />大部分的主字符设备也是被支持的。内核开发者们正致力于让所有的字符设备都被支    <br />持。可以到 linux-kernel 邮件列表上寻找补丁或是查看补丁的状态。    </p>
+
+<p>问: udev 是否会去掉匿名设备数量的限制?   <br />答: udev 完全工作于用户态。如果内核支持了更多的匿名设备，udev 就会支持。    </p>
+
+<p>问: udev 是否会支持符号链接?   <br />答: udev 现在就支持符号链接，每个设备节点拥有多个符号链接也是被支持的。    </p>
+
+<p>问: udev 如何处理 /dev 文件系统?   <br />答: 建议使用一个每次启动系统的时候重新创建的 tmpfs 作为 /dev 的文件系统。不过    <br />实际上 udev 并不关心那种文件系统在被使用。    </p>
+
+<p>问: 在 init 运行之前，udev 如何处理设备?   <br />答: udev 可以被放入 initramfs 之中，并在每个设备被发现的时候运行。也可以让    <br />udev 工作在一个真的根分区被加载之后根据 /sys 的内容创建的初始 /dev 目录    <br />之中。    </p>
+
+<p>问: 我是否可以利用 udev 在一个 USB 设备被加载的时候自动加载上这个设备?   <br />答: 技术上讲是可以的，但是 udev 不是用于这个工作的。所有的主流发布版 (distro)    <br />都包含了 HAL (http://freedesktop.org/wiki/Software_2fhal) 用于这个工作，它    <br />也是专门用于监视设备变更的，并且集成进入了桌面软件。    <br />换个角度说，这可以简单的通过 fstab 来实现:    <br />/dev/disk/by-label/PENDRIVE /media/PENDRIVE vfat user,noauto 0 0    <br />这样，用户可以用如下命令来访问设备:    <br />$mount /media/PENDRIVE    <br />同样不需要管理员权限，但却拥有了设备的全部访问权限。使用永久性磁盘链接    <br />(label, uuid) 将可以指定同一设备，无论其实际上的内核名字是什么。    </p>
+
+<p>问: 有什么我需要注意的安全问题么?   <br />答: 当使用动态设备编号的时候，一个给定的主/从设备号可能在不同时间对应不同的设    <br />备，如果一个用户拥有对这个节点的访问权限，并且可以创建一个到这个节点的硬链    <br />接，他就可以如此得到一个这个设备节点的拷贝。当设备被移除之后，udev 删除了    <br />设备节点，但硬链接依然存在。如果这个设备节点之后被重新使用不同的访问权限被    <br />创建的时候，其硬链接仍然可以使用先前的访问权限来访问。    <br />(同样的问题也存在在使用 PAM 改变访问权限的 login 上。)    <br />简单的解决方案就是通过把 /dev 放在 tmpfs 这样的单独的文件系统之上来防止建    <br />立硬链接。    </p>
+
+<p>问: 我有其他的关于 udev 的问题，我应该问谁?   <br />答: linux-hotplug-devel 正是问这些的地方。邮件列表的地址是    <br />linux-hotplug-devel@lists.sourceforge.net    <br />加入邮件列表的相关信息可以在如下地址找到    <br />邮件列表的上的既往讨论记录可以在下面地址找到</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/misc/2005/11/13/2005-11-14-%e5%8d%8a%e6%97%a5%e6%83%8a%e9%ad%82---linux-%e7%b3%bb%e7%bb%9f-debug-%e5%b0%8f%e8%ae%b0.html">半日惊魂</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/works/2005/10/14/debian%e4%b8%8b%e7%9a%84grub%e5%90%af%e5%8a%a8%e9%80%89%e9%a1%b9%e7%ae%a1%e7%90%86.html">debian下的grub启动选项管理</a>
+                    </section>
+                    
+                </section>
+                <section id="disqus_thread"></section>
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/js/jquery-1.11.2.min.js"></script>
+        <script src="/js/highlight.pack.js"></script>
+        <script src="/js/jquery.unveil.js"></script>
+        <script src="/js/index.js"></script>
+        <script type="text/javascript">
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//gnawux.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+    </body>
+</html>

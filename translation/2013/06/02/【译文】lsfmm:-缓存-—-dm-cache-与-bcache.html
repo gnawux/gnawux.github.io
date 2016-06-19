@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="block,lsfmm,lwn,bcache,dm,dm-cache,linux,storage,translation,">
+        <meta name="description" content="【译文】LSFMM: 缓存 — dm-cache 与 bcache">
+        <link rel="stylesheet" href="/css/index.css">
+        <link rel="stylesheet" href="/css/github.css">
+        <title>【译文】LSFMM: 缓存 — dm-cache 与 bcache</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+
+            <article class="main article">
+                <h1 class="title">【译文】LSFMM: 缓存 — dm-cache 与 bcache</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1370185413">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/block/index.html">block</a><a class="tag" href="/tag/lsfmm/index.html">lsfmm</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/bcache/index.html">bcache</a><a class="tag" href="/tag/dm/index.html">dm</a><a class="tag" href="/tag/dm-cache/index.html">dm-cache</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/storage/index.html">storage</a><a class="tag" href="/tag/translation/index.html">translation</a></span>
+                </section>
+                <article class="content"><p>原标题: LSFMM: Caching — dm-cache and bcache<br />
+原作者: Jake Edge<br />
+原文链接: https://lwn.net/Articles/548348/<br />
+原文发布时间: May 1, 2013<br />
+译者: 王旭 ( @gnawux )<br />
+译文时间: 2013年6月2日</p>
+
+<p>在 <a href="https://lwn.net/Articles/LSFMM2013/">LSFMM 2013 峰会</a>上，Mike Snitzer, Kent Overstreet, Alasdair Kergon, 和 Darrick Wong 共同主持了一个讨论，内容是关于两个彼此独立的块设备层缓存方案 —— dm-cache 和 bcache。 Snitzer 首先介绍了 3.9 kernel 引入的 <a href="https://lwn.net/Articles/540996/">dm-cache</a>。这个方案使用率内核中的 device mapper 框架，实现了快速设备对慢速的“原始”设备的 writeback 或 writethrough 缓存。</p>
+
+<p>Snitzer 介绍到，dm-cache 的原理是使用 device mapper 核心，并在上面增加一个策略层。这个策略层“非常类似”一个插件接口，可以实现不同的策略。这些策略（以及缓存的内容）决定了缓存是否可以命中，是否需要进行数据迁移（在原始设备与缓存设备之间进行某个方向的数据移动）。目前已经实现了包括最近最少用（LRU）、最常使用（MFU）等策略，但目前只有缺省的“mq”策略合并到内核中了，以便减少起初需要测试到的策略数量。</p>
+
+<p>文件系统可以为策略提供 hints，比如某些块脏了，或是某些块已经被放弃了。这些信息有助于策略更好地决定块要存储到的位置。</p>
+
+<p>之后，Overstreet 介绍了 <a href="https://lwn.net/Articles/497024/">bcache</a> 的状态更新，后者已经在排队进入 3.10 了。他介绍到，bcache 已经有“很多用户”了，而且代码已经比较稳定了。他最近主要是在进行 bug fix。与 dm-cache 实现的的分级存储不同，按照 Overstreet 的介绍，bcache 更像一个传统的缓存。它可以用来存储任何 extents，甚至是是一个扇区，而 dm-cache 只能对整块数据进行缓存。</p>
+
+<p>就在峰会开始前，Wong 给多个邮件列表（包括 dm-devel, linux-bcache, linux-kernel）发出过一封 <a href="https://www.redhat.com/archives/dm-devel/2013-April/msg00068.html">email</a> 来比较 bcache, dm-cache, 和 EnhanceIO。他分别编译了带有上述各个特性的内核，进行了一些测试。他发现，EnhanceIO 是最慢的，bcache 是它的 4-6 倍，而 dm-cache 更快，达到了 15 倍，不过 dm-cache 无法完成有些测试。所有比较都在一块普通硬盘上进行了相同的测试，有时，由于未知的原因，dm-cache 的表现或多或少的和硬盘完全一样。他指出，有些测试会导致 mkfs 创建的 inode table 倍缓存住，而通常这并不是一种有效的使用缓存的方法。</p>
+
+<p>Snitzer 表示，他曾试着去重现 Wong 的测试结果，但结果对 bcache 和 dm-cache 都得倒了更差的成绩。他说他希望和 Overstreet 一起去找出原因。而 Overstreet 则表示，不应该过多地看综合测试的成绩，这些测试是游泳的，但可能带有误导性。Ric Wheeler 提问，Snitzer 是否“在真实工作负载下看到了实质性的性能提升”，Snitzer提到，在不同的 Git 标签之间进行切换就是 dm-cache 可以完胜的一个例子，不过他需要一些帮助来获得更贴近实际使用的负载。</p>
+
+<p>一个参会者问道，这些方案是否假设缓存设备总是存在。Snitzer 说，dm-cache 确实如此假设，但这是需要改进的地方。Overstreet 说， bcache 并不要求 cache 设备一直都在。因为 bcache 已经在实际产品中使用了，所以它有机会去碰到这些疑难场景，并可以处理这些缓存设备无法工作的情形。</p>
+
+<p>Snitzer 表示，dm-cache 确实还有很多事情要做。起初，它是进行 cache 和原始设备的并行 IO，但最终不得不回到顺序 IO。而且，对于流水线中有 NVM 设备的情况下，存储层次也是如此。因为 dm “到处都是分层”，dm-cache 刚好适合进行存储分层，不过 Overstreet 指出，bcache 也可以做到分级存储。</p>
+
+<p>这个讨论最终没有一个明确的结论，只是提到需要让两个方案的“真实世界”性能读数变得更好。同时也指出了，不同的测试者进行的测试得到的结论差异是巨大的，这也是真实世界的情况的一个写照。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/life/2013/12/22/2013%e5%9b%9e%e6%9c%9b.html">2013回望</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/life/2013/06/01/%e5%85%b0%e5%8d%a1%e5%a8%81%e7%8e%af%e5%b2%9b%e8%87%aa%e9%a9%be%e6%b8%b8.html">兰卡威环岛自驾游</a>
+                    </section>
+                    
+                </section>
+                <section id="disqus_thread"></section>
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/js/jquery-1.11.2.min.js"></script>
+        <script src="/js/highlight.pack.js"></script>
+        <script src="/js/jquery.unveil.js"></script>
+        <script src="/js/index.js"></script>
+        <script type="text/javascript">
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//gnawux.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+    </body>
+</html>

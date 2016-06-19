@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="linuxfb,aio,linux,">
+        <meta name="description" content="2011年最后一次版聚小记">
+        <link rel="stylesheet" href="/css/index.css">
+        <link rel="stylesheet" href="/css/github.css">
+        <title>2011年最后一次版聚小记</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    
+</ul>
+
+            <article class="main article">
+                <h1 class="title">2011年最后一次版聚小记</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="2011-12-11 21:29:39 -0800 PST">
+                        <span class="from"></span>
+                        <span class="date" data-time="0001-01-01 00:00:00 &#43;0000 UTC">(<span class="from"></span> 更新)</span>
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/linuxfb/index.html">linuxfb</a><a class="tag" href="/tag/aio/index.html">aio</a><a class="tag" href="/tag/linux/index.html">linux</a></span>
+                </section>
+                <article class="content"><p>感谢彭涛（bergwolf）、李凯（郁白）、朱延海和 Coly 的到场，这次版聚虽然只有一个主话题，但是由于有这么多到场者的深度参与，变得很有趣、很有收获。特别感谢 bergwolf 熬夜准备片子，还有李凯为每个环节配上小故事。</p>
+
+<blockquote><p>按：之前由于各种苦逼原因，版聚一度中断两个月之久，在此危急存亡的时刻，hzmangel 同学挺身而出组织了这次盛会，我很荣幸地帮助预定了盛大创新院（北京）的会议室，bergwolf 贡献了 aio 的 topic，至此本年度12月版聚得以正常举行。</p></blockquote>
+
+<h2>到场同学</h2>
+
+<p>具体到场同学就不一一点名了，大家可以看邮件列表，值得一提的是，这些同学有千丝万缕的联系：</p>
+
+<ul>
+
+<li>有四个人是互为同学来的</li>
+
+<li>有两个人是同一个组的</li>
+
+<li>有两个人是同事</li>
+
+<li>有一个人和上面同一个组的人不是同一个组的，和上面两个同事的五个同事或前同事是前同事</li>
+
+<li>有一个人和上面四个同学中的一个是同学</li>
+
+</ul>
+
+<p>同学们，你们明白了么？</p>
+
+<h2>序曲：async/sync vs. blocking/non-blocking</h2>
+
+<p>这个话题被认为上次在 SNDA 会议室已经搞清楚了，可实际情况是——</p>
+
+<blockquote><p>当 Coly 出现后，问题再次变得混乱起来，</p></blockquote>
+
+<p>好吧，我们承认，这两对概念的两两组合足以让人抓狂，结论是：大家要记好了，名字叫 non-blocking 的就是 non-blocking，名字叫 async 的就是 async，嗯。</p>
+
+<p>这个争论的价值是：</p>
+
+<ul>
+
+<li>Coly: 对于用户程序，不论是否有 NON_BLOCKING 标志，都必须检查 read 的返回值是否达到了请求值，也就是说，即使 read 返回了 &gt;0 的值，也可能会小于请求值，如果没有，需要循环请求，直到全部读完。</li>
+
+<li>Bergwolf: 对于文件系统的实现者，对于 buffered IO，在没有信号中断的情况下，read 请求如果不失败，返回值不应该小于请求值。如果小于请求，应该视为一个 Bug。</li>
+
+</ul>
+
+<p>感谢 coly 和 bergwolf 从不同角度对这个问题的阐述。</p>
+
+<h2>插曲：郁白的DIO故事</h2>
+
+<p>事实上，本次版聚是由李凯同学来主持的，每一段他都有一个小故事。对于这里，郁白同学介绍——</p>
+
+<p>他曾经使用 DIO 模拟 append，这时，如果超出 512B 的块大小，需要补齐再 truncate 回来，有时会发生 EIO，求解答</p>
+
+<p>经过 coly、bergwolf、朱延海等同学的合议，认为这个问题有可能是 journal 的 bug，因为郁白同学仗着自己使用了很好的 raid 卡，对 journal 区域进行了疯狂的操作，在一次 append 中，最差情况可能有 5 次 io，而且由于他经常 sync，还丧失了合并日志操作的机会，在这种极端情况下，可能会触发 journal 的某个深藏的 bug。</p>
+
+<h2>正文上半场：POSIX AIO</h2>
+
+<p>简单地说，POSIX AIO （ aio(7) ）是由 glibc 使用 pthread 在用户空间实现的，由于实现的比较粗糙，没有线程池等机制，这一实现的性能比较低劣——说到这里，有几位同学灰心地苦笑了一下。</p>
+
+<p>本日出镜最高的郁白同学介绍——Linux 中的 POSIX AIO 实现没有线程池，而且有可能有锁冲突，还可能有其他bug，所以导致性能低下，大约为 pread/pwrite 的 1/3；如果自己妥善地实现一个用户空间 AIO 的话，性能和同步 IO 的性能应该是基本一致的，当然，上下文切换可能是不可避免的。</p>
+
+<p>朱延海这里有一个想法，是否可以用非阻塞读写和 select/epoll 来做一个更好的 AIO，殷宇辉同学表示 libeio 可能已经这么做了。</p>
+
+<h2>正文下半场：Native AIO</h2>
+
+<p>kernel 态的 Native AIO 性能上没有什么问题，但是，它有一些限制——</p>
+
+<ul>
+
+<li>只支持 AIO-DIO</li>
+
+<li>不支持 fsync/fdatasync</li>
+
+<li>不支持 socket/pipe</li>
+
+</ul>
+
+<p>并且，bergwolf 表示，据他前一晚上写片子时看代码，ext4 的 aio 似乎没有用上，coly 和朱延海对此不太相信，大家表示后面会再继续研究一下。</p>
+
+<p>郁白同学此时又有提问：有时 get events 的时候 get 不到，这时内存中用于 io 的 buffer 是否可以安全释放？经过一段讨论，结论大致是这样的：</p>
+
+<ul>
+
+<li>首先，IO 用的 page 是 lock 住的，实际不会被释放掉；</li>
+
+<li>其次，libc 中，free 并不一定会还给内核，而可能会重复给其他进程用；</li>
+
+<li>这时，如果内存我们还给 libc，libc 又分给其他 malloc 用，在 IO 完成时可能回冲掉这块内存，从而造成了后一个 malloc 不安全</li>
+
+</ul>
+
+<p>所以，这时的内存释放和管理需要谨慎。</p>
+
+<h2>总结 by 郁白</h2>
+
+<p>作为每个环节都有话说的李凯同学，这时给了一个总结：</p>
+
+<blockquote><p>他比较喜欢用户态的实现，如果有个靠谱的用户空间库，他不太喜欢使用 native 的实现。</p></blockquote>
+
+<p>版聚笔记到此为止，linuxfb 2012 见。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/life/2012/01/02/2012-01-03-%e5%9b%9e%e5%bf%862011.html">回忆2011</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/%e8%af%bb%e5%90%8e%e6%84%9f/2011/11/19/%e9%98%85%e8%af%bb%e7%ac%94%e8%ae%b0.html">阅读笔记</a>
+                    </section>
+                    
+                </section>
+                <section id="disqus_thread"></section>
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/js/jquery-1.11.2.min.js"></script>
+        <script src="/js/highlight.pack.js"></script>
+        <script src="/js/jquery.unveil.js"></script>
+        <script src="/js/index.js"></script>
+        <script type="text/javascript">
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//gnawux.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+    </body>
+</html>

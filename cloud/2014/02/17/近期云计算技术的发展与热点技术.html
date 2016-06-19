@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="docker,Orchestration,云计算,cloud,container,">
+        <meta name="description" content="近期云计算技术的发展与热点技术">
+        <link rel="stylesheet" href="/css/index.css">
+        <link rel="stylesheet" href="/css/github.css">
+        <title>近期云计算技术的发展与热点技术</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+
+            <article class="main article">
+                <h1 class="title">近期云计算技术的发展与热点技术</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1392649442">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/docker/index.html">docker</a><a class="tag" href="/tag/Orchestration/index.html">Orchestration</a><a class="tag" href="/tag/%e4%ba%91%e8%ae%a1%e7%ae%97/index.html">云计算</a><a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/container/index.html">container</a></span>
+                </section>
+                <article class="content"><h2>从IaaS到PaaS</h2>
+
+<p>我这里不是说PaaS要取代IaaS，而是说，IaaS和PaaS两点之间已经连成一条渐变的线了，两者不再是泾渭分明的了，中间遍布了很多介于两者之间的服务，这之间的很多创新点都在过去一段时间里逐步成熟了。</p>
+
+<p>IaaS与PaaS的差距在哪里，其中一个视角是他们所面向用户的不同——</p>
+
+<ul>
+
+<li>PaaS 所面向的用户是开发人员，他们设计架构、写代码、有时候做集成测试和 Code Review，然后就发布代码，让用户使用了，也就是说，PaaS把代码变成产品（网站、服务或是什么其他的东西）</li>
+
+<li>IaaS 所面向的用户则是运维人员，他们根据架构师或开发人员的要求构建基础设施，部署和配置软件系统和各种基础服务，部署和升级开发人员完成的代码，监控并处理故障，根据负载调整系统规模等</li>
+
+</ul>
+
+<p>当然，各位可能已经看到，这里IaaS上运维人员的很多职责实际已经有服务在帮助完成了，比如预先部署好的数据库服务、消息队列服务、负载均衡服务、MapReduce服务等，监控系统运行的各种监控服务以及一些自动扩展和自动故障恢复服务等。</p>
+
+<p>现在已经没有单纯占据资源层的“纯IaaS”服务了，构建在IaaS服务基础上的各种附加服务正在解放云上的运维人员，云服务的用户可以根据自己的能力、财力和具体需求，挑选一些服务，结合自己的工作量身打造适于自己的系统。</p>
+
+<p>这样，云服务的层次就变得更丰富一些了</p>
+
+<pre>
+----------------------------
+           PaaS
+----------------------------
+预部署服务 | 监控管理  |
+-------------------  &gt;IaaS+
+       资源服务      |
+----------------------------
+
+</pre>
+
+<p>并且，资源服务也不再只是传统的主机+对象存储+块存储+IP地址了，再过去一段时间，云服务的引领者亚马逊AWS一直在积极推进VPC（虚拟私有云），帮助用户可以通过子网结构化地组织系统，通过网关、路由、虚拟设备和各种其他规则，更安全、更有效地使用云上资源。这些日益丰富的资源让人们可以更方便地使用云服务，降低了云上运维的很多困难，不过也让很多选择和配置变得更加复杂了。</p>
+
+<h2>Orchestration</h2>
+
+<p>前面我提到，PaaS 帮助用户“把Code变成产品”，又说，IaaS用户相比之下还要做部署、升级、监控、事件处理这些事情，于是，一个自然地想法是，如果“部署...事件处理”这些事情可以变成Code，那么，用户所使用的到底是PaaS 还是 IaaS 呢？</p>
+
+<p><em>Infrastructure as Code</em> 是 DevOps 粉丝们特别喜欢的一个概念，代码化的描述，让整个系统的部署更加严谨可控，并且可以通过版本管理来追踪发现问题、调整部署。</p>
+
+<p>在云上，由于亚马逊等主流云服务商丰富的API支持，甚至是监控、系统级的事件处理（比如硬件故障导致宕机）这些传统的运维工作也可以通过代码进行自动化的处理，这就演化出了近两年走红的 <em>Orchestration</em> 的概念.</p>
+
+<pre>
+----------------------------
+           PaaS
+----------------------------
+      Orchestration
+----------------------------
+预部署服务 | 监控管理 |
+-------------------  
+          资源服务      
+----------------------------
+
+</pre>
+
+<p>这实际是通过一些代码，把 IaaS 用得像 PaaS 服务一样。当然，这些代码不是非常容易写的，于是就有了很多帮助用户在 IaaS 的灵活和 PaaS 的易用之间进行折衷，我所在的 MadeiraCloud 也是在这一领域进行工作，通过图形化的交互界面，把复杂的集群部署和管理工作变得直观而高效。</p>
+
+<p>当然，Orchestration 是帮用户简化不必要的劳动，通过各种附加资源和引导方法协助用户快速地进行系统设计和部署，避免因为繁琐而造成的出错，用户仍然需要相应的知识，理解他所做的选择，才能藉此灵活高效地使用云服务资源，Orchestration 并非要直接取代 PaaS。</p>
+
+<h2>Container &amp; Docker</h2>
+
+<p>从去年云计算大会之后，Docker 所代表的 Container 技术快速走红，以至于不论是否明白 Docker 意味着什么的人，都在茶余饭后大谈 Docker 和 CoreOS 云云。</p>
+
+<p>Container 技术实际历史非常悠久，而且不同的 Container 之间也有不少差别，作为 PaaS 服务商 dotCloud 开源的技术，Docker 所带来的影响，实际上更提现在运维方面，而不仅仅是在计算虚拟化的层面。</p>
+
+<p>传统的云上部署，运维人员面临两个抉择：部署快、可重用、很少出错的自定义 Image；灵活、可以经常升级、调整的 DevOps 工具。两者各自的优点就是对方的缺点，如今，docker 的 OS Image 分层装配机制会让系统的部署工作产生这样的变化</p>
+
+<pre>
+|     /\         DevOps Tools   |        /\      &lt;-- DevOps Tool
+|    /  \    &lt;-- e.g. chef,     |       /--\
+|   /    \       puppet, salt   |==&gt;   /    \    &lt;-- Docker Layers
+|  /------\                     |     /------\
+| /        \ &lt;-- OS Image       |    /        \  &lt;-- Base OS Image
+|/__________\                   |   /__________\
+
+</pre>
+
+<p>这是因为 docker 具有如下优点：</p>
+
+<ul>
+
+<li>分层装配，比 OS Image 更灵活</li>
+
+<li>每层更完备，recipe 会比传统 DevOps 工具短得多，更简单，更少犯错</li>
+
+<li>可以和集成测试结合起来</li>
+
+<li>增量分发，且装配速度比 DevOps 工具逐条执行快</li>
+
+<li>甚至可以撤回出错的变更，这一点 DevOps 工具的传统工作方式很难做到</li>
+
+</ul>
+
+<p>此外，分层的文件系统让不同的 container 之间可以共享更多的文件，这样，从硬盘空间到内存缓存都可以极大的降低每个 container 的开销，使得“一个应用一个Container”的目标更容易实现。</p>
+
+<h2>小结</h2>
+
+<p>以上是我作为一个在云计算领域淫浸了几年，对运维领域有偏爱的开发者，对于云计算的近期发展趋势的观察，仅供参考，不周或不对的地方还请谅解，不对判断和预测承担任何责任。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/life/2014/06/01/%e4%b8%ba%e4%bb%80%e4%b9%88%e8%af%b4%e8%88%aa%e7%a9%ba%e5%8d%9a%e7%89%a9%e9%a6%86%e4%b8%8d%e9%80%82%e5%90%88%e7%bb%99%e5%ad%a9%e5%ad%90%e5%81%9a%e7%a7%91%e6%99%ae.html">为什么说航空博物馆不适合给孩子做科普</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/life/2013/12/22/2013%e5%9b%9e%e6%9c%9b.html">2013回望</a>
+                    </section>
+                    
+                </section>
+                <section id="disqus_thread"></section>
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/js/jquery-1.11.2.min.js"></script>
+        <script src="/js/highlight.pack.js"></script>
+        <script src="/js/jquery.unveil.js"></script>
+        <script src="/js/index.js"></script>
+        <script type="text/javascript">
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//gnawux.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+    </body>
+</html>

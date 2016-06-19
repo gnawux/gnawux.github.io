@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="kernel,linux,works,">
+        <meta name="description" content="Linux, 用户空间, 和微内核">
+        <link rel="stylesheet" href="/css/index.css">
+        <link rel="stylesheet" href="/css/github.css">
+        <title>Linux, 用户空间, 和微内核</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+
+            <article class="main article">
+                <h1 class="title">Linux, 用户空间, 和微内核</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1208584380">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/works/index.html">works</a></span>
+                </section>
+                <article class="content"><p>正在修改我的unleashed，发现有些想法因为书的结构或书的定位，实在不方便放进去，于是就来这里聊聊。</p>
+
+<p>当年，AST攻击Linux的论据之一就是Linux不是微内核，架构落后，而Linus反诘的言论很简单——Linux比Minix更高效。</p>
+
+<p>不过从最近Linux内核的发展看，在有些方面倒确实是向着微内核的方向在演进了，这种不是非革命的方式的演化似乎确实在操作系统内核演进历史中比较少见。</p>
+
+<p>微内核或说Linux发展的思路之一是——尽量减少内核功能，尽量让一些模块改在用户空间实现——越少的功能，越少的犯错，至少错误不在内核里就好解决得多嘛。很著名的在用户空间实现的原来属于或基本属于内核的功能包括：</p>
+
+<ul>
+
+<li>udev ——用户空间的即插即用——同一功能的内核产品devfs虽然进入内核很久，却始终未能达到设计目标，最终又被清除出内核。 </li>
+
+<li>fuse——用户空间文件系统——内核中的文件系统支持已经够多了，而今，用户空间文件系统又带来了ntfs-3g, sshfs以及很多加密文件系统的支持，可以想见，将来会有大量新的文件系统支持被放到fuse框架之下。 </li>
+
+<li>uswsusp——用户空间的挂起系统——内核中的挂起到硬盘和挂起到内存已经实现很久了，而功能更丰富的swsusp2始终也没能撬开kernel的大门，最终，uswsusp倒是要把前浪推到沙滩上了，uswsusp可以更灵活地结合挂起到内存和挂起到硬盘、采取各种压缩方式……很显然，已经超过了他的内核空间的前辈们了。 </li>
+
+<li>usplash/splashy——用户空间的bootsplash——内核空间的bootsplash从来没有成功地进入过主线内核，虽然很多用户都希望拥有这个功能，现在，这个功能已经被在用户空间实现了。</li>
+
+</ul>
+
+<p>随着Linux需要支持的硬件、协议、文件系统、算法等越来越多，越来越多的东西可能将在用户空间被实现，单从一个业余观察者的角度看，硬件驱动和网络协议都有可能被部份地转移到用户空间去实现，如果看一下 fuse 的话我们就会发现，放在用户空间不一定意味着低效，却意味着内核的质量风险更低，照着这个趋势发展下去，很难说Linux在几年之后会不会成为一个“准微内核”。</p>
+
+<p>呵呵，我们等着这一天的到来吧。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/translation/2008/04/22/[%e8%af%91%e6%96%87]-%e6%8a%80%e6%9c%af%e9%a2%84%e8%a7%88%ef%bc%9a%e5%9f%ba%e4%ba%8e%e5%86%85%e6%a0%b8%e7%9a%84%e6%98%be%e7%a4%ba%e6%a8%a1%e5%bc%8f%e8%ae%be%e5%ae%9a.html">[译文] 技术预览：基于内核的显示模式设定</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/translation/2008/03/08/[%e8%af%91%e6%96%87]upstart:-ubuntu-%e7%9a%84%e5%9f%ba%e4%ba%8e%e4%ba%8b%e4%bb%b6%e7%9a%84%e5%90%af%e5%8a%a8%e8%bf%9b%e7%a8%8b.html">[译文]Upstart: Ubuntu 的基于事件的启动进程</a>
+                    </section>
+                    
+                </section>
+                <section id="disqus_thread"></section>
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/js/jquery-1.11.2.min.js"></script>
+        <script src="/js/highlight.pack.js"></script>
+        <script src="/js/jquery.unveil.js"></script>
+        <script src="/js/index.js"></script>
+        <script type="text/javascript">
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//gnawux.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+    </body>
+</html>
