@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="frakti,kubernetes,hyperContainer,opensource,container,k8s,hyper,">
+        <meta name="description" content="Kubernetes 新项目 Frakti">
+        <link rel="stylesheet" href="/bundle/index.css">
+        <title>Kubernetes 新项目 Frakti</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+</script>
+
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
+
+            <article class="main article">
+                <h1 class="title">Kubernetes 新项目 Frakti</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1467079688">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/frakti/index.html">frakti</a><a class="tag" href="/tag/kubernetes/index.html">kubernetes</a><a class="tag" href="/tag/hyperContainer/index.html">hyperContainer</a><a class="tag" href="/tag/opensource/index.html">opensource</a><a class="tag" href="/tag/container/index.html">container</a><a class="tag" href="/tag/k8s/index.html">k8s</a><a class="tag" href="/tag/hyper/index.html">hyper</a></span>
+                </section>
+                <article class="content"><p>简讯：昨晚，在 kubernetes 组织下，新建了一个 repo，名为 <a href="https://github.com/kubernetes/frakti">frakti [1]</a>，标志着 hyperContainer 以最 k8s 地方式融入 k8s 的开始。</p>
+
+<p>frakti 一名是我起的，如各位所知，<a href="https://en.wikipedia.org/wiki/Kubernetes#History">kubernetes 一名来自于舵手的希腊文 κυβερνήτης [2]</a> ，
+同样 frakti 也来自于<a href="https://el.wikipedia.org/wiki/%CE%A6%CF%81%CE%B1%CE%BA%CF%84%CE%AE_(%CE%BD%CE%B1%CF%85%CF%80%CE%B7%CE%B3%CE%AF%CE%B1">与船相关的希腊文——水密隔仓 Φρακτή [3]</a>)，
+这是一种通过隔离舱室，提高船的抗沉性的结构，据说最早由中国宋朝的朱彧引入（<a href="https://en.wikipedia.org/wiki/Bulkhead_(partition">参见wiki[4]</a>#History)），
+ 这样的名字，对于我们来自中国的 <a href="https://github.com/hyperhq/hyperd">hyperContainer [5]</a> 团队与 kubernetes
+ 的结合可能再合适不过了。</p>
+
+<ul>
+<li>[1] <a href="https://github.com/kubernetes/frakti">https://github.com/kubernetes/frakti</a></li>
+<li>[2] <a href="https://en.wikipedia.org/wiki/Kubernetes#History">https://en.wikipedia.org/wiki/Kubernetes#History</a></li>
+<li>[3] <a href="https://el.wikipedia.org/wiki/%CE%A6%CF%81%CE%B1%CE%BA%CF%84%CE%AE_(%CE%BD%CE%B1%CF%85%CF%80%CE%B7%CE%B3%CE%AF%CE%B1">https://el.wikipedia.org/wiki/%CE%A6%CF%81%CE%B1%CE%BA%CF%84%CE%AE_(%CE%BD%CE%B1%CF%85%CF%80%CE%B7%CE%B3%CE%AF%CE%B1</a>)</li>
+<li>[4] <a href="https://en.wikipedia.org/wiki/Bulkhead_(partition)#History">https://en.wikipedia.org/wiki/Bulkhead_(partition)#History</a></li>
+<li>[5] <a href="https://github.com/hyperhq/hyperd">https://github.com/hyperhq/hyperd</a></li>
+</ul>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    
+                    <section class="nav next">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/hyper/2016/06/17/runv-docker-integration/index.html">RunV: 让 Docker 支持虚拟化容器</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>
