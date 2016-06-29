@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="communication,smart antenna,zhihu,">
+        <meta name="description" content="[知乎回答] 智能天线技术是一个好技术吗，具不具备实用性？">
+        <link rel="stylesheet" href="/bundle/index.css">
+        <title>[知乎回答] 智能天线技术是一个好技术吗，具不具备实用性？</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+</script>
+
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
+
+            <article class="main article">
+                <h1 class="title">[知乎回答] 智能天线技术是一个好技术吗，具不具备实用性？</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1377734888">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/communication/index.html">communication</a><a class="tag" href="/tag/smart%20antenna/index.html">smart antenna</a><a class="tag" href="/tag/zhihu/index.html">zhihu</a></span>
+                </section>
+                <article class="content"><p>答案链接：<a href="https://www.zhihu.com/question/21563739/answer/18628713">https://www.zhihu.com/question/21563739/answer/18628713</a></p>
+
+<p>智能天线不算我国提出来的吧，只是在 TD-SCDMA 里使用了而已</p>
+
+<p>智能天线又叫自适应天线阵列（AAA），利用数字信号处理技术，将多根天线接收到的信号进行处理，从而形成定向性很强的所谓波束，区分不同位置的终端，降低其他位置的终端的干扰。这个技术实际上在军事/雷达技术中，很早就采用了，就是所谓的相控阵雷达，嗯，宙斯盾听说过吧，就是类似的技术。</p>
+
+<p>优点：波束定位的越精确，不同终端之间的干扰就越小，因为两个终端能在同一个位置的可能性大大降低了，从而提高了频谱利用率。同时，这个技术主要是在基站端计算，对终端的要求不是特别高，所以，不太消耗终端的计算能力。</p>
+
+<p>缺点：</p>
+
+<ul>
+<li>基站天线体积大，TD的是8根天线，不论是定向的面板，还是无向的圆桶，体积都很大，安装天线的工程复杂度和审批要求都高，还容易引起周围居民的恐慌，基站到天线的馈管也因此也一根变8根，安装复杂度和成本都变高了，在移动的努力投入下，这些都有了不少改进，但还是不可能从根本上解决</li>
+<li>过于依赖信号处理技术，不但提高了计算量需求，而且因为发送接收都要根据移动台发射的信号进行精确地信道估计，遇到高速移动等无法有效估算信道的情况，通信质量必然大幅度下降。</li>
+</ul>
+
+<p>为什么TD要采用智能天线，或者为什么只有TD采用智能天线。这是由TD的特点决定的：</p>
+
+<ul>
+<li>TD的带宽低，是非对称1.6MHz，WCDMA 是对称5MHz，上下行一共10MHz，两者是6倍的关系，所以要达到3G要求的速率，TD必须有更高的频谱利用率，智能天线就是为了提高频谱利用率而采用的。</li>
+<li>TD 的上下行在一个频率上，接收到的上行信号可以用来估算下行信道，进行联合接收、联合发送，而 WCDMA 有 190MHz 的上下行双工间隔，无法利用上行估算下行信道，智能天线的作用会大打折扣，所以也就没什么采用的必要了</li>
+</ul>
+
+<p>很久不干这个了，嗯，不一定全，凑合看吧</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/zhihu/2013/11/16/debian/index.html">[知乎回答] 为什么 Debian 在国内的人气远不如国外？</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/zhihu/2013/08/28/cell/index.html">[知乎回答] 手机是如何从与基站的信号交换中识别自身是否正在被呼叫的？</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>

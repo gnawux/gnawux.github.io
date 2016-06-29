@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="debian,linux,community,opensource,zhihu,">
+        <meta name="description" content="[知乎回答] 为什么 Debian 在国内的人气远不如国外？">
+        <link rel="stylesheet" href="/bundle/index.css">
+        <title>[知乎回答] 为什么 Debian 在国内的人气远不如国外？</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+</script>
+
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
+
+            <article class="main article">
+                <h1 class="title">[知乎回答] 为什么 Debian 在国内的人气远不如国外？</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1384560488">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/debian/index.html">debian</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/community/index.html">community</a><a class="tag" href="/tag/opensource/index.html">opensource</a><a class="tag" href="/tag/zhihu/index.html">zhihu</a></span>
+                </section>
+                <article class="content"><p>答案链接：<a href="https://www.zhihu.com/question/20431197/answer/20123514">https://www.zhihu.com/question/20431197/answer/20123514</a></p>
+
+<p>咦？这问题又被挖出来了，作为写过一本（自己喜欢但不太成功的） Debian 的书的人，说两句自己的看法吧，前面答案太多太长，都没怎么仔细看，有什么重复的地方请谅解</p>
+
+<p>话说虽说 Debian 在国内人气不旺，在国外就很旺么？其实自从 Ubuntu 发布之后， Debian 的社区活跃度就受到了直接的影响，不论国内国外都是如此；但另一方面，Ubuntu 的存在，对 Debian 并非是纯粹的坏事，反而可能是好事。</p>
+
+<p>Debian 起源于93年，1000名左右的志愿者，基于纲领性文件的严密约束，有效管理着世界最大的开源软件包仓库，这本身很伟大，但也很艰难，因为本身是非盈利组织，DD们不收报酬的工作在相当程度上决定了他们无法全身心投入到 Debian 社区的工作中去，而 Ubuntu 的一个意义是付费资助了一部分的 DD，使他们可以专职地投入到社区工作中去，很多 Ubuntu 包的维护者同时也是 Debian 的包维护者。这本身对于 Debian 社区的继续发展是有好处的，同时，中立的 Debian 和商业的 Ubuntu 的衍生关系和兼容性，也让用户们可以更平滑过渡、更轻易迁移。</p>
+
+<p>从 Debian 与 Ubuntu 的关系看，我觉得一个社区版本和一个商业版本彼此配合，社区版支持更广泛，运作良好，商业公司发布版有商业支持，有些不同的附加值这样很不错，一个好的 distro 不一定每个人都用，apt 的发扬光大在一定程度上就是 debian 社区的成功。</p>
+
+<p>对于 Debian 社区自己的面临的问题，除了经济层面的，最重要的就是其发布机制了，Debian 的发布机制有这么几个特点</p>
+
+<ul>
+<li>基于 feature 和 bug 数量发布版本，而不像 Ubuntu, Fedora 这样严格的依据时间的发布方式；软件包的版本进入 sid，一段时间没有严重 bug 就进入 testing，进入发布阶段，当整个 testing 足够稳定，严重 bug 数量降低到可以接受的时候就整体发布为 stable。这个过程常常持续一两年，对于不明真像的 stable 用户，或者担心 unstable 不稳定的生产环境用户，自然觉得软件包不够新了</li>
+<li>Debian 的多架构支持，Debian 很久就支持包括 arm、mips 在内的超过十种众多架构，甚至支持 Linux 之外的 hurd 和 kFreeBSD 内核。几乎所有软件包都要在所有架构上更新发布，这对于测试的要求很严苛，一定程度上影响了新软件包进入 Debian，当然，反过来说，这么多架构的支持也帮助 Debian 可以在各种嵌入式系统中得到广泛应用</li>
+<li>Debian 对软件许可证要求很高，要求严格遵循 DFSG (Debian free software guide)，影响了很多有奇怪许可证的软件在 Debian 下的打包</li>
+</ul>
+
+<p>嗯，总体说，作为历史最悠久的主要 distro 之一，作为历史最悠久的 Linux distro 社区，Debian 的延续性还是很不错，我个人不认为这有严重问题，没必要要求大家都用 debian，各有各的好处</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/zhihu/2013/11/29/cc-mm-cn/index.html">[知乎回答] 通讯公司(运营商)无法确切的区分某个手机号的通话状态么？关机，没信号，正在通话中或者正在呼叫其他用户？</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/zhihu/2013/08/29/smart-antenna/index.html">[知乎回答] 智能天线技术是一个好技术吗，具不具备实用性？</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>

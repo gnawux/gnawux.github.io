@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="china mobile,career,zhihu,">
+        <meta name="description" content="[知乎回答] 你为什么从中国移动离职？">
+        <link rel="stylesheet" href="/bundle/index.css">
+        <title>[知乎回答] 你为什么从中国移动离职？</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+</script>
+
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
+
+            <article class="main article">
+                <h1 class="title">[知乎回答] 你为什么从中国移动离职？</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1395101288">
+                        <span class="from"></span>
+                        <span class="date" data-time="1427155688">(<span class="from"></span> 更新)</span>
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/china%20mobile/index.html">china mobile</a><a class="tag" href="/tag/career/index.html">career</a><a class="tag" href="/tag/zhihu/index.html">zhihu</a></span>
+                </section>
+                <article class="content"><p>答案链接：<a href="https://www.zhihu.com/question/22032880/answer/20211878">https://www.zhihu.com/question/22032880/answer/20211878</a></p>
+
+<p>更新注释在最下面了</p>
+
+<p>&mdash;&mdash;&mdash;&gt;8&mdash;&mdash;&ndash; 以下是原文的分割线 &mdash;&mdash;&mdash;-&gt;8&mdash;&mdash;&mdash;-</p>
+
+<p>搜了一下，终于看到这个问题了，我来回答一下，不匿名了，这么久了，我不在乎了哈，小暴点离职过程的内幕，呵呵</p>
+
+<p>我07年毕业到移动研究院工作，业务支撑所，开始在业务支撑相关的组，后来去了云计算的组做 Hadoop HDFS 和 EBS，内部项目不说，从外面看，给 Hadoop 上游改过 bug （嗯，实际就是交换了两行的位置，去掉了一个丢数据风险而已，没啥大不了的），提过 patch，11年离职之前是研究院云计算相关开源和标准化工作的协调人，看起来还算不错吧。</p>
+
+<p>可是这四年间，08年定级之后，就一直没涨过级别，我们所涨得都挺慢，但像我这样得过14个C，没得过A、B，从不涨级的也不多见吧，研究院里，我有很多师兄、同学、师弟师妹，没一个我这么二的，我得说，我赞同匿名的那位同学说的“技术狗毫无归属感”，呵呵。</p>
+
+<p>后来啊，我就去找组长谈，找所长谈，组长说他给我打了B（或A，我不记得了），但是我还是没有见到，所长后来对我说“会考虑平衡老同志的”这句话之后，我就开始严肃地找工作了，我需要的是对我工作成果的肯定，或者是不足的批评，我不是混日子的，为啥要平衡呢，既然自己在这里无法发挥自己的价值，索性走了算了。我承认我小心眼，领导这样的话本无恶意，只是触发了我当时敏感的神经而已。</p>
+
+<p>在离职之前还有一组谈话，以谈理想谈人生为主，让我非常诧异的是，我的组长还记得我刚到云计算这个组的时候，通过查找问题，调整参数，重编译内核，让测试环境的性能提升十倍的事（实际是发现个错误，让性能回归正常而已），我没问出来的一句话是，那为啥我的绩效还是C呢，而且连得14个？</p>
+
+<p>倒是最后，Bill 的谈话更让我受宠若惊，当时HR老大是这么跟我说的，“Bill 看到你要离职，他要亲自跟你谈谈，我们这也走过人，而且绩效啥的都不错的，Bill 都没谈，我也不知道为啥要跟你谈，不过呢，既然 Bill 要跟你谈，我就得为领导分忧，先和你谈一下……” 嗯 …… 我没啥可说的了</p>
+
+<p>说句实话，我真正决定离开移动研究院是两点原因：</p>
+
+<ul>
+<li>移动研究院里，做技术是没有前途的，你是无法单纯靠技术获得足够的上升空间的。我总结的结论是，世界上最难的事情是猜领导在想什么，更难的事情是猜领导是怎么猜他的领导在想什么。而我本人，还是热衷猜计算机们是在想什么</li>
+<li>移动在互联网领域是没有啥前途的，一贯起大早赶晚集。大云的同学们很用心了，可是一期一期地做，也很少有落地，一个二期就已经还算不错的数据挖掘/工作流工具，还是要做四五期也不见声音，oozie 啥的都开源了。</li>
+</ul>
+
+<p>呵呵，第一次离职，当时觉得刻骨铭心，记下了 <a href="/life/2011/05/10/%E4%B8%80%E4%B8%AA%E8%89%B0%E9%9A%BE%E7%9A%84%E5%86%B3%E5%AE%9A/">blog：一个艰难的决定</a>，现在回想起来，仍然觉得和同事关系很好，很不舍得的样子，也不觉得移动有多么不好，只是不适合自己罢了，我觉得我的选择是对的</p>
+
+<p>&mdash;&mdash;&mdash;&gt;8&mdash;&mdash;&ndash; 以下是更新注释的分割线 &mdash;&mdash;&mdash;-&gt;8&mdash;&mdash;&mdash;-</p>
+
+<blockquote>
+<p><strong>20140318 update:</strong></p>
+
+<p>有前同事告诉我这个被转载到别处了，嗯，我实名回答了这个问题表示我认为我说的是我真实的看法，如果有人非要把这种个人看法转载，请注明是谁说的，出处是哪里，尊重作者，也方便别人知道上下文，我不想对什么人造成正面或负面的结果，文责自负，谢谢。</p>
+
+<p><strong>20140430 update:</strong></p>
+
+<p>居然有很多人去我死慢死慢的Blog去看了，甚至去留言了，十分感动，并对死慢死慢的Blog给大家带来的困扰表示歉意。</p>
+
+<p>关于我的近况，这里是我的个人空间，我不想在这里做公司的PR，只说一句——我不仅不后悔，而且不需要后悔，因为我很充实也很快乐，工作和家庭平衡得不错，单从收入看，也比在移动时强不少。</p>
+
+<p>对于向往移动的同学们，你们根据你们自己的情况来决定，想做什么、能做什么、该做什么，这对每一个出身、资质、际遇不同的人都是不同的，我在这里说的是我为什么从中移动离职，这或许对你并无正面参考价值。</p>
+
+<p>顺便对那些鄙视我当年去盛大云的前领导说，在盛大云我的产出对得起我的薪水，我的收获对得起我的时间，而当我离开盛大云的时候，我的职业生涯也没有因此蒙上阴影，我的近况如我所说让我满意，即使当时去盛大云不是最佳选择，但离开移动绝对是个正确决定，而且只迟不早。</p>
+
+<p><strong>20150324 update:</strong> 更新 blog 链接</p>
+</blockquote>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/zhihu/2014/04/11/wifi/index.html">[知乎回答] wifi信号像移动信号一样全国覆盖或像3G信号一样包覆大城市的可行性如何？</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/cloud/2014/02/17/%e8%bf%91%e6%9c%9f%e4%ba%91%e8%ae%a1%e7%ae%97%e6%8a%80%e6%9c%af%e7%9a%84%e5%8f%91%e5%b1%95%e4%b8%8e%e7%83%ad%e7%82%b9%e6%8a%80%e6%9c%af/index.html">近期云计算技术的发展与热点技术</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="metro,safety,zhihu,">
+        <meta name="description" content="[知乎回答] 地铁到底是怎么供电的？无意中掉到站台下，应该怎么避免触电？">
+        <link rel="stylesheet" href="/bundle/index.css">
+        <title>[知乎回答] 地铁到底是怎么供电的？无意中掉到站台下，应该怎么避免触电？</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+</script>
+
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
+
+            <article class="main article">
+                <h1 class="title">[知乎回答] 地铁到底是怎么供电的？无意中掉到站台下，应该怎么避免触电？</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1377079688">
+                        <span class="from"></span>
+                        <span class="date" data-time="1404259688">(<span class="from"></span> 更新)</span>
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/metro/index.html">metro</a><a class="tag" href="/tag/safety/index.html">safety</a><a class="tag" href="/tag/zhihu/index.html">zhihu</a></span>
+                </section>
+                <article class="content"><p>答案链接：<a href="https://www.zhihu.com/question/21517264/answer/18484872">https://www.zhihu.com/question/21517264/answer/18484872</a></p>
+
+<p>地铁掉下去触电的概率并不高，更主要的是别被车撞到。</p>
+
+<p>地铁的供电方式主要有触网供电和三轨供电两种，触网供电时，是靠列车上方的电弓和触网接触供电的，这种方式跌落轨行区也不可能触电；另一种方式是三轨方式，是由列车行走的铁轨（行走轨）之外的，位于侧面，离地面有一定距离的第三轨来供电的，列车上的受流器和三轨的上表面或下表面接触供电，如果接触第三轨可能导致触电。</p>
+
+<p>三轨供电的电压以DC750V为主，广州有DC1500V三轨，北京在建的7号线也会使用直流1500V三轨下部受流方式供电。这样的电压只要保持距离，不近距离接触一般没有危险。而且第三轨会有三轨护板，其结实程度可以让一个成年人在上面行走，所以从上面跌落直接砸到三轨触电的机率也不高。有些线路三轨在贴近站台一侧，有些线路在对面，建议到站台上的时候看一眼，如果上面没有触网，对面也没有三轨，那三轨就在自己的站台这一侧了。其实掉下去碰到三轨不是很容易，想想别摔伤扭伤啥的更重要。</p>
+
+<p>有人跌落之后，站务人员在处理时会断电的，正常流程不会让人在救人过程中再次触电的。</p>
+
+<p>跌落地铁的危险之处在于，铁轨是跑地铁的，地铁紧急制动也是要滑一段距离的，如果列车进站时就在车跟前掉下去，那就九死一生了。如果掉下去</p>
+
+<ol>
+<li>别冲着三轨去</li>
+<li>尽量让别人发现自己，好让站务断电，司机制动，其他人看见也尽快通知站务人员</li>
+<li>如果还能跑，向着列车出站的方向跑，如果你跑得够快，能跑到停车标那里，就算是司机没看到你，车也得停了</li>
+<li>如果跑不到那边，如果站台对面那边没有三轨，在那边贴墙站着可能能过一劫，这个跟胖瘦以及不同的站台结构有关</li>
+<li>如果这也不行，在铁轨之间趴下，也有这么着活下来，毫发无损的，不过，这个还得看命啊</li>
+</ol>
+
+<p>以上都是万一掉下去的事情，那么高，不注意掉下去还能跑的，其实也不容易，所以各位小心点，没安全门的站台，站得远一点，背靠柱子啥的，保命要紧啊。</p>
+
+<p>原题还问如何救人了，嗯</p>
+
+<ol>
+<li>一般情况下，自己别往下跳</li>
+<li>尽快通知站务处理，断电、要求紧急停车</li>
+<li>站台尽头可能有紧急求助的按钮</li>
+<li>指导掉下去的人（如果还没吓傻的话）像上面说的那么干</li>
+</ol>
+
+<p><strong>Update:</strong></p>
+
+<p>想不到回答了半年的题今天漂起来了，应要求配个图，这个就是三轨，摄于北京地铁13号线五道口站站台尽头</p>
+
+<p><img data-src="/assets/metro1.jpg" alt="三轨示意图1" /></p>
+
+<p>放大一点：</p>
+
+<p><img data-src="/assets/metro2.jpg" alt="三轨示意图2" /></p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/zhihu/2013/08/28/cell/index.html">[知乎回答] 手机是如何从与基站的信号交换中识别自身是否正在被呼叫的？</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/translation/2013/06/02/%e3%80%90%e8%af%91%e6%96%87%e3%80%91lsfmm:-%e7%bc%93%e5%ad%98-%e2%80%94-dm-cache-%e4%b8%8e-bcache/index.html">【译文】LSFMM: 缓存 — dm-cache 与 bcache</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="cellular,communication,移动网络,zhihu,">
+        <meta name="description" content="[知乎回答] 手机是如何从与基站的信号交换中识别自身是否正在被呼叫的？">
+        <link rel="stylesheet" href="/bundle/index.css">
+        <title>[知乎回答] 手机是如何从与基站的信号交换中识别自身是否正在被呼叫的？</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+</script>
+
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
+
+            <article class="main article">
+                <h1 class="title">[知乎回答] 手机是如何从与基站的信号交换中识别自身是否正在被呼叫的？</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1377648488">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/cellular/index.html">cellular</a><a class="tag" href="/tag/communication/index.html">communication</a><a class="tag" href="/tag/%e7%a7%bb%e5%8a%a8%e7%bd%91%e7%bb%9c/index.html">移动网络</a><a class="tag" href="/tag/zhihu/index.html">zhihu</a></span>
+                </section>
+                <article class="content"><p>答案链接：<a href="https://www.zhihu.com/question/21553561/answer/18597599">https://www.zhihu.com/question/21553561/answer/18597599</a></p>
+
+<p>我们先不提频率，先用信道(channel)这个抽象概念。一个基站可以支持很多信道，但大体上说，分为公共信道和专用信道两类，所谓公共信道就是大家共用的，专用信道就是专门给你打电话或者传数据的。</p>
+
+<p>首先并不是每个人开机就都占有专用信道，它们平常开机接入网络之后，处在一个等待状态，核心网络网络（你可以理解成用来找到你并建立连接的一个巨大的交换机），并不确切知道你在哪个基站，只确定你处于一大片区域，对于电话网，这篇区域叫位置区（LA），包含了很多基站的管辖范围。</p>
+
+<p>当有来话的时候，网络首先向这个位置区中进行广播，这使用了“寻呼（paging）”信道（PCH），每部手机都听这个信道，当它发现自己被寻呼到的时候，就开始申请建立专用信道，这个申请的过程一般是所谓的“随机接入（RA）”，使用了随机接入信道（RACH），大致的过程就是，使用一个估计的功率向基站发起请求，如果基站没响应就随机时延后重试并加强信号，直到接入完成并建立连接。</p>
+
+<p>建立连接后就分配了专用信道（DCH），用来进行通信，通信结束后释放。</p>
+
+<p>网络资源规划这个事，当然不是满足所有人同时通话的，那样成本就太高了，这是一个概率问题，根据估计的同时打电话的人数、每个电话的时间、资源成本，估算需要的容量。所以，网络规划常常讲，初期（刚刚建网，没人用）是覆盖问题，保证哪里都有信号，后期（很多人用）是容量问题，保证有需要的人基本都可以打电话。</p>
+
+<p>回到频率的问题上，无线通信发生在开放空间，在同一时间、同一地点，大家共享同样的频谱空间。于是就用到了多址接入技术，或者说让多个收发信机的接入需要分享 时间、空间、频率和能量这些因素构成的信号空间。FDMA是不同信号占用不同的频点，TDMA如GSM是不同信道占用不同时隙，CDMA是不同信道划分同一频率和时间上功率空间。</p>
+
+<p>当然，对于任一发射机，有效利用的频率范围或宽或窄，总是有限的，当时间、功率空间、空间（TD-SCDMA的智能天线会进行精细的空间位置划分）都用完的时候，自然需要另外的频段，这就是说的，WCDMA 是5MHz对称频带，TD-SCDMA 是 1.6MHz频带，用完就需要更多的，但这个频率空间是靠国家颁发（或出售）的牌照规定的，不可以随便用的，是在网络规划的时候就划分好的，不是打电话打不出去了就可以临时增加的。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/zhihu/2013/08/29/smart-antenna/index.html">[知乎回答] 智能天线技术是一个好技术吗，具不具备实用性？</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/zhihu/2013/08/21/metro-safety/index.html">[知乎回答] 地铁到底是怎么供电的？无意中掉到站台下，应该怎么避免触电？</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="communication,PLMN,network,zhihu,">
+        <meta name="description" content="[知乎回答] 通讯公司(运营商)无法确切的区分某个手机号的通话状态么？关机，没信号，正在通话中或者正在呼叫其他用户？">
+        <link rel="stylesheet" href="/bundle/index.css">
+        <title>[知乎回答] 通讯公司(运营商)无法确切的区分某个手机号的通话状态么？关机，没信号，正在通话中或者正在呼叫其他用户？</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+</script>
+
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
+
+            <article class="main article">
+                <h1 class="title">[知乎回答] 通讯公司(运营商)无法确切的区分某个手机号的通话状态么？关机，没信号，正在通话中或者正在呼叫其他用户？</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1385683688">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/communication/index.html">communication</a><a class="tag" href="/tag/PLMN/index.html">PLMN</a><a class="tag" href="/tag/network/index.html">network</a><a class="tag" href="/tag/zhihu/index.html">zhihu</a></span>
+                </section>
+                <article class="content"><p>作者：Wang Xu
+链接：<a href="https://www.zhihu.com/question/22138976/answer/20428238">https://www.zhihu.com/question/22138976/answer/20428238</a>
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+<p>谢邀</p>
+
+<p>这实际是两个问题，是否关机、有没有信号，是一部终端的状态问题，这个属于移动性管理的内容；而通话状态如何，是两部终端的关系问题，属于呼叫控制，得分别来说。</p>
+
+<p>简单说下传统移动网络的结构，用 GSM/WCDMA R4 的经典架构来解释，其他能见到的移动网络略同，不一样的都在未来呢。和手机直接无线连接的东西是基站，这东西只处理无线曾的连接，管理基站的东西GSM叫BSC，WCDMA叫RNC，这些东西负责下辖基站链路资源的管理，上述两部分统称为无线接入网；无线接入网向上接入核心网，这部分才是第三层管理，包括用户的位置/状态管理、会话管理、呼叫控制，主要角色是交换机（MSC，移动交换中心），这个随着用户移动，可能会处于不同的交换机控制之下，而用户的归属地，会有一个归属位置的数据库HLR，来存储用户的状态信息，记录用户是否可以使用某种服务、保证用户可以被其他人找到</p>
+
+<p>对于移动性管理（MM），是由所在的交换机负责的，主要事件包括 Attach（开机注册），Location Update（位置更新，LU），和 Detach （关机注销）。开机关机没什么好说的，位置更新是位置区变动后会进行的，这样就知道手机在什么位置了，并且，如果用户在办公室一天没动，那么，每过两个小时（或指定时间），手机会周期性进行LU，告诉网络，虽然我没动，但我还活着。问题在于，如果手机忽然失去通信能力，比如，掉进厕所、没信号、抠电池等，是没机会进行关机注销的，而交换机在没接到信令的时候，也无法判定手机是否关机了，就要等若干个位置更新周期之后，手机仍然不更新，那么就“隐式IMSI分离”，判定手机关机。也就是说，从没信号到被判定关机，是有很长一段时间的，这个网络也无能为力。</p>
+
+<p>对于呼叫，实际是双发终端和双方交换机参与的过程，主叫方称为MO，被叫方称为MT，建立电话链路的过程属于呼叫控制（CC）的范畴，呼叫控制协议虽然有过很多演进，但基本原理还是和7号信令差不多，甚至说和固网没太大区别，主叫交换机找到被叫交换机，如果被叫可达，就会震铃，被叫摘机接通，双方通话。但是，不论是被叫正在呼叫，还是被叫正在通话中，主叫交换机能拿到的信息都是BUSY，所以，主叫方就不会了解被叫方具体在进行呼叫的哪个阶段了。</p>
+
+<p>关于呼叫的特殊控制，有一些补充业务，这些刚好反应了网络/终端可以知道的对方的状态，比如，有四种呼叫前转（Call Forwarding）服务</p>
+
+<ul>
+<li>无条件呼转，这是无条件的</li>
+<li>遇忙前转，这个是BUSY的</li>
+<li>不可达前转，这个是关机、不在服务区的</li>
+<li>无应答前转，这个是用户震铃响完也没接的</li>
+</ul>
+
+<p>顺便说，移动有个漏接电话短信提醒服务，其实就是用的后两种（或三种，不确定）前转，转到一个秘书台，记录下呼叫情况，再给被叫发短信的。</p>
+
+<p>此外，被叫方如果使用呼叫等待（Call Waiting）服务，那么，主叫打入的时候，如果被叫在通话中，会听到“您拨打的用户在通话中，请等待”，然后就变成震铃音而非忙音，被叫方会在呼叫中听到嘟嘟声，看到来电，这时，可以选择长话短说停了现在的，听新来的，或者用呼叫保持（Call Holding）保持住当前的，先听新来的，接入新来的之后，甚至可以做多方通话，接入保持中的电话，成为多方会议。</p>
+
+<p>综上，对你的问题，简单的答案是——协议如此，当然，具体为什么这样，和成本、复杂度、可实现性、有多大实际意义都有关系</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/life/2013/12/22/2013%e5%9b%9e%e6%9c%9b/index.html">2013回望</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/zhihu/2013/11/16/debian/index.html">[知乎回答] 为什么 Debian 在国内的人气远不如国外？</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>
