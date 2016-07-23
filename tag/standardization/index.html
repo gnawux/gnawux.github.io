@@ -28,28 +28,6 @@
     };
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
             <article class="main page">
                 <header class="header site">
@@ -63,7 +41,7 @@
                     <li class="article">
                         <a class="title" href="/cloud/2016/07/24/standardization/index.html">我眼中的（云计算）标准化</a>
                         
-                        <section class="preview content">更加高瞻远瞩的标准化工作者，并不仅仅把眼光停留在评测和准入机制上，他们会把产业的发展趋势、国家和社会的需求提现到到标准当中去...</section>
+                        <section class="preview content">更加高瞻远瞩的标准化工作者，并不仅仅把眼光停留在评测和准入机制上，他们会把产业的发展趋势、国家和社会的需求体现到标准当中去...</section>
                         <section class="info">
                             <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
                             <a class="name" href="/about.me.html">gnawux</a>
