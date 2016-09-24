@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="meta,hyper,caddy,blog,letsencrypt,">
+        <meta name="description" content="Blog 迁移">
+        <link rel="stylesheet" href="/bundle/index.css">
+        <title>Blog 迁移</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+</script>
+
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
+
+            <article class="main article">
+                <h1 class="title">Blog 迁移</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1474686488">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/meta/index.html">meta</a><a class="tag" href="/tag/hyper/index.html">hyper</a><a class="tag" href="/tag/caddy/index.html">caddy</a><a class="tag" href="/tag/blog/index.html">blog</a><a class="tag" href="/tag/letsencrypt/index.html">letsencrypt</a></span>
+                </section>
+                <article class="content"><h2>由来已久的念头</h2>
+
+<p>自从我把 <a href="/meta/2015/02/24/blog-update/index.html">Blog 迁移到 Github (迁移声明)</a>，生活重新变得平静了，不用管 Wordpress 的升级了，不用管主机的事情了，什么都不用操心，DNS 指到 Github 就好了……</p>
+
+<p>自从我用上了我司优秀青年严松的 <a href="https://github.com/InkProject/ink">ink</a> 之后， blog 文章写作和发布也变得更简单通透了——如果有啥不满意就改改 blog 引擎，给作者发 PR，作为 CTO 强迫他<a href="https://github.com/InkProject/ink/pulls?q=is%3Apr+author%3Agnawux">接受 PR</a>。</p>
+
+<p>然而，还是有一点点不爽——放在 Github 的 blog，是很难搞 SSL 的，即使是如今有 <a href="https://letsencrypt.org/">Let&rsquo;s Encrypt</a> 这样的免费服务，仍然无法方便利用……</p>
+
+<p>随着，我家自己的 <a href="https://hyper.sh">Hyper_</a> 上线，容器部署超简单，三秒上线，可以用小尺寸容器、独立 Floating IP，完美配合，于是，一直想着把自己和儿子的 Blog 迁移到 Hyper_ 上来。</p>
+
+<h2>更多需求</h2>
+
+<p>至于一直为啥没迁移，实际上我有点想做的事情——</p>
+
+<ul>
+<li>Github 自动触发更新：我的 blog 现在都是 github page 了，我想更新 Github 自动生效，无需手动部署</li>
+<li>简单的 image，不想弄复杂的程序和脚本</li>
+<li>配置 TLS：一直没弄明白 Let&rsquo;s Encrypt</li>
+</ul>
+
+<p>尤其是自动更新，乃至我都想自己写个 server—……</p>
+
+<h2>终于找到了</h2>
+
+<p>Hyper_ 正式上线一个月，我发现好多用户都在用一个叫 <a href="https://caddyserver.com/">Caddy</a> 的东西，于是就问了下同事，说是新一代的支持 HTTP/2 的 Server。想着是不是可能有我的需求，或者，反正是 Go 写的，不行没准能改改呢，于是就去看了一眼。</p>
+
+<p>哈，我找到了什么 —— <a href="https://caddyserver.com/docs/git">https://caddyserver.com/docs/git</a> ——我最主要的需求居然已经被满足了，我可以这么配置</p>
+
+<pre><code>wangsiyi.net {
+        gzip
+        root wangsiyi.net
+        git {
+                repo https://github.com/gnawux/wangsiyi.net
+                branch gh-pages
+                hook /somehandle mypassword
+                hook_type github
+                interval -1
+        }
+}
+wangxu.me {
+        gzip
+        root wangxu.me
+        git {
+                repo https://github.com/gnawux/gnawux.github.io
+                hook /somehandle mypassword
+                hook_type github
+                interval -1
+        }
+}
+</code></pre>
+
+<p>就这么简单，起服务，自动拉 repo；然后，在 Github 配上 webhook，有 push 的时候，自动更新 webroot 的内容……</p>
+
+<p>（此处切换 DNS A 记录，并等待更新完毕——这个传说会很久，不过如今实际上还是挺快的）</p>
+
+<p>于是，在 hyper 上开了一个 server （绑上 fip）来试下</p>
+
+<pre><code>hyper run -d --name blogs -p 80:80 -p 443:443 ubuntu
+hyper fip attach 2xx.xx.xx.xx blogs
+</code></pre>
+
+<p>用 <code>hyper exec -it blogs</code> 登上去，装上 <code>wget</code>, <code>git</code>，拉个有 <code>git</code> 模块的 Caddy</p>
+
+<pre><code>wget -O caddy.tgz &quot;https://caddyserver.com/download/build?os=linux&amp;arch=amd64&amp;features=git&quot;
+</code></pre>
+
+<p>解开之后，放上刚才的 <code>Caddyfile</code>，运行 Caddy。 我看到了什么 —— 居然还啥都没做，就自动配好了 Let&rsquo;s Encrypt 的 CA，现在，我的网站已经支持 SSL 了，Github hook 的配置也完全无痛，设个链接和密码就直接工作了，完全不需要调试。</p>
+
+<p>好吧，有点简单得超出我的预期，嗯，过两天再搞自己的 image 吧，本来就想试试的，没想到就 piu 地一下就切好了，真是太出乎预料了，欢迎大家访问：</p>
+
+<ul>
+<li>我的 Blog（就是本站）: <a href="https://wangxu.me">https://wangxu.me</a></li>
+<li>我家儿子的 Blog（有一段没更新了，很快更新）: <a href="https://wangsiyi.net">https://wangsiyi.net</a></li>
+</ul>
+
+<p>以及，我闺女的 Blog （ Coming soon&hellip;）</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    
+                    <section class="nav next">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/hyper/2016/08/13/hyper-ga/index.html">Hyper_ GA &amp; Happy Birthday to Myself</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>
