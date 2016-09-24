@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
@@ -38,6 +60,23 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/life/2012/03/20/%e7%94%9f%e6%97%a5%e5%bf%ab%e4%b9%90%ef%bc%8c%e6%96%af%e5%b1%b9/index.html">生日快乐，斯屹</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            <span class="date" data-time="1332227229">
+                                <span class="from"></span>
+                                
+                            </span>
+                            <span class="tags">
+                            <a class="tag" href="/tag/photo/index.html">photo</a><a class="tag" href="/tag/siyi/index.html">siyi</a><a class="tag" href="/tag/%e5%ae%b6%e5%ba%ad/index.html">家庭</a><a class="tag" href="/tag/%e7%85%a7%e7%89%87/index.html">照片</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/life/index.html">life</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/scripts/2012/03/09/%e5%88%97%e5%87%ba%e6%9f%90%e4%b8%80cpu%e4%b8%8a%e8%b7%91%e7%9a%84%e6%89%80%e6%9c%89%e8%bf%9b%e7%a8%8b-%e7%ba%bf%e7%a8%8b/index.html">列出某一CPU上跑的所有进程/线程</a>
@@ -188,23 +227,6 @@
                             </span>
                             <span class="tags">
                             <a class="tag" href="/tag/iscsi/index.html">iscsi</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/translation/index.html">translation</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/life/2011/09/16/%e4%b8%8d%e5%ae%a2%e8%a7%82%e5%9c%b0%e5%af%b9%e6%af%94%e4%b8%80%e4%b8%8b%e7%a7%bb%e5%8a%a8edge%e5%92%8c%e8%81%94%e9%80%9awcdma%e7%9a%84%e4%b8%9a%e5%8a%a1/index.html">不客观地对比一下移动Edge和联通WCDMA的业务</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            <span class="date" data-time="1316139772">
-                                <span class="from"></span>
-                                
-                            </span>
-                            <span class="tags">
-                            <a class="tag" href="/tag/3G/index.html">3G</a><a class="tag" href="/tag/%e7%a7%bb%e5%8a%a8/index.html">移动</a><a class="tag" href="/tag/%e8%81%94%e9%80%9a/index.html">联通</a><a class="tag" href="/tag/%e8%b5%84%e8%b4%b9/index.html">资费</a><a class="tag" href="/tag/life/index.html">life</a>
                             </span>
                         </section>
                     </li>

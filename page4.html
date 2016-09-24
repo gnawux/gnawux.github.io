@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
@@ -38,6 +60,23 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/cloud/2014/02/17/%e8%bf%91%e6%9c%9f%e4%ba%91%e8%ae%a1%e7%ae%97%e6%8a%80%e6%9c%af%e7%9a%84%e5%8f%91%e5%b1%95%e4%b8%8e%e7%83%ad%e7%82%b9%e6%8a%80%e6%9c%af/index.html">近期云计算技术的发展与热点技术</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            <span class="date" data-time="1392649442">
+                                <span class="from"></span>
+                                
+                            </span>
+                            <span class="tags">
+                            <a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/container/index.html">container</a><a class="tag" href="/tag/docker/index.html">docker</a><a class="tag" href="/tag/Orchestration/index.html">Orchestration</a><a class="tag" href="/tag/%e4%ba%91%e8%ae%a1%e7%ae%97/index.html">云计算</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/life/2013/12/22/2013%e5%9b%9e%e6%9c%9b/index.html">2013回望</a>
@@ -188,23 +227,6 @@
                             </span>
                             <span class="tags">
                             <a class="tag" href="/tag/bcache/index.html">bcache</a><a class="tag" href="/tag/initramfs/index.html">initramfs</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/ubuntu/index.html">ubuntu</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/life/2013/04/28/%e4%b8%a4%e5%b9%b4%e4%b9%8b%e5%90%8e%ef%bc%8c%e5%86%8d%e6%ac%a1%e5%91%8a%e5%88%ab/index.html">两年之后，再次告别</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            <span class="date" data-time="1367162601">
-                                <span class="from"></span>
-                                
-                            </span>
-                            <span class="tags">
-                            <a class="tag" href="/tag/%e5%b7%a5%e4%bd%9c/index.html">工作</a><a class="tag" href="/tag/%e6%84%9f%e6%82%9f/index.html">感悟</a><a class="tag" href="/tag/life/index.html">life</a>
                             </span>
                         </section>
                     </li>

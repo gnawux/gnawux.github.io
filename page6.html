@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
@@ -38,6 +60,23 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/works/2012/06/25/zeromq-intro/index.html">ZeroMQ简介</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            <span class="date" data-time="1340603046">
+                                <span class="from"></span>
+                                
+                            </span>
+                            <span class="tags">
+                            <a class="tag" href="/tag/networking/index.html">networking</a><a class="tag" href="/tag/slides/index.html">slides</a><a class="tag" href="/tag/zeromq/index.html">zeromq</a><a class="tag" href="/tag/zmq/index.html">zmq</a><a class="tag" href="/tag/works/index.html">works</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/%e8%af%bb%e5%90%8e%e6%84%9f/2012/06/19/%e3%80%8a%e5%ad%99%e5%ad%90%e5%85%b5%e6%b3%95%e3%80%8b%e9%98%85%e8%af%bb%e6%8c%87%e5%8d%97/index.html">《孙子兵法》阅读指南</a>
@@ -188,23 +227,6 @@
                             </span>
                             <span class="tags">
                             <a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/linuxfb/index.html">linuxfb</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/life/2012/03/20/%e7%94%9f%e6%97%a5%e5%bf%ab%e4%b9%90%ef%bc%8c%e6%96%af%e5%b1%b9/index.html">生日快乐，斯屹</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            <span class="date" data-time="1332227229">
-                                <span class="from"></span>
-                                
-                            </span>
-                            <span class="tags">
-                            <a class="tag" href="/tag/photo/index.html">photo</a><a class="tag" href="/tag/siyi/index.html">siyi</a><a class="tag" href="/tag/%e5%ae%b6%e5%ba%ad/index.html">家庭</a><a class="tag" href="/tag/%e7%85%a7%e7%89%87/index.html">照片</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/life/index.html">life</a>
                             </span>
                         </section>
                     </li>

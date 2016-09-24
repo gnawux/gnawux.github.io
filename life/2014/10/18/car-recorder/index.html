@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main article">
                 <h1 class="title">第一次对汽车进行DIY</h1>
@@ -63,13 +85,13 @@
                     
                     <section class="nav prev more">
                         <div class="head">上篇文章</div>
-                        <a class="link" href="/zhihu/2015/01/20/iridium/index.html">[知乎回答] 20年前(1996)MOTO的铱星计划（77颗卫星），与现在SpaceX的700颗卫星计划，有什么异同？</a>
+                        <a class="link" href="/life/2014/10/18/travel-in-aug/index.html">一次说走就走的旅行</a>
                     </section>
                     
                     
                     <section class="nav next more">
                         <div class="head">下篇文章</div>
-                        <a class="link" href="/life/2014/10/18/travel-in-aug/index.html">一次说走就走的旅行</a>
+                        <a class="link" href="/life/2014/07/29/%e6%90%ac%e5%ae%b6/index.html">搬家</a>
                     </section>
                     
                 </section>

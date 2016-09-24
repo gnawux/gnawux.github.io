@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
@@ -38,6 +60,23 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/misc/2009/07/09/%e6%88%91%e6%89%be%e5%88%b0%e8%a7%a3%e5%86%b3%e5%8c%97%e4%ba%ac%e4%ba%a4%e9%80%9a%e9%97%ae%e9%a2%98%e7%9a%84%e6%96%b9%e6%b3%95%e4%ba%86/index.html">我找到解决北京交通问题的方法了</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            <span class="date" data-time="1247102976">
+                                <span class="from"></span>
+                                
+                            </span>
+                            <span class="tags">
+                            
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/misc/2009/06/25/%e5%94%89%ef%bc%8c%e9%99%a4%e4%ba%86%e7%bb%bf%e5%9d%9d%e5%b0%b1%e6%98%afgfw/index.html">唉，除了绿坝就是GFW</a>
@@ -188,23 +227,6 @@
                             </span>
                             <span class="tags">
                             <a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/hdfs/index.html">hdfs</a><a class="tag" href="/tag/%e9%85%8d%e7%bd%ae/index.html">配置</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/misc/2009/04/29/%e4%b8%80%e6%ac%a1%e8%af%a1%e5%bc%82%e7%9a%84%e4%ba%8b%e6%95%85%e5%86%8d%e6%ac%a1%e8%af%81%e6%98%8e%e4%ba%86%e5%a2%a8%e8%8f%b2%e5%ae%9a%e5%be%8b/index.html">一次诡异的事故再次证明了墨菲定律</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            <span class="date" data-time="1241013904">
-                                <span class="from"></span>
-                                
-                            </span>
-                            <span class="tags">
-                            <a class="tag" href="/tag/%e5%b7%a5%e4%bd%9c/index.html">工作</a><a class="tag" href="/tag/%e6%84%9f%e6%82%9f/index.html">感悟</a>
                             </span>
                         </section>
                     </li>
