@@ -34,7 +34,7 @@ MAINTAINER gnawux@gmail.com
 RUN apt-get update; apt-get -y install git
 COPY caddy /srv/
 COPY entrypoint.sh /
-ENTRYPOINT /entrypoint.sh
+ENTRYPOINT [ "/entrypoint.sh" ]
 ```
 
 其中的 `entrypoint.sh` 这么写，这样就不用把密码放到 image 里了，嘻嘻
