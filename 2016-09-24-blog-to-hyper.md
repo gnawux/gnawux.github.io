@@ -1,6 +1,6 @@
 title: "Blog 迁移"
 date: 2016-09-24 11:08:08 +0800
-update:
+update: 2016-09-24 17:12:08 +0800
 author: me
 cover:
 categories:
@@ -15,6 +15,8 @@ preview: 终于让自己的 Blogs 吃上了自己的狗粮
 draft: false
 
 ---
+
+> 更新：Blog贴出来之后，因为有人批评我太懒，于是我知错就改，当天下午就把 blog 的 image 也做了，参见[这篇后记](/meta/2016/09/24/blog-to-hyper-2/)。
 
 ## 由来已久的念头
 
