@@ -18,7 +18,7 @@ draft: false
 
 ---
 
-> 更新: 为了支持一跑起来就要有公网的场景，我们改进了 Floating IP 的流程，允许刚刚创建，还没有启动过的 container 加 fip 了。
+> 更新: 为了支持一跑起来就要有公网的场景，我们改进了 Floating IP 的流程，允许刚刚创建，还没有启动过的 container 加 fip 了，另外，修订了 Dockerfile 减小了一点体积。
 
 [前一偏贴出来](/meta/2016/09/24/blog-to-hyper/)有人评论
 
@@ -33,7 +33,10 @@ draft: false
 ```
 FROM ubuntu:xenial
 MAINTAINER gnawux@gmail.com
-RUN apt-get update; apt-get -y install git
+RUN apt-get update && \
+        apt-get -y install git && \
+        apt-get clean && \
+        rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
 COPY caddy /srv/
 COPY entrypoint.sh /
 ENTRYPOINT [ "/entrypoint.sh" ]
