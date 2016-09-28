@@ -1,6 +1,6 @@
 title: "Blog 迁移后记"
 date: 2016-09-24 16:52:58 +0800
-update:
+update: 2016-09-28 09:35:08 +0800
 author: me
 cover:
 categories:
@@ -17,6 +17,8 @@ preview: 吃自己的狗粮要吃得更正宗
 draft: false
 
 ---
+
+> 更新: 为了支持一跑起来就要有公网的场景，我们改进了 Floating IP 的流程，允许刚刚创建，还没有启动过的 container 加 fip 了。
 
 [前一偏贴出来](/meta/2016/09/24/blog-to-hyper/)有人评论
 
@@ -98,19 +100,26 @@ sudo docker build -t "gnawux/blog:latest" .
 
 ## 运行
 
-镜像制作好之后，推到 hub，就回到 hyper 来 run 吧
+镜像制作好之后，推到 hub，就回到 hyper 来 run 吧，因为 caddy 一起动会自动去找 Let's Encrypt 生成证书，这需要 Floating 一起动就生效，所以我们先创建容器，然后添加 FIP，然后启动 ——
 
-启动 ——
+### 首先创建 Container
 
 ```
-➜ ~ hyper run -p 80:80 -p 443:443 --name blog --hostname blog -it gnawux/blog xxxxxxx
-Activating privacy features...2016/09/24 08:32:08 get directory at 'https://acme-v01.api.letsencrypt.org/directory': failed to get "https://acme-v01.api.letsencrypt.org/directory": Get https://acme-v01.api.letsencrypt.org/directory: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)
+➜ ~ hyper create -p 80:80 -p 443:443 --name blog --hostname blog -it gnawux/blog xxxxxxx
+blog
 ```
 
-擦，访问不了，忘了绑 fip 了 ——
+### 给它分配一个 Floating IP
 
 ```
 ➜ ~ hyper fip attach 209.177.91.195 blog
+```
+
+### 启动
+
+> 下面启动之后使用 Ctrl-P+Q 退出，如果不是为了看输出，可以不加 -a -i 参数。
+
+```
 ➜ ~ hyper start -a -i blog
 Activating privacy features... done.
 Cloning into 'wangsiyi.net'...
@@ -134,4 +143,4 @@ http://wangsiyi.net
 http://wangxu.me
 ```
 
-一切 OK，大家好好玩。
+一切 OK，大家好好玩。回头我给 `run` 加个参数，直接绑 FIP，就不用分三步给大家讲解了 :)
