@@ -103,7 +103,7 @@ sudo docker build -t "gnawux/blog:latest" .
 
 ## 运行
 
-镜像制作好之后，推到 hub，就回到 hyper 来 run 吧，因为 caddy 一起动会自动去找 Let's Encrypt 生成证书，这需要 Floating 一起动就生效，所以我们先创建容器，然后添加 FIP，然后启动 ——
+镜像制作好之后，推到 hub，就回到 hyper 来 run 吧，因为 caddy 一启动会自动去找 Let's Encrypt 生成证书，这需要 Floating 一启动就生效，所以我们先创建容器，然后添加 FIP，然后启动 ——
 
 ### 首先创建 Container
 
@@ -147,3 +147,10 @@ http://wangxu.me
 ```
 
 一切 OK，大家好好玩。回头我给 `run` 加个参数，直接绑 FIP，就不用分三步给大家讲解了 :)
+
+### 致谢
+
+- 感谢老徐指出减少 Image 大小的命令，[commit 在这里](https://github.com/gnawux/xu-site/commit/51b42c86d88d870947fc017889d10b1ef23498de)
+- 感谢 Tim 指出错别字
+
+另外，这篇居然被人抓了当自己 blog 发出来了，这么硬的广告也抓么？
