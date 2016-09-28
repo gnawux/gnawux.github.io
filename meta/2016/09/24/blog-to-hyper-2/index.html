@@ -58,11 +58,15 @@
                     <a class="name" href="/about.me.html">gnawux</a>
                     <span class="date" data-time="1474707178">
                         <span class="from"></span>
-                        
+                        <span class="date" data-time="1475026508">(<span class="from"></span> 更新)</span>
                     </span>
                     <span class="tags"><a class="tag" href="/tag/meta/index.html">meta</a><a class="tag" href="/tag/hyper/index.html">hyper</a><a class="tag" href="/tag/caddy/index.html">caddy</a><a class="tag" href="/tag/blog/index.html">blog</a><a class="tag" href="/tag/letsencrypt/index.html">letsencrypt</a><a class="tag" href="/tag/docker/index.html">docker</a><a class="tag" href="/tag/image/index.html">image</a></span>
                 </section>
-                <article class="content"><p><a href="/meta/2016/09/24/blog-to-hyper/">前一偏贴出来</a>有人评论</p>
+                <article class="content"><blockquote>
+<p>更新: 为了支持一跑起来就要有公网的场景，我们改进了 Floating IP 的流程，允许刚刚创建，还没有启动过的 container 加 fip 了，另外，修订了 Dockerfile 减小了一点体积。</p>
+</blockquote>
+
+<p><a href="/meta/2016/09/24/blog-to-hyper/">前一偏贴出来</a>有人评论</p>
 
 <blockquote>
 <p>启动一个ubuntu的image, 然后exec进去安装软件。。。这不符合imutable server哲学</p>
@@ -76,7 +80,10 @@
 
 <pre><code>FROM ubuntu:xenial
 MAINTAINER gnawux@gmail.com
-RUN apt-get update; apt-get -y install git
+RUN apt-get update &amp;&amp; \
+        apt-get -y install git &amp;&amp; \
+        apt-get clean &amp;&amp; \
+        rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
 COPY caddy /srv/
 COPY entrypoint.sh /
 ENTRYPOINT [ &quot;/entrypoint.sh&quot; ]
@@ -141,18 +148,26 @@ sudo docker build -t &quot;gnawux/blog:latest&quot; .
 
 <h2>运行</h2>
 
-<p>镜像制作好之后，推到 hub，就回到 hyper 来 run 吧</p>
+<p>镜像制作好之后，推到 hub，就回到 hyper 来 run 吧，因为 caddy 一起动会自动去找 Let&rsquo;s Encrypt 生成证书，这需要 Floating 一起动就生效，所以我们先创建容器，然后添加 FIP，然后启动 ——</p>
 
-<p>启动 ——</p>
+<h3>首先创建 Container</h3>
 
-<pre><code>➜ ~ hyper run -p 80:80 -p 443:443 --name blog --hostname blog -it gnawux/blog xxxxxxx
-Activating privacy features...2016/09/24 08:32:08 get directory at 'https://acme-v01.api.letsencrypt.org/directory': failed to get &quot;https://acme-v01.api.letsencrypt.org/directory&quot;: Get https://acme-v01.api.letsencrypt.org/directory: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)
+<pre><code>➜ ~ hyper create -p 80:80 -p 443:443 --name blog --hostname blog -it gnawux/blog xxxxxxx
+blog
 </code></pre>
 
-<p>擦，访问不了，忘了绑 fip 了 ——</p>
+<h3>给它分配一个 Floating IP</h3>
 
 <pre><code>➜ ~ hyper fip attach 209.177.91.195 blog
-➜ ~ hyper start -a -i blog
+</code></pre>
+
+<h3>启动</h3>
+
+<blockquote>
+<p>下面启动之后使用 Ctrl-P+Q 退出，如果不是为了看输出，可以不加 -a -i 参数。</p>
+</blockquote>
+
+<pre><code>➜ ~ hyper start -a -i blog
 Activating privacy features... done.
 Cloning into 'wangsiyi.net'...
 remote: Counting objects: 927, done.
@@ -175,7 +190,7 @@ http://wangsiyi.net
 http://wangxu.me
 </code></pre>
 
-<p>一切 OK，大家好好玩。</p>
+<p>一切 OK，大家好好玩。回头我给 <code>run</code> 加个参数，直接绑 FIP，就不用分三步给大家讲解了 :)</p>
 </article>
                 <section class="author">
                     <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
