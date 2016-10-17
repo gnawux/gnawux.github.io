@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>http://wangxu.me/</id>
-  <updated>2016-09-28T13:22:45+08:00</updated>
+  <updated>2016-10-18T00:01:33+08:00</updated>
   <subtitle>某创业公司的看门大爷</subtitle>
   <link href="http://wangxu.me/"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>Hello, ARM64 -- Hyper ARM64 架构支持</title>
+    <updated>2016-10-17T23:58:08+08:00</updated>
+    <id>tag:wangxu.me,2016-10-17:/hyper/2016/10/17/hyper-arm64/index.html</id>
+    <content type="html">&lt;blockquote&gt;&#xA;&lt;p&gt;ARM64 (ARMv8) 架构的支持，不仅是对一个新架构的支持，一类新服务器的支持，也把 Hyper 带入到了终端，乃至是物联网（IoT）技术的大门前，等待我们的将是更广阔更精彩的未来。&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;p&gt;随着我在过去的几天中先后 merge 了高峰提出的 &lt;a href=&#34;https://github.com/hyperhq/hyperstart/pull/207&#34;&gt;hyperhq/hyperstart#207&lt;/a&gt;, &lt;a href=&#34;https://github.com/hyperhq/runv/pull/360&#34;&gt;hyperhq/runv#360&lt;/a&gt;, 和 &lt;a href=&#34;https://github.com/hyperhq/hyperd/pull/437&#34;&gt;hyperhq/hyperd#437&lt;/a&gt;, 三个 PR，HyperContainer 正式支持了 ARM64 (ARMv8, aarch64) 架构。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;&lt;img data-src=&#34;/assets/arm64.jpg&#34; alt=&#34;ARM64 support&#34; /&gt;&lt;/p&gt;&#xA;&#xA;&lt;pre&gt;&lt;code&gt;root@pine64:/home/debian# time hyperctl run -t aarch64/busybox sh -c &amp;quot;echo hello, arm64&amp;quot;&#xA;hello, arm64&#xA;&#xA;real    0m4.381s&#xA;user    0m0.130s&#xA;sys 0m0.080s&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&#xA;&lt;p&gt;在 KVM for ARM 的工作基础上，也借助了之前 IBM 的 runV 多架构支持工作，ARM64支持并没有消耗太多的时间，在这过程中尤其感谢泽帆代表华为提供的 ARM 服务器板作为测试平台，通话死我也在 pine64 上对这一工作进行了验证，一切进行得比较顺利。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;除了 ARM 64 服务器外， 常见的 ARM64 系统还包括各位的使用高通 Snapdragon &lt;sup&gt;810&lt;/sup&gt;&amp;frasl;&lt;sub&gt;820&lt;/sub&gt; 系列 CPU 的手机，各种 ARM Cortex A53/A57 CPU （华为、三星、MTK芯片）的手机，Raspberry Pi 3、 Pine 64 等常见的嵌入式开发版，价格从一两百块人民币起，有些是随身携带的移动终端，也有些被看作是 IoT 设备，这也标志着未来 HyperContainer 技术还有更多的可能场景。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;&lt;img data-src=&#34;/assets/pine64.jpg&#34; alt=&#34;pine64&#34; /&gt;&lt;/p&gt;&#xA;&#xA;&lt;p&gt;&lt;img data-src=&#34;/assets/huwwei-arm64.jpg&#34; alt=&#34;华为 ARM64 服务器板&#34; /&gt;&lt;/p&gt;&#xA;&#xA;&lt;p&gt;谢谢大家。&lt;/p&gt;&#xA;</content>
+    <link href="http://wangxu.me/hyper/2016/10/17/hyper-arm64/index.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>Blog 迁移后记</title>
     <updated>2016-09-28T09:35:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2016-06-08:/family/2016/06/08/for-dad/index.html</id>
     <content type="html">&lt;p&gt;爸爸：&lt;/p&gt;&#xA;&#xA;&lt;p&gt;2月9日，大年初二，你停下了脚步，而我们却渐行渐远。你是那个最疼我的人，我是你最后托付的人，我手上，你最后的温度不曾散释，我心里，你最后的话语萦绕未消。平日里，你好象仍然未曾远去，总觉的哪天我迈进家门，还能尝到你做的饭菜，我还会劝劝你少喝酒、少放油；而在飞机上的时候，我总觉的自己距离你更近了，几次在航班上泪流满面地回想和你在一起的点滴往事，从幼年的兔子和鹅，一直到高考时晚饭，再到五年前我从移动离职时你的话……这些，你也都不曾忘记，对么？&lt;/p&gt;&#xA;&#xA;&lt;p&gt;你离去已过百天，你最疼的屹长大了，学了新知识，学得更有自我意识了，偶尔骗骗我，把我气得半死，和我小时候一样；你那时候对我很宽容的，我们也会好好地爱他、引导他的。他偶尔也会不经意间提到你，但不会多说，他对你可能也无法释怀，你走了，这个小家伙一定很不开心。可爱的小诺诺也从刚两岁长到快两岁半了，不知道是不是感应，你发病前一天坚持想去接我和诺诺，那次没让你去，没想到就阴阳两隔了，而你离开的那天，小诺诺也高烧不退，痛苦之极；如今，她越来越懂事了，她出乎预料地不肯忘记你，你刚走那几天，她会指着很多东西说“是爷爷的”，而到最近，她还会提起“爷爷怎么不来啊，让爷爷也一起来吧”，“爷爷做菜好吃，让爷爷回来给我做菜吧”，每每引得妈妈潸然泪下。我曾经感伤“爱也会被遗忘”，有的时候却也想，遗忘可能也是对生者的保护，如果诺诺真能快点遗忘，妈妈可能也没这么伤心吧。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;说到妈妈，她还没有适应没有你的生活，没有你来给她拿主意，她似乎越来越不知道该走向哪里，我告诉她，她还可以有大约25年有质量的晚年生活，25年可以让一个婴儿成长到研究生毕业，可以和以往完全不同，可以活出更多精彩。我不知道她能听进去多少，她原来太依赖你来思考了，她不愿意接受别人的思想注入，不过我会尽力的，愿天空里的你也能帮助她度过难关。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;你走了，我也一夜长大，从前我在你的家庭里，营造我的小家庭，如今我也在家族里，试着和其他长辈们沟通，你离去的痛，和追加上的更多责任，让我更明白人生。我知道要关爱我的家庭，要关照妈妈，也要爱护自己。我会更加自律地生活，因为失去你的痛苦，让我知道，不要让爱我的人再那么早承受这份痛，相信我，我会尽力爱护你爱的人的。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;飞机已经飞过中欧，快要到达此行的目的地了，快要和你告别了，我想和你分享一段最近注意到的《爱丽丝梦游仙境2》的台词：&lt;/p&gt;&#xA;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;曾经以为时间是个小偷，将我们拥有的一切都偷走，从不曾给我们机会。但我们错了，她总是先给予再拿走，每一天，每一分，每一秒，都是馈赠；时间教你接受一切，爱的人就在身边，请珍惜。&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&#xA;&lt;p&gt;你曾经和我一起相处过三十五年，为我付出过三十五年，一起快乐地度过了三十五年，我们一起走过乡间小道也一起飞在过蓝天之中，你自己在一直打拼，也鼓励我勇敢闯荡，如今你离开我了，我在你的注视下渐行渐远，我会把你一直放在心底，永远珍藏着那充满父爱的一分一秒。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;再见，爱你，虽然这句话你没有亲耳听到让我觉得有点遗憾。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;儿 旭&lt;/p&gt;&#xA;&#xA;&lt;p&gt;2016年6月7日于英航BA38航班上&lt;/p&gt;&#xA;</content>
     <link href="http://wangxu.me/family/2016/06/08/for-dad/index.html"></link>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>Hyper 一岁了</title>
-    <updated>2016-05-25T20:06:08+08:00</updated>
-    <id>tag:wangxu.me,2016-05-25:/hyper/2016/05/25/hyper-birthday/index.html</id>
-    <content type="html">&lt;p&gt;今天一早，朋飞就告诉我们，我们和 Google 合作，发在 &lt;a href=&#34;http://blog.kubernetes.io/2016/05/hypernetes-security-and-multi-tenancy-in-kubernetes.html&#34;&gt;Kubernetes 官方博客上的文章&lt;/a&gt;终于上线了，张磊和朋飞，还有 Google Kubernetes 团队的 Dawn 等朋友忙活了这么久的一件事终于在今天有了结果。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;一篇文章用了这么久，有点超出我们的预期。不过，看看本文标题，今天刚好是我们向全世界宣布开始 &lt;a href=&#34;https://github.com/hyperhq/hyperd&#34;&gt;HyperContainer&lt;/a&gt; 这个开源项目一周年，这真是个让人惊喜的生日礼物呢！&lt;/p&gt;&#xA;&#xA;&lt;p&gt;一年前，我们忐忑地宣布了这个项目，那篇 blog 在 HackerNews 首页上停了几乎一整天，有人说，如果不算中国股市的话，这是中国人头一次在 HackerNews 首页上停这么久。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;在过去的一年里，我们在 HyperContainer 之外，还发布了 RunV, Hypernetes 两个开源项目，并在上个月推出了我们的公有云服务 &lt;a href=&#34;https://www.hyper.sh&#34;&gt;Hyper_&lt;/a&gt;。这几个开源项目我都在之前的 Blog 里有过介绍，毋须多言，有兴趣的同学直接来&lt;a href=&#34;http://github.com/hyperhq/&#34;&gt;我们的 GitHub&lt;/a&gt; 看吧。&lt;/p&gt;&#xA;&#xA;&lt;p&gt;就在刚刚，我 Tag 了 HyperContainer 项目的 0.6.0 版本，作为生日祝福送给我们项目自己，感谢开发团队的努力工作，不过我们没时间停下来，在接下来的两个月里，我们还有很多事情要做&lt;/p&gt;&#xA;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;我们的公有云项目将会有几个比较大的功能升级，就在未来的几个星期里逐步上线，GA 就在眼前，还请各位关注。&lt;/li&gt;&#xA;&lt;li&gt;我们的 HyperContainers 项目会在未来两个月里进一步完善 API、并稳定功能，大约在8月份达到 1.0 。&lt;/li&gt;&#xA;&lt;li&gt;我们的 Hypernetes 会和 Kubernetes 继续合作，大约在秋季的时候，Kubernetes 上游会有 HyperContainer Runtime 的集成。&lt;/li&gt;&#xA;&lt;li&gt;还有更多的进展会在未来几个月里逐步推进……&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&#xA;&lt;p&gt;从发布到一岁，是漫长、艰辛而又兴奋的一个过程，未来更多挑战等着我们，让我们一起加油吧！&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/hyper/2016/05/25/hyper-birthday/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>

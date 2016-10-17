@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="arm64,hyperd,runv,aarch64,arm,hyper,">
+        <meta name="description" content="Hello, ARM64 -- Hyper ARM64 架构支持">
+        <link rel="stylesheet" href="/bundle/index.css">
+        <title>Hello, ARM64 -- Hyper ARM64 架构支持</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+</script>
+
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
+
+            <article class="main article">
+                <h1 class="title">Hello, ARM64 -- Hyper ARM64 架构支持</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1476719888">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/arm64/index.html">arm64</a><a class="tag" href="/tag/hyperd/index.html">hyperd</a><a class="tag" href="/tag/runv/index.html">runv</a><a class="tag" href="/tag/aarch64/index.html">aarch64</a><a class="tag" href="/tag/arm/index.html">arm</a><a class="tag" href="/tag/hyper/index.html">hyper</a></span>
+                </section>
+                <article class="content"><blockquote>
+<p>ARM64 (ARMv8) 架构的支持，不仅是对一个新架构的支持，一类新服务器的支持，也把 Hyper 带入到了终端，乃至是物联网（IoT）技术的大门前，等待我们的将是更广阔更精彩的未来。</p>
+</blockquote>
+
+<p>随着我在过去的几天中先后 merge 了高峰提出的 <a href="https://github.com/hyperhq/hyperstart/pull/207">hyperhq/hyperstart#207</a>, <a href="https://github.com/hyperhq/runv/pull/360">hyperhq/runv#360</a>, 和 <a href="https://github.com/hyperhq/hyperd/pull/437">hyperhq/hyperd#437</a>, 三个 PR，HyperContainer 正式支持了 ARM64 (ARMv8, aarch64) 架构。</p>
+
+<p><img data-src="/assets/arm64.jpg" alt="ARM64 support" /></p>
+
+<pre><code>root@pine64:/home/debian# time hyperctl run -t aarch64/busybox sh -c &quot;echo hello, arm64&quot;
+hello, arm64
+
+real    0m4.381s
+user    0m0.130s
+sys 0m0.080s
+</code></pre>
+
+<p>在 KVM for ARM 的工作基础上，也借助了之前 IBM 的 runV 多架构支持工作，ARM64支持并没有消耗太多的时间，在这过程中尤其感谢泽帆代表华为提供的 ARM 服务器板作为测试平台，通话死我也在 pine64 上对这一工作进行了验证，一切进行得比较顺利。</p>
+
+<p>除了 ARM 64 服务器外， 常见的 ARM64 系统还包括各位的使用高通 Snapdragon <sup>810</sup>&frasl;<sub>820</sub> 系列 CPU 的手机，各种 ARM Cortex A53/A57 CPU （华为、三星、MTK芯片）的手机，Raspberry Pi 3、 Pine 64 等常见的嵌入式开发版，价格从一两百块人民币起，有些是随身携带的移动终端，也有些被看作是 IoT 设备，这也标志着未来 HyperContainer 技术还有更多的可能场景。</p>
+
+<p><img data-src="/assets/pine64.jpg" alt="pine64" /></p>
+
+<p><img data-src="/assets/huwwei-arm64.jpg" alt="华为 ARM64 服务器板" /></p>
+
+<p>谢谢大家。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    
+                    <section class="nav next">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/meta/2016/09/24/blog-to-hyper-2/index.html">Blog 迁移后记</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>

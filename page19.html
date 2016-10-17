@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
@@ -38,6 +60,23 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/scripts/2008/11/30/%e4%b8%80%e8%a1%8c%e7%9a%84%e6%97%a5%e5%bf%97%e5%88%86%e6%9e%90%e8%84%9a%e6%9c%ac/index.html">一行的日志分析脚本</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            <span class="date" data-time="1228050120">
+                                <span class="from"></span>
+                                
+                            </span>
+                            <span class="tags">
+                            <a class="tag" href="/tag/grep/index.html">grep</a><a class="tag" href="/tag/regexp/index.html">regexp</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/sed/index.html">sed</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/translation/2008/11/16/java-se-6-hotspot-[tm]-%e8%99%9a%e6%8b%9f%e6%9c%ba%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6%e8%b0%83%e4%bc%98/index.html">Java SE 6 Hotspot [TM] 虚拟机垃圾回收调优</a>
@@ -188,23 +227,6 @@
                             </span>
                             <span class="tags">
                             <a class="tag" href="/tag/expect/index.html">expect</a><a class="tag" href="/tag/iLO/index.html">iLO</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/ssh/index.html">ssh</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/scripts/2008/10/15/%e5%8f%af%e7%94%a8ip%e5%88%97%e8%a1%a8%e7%94%9f%e6%88%90/index.html">可用IP列表生成</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            <span class="date" data-time="1224077460">
-                                <span class="from"></span>
-                                
-                            </span>
-                            <span class="tags">
-                            <a class="tag" href="/tag/script/index.html">script</a><a class="tag" href="/tag/shell/index.html">shell</a><a class="tag" href="/tag/scripts/index.html">scripts</a>
                             </span>
                         </section>
                     </li>

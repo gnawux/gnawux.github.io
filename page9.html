@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
@@ -38,6 +60,23 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/scripts/2011/05/05/%e7%a0%94%e7%a9%b6%e4%ba%86%e4%b8%80%e5%ae%bf%ef%bc%8c%e6%89%be%e5%88%b0%e4%ba%86%e4%b8%aa%e5%90%88%e9%80%82%e7%9a%84ffmpeg%e5%8f%82%e6%95%b0/index.html">研究了一宿，找到了个合适的ffmpeg参数</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            <span class="date" data-time="1304539447">
+                                <span class="from"></span>
+                                
+                            </span>
+                            <span class="tags">
+                            <a class="tag" href="/tag/ffmpeg/index.html">ffmpeg</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/video/index.html">video</a><a class="tag" href="/tag/scripts/index.html">scripts</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/works/2011/04/25/cassandra-definitive-guide/index.html">《Cassandra权威指南》翻译完成</a>
@@ -188,23 +227,6 @@
                             </span>
                             <span class="tags">
                             <a class="tag" href="/tag/bcm5709/index.html">bcm5709</a><a class="tag" href="/tag/bnx2/index.html">bnx2</a><a class="tag" href="/tag/bug/index.html">bug</a><a class="tag" href="/tag/centos/index.html">centos</a><a class="tag" href="/tag/disable_msi/index.html">disable_msi</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/msi-x/index.html">msi-x</a><a class="tag" href="/tag/rhel/index.html">rhel</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/misc/2010/12/08/datanode-hdfs-1362/index.html">DataNode的磁盘管理以及HDFS-1362</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            <span class="date" data-time="1291814540">
-                                <span class="from"></span>
-                                
-                            </span>
-                            <span class="tags">
-                            <a class="tag" href="/tag/datanode/index.html">datanode</a><a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/jira/index.html">jira</a><a class="tag" href="/tag/volume/index.html">volume</a>
                             </span>
                         </section>
                     </li>

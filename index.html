@@ -28,6 +28,28 @@
     };
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
             <article class="main page">
                 <header class="header site">
@@ -38,6 +60,23 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/hyper/2016/10/17/hyper-arm64/index.html">Hello, ARM64 -- Hyper ARM64 架构支持</a>
+                        <div class="cover" style="background-image:url(/assets/hello-arm64.jpg);"></div>
+                        <section class="preview content">ARM64 (ARMv8) 架构的支持，不仅是对一个新架构的支持，一类新服务器的支持，也把 Hyper 带入到了终端，乃至是物联网（IoT）技术的大门前，等待我们的将是更广阔更精彩的未来...</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            <span class="date" data-time="1476719888">
+                                <span class="from"></span>
+                                
+                            </span>
+                            <span class="tags">
+                            <a class="tag" href="/tag/arm64/index.html">arm64</a><a class="tag" href="/tag/hyperd/index.html">hyperd</a><a class="tag" href="/tag/runv/index.html">runv</a><a class="tag" href="/tag/aarch64/index.html">aarch64</a><a class="tag" href="/tag/arm/index.html">arm</a><a class="tag" href="/tag/hyper/index.html">hyper</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/meta/2016/09/24/blog-to-hyper-2/index.html">Blog 迁移后记</a>
@@ -188,23 +227,6 @@
                             </span>
                             <span class="tags">
                             <a class="tag" href="/tag/memories/index.html">memories</a><a class="tag" href="/tag/dad/index.html">dad</a><a class="tag" href="/tag/family/index.html">family</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/hyper/2016/05/25/hyper-birthday/index.html">Hyper 一岁了</a>
-                        
-                        <section class="preview content">一年前，我们忐忑地宣布了这个项目，那篇 blog 在 HackerNews 首页上停了几乎一整天，有人说，如果不算中国股市的话，这是中国人头一次在 HackerNews 首页上停这么久...</section>
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            <span class="date" data-time="1464177968">
-                                <span class="from"></span>
-                                
-                            </span>
-                            <span class="tags">
-                            <a class="tag" href="/tag/hyper/index.html">hyper</a><a class="tag" href="/tag/anniversary/index.html">anniversary</a><a class="tag" href="/tag/thanks/index.html">thanks</a>
                             </span>
                         </section>
                     </li>
