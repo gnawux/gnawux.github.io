@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+        <meta name="keywords" content="oss,hyper,alicloud,媒体,cloud,">
+        <meta name="description" content="新闻评论: 你真的无法忍受阿里云么">
+        <link rel="stylesheet" href="/bundle/index.css">
+        <title>新闻评论: 你真的无法忍受阿里云么</title>
+    </head>
+    <body>
+        <article class="container">
+            <a class="index" href="/">我有分寸</a>
+<ul class="menu">
+    <li class="menu-item"><a href="/archive.html">归档</a></li>
+    <li class="menu-item"><a href="/tag.html">标签</a></li>
+    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+</ul>
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+</script>
+
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
+
+            <article class="main article">
+                <h1 class="title">新闻评论: 你真的无法忍受阿里云么</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <span class="date" data-time="1477493888">
+                        <span class="from"></span>
+                        
+                    </span>
+                    <span class="tags"><a class="tag" href="/tag/oss/index.html">oss</a><a class="tag" href="/tag/hyper/index.html">hyper</a><a class="tag" href="/tag/alicloud/index.html">alicloud</a><a class="tag" href="/tag/%e5%aa%92%e4%bd%93/index.html">媒体</a><a class="tag" href="/tag/cloud/index.html">cloud</a></span>
+                </section>
+                <article class="content"><p>今天的朋友圈里，充斥着几家云（自）媒体的一条新闻——《XX之家因为无法忍受阿里云而迁移至XX云》，我不赞同其标题，所以也就不转链接了，同样，我不喜欢这种广告形式，也隐去了相关的名字。</p>
+
+<p>作为曾经的竞争对手，本来我以为我会是阿里一生黑的，阿里也有很多做得让我不那么赞同的东西，我今天就算是为他们说句话，也不代表我完全支持阿里云了，其实今天这种通过公关炒作吸引用户从竞争对手上迁移出来的手段，阿里就算不是始作俑者，也是上一辈的集大成者了。但我今天要说的是——</p>
+
+<blockquote>
+<p>国内云服务，什么时候出故障了能根据SLA索赔/赔付，而不是发公关稿、圈大V，才算是环境成熟了。——我 (王旭 @ Hyper.sh)</p>
+</blockquote>
+
+<p>认识阿里云的几位大牛，有的是一两句话的交情，比如褚霸，还有些深一些，总得有一二十句话吧。上星期 CLSF 上，我和涛哥说你们阿里云作为中国云计算的旗舰，不能光盯着低端市场了，你们要撑起中国云计算的生态系统就不能一直跟着 VPS 拼，要向 AWS 看齐，并在业务上超越。说这话，多少有点自己没能力和 AWS 拼，想看着同胞们上去的咸咸的感觉吧。涛哥嘿嘿一笑，我也理解，毕竟涛哥虽然姓马，却不是马主席啊……</p>
+
+<p>阿里云的盘古与飞天，这么诗意的名字，实际和用户并不直接对接，我有点酸葡萄地吐槽——现在阿里云正事没啥突出的，live migration 和 live patching 已经独步行业了。为啥？AWS 只要给用户送个通知就可以重启机器，而阿里战战兢兢升级的时候稍有不测就会有人开始炒作，结果直接干活的工程师被处罚，这种模式会影响国内云服务的进步，最后，整个国内的云产业和你们在座这些用户也是受害者。</p>
+
+<p>所以啊，我希望的是，国内的用户们和服务商们，你们都行动起来，停止这种互撕吧，用户的架构上面向 cloud native 演进，服务商努力保障 QoS 的同时通过 SLA 界定和解决用户纠纷，通过定价和更有价值的业务，筛选并留住适合的用户，比如 aws redshift 这些（此处应有 Hyper.sh 的广告，因为懒，略过了）。当然这些 <strong>不光是服务商的事，也是用户、监管，和行业标准制定者的工作，良好的国内云生态，需要各位的共同努力</strong>。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/opensource/2016/10/27/rethinkdb/index.html">新闻评论: 也谈 RethinDB 的倒掉</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/hyper/2016/10/17/hyper-arm64/index.html">Hello, ARM64 -- Hyper ARM64 架构支持</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>
