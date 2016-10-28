@@ -2,21 +2,36 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="我有分寸, 某创业公司的看门大爷">
-        <meta name="description" content="某创业公司的看门大爷">
-        <link rel="stylesheet" href="/bundle/index.css">
-        <title>我有分寸</title>
-    </head>
-    <body>
-        <article class="container">
-            <a class="index" href="/">我有分寸</a>
-<ul class="menu">
-    <li class="menu-item"><a href="/archive.html">归档</a></li>
-    <li class="menu-item"><a href="/tag.html">标签</a></li>
-    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
-</ul>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我有分寸">
+<meta name="twitter:description" content="某创业公司的看门大爷">
+<meta name="twitter:image:src" content="http://wangxu.me/assets/sq.png">
+
+<meta property="og:url" content="http://wangxu.me">
+<meta property="og:title" content="我有分寸">
+<meta property="og:description" content="某创业公司的看门大爷">
+<meta property="og:site_name" content="我有分寸">
+<meta property="og:image" content="http://wangxu.me/assets/sq.png">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="我有分寸">
+<meta itemprop="description" content="某创业公司的看门大爷">
+<meta itemprop="image" content="http://wangxu.me/assets/sq.png">
+
+<link rel="canonical" href="http://wangxu.me">
+
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="apple-itouch-icon" href="/favicon.png">
+<link rel="stylesheet" href="/bundle/index.css">
 <script type="text/javascript">
     var timeSinceLang = {
         year: '年前',
@@ -26,6 +41,7 @@
         minute: '分钟前',
         second: '秒前'
     };
+    var root = '';
 </script>
 
 <script type="text/javascript">
@@ -51,12 +67,35 @@
 </script>
 
 
+        <meta name="keywords" content="某创业公司的看门大爷">
+        <meta name="description" content="某创业公司的看门大爷">
+        <title>我有分寸</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/assets/sq.png" />
+    我有分寸
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+  </ul>
+</header>
+
             <article class="main page">
                 <header class="header site">
                     
                         <img class="logo" src="/assets/sq.png" />
                         <h1 class="title">我有分寸</h1>
                         <h2 class="subtitle">某创业公司的看门大爷</h2>
+                        <div class="search-wrap">
+  <input id="search" class="search" placeholder="搜索..." data-root="">
+  <svg class="icon" width="25" height="25" viewBox="0 0 25 25"><path d="M20.067 18.933l-4.157-4.157a6 6 0 1 0-.884.884l4.157 4.157a.624.624 0 1 0 .884-.884zM6.5 11c0-2.62 2.13-4.75 4.75-4.75S16 8.38 16 11s-2.13 4.75-4.75 4.75S6.5 13.62 6.5 11z"></path></svg>
+</div>
+
                     
                 </header>
                 <ul class="article-list">
@@ -64,14 +103,14 @@
                     <li class="article">
                         <a class="title" href="/opensource/2016/10/27/rethinkdb/index.html">新闻评论: 也谈 RethinDB 的倒掉</a>
                         
-                        <section class="preview content">这恍然二十个春秋中， RethinkDB 不过是沧海一粟，被拎出来管窥实在是有点片面了，可能媒体也不容易吧...</section>
+                        <section class="preview content"><p>这恍然二十个春秋中， RethinkDB 不过是沧海一粟，被拎出来管窥实在是有点片面了，可能媒体也不容易吧</p>
+</section>
                         <section class="info">
                             <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
                             <a class="name" href="/about.me.html">gnawux</a>
-                            <span class="date" data-time="1477531088">
-                                <span class="from"></span>
-                                
-                            </span>
+                            
+                            <span class="date" data-time="1477531088"><span class="from"></span></span>
+                            
                             <span class="tags">
                             <a class="tag" href="/tag/oss/index.html">oss</a><a class="tag" href="/tag/hyper/index.html">hyper</a><a class="tag" href="/tag/software/index.html">software</a><a class="tag" href="/tag/rethinkdb/index.html">rethinkdb</a><a class="tag" href="/tag/%e5%aa%92%e4%bd%93/index.html">媒体</a><a class="tag" href="/tag/opensource/index.html">opensource</a>
                             </span>
@@ -81,14 +120,14 @@
                     <li class="article">
                         <a class="title" href="/cloud/2016/10/26/alicloud/index.html">新闻评论: 你真的无法忍受阿里云么</a>
                         
-                        <section class="preview content">作为曾经的竞争对手，本来我以为我会是阿里一生黑的，不过，今天看这新闻标题，我想为阿里说句话...</section>
+                        <section class="preview content"><p>作为曾经的竞争对手，本来我以为我会是阿里一生黑的，不过，今天看这新闻标题，我想为阿里说句话</p>
+</section>
                         <section class="info">
                             <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
                             <a class="name" href="/about.me.html">gnawux</a>
-                            <span class="date" data-time="1477493888">
-                                <span class="from"></span>
-                                
-                            </span>
+                            
+                            <span class="date" data-time="1477493888"><span class="from"></span></span>
+                            
                             <span class="tags">
                             <a class="tag" href="/tag/oss/index.html">oss</a><a class="tag" href="/tag/hyper/index.html">hyper</a><a class="tag" href="/tag/alicloud/index.html">alicloud</a><a class="tag" href="/tag/%e5%aa%92%e4%bd%93/index.html">媒体</a><a class="tag" href="/tag/cloud/index.html">cloud</a>
                             </span>
@@ -98,14 +137,14 @@
                     <li class="article">
                         <a class="title" href="/hyper/2016/10/17/hyper-arm64/index.html">Hello, ARM64 -- Hyper ARM64 架构支持</a>
                         <div class="cover" style="background-image:url(/assets/hello-arm64.jpg);"></div>
-                        <section class="preview content">ARM64 (ARMv8) 架构的支持，不仅是对一个新架构的支持，一类新服务器的支持，也把 Hyper 带入到了终端，乃至是物联网（IoT）技术的大门前，等待我们的将是更广阔更精彩的未来...</section>
+                        <section class="preview content"><p>ARM64 (ARMv8) 架构的支持，不仅是对一个新架构的支持，一类新服务器的支持，也把 Hyper 带入到了终端，乃至是物联网（IoT）技术的大门前，等待我们的将是更广阔更精彩的未来</p>
+</section>
                         <section class="info">
                             <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
                             <a class="name" href="/about.me.html">gnawux</a>
-                            <span class="date" data-time="1476719888">
-                                <span class="from"></span>
-                                
-                            </span>
+                            
+                            <span class="date" data-time="1476719888"><span class="from"></span></span>
+                            
                             <span class="tags">
                             <a class="tag" href="/tag/arm64/index.html">arm64</a><a class="tag" href="/tag/hyperd/index.html">hyperd</a><a class="tag" href="/tag/runv/index.html">runv</a><a class="tag" href="/tag/aarch64/index.html">aarch64</a><a class="tag" href="/tag/arm/index.html">arm</a><a class="tag" href="/tag/hyper/index.html">hyper</a>
                             </span>
@@ -115,14 +154,14 @@
                     <li class="article">
                         <a class="title" href="/meta/2016/09/24/blog-to-hyper-2/index.html">Blog 迁移后记</a>
                         
-                        <section class="preview content">吃自己的狗粮要吃得更正宗...</section>
+                        <section class="preview content"><p>吃自己的狗粮要吃得更正宗</p>
+</section>
                         <section class="info">
                             <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
                             <a class="name" href="/about.me.html">gnawux</a>
-                            <span class="date" data-time="1474707178">
-                                <span class="from"></span>
-                                <span class="date" data-time="1475026508">(<span class="from"></span> 更新)</span>
-                            </span>
+                            
+                            <span class="date" data-time="1475026508"><span class="from"></span> 更新</span>
+                            
                             <span class="tags">
                             <a class="tag" href="/tag/meta/index.html">meta</a><a class="tag" href="/tag/hyper/index.html">hyper</a><a class="tag" href="/tag/caddy/index.html">caddy</a><a class="tag" href="/tag/blog/index.html">blog</a><a class="tag" href="/tag/letsencrypt/index.html">letsencrypt</a><a class="tag" href="/tag/docker/index.html">docker</a><a class="tag" href="/tag/image/index.html">image</a>
                             </span>
@@ -132,14 +171,14 @@
                     <li class="article">
                         <a class="title" href="/meta/2016/09/24/blog-to-hyper/index.html">Blog 迁移</a>
                         
-                        <section class="preview content">终于让自己的 Blogs 吃上了自己的狗粮...</section>
+                        <section class="preview content"><p>终于让自己的 Blogs 吃上了自己的狗粮</p>
+</section>
                         <section class="info">
                             <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
                             <a class="name" href="/about.me.html">gnawux</a>
-                            <span class="date" data-time="1474686488">
-                                <span class="from"></span>
-                                <span class="date" data-time="1474708328">(<span class="from"></span> 更新)</span>
-                            </span>
+                            
+                            <span class="date" data-time="1474708328"><span class="from"></span> 更新</span>
+                            
                             <span class="tags">
                             <a class="tag" href="/tag/meta/index.html">meta</a><a class="tag" href="/tag/hyper/index.html">hyper</a><a class="tag" href="/tag/caddy/index.html">caddy</a><a class="tag" href="/tag/blog/index.html">blog</a><a class="tag" href="/tag/letsencrypt/index.html">letsencrypt</a>
                             </span>
@@ -149,14 +188,14 @@
                     <li class="article">
                         <a class="title" href="/hyper/2016/08/13/hyper-ga/index.html">Hyper_ GA &amp; Happy Birthday to Myself</a>
                         <div class="cover" style="background-image:url(/assets/sofar.jpg);"></div>
-                        <section class="preview content">在自己的生日发布服务，是不是太中二了一点，所以，我们第二天正式切换吧...</section>
+                        <section class="preview content"><p>在自己的生日发布服务，是不是太中二了一点，所以，我们第二天正式切换吧</p>
+</section>
                         <section class="info">
                             <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
                             <a class="name" href="/about.me.html">gnawux</a>
-                            <span class="date" data-time="1471046888">
-                                <span class="from"></span>
-                                <span class="date" data-time="1474684500">(<span class="from"></span> 更新)</span>
-                            </span>
+                            
+                            <span class="date" data-time="1474684500"><span class="from"></span> 更新</span>
+                            
                             <span class="tags">
                             <a class="tag" href="/tag/hyper/index.html">hyper</a><a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/container/index.html">container</a><a class="tag" href="/tag/release/index.html">release</a><a class="tag" href="/tag/birthday/index.html">birthday</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/life/index.html">life</a>
                             </span>
@@ -166,14 +205,14 @@
                     <li class="article">
                         <a class="title" href="/cloud/2016/07/24/standardization/index.html">我眼中的（云计算）标准化</a>
                         
-                        <section class="preview content">更加高瞻远瞩的标准化工作者，并不仅仅把眼光停留在评测和准入机制上，他们会把产业的发展趋势、国家和社会的需求体现到标准当中去...</section>
+                        <section class="preview content"><p>更加高瞻远瞩的标准化工作者，并不仅仅把眼光停留在评测和准入机制上，他们会把产业的发展趋势、国家和社会的需求体现到标准当中去</p>
+</section>
                         <section class="info">
                             <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
                             <a class="name" href="/about.me.html">gnawux</a>
-                            <span class="date" data-time="1469297288">
-                                <span class="from"></span>
-                                
-                            </span>
+                            
+                            <span class="date" data-time="1469297288"><span class="from"></span></span>
+                            
                             <span class="tags">
                             <a class="tag" href="/tag/standardization/index.html">standardization</a><a class="tag" href="/tag/%e6%a0%87%e5%87%86%e5%8c%96/index.html">标准化</a><a class="tag" href="/tag/cloud/index.html">cloud</a>
                             </span>
@@ -183,14 +222,14 @@
                     <li class="article">
                         <a class="title" href="/family/2016/07/08/anniversary-9/index.html">往事匆匆，来日茫茫，唯有你我，相伴久久</a>
                         <div class="cover" style="background-image:url(/assets/anniversary-9.jpg);"></div>
-                        <section class="preview content">时间的鬼斧神工总是让人惊叹，一直觉得自己意气风发，可是在公司却像个看门大爷；一直觉得还在家庭生活的磨合期，可别人都在称赞我们儿女双全，两个孩子都在修剪玫瑰花束了。唉，我们不得不承认，已经结婚9年了。早上，我搬进卧室一从99朵玫瑰，告诉老婆今天是结婚纪念日，她惊愕地问今天是几号...</section>
+                        <section class="preview content"><p>时间的鬼斧神工总是让人惊叹，一直觉得自己意气风发，可是在公司却像个看门大爷；一直觉得还在家庭生活的磨合期，可别人都在称赞我们儿女双全，两个孩子都在修剪玫瑰花束了。唉，我们不得不承认，已经结婚9年了。早上，我搬进卧室一从99朵玫瑰，告诉老婆今天是结婚纪念日，她惊愕地问今天是几号</p>
+</section>
                         <section class="info">
                             <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
                             <a class="name" href="/about.me.html">gnawux</a>
-                            <span class="date" data-time="1467950888">
-                                <span class="from"></span>
-                                
-                            </span>
+                            
+                            <span class="date" data-time="1467950888"><span class="from"></span></span>
+                            
                             <span class="tags">
                             <a class="tag" href="/tag/anniversary/index.html">anniversary</a><a class="tag" href="/tag/wedding/index.html">wedding</a><a class="tag" href="/tag/family/index.html">family</a>
                             </span>
@@ -200,14 +239,14 @@
                     <li class="article">
                         <a class="title" href="/life/2016/07/07/exam-98/index.html">十八年前的那一次考试</a>
                         <div class="cover" style="background-image:url(/assets/france-98-r9.jpg);"></div>
-                        <section class="preview content">十八年前，我十八岁，那年也有洪水；那年也有足球；那年法国队也表现不错；那年，我参加了高考。现在的我，算不上成功，不过至少没有在高考后沉沦，这是一篇淡淡的鸡汤，送给那些高考不得意的同学...</section>
+                        <section class="preview content"><p>十八年前，我十八岁，那年也有洪水；那年也有足球；那年法国队也表现不错；那年，我参加了高考。现在的我，算不上成功，不过至少没有在高考后沉沦，这是一篇淡淡的鸡汤，送给那些高考不得意的同学</p>
+</section>
                         <section class="info">
                             <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
                             <a class="name" href="/about.me.html">gnawux</a>
-                            <span class="date" data-time="1467850088">
-                                <span class="from"></span>
-                                
-                            </span>
+                            
+                            <span class="date" data-time="1467850088"><span class="from"></span></span>
+                            
                             <span class="tags">
                             <a class="tag" href="/tag/%e9%ab%98%e8%80%83/index.html">高考</a><a class="tag" href="/tag/%e9%b8%a1%e6%b1%a4/index.html">鸡汤</a><a class="tag" href="/tag/%e5%9b%9e%e5%bf%86/index.html">回忆</a><a class="tag" href="/tag/life/index.html">life</a>
                             </span>
@@ -217,14 +256,14 @@
                     <li class="article">
                         <a class="title" href="/hyper/2016/06/28/frakti/index.html">Kubernetes 新项目 Frakti</a>
                         
-                        <section class="preview content">kubernetes 组织下，新建了一个 repo，名为 frakti，标志着 hyperContainer 以最 k8s 地方式融入 k8s 的开始...</section>
+                        <section class="preview content"><p>kubernetes 组织下，新建了一个 repo，名为 frakti，标志着 hyperContainer 以最 k8s 地方式融入 k8s 的开始</p>
+</section>
                         <section class="info">
                             <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
                             <a class="name" href="/about.me.html">gnawux</a>
-                            <span class="date" data-time="1467079688">
-                                <span class="from"></span>
-                                
-                            </span>
+                            
+                            <span class="date" data-time="1467079688"><span class="from"></span></span>
+                            
                             <span class="tags">
                             <a class="tag" href="/tag/frakti/index.html">frakti</a><a class="tag" href="/tag/kubernetes/index.html">kubernetes</a><a class="tag" href="/tag/hyperContainer/index.html">hyperContainer</a><a class="tag" href="/tag/opensource/index.html">opensource</a><a class="tag" href="/tag/container/index.html">container</a><a class="tag" href="/tag/k8s/index.html">k8s</a><a class="tag" href="/tag/hyper/index.html">hyper</a>
                             </span>
@@ -246,7 +285,7 @@
             document.write(new Date().getFullYear());
         </script>
     </span>
-    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+    <span class="publish">Powered by <a href="http://www.chole.io/" target="_blank">Ink</a></span>
 </footer>
 
     </body>

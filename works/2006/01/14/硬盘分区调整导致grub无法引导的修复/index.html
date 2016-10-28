@@ -2,21 +2,36 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
-        <meta name="keywords" content="boot,grub,works,">
-        <meta name="description" content="硬盘分区调整导致grub无法引导的修复">
-        <link rel="stylesheet" href="/bundle/index.css">
-        <title>硬盘分区调整导致grub无法引导的修复</title>
-    </head>
-    <body>
-        <article class="container">
-            <a class="index" href="/">我有分寸</a>
-<ul class="menu">
-    <li class="menu-item"><a href="/archive.html">归档</a></li>
-    <li class="menu-item"><a href="/tag.html">标签</a></li>
-    <li class="menu-item"><a href="/atom.xml">订阅</a></li>
-</ul>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我有分寸">
+<meta name="twitter:description" content="某创业公司的看门大爷">
+<meta name="twitter:image:src" content="http://wangxu.me/assets/sq.png">
+
+<meta property="og:url" content="http://wangxu.me">
+<meta property="og:title" content="我有分寸">
+<meta property="og:description" content="某创业公司的看门大爷">
+<meta property="og:site_name" content="我有分寸">
+<meta property="og:image" content="http://wangxu.me/assets/sq.png">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="我有分寸">
+<meta itemprop="description" content="某创业公司的看门大爷">
+<meta itemprop="image" content="http://wangxu.me/assets/sq.png">
+
+<link rel="canonical" href="http://wangxu.me">
+
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="apple-itouch-icon" href="/favicon.png">
+<link rel="stylesheet" href="/bundle/index.css">
 <script type="text/javascript">
     var timeSinceLang = {
         year: '年前',
@@ -26,6 +41,7 @@
         minute: '分钟前',
         second: '秒前'
     };
+    var root = '';
 </script>
 
 <script type="text/javascript">
@@ -51,15 +67,33 @@
 </script>
 
 
+        <meta name="keywords" content="boot,grub,works,">
+        <meta name="description" content="硬盘分区调整导致grub无法引导的修复">
+        <meta name="author" content="gnawux">
+        <title>硬盘分区调整导致grub无法引导的修复</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/assets/sq.png" />
+    我有分寸
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+  </ul>
+</header>
+
             <article class="main article">
                 <h1 class="title">硬盘分区调整导致grub无法引导的修复</h1>
                 <section class="info">
                     <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
                     <a class="name" href="/about.me.html">gnawux</a>
-                    <span class="date" data-time="1137222840">
-                        <span class="from"></span>
-                        
-                    </span>
+                    
+                    <span class="date" data-time="1137222840"><span class="from"></span></span>
+                    
                     <span class="tags"><a class="tag" href="/tag/boot/index.html">boot</a><a class="tag" href="/tag/grub/index.html">grub</a><a class="tag" href="/tag/works/index.html">works</a></span>
                 </section>
                 <article class="content"><p>1. 定位 boot 分区：   <br />==================    <br />&quot;grub&gt;&quot;提示符下运行如下命令：    <br />grub&gt; find /grub/stage1    <br />(hd0,4)    <br />如果得到类似上述的结果，则表明存在单独的 /boot 分区，这是 Red hat 的典型    <br />风格，记为(*)，相应的记 /dev/hda5 为 (*')。(*)到(*')的映射遵循如下规律    <br />(hdm,n)--&gt;(/dev/hdck)    <br />m=0,1,2,3 ---&gt; c=a,b,c,d    <br />k=n+1    <br />如果没有得到有用结果，则表明不存在 /boot 分区，那么运行如下命令    <br />grub&gt; find /boot/grub/stage1    <br />(hd0,4)    <br />记此结果为 (**)，对应的 (**') 使用同样的方式转换而成    <br />(*) 或 (**) 就是对应的 grub 的分区的位置，记为 (grub)    <br />2. 定位根分区:    <br />==============    <br />如果存在(**') 则这个就是根分区，如果存在(*)，则运行如下命令    <br />grub&gt; find /etc/fstab    <br />(hd0,6)    <br />记上述结果为 (***) 并用同样规则，相应得到 (***')    <br />(**') 或 (***') 就是的根分区的位置，记为 (root')    <br />3. 引导系统:    <br />一共需要三到四条命令：    <br />a) grub&gt;root (grub)    <br />例如    <br />grub&gt; root (hd0,4)    <br />b) kernel (vmlinuz) root=(root') ro    <br />这里(vmlinuz)以如下方式确定    <br />如果(*)    <br />grub&gt; kernel /vmlinuz    <br />如果(**)    <br />grub&gt; kernel /boot/vmlinuz    <br />输入上面内容后，*不要回车*，连按tab键，可以得到匹配文件名列表，选择一个    <br />合适的，输入完整，格式如下    <br />grub&gt; kernel /vmlinuz-2.6.10-1 root=/dev/hda5 ro    <br />或    <br />grub&gt; kernle /boot/vmlinuz-2.6.10-1 root=/dev/hda7 ro    <br />c) initrd (initrd)    <br />同样按照上面同样的命令行补全方式，输入，例如    <br />grub&gt; initrd /initrd-2.6.10-i386.img    <br />或    <br />grub&gt; initrd /boot/initrd-2.6.10-i386.img    <br />d) boot    <br />grub&gt; boot    <br />至此，系统启动    <br />4. 修复引导程序:    <br />a)首先使用(root')和(boot')更新 /etc/fstab 里面的 / 和 /boot 的设备号，    <br />如果有其它分区，相应调整。    <br />b) 修改 /boot/grub/menu.lst 或 grub.conf    <br />按照步骤3里面的数据修改此文件    <br />c) 重新安装 grub    <br />以root用户    <br /># grub    <br />grub&gt; root (boot)    <br />grub&gt; setup (hd0)    <br />大概就是这样了，没有实验，直接写的，恐怕有些地方有些疏漏，请大家指正。</p>
@@ -103,7 +137,7 @@
             document.write(new Date().getFullYear());
         </script>
     </span>
-    <span class="publish">Powered by <a href="http://www.inkpaper.io/" target="_blank">Ink</a></span>
+    <span class="publish">Powered by <a href="http://www.chole.io/" target="_blank">Ink</a></span>
 </footer>
 
         <script src="/bundle/index.js"></script>
