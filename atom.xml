@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>http://wangxu.me</id>
-  <updated>2016-10-29T00:07:03+08:00</updated>
+  <updated>2016-11-04T20:37:31+08:00</updated>
   <subtitle>某创业公司的看门大爷</subtitle>
   <link href="http://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>实现一个自己的 Docker 日志驱动</title>
+    <updated>2016-11-04T18:38:08+08:00</updated>
+    <id>tag:wangxu.me,2016-11-04:/docker/2016/11/04/docker-logger/index.html</id>
+    <content type="html">&lt;p&gt;这本来是一个内部文档，不过似乎发布出来也不错，HyperContainer 支持原生的 Docker Logger，所以这篇日志讲得既是 Docker 的 Logger，也是 Hyper 的 Logger&lt;/p&gt;&#xA;</content>
+    <link href="http://wangxu.me/docker/2016/11/04/docker-logger/index.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>新闻评论: 也谈 RethinDB 的倒掉</title>
     <updated>2016-10-27T09:18:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2016-07-07:/life/2016/07/07/exam-98/index.html</id>
     <content type="html">&lt;p&gt;十八年前，我十八岁，那年也有洪水；那年也有足球；那年法国队也表现不错；那年，我参加了高考。现在的我，算不上成功，不过至少没有在高考后沉沦，这是一篇淡淡的鸡汤，送给那些高考不得意的同学&lt;/p&gt;&#xA;</content>
     <link href="http://wangxu.me/life/2016/07/07/exam-98/index.html"></link>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>Kubernetes 新项目 Frakti</title>
-    <updated>2016-06-28T10:08:08+08:00</updated>
-    <id>tag:wangxu.me,2016-06-28:/hyper/2016/06/28/frakti/index.html</id>
-    <content type="html">&lt;p&gt;kubernetes 组织下，新建了一个 repo，名为 frakti，标志着 hyperContainer 以最 k8s 地方式融入 k8s 的开始&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/hyper/2016/06/28/frakti/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
