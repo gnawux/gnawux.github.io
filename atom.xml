@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>http://wangxu.me</id>
-  <updated>2016-11-04T20:37:31+08:00</updated>
+  <updated>2016-12-19T01:20:38+08:00</updated>
   <subtitle>某创业公司的看门大爷</subtitle>
   <link href="http://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>容器云中的应用模式（1）</title>
+    <updated>2016-12-19T01:08:08+08:00</updated>
+    <id>tag:wangxu.me,2016-12-19:/hyper/2016/12/19/container-cloud-pattern/index.html</id>
+    <content type="html">&lt;p&gt;本文来自 hyper.sh 上线四个月以来对用户的一些观察与访谈，作为一种新的服务，用户的创造力可能会超出设计者最初的构想，这里只是部分的归纳，希望能对读者有一定的启发&lt;/p&gt;&#xA;</content>
+    <link href="http://wangxu.me/hyper/2016/12/19/container-cloud-pattern/index.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>实现一个自己的 Docker 日志驱动</title>
     <updated>2016-11-04T18:38:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2016-07-08:/family/2016/07/08/anniversary-9/index.html</id>
     <content type="html">&lt;p&gt;时间的鬼斧神工总是让人惊叹，一直觉得自己意气风发，可是在公司却像个看门大爷；一直觉得还在家庭生活的磨合期，可别人都在称赞我们儿女双全，两个孩子都在修剪玫瑰花束了。唉，我们不得不承认，已经结婚9年了。早上，我搬进卧室一从99朵玫瑰，告诉老婆今天是结婚纪念日，她惊愕地问今天是几号&lt;/p&gt;&#xA;</content>
     <link href="http://wangxu.me/family/2016/07/08/anniversary-9/index.html"></link>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>十八年前的那一次考试</title>
-    <updated>2016-07-07T08:08:08+08:00</updated>
-    <id>tag:wangxu.me,2016-07-07:/life/2016/07/07/exam-98/index.html</id>
-    <content type="html">&lt;p&gt;十八年前，我十八岁，那年也有洪水；那年也有足球；那年法国队也表现不错；那年，我参加了高考。现在的我，算不上成功，不过至少没有在高考后沉沦，这是一篇淡淡的鸡汤，送给那些高考不得意的同学&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/life/2016/07/07/exam-98/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
