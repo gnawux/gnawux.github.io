@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>http://wangxu.me</id>
-  <updated>2016-12-19T01:20:38+08:00</updated>
+  <updated>2017-02-09T00:25:50+08:00</updated>
   <subtitle>某创业公司的看门大爷</subtitle>
   <link href="http://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>A Year without You</title>
+    <updated>2017-02-09T00:08:08+08:00</updated>
+    <id>tag:wangxu.me,2017-02-09:/family/2017/02/09/a-year-without-you/index.html</id>
+    <content type="html">&lt;p&gt;这一年，有不少快乐的瞬间，可是，这是痛苦的一年；抬着头，我从未对自己失去过信心，可是，这是失望的一年&lt;/p&gt;&#xA;</content>
+    <link href="http://wangxu.me/family/2017/02/09/a-year-without-you/index.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>容器云中的应用模式（1）</title>
     <updated>2016-12-19T01:08:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2016-07-24:/cloud/2016/07/24/standardization/index.html</id>
     <content type="html">&lt;p&gt;更加高瞻远瞩的标准化工作者，并不仅仅把眼光停留在评测和准入机制上，他们会把产业的发展趋势、国家和社会的需求体现到标准当中去&lt;/p&gt;&#xA;</content>
     <link href="http://wangxu.me/cloud/2016/07/24/standardization/index.html"></link>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>往事匆匆，来日茫茫，唯有你我，相伴久久</title>
-    <updated>2016-07-08T12:08:08+08:00</updated>
-    <id>tag:wangxu.me,2016-07-08:/family/2016/07/08/anniversary-9/index.html</id>
-    <content type="html">&lt;p&gt;时间的鬼斧神工总是让人惊叹，一直觉得自己意气风发，可是在公司却像个看门大爷；一直觉得还在家庭生活的磨合期，可别人都在称赞我们儿女双全，两个孩子都在修剪玫瑰花束了。唉，我们不得不承认，已经结婚9年了。早上，我搬进卧室一从99朵玫瑰，告诉老婆今天是结婚纪念日，她惊愕地问今天是几号&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/family/2016/07/08/anniversary-9/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
