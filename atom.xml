@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>http://wangxu.me</id>
-  <updated>2017-02-09T10:31:05+08:00</updated>
+  <updated>2017-04-23T12:29:13+08:00</updated>
   <subtitle>某创业公司的看门大爷</subtitle>
   <link href="http://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>锻炼两月记</title>
+    <updated>2017-04-23T11:08:08+08:00</updated>
+    <id>tag:wangxu.me,2017-04-23:/life/2017/04/23/lose-weight/index.html</id>
+    <content type="html">&lt;p&gt;这是一篇不太鸡汤的锻炼记录，有些回忆，有些心得，有些欣喜，有些（负能量）感想&lt;/p&gt;&#xA;</content>
+    <link href="http://wangxu.me/life/2017/04/23/lose-weight/index.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>...</title>
     <updated>2017-02-09T11:00:00+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2016-09-24:/meta/2016/09/24/blog-to-hyper/index.html</id>
     <content type="html">&lt;p&gt;终于让自己的 Blogs 吃上了自己的狗粮&lt;/p&gt;&#xA;</content>
     <link href="http://wangxu.me/meta/2016/09/24/blog-to-hyper/index.html"></link>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>Hyper_ GA &amp; Happy Birthday to Myself</title>
-    <updated>2016-09-24T10:35:00+08:00</updated>
-    <id>tag:wangxu.me,2016-09-24:/hyper/2016/08/13/hyper-ga/index.html</id>
-    <content type="html">&lt;p&gt;在自己的生日发布服务，是不是太中二了一点，所以，我们第二天正式切换吧&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/hyper/2016/08/13/hyper-ga/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
