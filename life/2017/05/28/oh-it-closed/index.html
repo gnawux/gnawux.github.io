@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我有分寸">
+<meta name="twitter:description" content="某创业公司的看门大爷">
+<meta name="twitter:image:src" content="http://wangxu.me/assets/sq.png">
+
+<meta property="og:url" content="http://wangxu.me">
+<meta property="og:title" content="我有分寸">
+<meta property="og:description" content="某创业公司的看门大爷">
+<meta property="og:site_name" content="我有分寸">
+<meta property="og:image" content="http://wangxu.me/assets/sq.png">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="我有分寸">
+<meta itemprop="description" content="某创业公司的看门大爷">
+<meta itemprop="image" content="http://wangxu.me/assets/sq.png">
+
+<link rel="canonical" href="http://wangxu.me">
+
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="apple-itouch-icon" href="/favicon.png">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
+
+        <meta name="keywords" content="life,startup,feeling,thanks,">
+        <meta name="description" content="随笔">
+        <meta name="author" content="gnawux">
+        <title>随笔</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/assets/sq.png" />
+    我有分寸
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">随笔</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    
+                    <span class="date" data-time="1495955288"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/startup/index.html">startup</a><a class="tag" href="/tag/feeling/index.html">feeling</a><a class="tag" href="/tag/thanks/index.html">thanks</a></span>
+                </section>
+                <article class="content"><blockquote>
+<p>这不是新闻，更不是通稿，这是一篇记录，一篇情绪的发泄，默默地看完，通稿发出前请不要祝贺，也不要提问，谢谢</p>
+</blockquote>
+
+<p>终于，感受了希望、失望与绝望，经历了质疑、帮助与抛弃，从去年夏末到今年初夏，我们的这一轮融资终于在这周完成，今天我并不想宣告其中的细节，只想说，两家国内顶级VC担纲的本轮投资，对我们来说已经是非常幸运了。论及过程，可以引用一句名言——“鬼知道这一年我（我们）都经历了些什么”，不过这会儿，我只想感谢一些人，记录一些自己的成长。</p>
+
+<h3>感谢团队</h3>
+
+<p>首先要感谢的必须是我们的团队，这轮融资的过程超乎寻常的坎坷，为了保障公司运作，我们甚至在几个月中对团队成员进行了降薪。在这期间，团队仍然照常进行开发工作，我甚至可以经常看到半夜一两点，有同事在 commit 代码或提 PR，每个人都没有放松对自己的要求。在其中，我看到了他们的职业精神，也看到了他们对项目发起人的信任。这样的折磨经历，面对团队，我只想说，有你们一起是我的幸运，你们不抛弃我，我也不会放弃努力。</p>
+
+<h3>感谢老领导、老朋友</h3>
+
+<p>在最艰苦的一段时间，原本负责技术的我，也积极地参与到见各种潜在的投资人当中来，而在后面这轮融资完成的过程中，我的老领导、老朋友们起到了决定性的作用。其中两位老领导，移动研究院的前院长、达闼的创始人 <strong>Bill Huang</strong> 和盛大云计算的前联席 CEO，UCloud 的 CEO 季总<strong>季昕华</strong>，是我必须感谢的。</p>
+
+<p>本轮的领投方由季总为我们引入，甚至差一点我们 UCloud 也成为了我们的投资人，最终错过也并非 Ucloud 方面提出，这一过程我一直感觉很愧对季总。毫不夸张地说，没有季总，就不会有我们这轮融资，也祝季总的火箭能早日上天。不仅是季总，拜访 UCloud 的时候，莫总和我聊了很久，给我讲了他们创立 UCloud 初期的艰辛，给了我们很多肯定和鼓励，还邀请我去 TIC 大会上讲我们的技术，即使抛开这轮投资不谈，UCloud 的季总和莫总给我们的坚持的动力也是让我收益终生的。</p>
+
+<p>还有其他很多朋友、老同事都给了我很多帮助，对此我诚惶诚恐，希望有朝一日在各位用到我的时候，我能尽力回报。</p>
+
+<h3>感谢各位投资人</h3>
+
+<p>不止是感谢我们的天使投资人真格和云天使的帮助，也不仅是感谢我们的新投资人们，每个接触过的投资人，不管最后投或没投，都给了我们很多帮助，也让我学到了很多。这并不是一句套话，从各位投资人那里，他们会讲他们对于不同技术领域的看法，对于 startup 成长阶段的理解，对于开源生态的认知，这些对于我们今后的发展方向都会产生影响。之前我们知道投资人在努力做伯乐，发现千里马来换取百倍回报，随后我们也知道投资人会用自己管理的资金去左右产业的演进来改变世界。而在这个融资的过程中，我还能感受到投资人对于有理想的创业者的真诚地鼓励，有些投资人虽然本人不做早期投资，也会经常地来回问我进展如何，表态很支持我们的方向，鼓励我看准方向要坚持下去。</p>
+
+<h3>感谢我的联合创始人</h3>
+
+<p>我们之间的事情，只有我们之间懂，不言自明。我们在一起，我们有默契，也彼此了解对方的不足，我们互相认可对方的执着，也互相支持，不论如何困难，我们始终站在一起。我们的决策，是我们共同的决策，对与错，我们共同承担，不分彼此。这一刻我们互相感谢对方的付出，也誓言会继续互相扶助。</p>
+
+<h3>感谢我的爱人</h3>
+
+<p>聚光灯下的荣光只是一刻，而爱人却会和我共同走过一生。在过去半年，我和我的 cofounder 都没有拿过一分工资，还会贴一些日常运营的费用。这期间，家庭的收入来源只有爱人一个人，而她同时还付出大量时间来照看一双儿女，这其中的付出不是谢字可以表达出来的。未来的日子仍然悠长，我们会继续为这个家、为彼此努力付出，也用我们的全情努力来为孩子们树立榜样。</p>
+
+<hr />
+
+<p>2017年5月</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    
+                    <section class="nav next">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/life/2017/04/23/lose-weight/index.html">锻炼两月记</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.chole.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>
