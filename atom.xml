@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>http://wangxu.me</id>
-  <updated>2017-05-28T15:07:55+08:00</updated>
+  <updated>2017-07-21T11:44:12+08:00</updated>
   <subtitle>某创业公司的看门大爷</subtitle>
   <link href="http://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>百次纪念跑</title>
+    <updated>2017-07-21T00:08:08+08:00</updated>
+    <id>tag:wangxu.me,2017-07-21:/life/2017/07/21/run-100/index.html</id>
+    <content type="html">&lt;p&gt;第100次，特意为他换的路线，我知道他会为我高兴的。&lt;/p&gt;&#xA;</content>
+    <link href="http://wangxu.me/life/2017/07/21/run-100/index.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>随笔</title>
     <updated>2017-05-28T15:08:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2016-10-17:/hyper/2016/10/17/hyper-arm64/index.html</id>
     <content type="html">&lt;p&gt;ARM64 (ARMv8) 架构的支持，不仅是对一个新架构的支持，一类新服务器的支持，也把 Hyper 带入到了终端，乃至是物联网（IoT）技术的大门前，等待我们的将是更广阔更精彩的未来&lt;/p&gt;&#xA;</content>
     <link href="http://wangxu.me/hyper/2016/10/17/hyper-arm64/index.html"></link>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>Blog 迁移后记</title>
-    <updated>2016-09-28T09:35:08+08:00</updated>
-    <id>tag:wangxu.me,2016-09-28:/meta/2016/09/24/blog-to-hyper-2/index.html</id>
-    <content type="html">&lt;p&gt;吃自己的狗粮要吃得更正宗&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/meta/2016/09/24/blog-to-hyper-2/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
