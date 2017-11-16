@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>http://wangxu.me</id>
-  <updated>2017-07-21T11:44:12+08:00</updated>
+  <updated>2017-11-16T17:49:40+08:00</updated>
   <subtitle>某创业公司的看门大爷</subtitle>
   <link href="http://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>一点感悟</title>
+    <updated>2017-11-16T16:08:08+08:00</updated>
+    <id>tag:wangxu.me,2017-11-16:/feeling/2017/11/16/legend-feeling/index.html</id>
+    <content type="html">&lt;p&gt;今天，应A轮投资人君联资本邀请，荣幸地参加了君联资本 CEO Club 第十七届年会，实话说，本来觉得是浪费一天时间换和投资人一小时交流的活动，甚至都犹豫早上来还是不来。不过来了之后，听了几个主题演讲，居然完全颠覆对这类大会的印象，感觉收获颇丰。在此真的感谢君联资本的富有创新精神的组织。&lt;/p&gt;&#xA;</content>
+    <link href="http://wangxu.me/feeling/2017/11/16/legend-feeling/index.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>百次纪念跑</title>
     <updated>2017-07-21T00:08:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2016-10-26:/cloud/2016/10/26/alicloud/index.html</id>
     <content type="html">&lt;p&gt;作为曾经的竞争对手，本来我以为我会是阿里一生黑的，不过，今天看这新闻标题，我想为阿里说句话&lt;/p&gt;&#xA;</content>
     <link href="http://wangxu.me/cloud/2016/10/26/alicloud/index.html"></link>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>Hello, ARM64 -- Hyper ARM64 架构支持</title>
-    <updated>2016-10-17T23:58:08+08:00</updated>
-    <id>tag:wangxu.me,2016-10-17:/hyper/2016/10/17/hyper-arm64/index.html</id>
-    <content type="html">&lt;p&gt;ARM64 (ARMv8) 架构的支持，不仅是对一个新架构的支持，一类新服务器的支持，也把 Hyper 带入到了终端，乃至是物联网（IoT）技术的大门前，等待我们的将是更广阔更精彩的未来&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/hyper/2016/10/17/hyper-arm64/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
