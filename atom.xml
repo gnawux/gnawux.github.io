@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>http://wangxu.me</id>
-  <updated>2017-11-16T17:49:40+08:00</updated>
+  <updated>2017-12-27T23:30:09+08:00</updated>
   <subtitle>某创业公司的看门大爷</subtitle>
   <link href="http://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>2017年回顾</title>
+    <updated>2017-12-28T11:08:08+09:00</updated>
+    <id>tag:wangxu.me,2017-12-28:/hyper/2017/12/28/annual-review/index.html</id>
+    <content type="html">&lt;p&gt;2017年就要结束了，在这辞旧迎新的日子，我们团队的大部分成员，一起来到普吉岛的海滨，回忆往昔，畅想未来。这一年对我自己和我们 Hyper 团队都可以用峰回路转来形容……&lt;/p&gt;&#xA;</content>
+    <link href="http://wangxu.me/hyper/2017/12/28/annual-review/index.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>一点感悟</title>
     <updated>2017-11-16T16:08:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2016-10-27:/opensource/2016/10/27/rethinkdb/index.html</id>
     <content type="html">&lt;p&gt;这恍然二十个春秋中， RethinkDB 不过是沧海一粟，被拎出来管窥实在是有点片面了，可能媒体也不容易吧&lt;/p&gt;&#xA;</content>
     <link href="http://wangxu.me/opensource/2016/10/27/rethinkdb/index.html"></link>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>新闻评论: 你真的无法忍受阿里云么</title>
-    <updated>2016-10-26T22:58:08+08:00</updated>
-    <id>tag:wangxu.me,2016-10-26:/cloud/2016/10/26/alicloud/index.html</id>
-    <content type="html">&lt;p&gt;作为曾经的竞争对手，本来我以为我会是阿里一生黑的，不过，今天看这新闻标题，我想为阿里说句话&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/cloud/2016/10/26/alicloud/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
