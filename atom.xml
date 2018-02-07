@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>http://wangxu.me</id>
-  <updated>2018-02-07T23:33:46+08:00</updated>
+  <updated>2018-02-08T00:36:32+08:00</updated>
   <subtitle>某创业公司的看门大爷</subtitle>
   <link href="http://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>两年</title>
+    <updated>2018-02-08T00:18:08+08:00</updated>
+    <id>tag:wangxu.me,2018-02-08:/memories/2018/02/08/2-years/index.html</id>
+    <content type="html">&lt;p&gt;两年没有他，两年没忘他，他已经是我生命的一部分了&lt;/p&gt;&#xA;</content>
+    <link href="http://wangxu.me/memories/2018/02/08/2-years/index.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>从 OpenStack 到 OpenInfra</title>
     <updated>2018-02-07T18:58:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2016-12-19:/hyper/2016/12/19/container-cloud-pattern/index.html</id>
     <content type="html">&lt;p&gt;本文来自 hyper.sh 上线四个月以来对用户的一些观察与访谈，作为一种新的服务，用户的创造力可能会超出设计者最初的构想，这里只是部分的归纳，希望能对读者有一定的启发&lt;/p&gt;&#xA;</content>
     <link href="http://wangxu.me/hyper/2016/12/19/container-cloud-pattern/index.html"></link>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>实现一个自己的 Docker 日志驱动</title>
-    <updated>2016-11-04T18:38:08+08:00</updated>
-    <id>tag:wangxu.me,2016-11-04:/docker/2016/11/04/docker-logger/index.html</id>
-    <content type="html">&lt;p&gt;这本来是一个内部文档，不过似乎发布出来也不错，HyperContainer 支持原生的 Docker Logger，所以这篇日志讲得既是 Docker 的 Logger，也是 Hyper 的 Logger&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/docker/2016/11/04/docker-logger/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
