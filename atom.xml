@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>http://wangxu.me</id>
-  <updated>2017-12-27T23:30:09+08:00</updated>
+  <updated>2018-02-07T19:10:39+08:00</updated>
   <subtitle>某创业公司的看门大爷</subtitle>
   <link href="http://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>从 OpenStack 到 OpenInfra</title>
+    <updated>2018-02-07T18:58:08+08:00</updated>
+    <id>tag:wangxu.me,2018-02-07:/kata/2018/02/07/openinfra/index.html</id>
+    <content type="html">&lt;p&gt;在今后的 OpenStack 基金会相关的场合，大家将看到越来越多的 OpenInfra ，越来越淡的 OpenStack，这并不是一种抛弃，而是一种回归和升华&lt;/p&gt;&#xA;</content>
+    <link href="http://wangxu.me/kata/2018/02/07/openinfra/index.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>2017年回顾</title>
     <updated>2017-12-28T11:08:08+09:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2016-11-04:/docker/2016/11/04/docker-logger/index.html</id>
     <content type="html">&lt;p&gt;这本来是一个内部文档，不过似乎发布出来也不错，HyperContainer 支持原生的 Docker Logger，所以这篇日志讲得既是 Docker 的 Logger，也是 Hyper 的 Logger&lt;/p&gt;&#xA;</content>
     <link href="http://wangxu.me/docker/2016/11/04/docker-logger/index.html"></link>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>新闻评论: 也谈 RethinDB 的倒掉</title>
-    <updated>2016-10-27T09:18:08+08:00</updated>
-    <id>tag:wangxu.me,2016-10-27:/opensource/2016/10/27/rethinkdb/index.html</id>
-    <content type="html">&lt;p&gt;这恍然二十个春秋中， RethinkDB 不过是沧海一粟，被拎出来管窥实在是有点片面了，可能媒体也不容易吧&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/opensource/2016/10/27/rethinkdb/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
