@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>http://wangxu.me</id>
-  <updated>2018-02-11T10:16:54+08:00</updated>
+  <updated>2018-07-15T10:36:18+08:00</updated>
   <subtitle>某创业公司的看门大爷</subtitle>
   <link href="http://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>那些傻傻的花儿啊，像我们一样</title>
+    <updated>2018-07-15T10:38:08+08:00</updated>
+    <id>tag:wangxu.me,2018-07-15:/life/2018/07/15/sunflower/index.html</id>
+    <content type="html">&lt;p&gt;三七，是时候记下来了&lt;/p&gt;&#xA;</content>
+    <link href="http://wangxu.me/life/2018/07/15/sunflower/index.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>两年</title>
     <updated>2018-02-08T00:18:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2017-02-09:/family/2017/02/09/a-year-without-you/index.html</id>
     <content type="html">&lt;p&gt;这一年，有不少快乐的瞬间，可是，这是痛苦的一年；抬着头，我从未对自己失去过信心，可是，这是失望的一年&lt;/p&gt;&#xA;</content>
     <link href="http://wangxu.me/family/2017/02/09/a-year-without-you/index.html"></link>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>容器云中的应用模式（1）</title>
-    <updated>2016-12-19T01:08:08+08:00</updated>
-    <id>tag:wangxu.me,2016-12-19:/hyper/2016/12/19/container-cloud-pattern/index.html</id>
-    <content type="html">&lt;p&gt;本文来自 hyper.sh 上线四个月以来对用户的一些观察与访谈，作为一种新的服务，用户的创造力可能会超出设计者最初的构想，这里只是部分的归纳，希望能对读者有一定的启发&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/hyper/2016/12/19/container-cloud-pattern/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
