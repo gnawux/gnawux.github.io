@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>http://wangxu.me</id>
-  <updated>2018-07-15T10:36:18+08:00</updated>
+  <updated>2018-07-24T01:39:19+08:00</updated>
   <subtitle>某创业公司的看门大爷</subtitle>
   <link href="http://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>挥汗如雨的29999分钟</title>
+    <updated>2018-07-24T01:08:08+08:00</updated>
+    <id>tag:wangxu.me,2018-07-24:/life/2018/07/24/workout-29999/index.html</id>
+    <content type="html">&lt;p&gt;T+29999min: Keep上看来一大步，人生之中一小步&lt;/p&gt;&#xA;</content>
+    <link href="http://wangxu.me/life/2018/07/24/workout-29999/index.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>那些傻傻的花儿啊，像我们一样</title>
     <updated>2018-07-15T10:38:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2017-02-09:/family/2017/02/09/nothing/index.html</id>
     <content type="html">&lt;p&gt;这一刻，我想了很多，但我不想写在这里，让它埋在心里，让它随风远去&lt;/p&gt;&#xA;</content>
     <link href="http://wangxu.me/family/2017/02/09/nothing/index.html"></link>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>A Year without You</title>
-    <updated>2017-02-09T00:08:08+08:00</updated>
-    <id>tag:wangxu.me,2017-02-09:/family/2017/02/09/a-year-without-you/index.html</id>
-    <content type="html">&lt;p&gt;这一年，有不少快乐的瞬间，可是，这是痛苦的一年；抬着头，我从未对自己失去过信心，可是，这是失望的一年&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/family/2017/02/09/a-year-without-you/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
