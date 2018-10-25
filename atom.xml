@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>http://wangxu.me</id>
-  <updated>2018-07-24T01:39:19+08:00</updated>
+  <updated>2018-10-26T01:33:21+08:00</updated>
   <subtitle>某创业公司的看门大爷</subtitle>
   <link href="http://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>Kata Beijing Meetup 小总结</title>
+    <updated>2018-10-24T22:08:08+08:00</updated>
+    <id>tag:wangxu.me,2018-10-24:/kata containers/2018/10/24/kata-meetup-summary/index.html</id>
+    <content type="html">&lt;p&gt;上周三（10月17日），我们在北京环球贸易中心组织了 Kata Containers 在国内的第一次独立的 Meetup，反响热烈，交流深入，在此按照组委会的要求，来写一份家庭作业总结一下。&lt;/p&gt;&#xA;</content>
+    <link href="http://wangxu.me/kata containers/2018/10/24/kata-meetup-summary/index.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>挥汗如雨的29999分钟</title>
     <updated>2018-07-24T01:08:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2017-04-23:/life/2017/04/23/lose-weight/index.html</id>
     <content type="html">&lt;p&gt;这是一篇不太鸡汤的锻炼记录，有些回忆，有些心得，有些欣喜，有些（负能量）感想&lt;/p&gt;&#xA;</content>
     <link href="http://wangxu.me/life/2017/04/23/lose-weight/index.html"></link>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>...</title>
-    <updated>2017-02-09T11:00:00+08:00</updated>
-    <id>tag:wangxu.me,2017-02-09:/family/2017/02/09/nothing/index.html</id>
-    <content type="html">&lt;p&gt;这一刻，我想了很多，但我不想写在这里，让它埋在心里，让它随风远去&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/family/2017/02/09/nothing/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
