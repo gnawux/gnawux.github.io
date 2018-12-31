@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>http://wangxu.me</id>
-  <updated>2018-10-26T01:33:21+08:00</updated>
+  <updated>2018-12-31T23:21:33+08:00</updated>
   <subtitle>某创业公司的看门大爷</subtitle>
   <link href="http://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>2018年末随笔</title>
+    <updated>2018-12-31T23:18:08+08:00</updated>
+    <id>tag:wangxu.me,2018-12-31:/life/2018/12/31/annual-review/index.html</id>
+    <content type="html">&lt;p&gt;2018是2017的一个续篇；2018是2019的开端；2018有很多注定的意外；2018也将是我人生传记中不平凡的一年&lt;/p&gt;&#xA;</content>
+    <link href="http://wangxu.me/life/2018/12/31/annual-review/index.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>Kata Beijing Meetup 小总结</title>
     <updated>2018-10-24T22:08:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2017-05-28:/life/2017/05/28/oh-it-closed/index.html</id>
     <content type="html">&lt;p&gt;这不是新闻，更不是通稿，这是一篇个人记录，一篇情绪的发泄，默默地看完，通稿发出前请不要祝贺，也不要提问，谢谢&lt;/p&gt;&#xA;</content>
     <link href="http://wangxu.me/life/2017/05/28/oh-it-closed/index.html"></link>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>锻炼两月记</title>
-    <updated>2017-04-23T11:08:08+08:00</updated>
-    <id>tag:wangxu.me,2017-04-23:/life/2017/04/23/lose-weight/index.html</id>
-    <content type="html">&lt;p&gt;这是一篇不太鸡汤的锻炼记录，有些回忆，有些心得，有些欣喜，有些（负能量）感想&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/life/2017/04/23/lose-weight/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
