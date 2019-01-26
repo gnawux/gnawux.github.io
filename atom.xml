@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>http://wangxu.me</id>
-  <updated>2018-12-31T23:21:33+08:00</updated>
+  <updated>2019-01-26T11:13:32+08:00</updated>
   <subtitle>某创业公司的看门大爷</subtitle>
   <link href="http://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>Persoanl Annual Review of 2018</title>
+    <updated>2019-01-25T23:18:08+08:00</updated>
+    <id>tag:wangxu.me,2019-01-25:/life/2019/01/25/annual-review-en/index.html</id>
+    <content type="html">&lt;p&gt;2018 is the sequel of 2017, and the overture of 2019; In 2018, there are many predetermined surprises, and it must be an extraordinary year in my life.&lt;/p&gt;&#xA;</content>
+    <link href="http://wangxu.me/life/2019/01/25/annual-review-en/index.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>2018年末随笔</title>
     <updated>2018-12-31T23:18:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2017-07-21:/life/2017/07/21/run-100/index.html</id>
     <content type="html">&lt;p&gt;第100次，特意为他换的路线，我知道他会为我高兴的。&lt;/p&gt;&#xA;</content>
     <link href="http://wangxu.me/life/2017/07/21/run-100/index.html"></link>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>随笔</title>
-    <updated>2017-05-28T15:08:08+08:00</updated>
-    <id>tag:wangxu.me,2017-05-28:/life/2017/05/28/oh-it-closed/index.html</id>
-    <content type="html">&lt;p&gt;这不是新闻，更不是通稿，这是一篇个人记录，一篇情绪的发泄，默默地看完，通稿发出前请不要祝贺，也不要提问，谢谢&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/life/2017/05/28/oh-it-closed/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
