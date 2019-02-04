@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
-  <id>http://wangxu.me</id>
-  <updated>2019-02-04T12:26:32+08:00</updated>
+  <id>https://wangxu.me</id>
+  <updated>2019-02-04T15:07:52+08:00</updated>
   <subtitle>某创业公司的看门大爷</subtitle>
-  <link href="http://wangxu.me"></link>
+  <link href="https://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
@@ -12,7 +12,7 @@
     <updated>2019-02-04T12:18:08+08:00</updated>
     <id>tag:wangxu.me,2019-02-04:/life/2019/02/04/chinese-new-year-notes/index.html</id>
     <content type="html">&lt;p&gt;我是幸运的，因为有你们。我想我也配得上这份幸运，因为我不断自省着、努力着。&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/life/2019/02/04/chinese-new-year-notes/index.html"></link>
+    <link href="https://wangxu.me/life/2019/02/04/chinese-new-year-notes/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
@@ -22,7 +22,7 @@
     <updated>2019-01-25T23:18:08+08:00</updated>
     <id>tag:wangxu.me,2019-01-25:/life/2019/01/25/annual-review-en/index.html</id>
     <content type="html">&lt;p&gt;2018 is the sequel of 2017, and the overture of 2019; In 2018, there are many predetermined surprises, and it must be an extraordinary year in my life.&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/life/2019/01/25/annual-review-en/index.html"></link>
+    <link href="https://wangxu.me/life/2019/01/25/annual-review-en/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
@@ -32,7 +32,7 @@
     <updated>2018-12-31T23:18:08+08:00</updated>
     <id>tag:wangxu.me,2018-12-31:/life/2018/12/31/annual-review/index.html</id>
     <content type="html">&lt;p&gt;2018是2017的一个续篇；2018是2019的开端；2018有很多注定的意外；2018也将是我人生传记中不平凡的一年&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/life/2018/12/31/annual-review/index.html"></link>
+    <link href="https://wangxu.me/life/2018/12/31/annual-review/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
@@ -42,7 +42,7 @@
     <updated>2018-10-24T22:08:08+08:00</updated>
     <id>tag:wangxu.me,2018-10-24:/kata containers/2018/10/24/kata-meetup-summary/index.html</id>
     <content type="html">&lt;p&gt;上周三（10月17日），我们在北京环球贸易中心组织了 Kata Containers 在国内的第一次独立的 Meetup，反响热烈，交流深入，在此按照组委会的要求，来写一份家庭作业总结一下。&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/kata containers/2018/10/24/kata-meetup-summary/index.html"></link>
+    <link href="https://wangxu.me/kata containers/2018/10/24/kata-meetup-summary/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
@@ -52,7 +52,7 @@
     <updated>2018-07-24T01:08:08+08:00</updated>
     <id>tag:wangxu.me,2018-07-24:/life/2018/07/24/workout-29999/index.html</id>
     <content type="html">&lt;p&gt;T+29999min: Keep上看来一大步，人生之中一小步&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/life/2018/07/24/workout-29999/index.html"></link>
+    <link href="https://wangxu.me/life/2018/07/24/workout-29999/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
@@ -62,7 +62,7 @@
     <updated>2018-07-15T10:38:08+08:00</updated>
     <id>tag:wangxu.me,2018-07-15:/life/2018/07/15/sunflower/index.html</id>
     <content type="html">&lt;p&gt;三七，是时候记下来了&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/life/2018/07/15/sunflower/index.html"></link>
+    <link href="https://wangxu.me/life/2018/07/15/sunflower/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
@@ -72,7 +72,7 @@
     <updated>2018-02-08T00:18:08+08:00</updated>
     <id>tag:wangxu.me,2018-02-08:/memories/2018/02/08/2-years/index.html</id>
     <content type="html">&lt;p&gt;两年没有他，两年没忘他，他已经是我生命的一部分了&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/memories/2018/02/08/2-years/index.html"></link>
+    <link href="https://wangxu.me/memories/2018/02/08/2-years/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
@@ -82,7 +82,7 @@
     <updated>2018-02-07T18:58:08+08:00</updated>
     <id>tag:wangxu.me,2018-02-07:/kata/2018/02/07/openinfra/index.html</id>
     <content type="html">&lt;p&gt;在今后的 OpenStack 基金会相关的场合，大家将看到越来越多的 OpenInfra ，越来越淡的 OpenStack，这并不是一种抛弃，而是一种回归和升华&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/kata/2018/02/07/openinfra/index.html"></link>
+    <link href="https://wangxu.me/kata/2018/02/07/openinfra/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
@@ -92,7 +92,7 @@
     <updated>2017-12-28T11:08:08+09:00</updated>
     <id>tag:wangxu.me,2017-12-28:/hyper/2017/12/28/annual-review/index.html</id>
     <content type="html">&lt;p&gt;2017年就要结束了，在这辞旧迎新的日子，我们团队的大部分成员，一起来到普吉岛的海滨，回忆往昔，畅想未来。这一年对我自己和我们 Hyper 团队都可以用峰回路转来形容……&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/hyper/2017/12/28/annual-review/index.html"></link>
+    <link href="https://wangxu.me/hyper/2017/12/28/annual-review/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
@@ -102,7 +102,7 @@
     <updated>2017-11-16T16:08:08+08:00</updated>
     <id>tag:wangxu.me,2017-11-16:/feeling/2017/11/16/legend-feeling/index.html</id>
     <content type="html">&lt;p&gt;今天，应A轮投资人君联资本邀请，荣幸地参加了君联资本 CEO Club 第十七届年会，实话说，本来觉得是浪费一天时间换和投资人一小时交流的活动，甚至都犹豫早上来还是不来。不过来了之后，听了几个主题演讲，居然完全颠覆对这类大会的印象，感觉收获颇丰。在此真的感谢君联资本的富有创新精神的组织。&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/feeling/2017/11/16/legend-feeling/index.html"></link>
+    <link href="https://wangxu.me/feeling/2017/11/16/legend-feeling/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>

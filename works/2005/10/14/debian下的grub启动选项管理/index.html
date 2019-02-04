@@ -13,21 +13,21 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我有分寸">
 <meta name="twitter:description" content="某创业公司的看门大爷">
-<meta name="twitter:image:src" content="http://wangxu.me/assets/sq.png">
+<meta name="twitter:image:src" content="https://wangxu.me/assets/sq2.jpg">
 
-<meta property="og:url" content="http://wangxu.me">
+<meta property="og:url" content="https://wangxu.me">
 <meta property="og:title" content="我有分寸">
 <meta property="og:description" content="某创业公司的看门大爷">
 <meta property="og:site_name" content="我有分寸">
-<meta property="og:image" content="http://wangxu.me/assets/sq.png">
+<meta property="og:image" content="https://wangxu.me/assets/sq2.jpg">
 <meta property="og:type" content="website">
 <meta name="robots" content="noodp">
 
 <meta itemprop="name" content="我有分寸">
 <meta itemprop="description" content="某创业公司的看门大爷">
-<meta itemprop="image" content="http://wangxu.me/assets/sq.png">
+<meta itemprop="image" content="https://wangxu.me/assets/sq2.jpg">
 
-<link rel="canonical" href="http://wangxu.me">
+<link rel="canonical" href="https://wangxu.me">
 
 <link rel="shortcut icon" href="/favicon.png">
 <link rel="apple-itouch-icon" href="/favicon.png">
@@ -76,7 +76,7 @@
         <article class="container">
             <header class="header-wrap">
   <a class="index" href="/">
-    <img class="logo" src="/assets/sq.png" />
+    <img class="logo" src="/assets/sq2.jpg" />
     我有分寸
   </a>
   <ul class="menu">
@@ -89,7 +89,7 @@
             <article class="main article">
                 <h1 class="title">debian下的grub启动选项管理</h1>
                 <section class="info">
-                    <span class="avatar" style="background-image: url(/assets/sq.png);"></span>
+                    <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
                     <a class="name" href="/about.me.html">gnawux</a>
                     
                     <span class="date" data-time="1129274340"><span class="from"></span></span>
@@ -99,7 +99,7 @@
                 <article class="content"><p>那天偶和偶在版面上说相声的搭挡 LeoVirgo 都提到了根据 debian 的   <br />kernel-img.conf    <br />更新完内核后会自动调用 update-grub 来更新引导程序，就觉得这个东西一定可以    <br />配置，否则每次总要改写一下 menu.lst 来修改启动内核参数毕竟不方便    <br />恰逢今天为了上一贴的那个网卡驱动，编译了一次内核，就想着看看这个东西怎么工作    <br />（阿？您问怎么看阿，当然是 man 了，男人嘛，如果是女同胞可以 alias 一下，    <br />来个 woman 什么的）    <br />发现，menu.lst 里面就有关于 update-grub 的设置，LeoVirgo 一定知道自动    <br />修改的 menu.lst 上面有一大段注释吧，以    <br />### BEGIN AUTOMAGIC KERNELS LIST    <br />开始    <br />我抄一段过来大家就知道是什么意思了    <br />## ## Start Default Options ##    <br />## default kernel options    <br />## default kernel options for automagic boot options    <br />## If you want special options for specifiv kernels use kopt_x_y_z    <br />## where x.y.z is kernel version. Minor versions can be omitted.    <br />## e.g. kopt=root=/dev/hda1 ro    <br /># kopt=root=/dev/hda1 ro acpi_sleep=s3_bios resume=/dev/hda2    <br />看到了不？这个就是设置内核参数的，我把对我有用的    <br />acpi_sleep=s3_bios resume=/dev/hda2    <br />这下，自动生成的配置文件里面就有我的自定义内核参数了，    <br />还有这个    <br />## should update-grub create alternative automagic boot options    <br />## e.g. alternative=true    <br />##&#160;&#160;&#160;&#160; alternative=false    <br /># alternative=false    <br />可以指定一个其他的启动方式，缺省文件里面是单用户模式，偶好好的用机器，    <br />要单用户模式做什么？出了问题 grub 还有命令行呢，去掉之，于是写成 false    <br />怎么样，明白了吧，还有其它设置，呵呵，自己打开 menu.lst 看看就知道了，    <br />如果用的不是 Debian，那我就不负责了;P</p>
 </article>
                 <section class="author">
-                    <div class="avatar" style="background-image: url(/assets/sq.png);"></div>
+                    <div class="avatar" style="background-image: url(/assets/sq2.jpg);"></div>
                     <a class="name" href="/about.me.html">gnawux</a>
                     <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
                 </section>
