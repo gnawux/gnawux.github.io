@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>http://wangxu.me</id>
-  <updated>2019-01-26T11:13:32+08:00</updated>
+  <updated>2019-02-04T12:26:32+08:00</updated>
   <subtitle>某创业公司的看门大爷</subtitle>
   <link href="http://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>新年呓语</title>
+    <updated>2019-02-04T12:18:08+08:00</updated>
+    <id>tag:wangxu.me,2019-02-04:/life/2019/02/04/chinese-new-year-notes/index.html</id>
+    <content type="html">&lt;p&gt;我是幸运的，因为有你们。我想我也配得上这份幸运，因为我不断自省着、努力着。&lt;/p&gt;&#xA;</content>
+    <link href="http://wangxu.me/life/2019/02/04/chinese-new-year-notes/index.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>Persoanl Annual Review of 2018</title>
     <updated>2019-01-25T23:18:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2017-11-16:/feeling/2017/11/16/legend-feeling/index.html</id>
     <content type="html">&lt;p&gt;今天，应A轮投资人君联资本邀请，荣幸地参加了君联资本 CEO Club 第十七届年会，实话说，本来觉得是浪费一天时间换和投资人一小时交流的活动，甚至都犹豫早上来还是不来。不过来了之后，听了几个主题演讲，居然完全颠覆对这类大会的印象，感觉收获颇丰。在此真的感谢君联资本的富有创新精神的组织。&lt;/p&gt;&#xA;</content>
     <link href="http://wangxu.me/feeling/2017/11/16/legend-feeling/index.html"></link>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>百次纪念跑</title>
-    <updated>2017-07-21T00:08:08+08:00</updated>
-    <id>tag:wangxu.me,2017-07-21:/life/2017/07/21/run-100/index.html</id>
-    <content type="html">&lt;p&gt;第100次，特意为他换的路线，我知道他会为我高兴的。&lt;/p&gt;&#xA;</content>
-    <link href="http://wangxu.me/life/2017/07/21/run-100/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
