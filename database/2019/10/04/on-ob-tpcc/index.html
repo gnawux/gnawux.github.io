@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我有分寸">
+<meta name="twitter:description" content="某创业公司的看门大爷">
+<meta name="twitter:image:src" content="https://wangxu.me/assets/sq2.jpg">
+
+<meta property="og:url" content="https://wangxu.me">
+<meta property="og:title" content="我有分寸">
+<meta property="og:description" content="某创业公司的看门大爷">
+<meta property="og:site_name" content="我有分寸">
+<meta property="og:image" content="https://wangxu.me/assets/sq2.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="我有分寸">
+<meta itemprop="description" content="某创业公司的看门大爷">
+<meta itemprop="image" content="https://wangxu.me/assets/sq2.jpg">
+
+<link rel="canonical" href="https://wangxu.me">
+
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="apple-itouch-icon" href="/favicon.png">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
+
+        <meta name="keywords" content="oceanbase,antfin,moments,tpcc,database,">
+        <meta name="description" content="对 OceanBase TPC-C 跑分的一点个人看法">
+        <meta name="author" content="gnawux">
+        <title>对 OceanBase TPC-C 跑分的一点个人看法</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/assets/sq2.jpg" />
+    我有分寸
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">对 OceanBase TPC-C 跑分的一点个人看法</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    
+                    <span class="date" data-time="1570202288"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/oceanbase/index.html">oceanbase</a><a class="tag" href="/tag/antfin/index.html">antfin</a><a class="tag" href="/tag/moments/index.html">moments</a><a class="tag" href="/tag/tpcc/index.html">tpcc</a><a class="tag" href="/tag/database/index.html">database</a></span>
+                </section>
+                <article class="content"><p><img src="data:image/gif;base64,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" data-src="/assets/20190531-rizhao-and-me.jpg" alt="我和OB的史上最亲密接触" /></p>
+
+<blockquote>
+<p>注：以下 <strong>OceanBase</strong> 简称为 <strong>OB</strong>，不另作说明了。</p>
+
+<p>按：前天从内部群里看到了 OB 的 TPC-C 跑分，为之虎躯一震，旋即准备转发，旋即被喊停，说是有官方PR发布，今天看见了就立刻转了，着实没想到挺多人有质疑的声音，其中一些还是比较熟识、三观也比较正的朋友，回头想想这些质疑也不无道理，毕竟数据库是个蛮专精的领域，作为隔壁班的同学，我也只是略知道一点点，在此妄加一点解释，不作官方解释，仅供参考。</p>
+
+<p>又按：本人和 OB 的留下证据的最亲密接触如题图，和 OB 团队的一位帅哥同台 Panel 过，仅此而已，不背 KPI，纯粹从一个做技术的人的良心说话，有啥不对的，纯属是个人水平问题，和屁股没啥关系，熟悉我的人自然明白，不熟悉的人也无须解释。</p>
+</blockquote>
+
+<h2>我的总体看法</h2>
+
+<p>我的总体看法今天在朋友圈说过了</p>
+
+<blockquote>
+<p>单位tpmc成本略低于2,3名，跑分高第二名Oracle一倍，跑在阿里云云服务器集群上。这是往TPC-C这个沉寂多年的池塘里丢进来的一块大石头，过去这些年，transaction场景没有减少，没有新鲜跑分来竞争只是因为大家没有好的线性扩展的方案，从而不得不做各种应用层方案。这次OB的大石头料想Oracle还会反击，坐等大家玩坏TPC-C。OB算不上完美，不过，现在我们可以对任何诘问先说一句：不服跑个分呗</p>
+</blockquote>
+
+<p>这里面有几点：</p>
+
+<ul>
+<li><strong>不服跑个分</strong>：跑分是个比较基准，跑分好的东西不一定完美，可能架构不好，可能跑分本身设计不是最优的，可能代码测试写得不全面，可能社区运营不亲民等等；但是，好东西往往有个很漂亮的客观评分。所以，好的跑分至少可以作为一个挡住大部分质疑声音的挡箭牌——不服跑个分再说。这招不光小米、华为用，老外也用，当年 ext4 被 XFS 质疑是20世纪80年代的设计（尤指 bitmap）的时候，反击也是差不多的一句——咱们都跑跑 benchmark 呗。</li>
+<li><strong>TPC-C最近沉寂很久了</strong>：是的，TPC-C 很久没人跑高分了（韩国人2018年还有新跑分，可是排不到前面），可是 OLTP 数据库领域顶尖解决方案还是 Oracle 是吧，很多年没关心过去 IOE 这事了，不知道我们去 IOE 是真的从性能上干掉 Oracle 了还是重构了应用？加进来的分库分表的复杂度，是应用的进化还是 Infra 的无能？两者兼有吧，世界上发生的事务并没有减少，但是没有（成本可接受的）那么强的数据库，大家自然妥协了。现在有人来扔块石头进来，总是好事情吧。</li>
+<li><strong>我认为 Oracle 会反击</strong>：各位不信，我也不信这么多年 Oracle 没有新东西出来，那么，现在有人跑分在你上面一截了，你是说我不关心中国，所以不闻不问还是捍卫自己的领地？我期待 Oracle 真的拿出东西来，在 <code>$/tpmC</code> 不变甚至更低的情况下提高跑分，甚至彻底升级架构，吃瓜群众当然乐意看到这种竞争了吧。</li>
+<li><strong>跑在云服务器集群上</strong>：这意味着什么我们展开点说。</li>
+</ul>
+
+<h2>“软件+云”意味着什么</h2>
+
+<p>首先，各位要知道从前 TPC-C 跑分的王者 Oracle RAC 是跑在小型机节点上、通过光纤通道访问存储的，每次都被 Oracle 压过一头的 IBM，也是跑在 System P 上面的。OB 出这个头就意味着，<strong>有一个跑在通用服务器集群上的纯软件方案，可以压过那些专用硬件盒子了</strong>。而且 OB 还是开源的，接下来，高端数据库这个领域就是下一个被廉价硬件集群革命的领域了，不光 OB，其他专注技术的数据库集群可能也来小试牛刀，对 Oracle 动手了。</p>
+
+<p>其次，云意味着 Pay as you go，这么高端的集群你可能并不需要，但是，<strong>这个可扩展的数据库跑在云服务器集群上意味着，用户可能谁都可以用上这个级别的产品了</strong>，大规模或者小规模，自己搭集群或者用托管服务，总之，并不需要拥有自己的机房和设备了。</p>
+
+<h2>一些其他问题</h2>
+
+<h3>Oracle RAC 之前的集群规模加倍是不是就可以达到这个性能了</h3>
+
+<p>我的答案是，可能没这么简单——Oracle RAC 是一个经典的 Share-Everything 架构，这个架构偏向依赖单节点的高性能，而并不擅长水平扩展，优化不是不可能，但架构问题可能没那么好解决。</p>
+
+<h3>TPC-C 还是 TPC-E</h3>
+
+<p>TPC-C 的高分都比较老，当然，TPC-E 的最高分也是 2017 年了，链接：</p>
+
+<ul>
+<li><a href="http://www.tpc.org/tpcc/results/tpcc_advanced_sort.asp?PRINTVER=false&amp;FLTCOL1=ALL&amp;ADDFILTERROW=&amp;filterRowCount=1&amp;SRTCOL1=c_tpmc&amp;SRTDIR1=DESC&amp;ADDSORTROW=&amp;sortRowCount=1&amp;DISPRES=100+PERCENT&amp;include_withdrawn_results=none&amp;include_historic_results=yes">TPC-C 高分列表</a></li>
+<li><a href="http://www.tpc.org/tpce/results/tpce_advanced_sort.asp?PRINTVER=false&amp;FLTCOL1=ALL&amp;ADDFILTERROW=&amp;filterRowCount=1&amp;SRTCOL1=e_tpse&amp;SRTDIR1=DESC&amp;ADDSORTROW=&amp;sortRowCount=1&amp;DISPRES=100+PERCENT&amp;include_withdrawn_results=none&amp;include_historic_results=yes">TPC-E 高分列表</a></li>
+</ul>
+
+<p>注意都要把<strong>Display Historical Results</strong>选为<code>yes</code>，因为严肃的跑分大家并不常来，有需要才来做嘛。我觉得跑 TPC-C 是应该的，跑不跑 TPC-E 看有没有需求：</p>
+
+<ul>
+<li>首先 TPC-C 仍然是 TPC 的头牌，看看赢家的段位，你是愿意和 Oracle, IBM 比输赢，还是和富士通和 Lenovo 呢，既然大家比上限，就应该和最强的对手比。</li>
+<li>其次 TPC-C 也并不是没人参与了，如果看看<a href="http://www.tpc.org/tpcc/results/tpcc_advanced_sort.asp?PRINTVER=false&amp;FLTCOL1=ALL&amp;ADDFILTERROW=&amp;filterRowCount=1&amp;SRTCOL1=c_original_recv&amp;SRTDIR1=DESC&amp;ADDSORTROW=&amp;sortRowCount=1&amp;DISPRES=100+PERCENT&amp;include_withdrawn_results=none&amp;include_historic_results=no">不包含历史数据的 TPC-C 成绩单</a>就会发现还是有韩国人最近也在提 TPC-C 成绩的，只是他们在我们后面太远，以至于大家没看到而已。</li>
+</ul>
+
+<h3>有没有需求、性价比是不是太低</h3>
+
+<p>首先说个基调，我觉得抢一把塔尖这事情，是技术人员就想干，能不能抢到才是问题，毕竟文无第一，武无第二，搞技术就像在比武，不好胜的人只是混饭吃的，不是搞技术的，就算现在没条件，心里总也有个梦吧，现在梦被隔壁的小孩实现了，咱们替他高兴还是想把他拽回到自己旁边来呢，这问题想明白了，其实很多时候不用问需求或性价比这个问题。</p>
+
+<p>至于需求，我觉得总是有的，只是多贵而已。至于性价比，大家看一眼OB系统的那个报价，大部分是OB的授权支持费用，不同的人对这个各有各的看法，有人可能觉得 OB 团队工资太高，我是觉得这就是为了让这个性价比（<code>$/tpmC</code>）看起来和 Oracle 差不多吧，真实性价比很夸张呢。</p>
+
+<h2>多说一句（ One More Thing ）</h2>
+
+<p>我和有限不多的 OB 团队出来的朋友交流过，对阳老师和 OB 团队同学们的技术还是很认可的。不过如果各位你们对数据库没兴趣，但对容器、虚拟化、操作系统内核有兴趣，擅长 Go, Rust, C，不妨来找我投简历。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq2.jpg);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    
+                    <section class="nav next">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/life/2019/02/04/chinese-new-year-notes/index.html">新年呓语</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.chole.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>

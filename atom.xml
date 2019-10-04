@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>https://wangxu.me</id>
-  <updated>2019-02-04T15:07:52+08:00</updated>
+  <updated>2019-10-04T23:26:39+08:00</updated>
   <subtitle>某创业公司的看门大爷</subtitle>
   <link href="https://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>对 OceanBase TPC-C 跑分的一点个人看法</title>
+    <updated>2019-10-04T23:18:08+08:00</updated>
+    <id>tag:wangxu.me,2019-10-04:/database/2019/10/04/on-ob-tpcc/index.html</id>
+    <content type="html">&lt;p&gt;不服跑个分呗。&lt;/p&gt;&#xA;</content>
+    <link href="https://wangxu.me/database/2019/10/04/on-ob-tpcc/index.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>新年呓语</title>
     <updated>2019-02-04T12:18:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2017-12-28:/hyper/2017/12/28/annual-review/index.html</id>
     <content type="html">&lt;p&gt;2017年就要结束了，在这辞旧迎新的日子，我们团队的大部分成员，一起来到普吉岛的海滨，回忆往昔，畅想未来。这一年对我自己和我们 Hyper 团队都可以用峰回路转来形容……&lt;/p&gt;&#xA;</content>
     <link href="https://wangxu.me/hyper/2017/12/28/annual-review/index.html"></link>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>一点感悟</title>
-    <updated>2017-11-16T16:08:08+08:00</updated>
-    <id>tag:wangxu.me,2017-11-16:/feeling/2017/11/16/legend-feeling/index.html</id>
-    <content type="html">&lt;p&gt;今天，应A轮投资人君联资本邀请，荣幸地参加了君联资本 CEO Club 第十七届年会，实话说，本来觉得是浪费一天时间换和投资人一小时交流的活动，甚至都犹豫早上来还是不来。不过来了之后，听了几个主题演讲，居然完全颠覆对这类大会的印象，感觉收获颇丰。在此真的感谢君联资本的富有创新精神的组织。&lt;/p&gt;&#xA;</content>
-    <link href="https://wangxu.me/feeling/2017/11/16/legend-feeling/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
