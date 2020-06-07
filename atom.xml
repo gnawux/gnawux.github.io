@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>https://wangxu.me</id>
-  <updated>2019-10-04T23:26:39+08:00</updated>
+  <updated>2020-06-08T00:00:53+08:00</updated>
   <subtitle>某创业公司的看门大爷</subtitle>
   <link href="https://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>出走半生，少年归来</title>
+    <updated>2020-06-01T08:53:08+08:00</updated>
+    <id>tag:wangxu.me,2020-06-01:/life/2020/06/01/new-car-for-fun/index.html</id>
+    <content type="html">&lt;p&gt;这种幸福，25岁的时候又怎么能感受到呢？&lt;/p&gt;&#xA;</content>
+    <link href="https://wangxu.me/life/2020/06/01/new-car-for-fun/index.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>对 OceanBase TPC-C 跑分的一点个人看法</title>
     <updated>2019-10-04T23:18:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2018-02-07:/kata/2018/02/07/openinfra/index.html</id>
     <content type="html">&lt;p&gt;在今后的 OpenStack 基金会相关的场合，大家将看到越来越多的 OpenInfra ，越来越淡的 OpenStack，这并不是一种抛弃，而是一种回归和升华&lt;/p&gt;&#xA;</content>
     <link href="https://wangxu.me/kata/2018/02/07/openinfra/index.html"></link>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>2017年回顾</title>
-    <updated>2017-12-28T11:08:08+09:00</updated>
-    <id>tag:wangxu.me,2017-12-28:/hyper/2017/12/28/annual-review/index.html</id>
-    <content type="html">&lt;p&gt;2017年就要结束了，在这辞旧迎新的日子，我们团队的大部分成员，一起来到普吉岛的海滨，回忆往昔，畅想未来。这一年对我自己和我们 Hyper 团队都可以用峰回路转来形容……&lt;/p&gt;&#xA;</content>
-    <link href="https://wangxu.me/hyper/2017/12/28/annual-review/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
