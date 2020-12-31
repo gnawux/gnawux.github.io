@@ -12,19 +12,19 @@
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我有分寸">
-<meta name="twitter:description" content="某创业公司的看门大爷">
+<meta name="twitter:description" content="前某创业公司的看门大爷">
 <meta name="twitter:image:src" content="https://wangxu.me/assets/sq2.jpg">
 
 <meta property="og:url" content="https://wangxu.me">
 <meta property="og:title" content="我有分寸">
-<meta property="og:description" content="某创业公司的看门大爷">
+<meta property="og:description" content="前某创业公司的看门大爷">
 <meta property="og:site_name" content="我有分寸">
 <meta property="og:image" content="https://wangxu.me/assets/sq2.jpg">
 <meta property="og:type" content="website">
 <meta name="robots" content="noodp">
 
 <meta itemprop="name" content="我有分寸">
-<meta itemprop="description" content="某创业公司的看门大爷">
+<meta itemprop="description" content="前某创业公司的看门大爷">
 <meta itemprop="image" content="https://wangxu.me/assets/sq2.jpg">
 
 <link rel="canonical" href="https://wangxu.me">
@@ -44,31 +44,9 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
 
-
-        <meta name="keywords" content="某创业公司的看门大爷">
-        <meta name="description" content="某创业公司的看门大爷">
+        <meta name="keywords" content="前某创业公司的看门大爷">
+        <meta name="description" content="前某创业公司的看门大爷">
         <title>我有分寸</title>
     </head>
     <body>
@@ -90,7 +68,7 @@
                     
                         <img class="logo" src="/assets/sq2.jpg" />
                         <h1 class="title">我有分寸</h1>
-                        <h2 class="subtitle">某创业公司的看门大爷</h2>
+                        <h2 class="subtitle">前某创业公司的看门大爷</h2>
                         <div class="search-wrap">
   <input id="search" class="search" placeholder="搜索..." data-root="">
   <svg class="icon" width="25" height="25" viewBox="0 0 25 25"><path d="M20.067 18.933l-4.157-4.157a6 6 0 1 0-.884.884l4.157 4.157a.624.624 0 1 0 .884-.884zM6.5 11c0-2.62 2.13-4.75 4.75-4.75S16 8.38 16 11s-2.13 4.75-4.75 4.75S6.5 13.62 6.5 11z"></path></svg>
