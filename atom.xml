@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>https://wangxu.me</id>
-  <updated>2020-06-08T00:00:53+08:00</updated>
+  <updated>2020-12-31T21:56:01+08:00</updated>
   <subtitle>某创业公司的看门大爷</subtitle>
   <link href="https://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>2020年就要过去了，我很……它</title>
+    <updated>2020-12-31T20:20:08+08:00</updated>
+    <id>tag:wangxu.me,2020-12-31:/life/2020/12/31/happy-new-year/index.html</id>
+    <content type="html">&lt;p&gt;2020是个特别的数字，对我更是如此，我1980年出生，2020，前一个20在20世纪，后一个20在21世纪。平凡的闰年2020的过去，对我的人生在数学上就意味着很多。&lt;/p&gt;&#xA;</content>
+    <link href="https://wangxu.me/life/2020/12/31/happy-new-year/index.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>出走半生，少年归来</title>
     <updated>2020-06-01T08:53:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2018-02-08:/memories/2018/02/08/2-years/index.html</id>
     <content type="html">&lt;p&gt;两年没有他，两年没忘他，他已经是我生命的一部分了&lt;/p&gt;&#xA;</content>
     <link href="https://wangxu.me/memories/2018/02/08/2-years/index.html"></link>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>从 OpenStack 到 OpenInfra</title>
-    <updated>2018-02-07T18:58:08+08:00</updated>
-    <id>tag:wangxu.me,2018-02-07:/kata/2018/02/07/openinfra/index.html</id>
-    <content type="html">&lt;p&gt;在今后的 OpenStack 基金会相关的场合，大家将看到越来越多的 OpenInfra ，越来越淡的 OpenStack，这并不是一种抛弃，而是一种回归和升华&lt;/p&gt;&#xA;</content>
-    <link href="https://wangxu.me/kata/2018/02/07/openinfra/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
