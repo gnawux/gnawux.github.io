@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -99,6 +77,22 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/life/2012/05/16/%e9%82%a3%e4%ba%9b%e5%a4%a9%e4%b8%80%e8%b5%b7%e5%88%b7%e8%bf%87%e7%9a%84galaxy-note-ics-rom/index.html">那些天一起刷过的Galaxy Note ICS ROM</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1337139393"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/android/index.html">android</a><a class="tag" href="/tag/galaxy%20note/index.html">galaxy note</a><a class="tag" href="/tag/ics/index.html">ics</a><a class="tag" href="/tag/%e6%89%8b%e6%9c%ba/index.html">手机</a><a class="tag" href="/tag/life/index.html">life</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/linux/2012/05/14/%e5%88%9b%e5%bb%ba-debian-ubuntu-%e9%a3%8e%e6%a0%bc%e7%9a%84%e5%86%85%e6%a0%b8%e6%a8%a1%e5%9d%97%e5%8c%85/index.html">创建 Debian/Ubuntu 风格的内核模块包</a>
@@ -240,22 +234,6 @@
                             
                             <span class="tags">
                             <a class="tag" href="/tag/filesystem/index.html">filesystem</a><a class="tag" href="/tag/flusher/index.html">flusher</a><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/pdflush/index.html">pdflush</a><a class="tag" href="/tag/translation/index.html">translation</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/translation/2012/02/04/ext4/index.html">[译文]Ext4新进展：bigalloc, inline data, 和元数据校验和</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1328285064"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/ext4/index.html">ext4</a><a class="tag" href="/tag/filesystem/index.html">filesystem</a><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/translation/index.html">translation</a>
                             </span>
                         </section>
                     </li>

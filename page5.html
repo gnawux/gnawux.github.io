@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -99,6 +77,23 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/family/2016/01/29/dont-give-up/index.html">下个五年，还要有你</a>
+                        
+                        <section class="preview content"><p>老爸和我都是八月份生日，狮子座，我出生的时候他30岁，他过了六个没有我的五年，又看着我过了七个五年，如今又一个五年开始了，坚强点老爸，坚持住，我们还要和孩子们一起走下去呢，像奶奶一样，看孙辈结婚生子，看生生不息﻿﻿﻿</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1453999448"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/dad/index.html">dad</a><a class="tag" href="/tag/wishes/index.html">wishes</a><a class="tag" href="/tag/family/index.html">family</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/container/2016/01/23/unikernel-critics/index.html">关于 Unikernel，你注意到或没注意到的一些东西</a>
@@ -248,22 +243,6 @@
                             
                             <span class="tags">
                             <a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/car/index.html">car</a><a class="tag" href="/tag/%e8%a1%8c%e8%bd%a6%e8%ae%b0%e5%bd%95%e4%bb%aa/index.html">行车记录仪</a><a class="tag" href="/tag/%e6%b1%bd%e8%bd%a6/index.html">汽车</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/life/2014/07/29/%e6%90%ac%e5%ae%b6/index.html">搬家</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1406568356"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/%e5%ae%b6/index.html">家</a><a class="tag" href="/tag/%e6%90%ac%e5%ae%b6/index.html">搬家</a>
                             </span>
                         </section>
                     </li>

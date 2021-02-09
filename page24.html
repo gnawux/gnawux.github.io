@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -99,6 +77,22 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/translation/2008/03/08/[%e8%af%91%e6%96%87]upstart:-ubuntu-%e7%9a%84%e5%9f%ba%e4%ba%8e%e4%ba%8b%e4%bb%b6%e7%9a%84%e5%90%af%e5%8a%a8%e8%bf%9b%e7%a8%8b/index.html">[译文]Upstart: Ubuntu 的基于事件的启动进程</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1204951440"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/debian/index.html">debian</a><a class="tag" href="/tag/init/index.html">init</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/ubuntu/index.html">ubuntu</a><a class="tag" href="/tag/upstart/index.html">upstart</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/translation/2008/03/04/[%e8%af%91%e6%96%87]strace:%e7%b3%bb%e7%bb%9f%e8%b0%83%e7%94%a8%e8%b7%9f%e8%b8%aa%e4%b8%8e%e4%bf%a1%e5%8f%b7%e6%8a%a5%e5%91%8a%e5%b7%a5%e5%85%b7/index.html">[译文]strace:系统调用跟踪与信号报告工具</a>
@@ -240,22 +234,6 @@
                             
                             <span class="tags">
                             <a class="tag" href="/tag/code/index.html">code</a><a class="tag" href="/tag/cscope/index.html">cscope</a><a class="tag" href="/tag/silentbob/index.html">silentbob</a><a class="tag" href="/tag/tools/index.html">tools</a><a class="tag" href="/tag/translation/index.html">translation</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/translation/2007/02/14/[%e8%af%91%e6%96%87]-%e4%bd%bf%e7%94%a8%e5%8a%a0%e5%af%86%e5%b7%a5%e5%85%b7%e6%8f%90%e9%ab%98%e7%b3%bb%e7%bb%9f%e5%ae%89%e5%85%a8%e6%80%a7/index.html">[译文] 使用加密工具提高系统安全性</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1171429920"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/cryptography/index.html">cryptography</a><a class="tag" href="/tag/security/index.html">security</a><a class="tag" href="/tag/translation/index.html">translation</a>
                             </span>
                         </section>
                     </li>

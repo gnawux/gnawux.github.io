@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -99,6 +77,22 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/misc/2009/04/24/hello-world!/index.html">Hello world!</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1240509386"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/translation/2009/03/22/xen-to-kernel/index.html">[译文] Xen: 完成工作</a>
@@ -240,22 +234,6 @@
                             
                             <span class="tags">
                             <a class="tag" href="/tag/find/index.html">find</a><a class="tag" href="/tag/regexp/index.html">regexp</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/sed/index.html">sed</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/works/2008/10/23/%e4%ba%ba%e4%b8%8d%e8%83%bd%e6%97%a0%e8%80%bb%e5%88%b0%e8%bf%99%e4%b8%aa%e5%9c%b0%e6%ad%a5/index.html">人不能无耻到这个地步</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1224742560"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/works/index.html">works</a><a class="tag" href="/tag/%e7%9b%97%e7%89%88/index.html">盗版</a>
                             </span>
                         </section>
                     </li>
