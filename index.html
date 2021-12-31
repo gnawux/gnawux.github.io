@@ -44,6 +44,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -77,6 +99,23 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/life/2021/12/31/summary/index.html">人生回忆录之2021篇</a>
+                        <div class="cover" style="background-image:url(/assets/IMG_2022.jpeg);"></div>
+                        <section class="preview content"><p>如果写一本人生回忆录，我想，不是每一年都有机会在里面占有一个高光时刻，创业的开始与结束、新生命的诞生和老人的离去，这些都不属于2021年；而一年中的种种经历，也可能已经记录在别处了，就好像疫情属于2020，跑步属于2019，靠在一年最后一天的通勤地铁上，我在想，写在 2021 的那一笔是什么呢？</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1640952488"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/open-source/index.html">open-source</a><a class="tag" href="/tag/reading/index.html">reading</a><a class="tag" href="/tag/kids/index.html">kids</a><a class="tag" href="/tag/life/index.html">life</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/memories/2021/02/09/to-dad/index.html">自立五年</a>
@@ -227,23 +266,6 @@
                             
                             <span class="tags">
                             <a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/keep/index.html">keep</a><a class="tag" href="/tag/running/index.html">running</a><a class="tag" href="/tag/workout/index.html">workout</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/life/2018/07/15/sunflower/index.html">那些傻傻的花儿啊，像我们一样</a>
-                        <div class="cover" style="background-image:url(/assets/sunflower.jpg);"></div>
-                        <section class="preview content"><p>三七，是时候记下来了</p>
-</section>
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1531622288"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/memories/index.html">memories</a><a class="tag" href="/tag/life/index.html">life</a>
                             </span>
                         </section>
                     </li>

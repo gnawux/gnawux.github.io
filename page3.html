@@ -44,6 +44,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -77,6 +99,23 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/hyper/2016/12/19/container-cloud-pattern/index.html">容器云中的应用模式（1）</a>
+                        
+                        <section class="preview content"><p>本文来自 hyper.sh 上线四个月以来对用户的一些观察与访谈，作为一种新的服务，用户的创造力可能会超出设计者最初的构想，这里只是部分的归纳，希望能对读者有一定的启发</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1482080888"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/container/index.html">container</a><a class="tag" href="/tag/pattern/index.html">pattern</a><a class="tag" href="/tag/hyper/index.html">hyper</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/docker/2016/11/04/docker-logger/index.html">实现一个自己的 Docker 日志驱动</a>
@@ -227,23 +266,6 @@
                             
                             <span class="tags">
                             <a class="tag" href="/tag/anniversary/index.html">anniversary</a><a class="tag" href="/tag/wedding/index.html">wedding</a><a class="tag" href="/tag/family/index.html">family</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/life/2016/07/07/exam-98/index.html">十八年前的那一次考试</a>
-                        <div class="cover" style="background-image:url(/assets/france-98-r9.jpg);"></div>
-                        <section class="preview content"><p>十八年前，我十八岁，那年也有洪水；那年也有足球；那年法国队也表现不错；那年，我参加了高考。现在的我，算不上成功，不过至少没有在高考后沉沦，这是一篇淡淡的鸡汤，送给那些高考不得意的同学</p>
-</section>
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1467850088"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/%e9%ab%98%e8%80%83/index.html">高考</a><a class="tag" href="/tag/%e9%b8%a1%e6%b1%a4/index.html">鸡汤</a><a class="tag" href="/tag/%e5%9b%9e%e5%bf%86/index.html">回忆</a><a class="tag" href="/tag/life/index.html">life</a>
                             </span>
                         </section>
                     </li>

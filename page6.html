@@ -44,6 +44,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -77,6 +99,23 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/life/2014/10/18/car-recorder/index.html">第一次对汽车进行DIY</a>
+                        
+                        <section class="preview content"><p>保险盒取电给行车记录仪供电</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1413590888"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/car/index.html">car</a><a class="tag" href="/tag/%e8%a1%8c%e8%bd%a6%e8%ae%b0%e5%bd%95%e4%bb%aa/index.html">行车记录仪</a><a class="tag" href="/tag/%e6%b1%bd%e8%bd%a6/index.html">汽车</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/life/2014/07/29/%e6%90%ac%e5%ae%b6/index.html">搬家</a>
@@ -221,23 +260,6 @@
                             
                             <span class="tags">
                             <a class="tag" href="/tag/communication/index.html">communication</a><a class="tag" href="/tag/PLMN/index.html">PLMN</a><a class="tag" href="/tag/network/index.html">network</a><a class="tag" href="/tag/zhihu/index.html">zhihu</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/zhihu/2013/11/16/debian/index.html">[知乎回答] 为什么 Debian 在国内的人气远不如国外？</a>
-                        
-                        <section class="preview content"><p>作为历史最悠久的主要 distro 之一，作为历史最悠久的 Linux distro 社区，Debian 的延续性还是很不错，我个人不认为这有严重问题，没必要要求大家都用 debian，各有各的好处</p>
-</section>
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1384560488"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/debian/index.html">debian</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/community/index.html">community</a><a class="tag" href="/tag/opensource/index.html">opensource</a><a class="tag" href="/tag/zhihu/index.html">zhihu</a>
                             </span>
                         </section>
                     </li>

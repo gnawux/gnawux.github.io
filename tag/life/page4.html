@@ -44,6 +44,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -68,7 +90,7 @@
                     
                         <img class="logo" src="/assets/sq2.jpg" />
                         <h1 class="tag">life</h1>
-                        <h2 class="tag-sub">50 篇文章</h2>
+                        <h2 class="tag-sub">51 篇文章</h2>
                     
                 </header>
                 <ul class="article-list">
@@ -243,7 +265,7 @@
                 </ul>
                 <section class="page-nav">
                     <a class="prev" href="/tag/life/page3.html">上一页</a>
-                    <span class="nav">4 / 5</span>
+                    <span class="nav">4 / 6</span>
                     <a class="next" href="/tag/life/page5.html">下一页</a>
                 </section>
             </article>

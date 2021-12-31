@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>https://wangxu.me</id>
-  <updated>2021-02-09T14:20:50+08:00</updated>
+  <updated>2021-12-31T22:41:03+08:00</updated>
   <subtitle>前某创业公司的看门大爷</subtitle>
   <link href="https://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>人生回忆录之2021篇</title>
+    <updated>2021-12-31T20:08:08+08:00</updated>
+    <id>tag:wangxu.me,2021-12-31:/life/2021/12/31/summary/index.html</id>
+    <content type="html">&lt;p&gt;如果写一本人生回忆录，我想，不是每一年都有机会在里面占有一个高光时刻，创业的开始与结束、新生命的诞生和老人的离去，这些都不属于2021年；而一年中的种种经历，也可能已经记录在别处了，就好像疫情属于2020，跑步属于2019，靠在一年最后一天的通勤地铁上，我在想，写在 2021 的那一笔是什么呢？&lt;/p&gt;&#xA;</content>
+    <link href="https://wangxu.me/life/2021/12/31/summary/index.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>自立五年</title>
     <updated>2021-02-09T12:08:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2018-07-24:/life/2018/07/24/workout-29999/index.html</id>
     <content type="html">&lt;p&gt;T+29999min: Keep上看来一大步，人生之中一小步&lt;/p&gt;&#xA;</content>
     <link href="https://wangxu.me/life/2018/07/24/workout-29999/index.html"></link>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>那些傻傻的花儿啊，像我们一样</title>
-    <updated>2018-07-15T10:38:08+08:00</updated>
-    <id>tag:wangxu.me,2018-07-15:/life/2018/07/15/sunflower/index.html</id>
-    <content type="html">&lt;p&gt;三七，是时候记下来了&lt;/p&gt;&#xA;</content>
-    <link href="https://wangxu.me/life/2018/07/15/sunflower/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>

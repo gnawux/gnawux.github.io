@@ -44,6 +44,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -77,6 +99,22 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/misc/2010/01/07/%e5%86%99%e7%82%b9%e5%85%b3%e4%ba%8e%e7%a7%bb%e5%8a%a8%e7%bd%91%e7%bb%9c%e5%92%8cgsm%e5%ae%89%e5%85%a8%e7%9a%84%e7%a7%91%e6%99%ae/index.html">写点关于移动网络和GSM安全的科普</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1262844754"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/GSM/index.html">GSM</a><a class="tag" href="/tag/SIM/index.html">SIM</a><a class="tag" href="/tag/%e5%ae%89%e5%85%a8/index.html">安全</a><a class="tag" href="/tag/%e7%a7%91%e6%99%ae/index.html">科普</a><a class="tag" href="/tag/%e7%a7%bb%e5%8a%a8%e7%bd%91%e7%bb%9c/index.html">移动网络</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/misc/2010/01/01/%e9%87%8d%e5%90%8d%e5%95%8a%e2%80%a6%e2%80%a6fml/index.html">重名啊……FML</a>
@@ -218,22 +256,6 @@
                             
                             <span class="tags">
                             <a class="tag" href="/tag/%e6%9c%ac%e7%ab%99/index.html">本站</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/translation/2009/12/20/[%e8%af%91%e6%96%87]-nosql%e4%bb%ac%e8%83%8c%e5%90%8e%e7%9a%84%e5%85%b1%e6%9c%89%e5%8e%9f%e5%88%99/index.html">[译文] NOSQL们背后的共有原则</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1261239389"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/nosql/index.html">nosql</a><a class="tag" href="/tag/translation/index.html">translation</a>
                             </span>
                         </section>
                     </li>
