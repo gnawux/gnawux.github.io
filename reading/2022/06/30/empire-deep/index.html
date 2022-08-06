@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我有分寸">
+<meta name="twitter:description" content="前某创业公司的看门大爷">
+<meta name="twitter:image:src" content="https://wangxu.me/assets/sq2.jpg">
+
+<meta property="og:url" content="https://wangxu.me">
+<meta property="og:title" content="我有分寸">
+<meta property="og:description" content="前某创业公司的看门大爷">
+<meta property="og:site_name" content="我有分寸">
+<meta property="og:image" content="https://wangxu.me/assets/sq2.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="我有分寸">
+<meta itemprop="description" content="前某创业公司的看门大爷">
+<meta itemprop="image" content="https://wangxu.me/assets/sq2.jpg">
+
+<link rel="canonical" href="https://wangxu.me">
+
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="apple-itouch-icon" href="/favicon.png">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
+
+        <meta name="keywords" content="history,management,reading,">
+        <meta name="description" content="《深蓝帝国》读书笔记">
+        <meta name="author" content="gnawux">
+        <title>《深蓝帝国》读书笔记</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/assets/sq2.jpg" />
+    我有分寸
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">《深蓝帝国》读书笔记</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    
+                    <span class="date" data-time="1656585968"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/history/index.html">history</a><a class="tag" href="/tag/management/index.html">management</a><a class="tag" href="/tag/reading/index.html">reading</a></span>
+                </section>
+                <article class="content"><p><img src="data:image/gif;base64,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" data-src="/assets/empire-deep.jpg" alt="" /></p>
+
+<p>今年在我的“每天半小时读书”计划里，读了一本甲骨文书系的《深蓝帝国》(<em>Empire of the Deep</em>)，副标题是《英国海军的兴衰》，在这本书之前，我看的是同样来自甲骨文书系的《拿破仑大帝》，在拿破仑时代，法国几乎征服了欧洲大陆，却始终活在对大英帝国的海权的恐惧之中，不过在读英国海军史的时候，却发现，那之前一两百年，英国海军都活在法国和西班牙还有荷兰海军的阴影下，只是在不那么优势的情况下，法国和西班牙联合舰队最终被纳尔逊彻底征服了。</p>
+
+<p>其实作者在记述从阿尔弗雷德大帝开始的整个英国海军史的过程中，一只在阐述的一个观点是——马汉的《海权论》勾画的那种海洋国家天生就统治海洋，征服海洋就征服了世界的地缘观点并不是一个真理，相反，它只是一个特定历史时期的特殊情况，事实上，大部分时候，拥有更多资源、更多物产的大陆国家都在主宰着世界，也让海洋国家们担惊受怕。</p>
+
+<p>不过，在读这本书的过程中，还是有挺多杂七杂八的想法的，这里记录一些，没什么顺序性，是一些朋友圈的合集：</p>
+
+<h2>纳尔逊的激发式团队管理</h2>
+
+<p>前面说，在不那么优势的情况下，法国和西班牙联合舰队最终被纳尔逊彻底征服了。纳尔逊本人也死在特拉法尔加辉煌的胜利中，当年学中学历史，以为这是个个人英雄主义的赞歌，读详细的海军史才发现这是团队管理的胜利，纳尔逊的胜利完全不是毫厘之间的意外，而是必然，全面立体的纳尔逊更让人折服，我把这个概括到三点上：</p>
+
+<ol>
+<li>全面细致的日常训练管理：从炮术操练到柑橘的供应，事无巨细的管理，让英军保持健康，且火炮射速远超法西联军，劣势数量的皇家海军还是可以打出统治性的胜利；</li>
+<li>建立信任、激发团队热情：风帆时代的海洋充满意外，很难协调统一舰队，纳尔逊用个人魅力感染舰长和海员，激发他们为英格兰而战的热情，每个人不是死板地执行条例，他们最怕的事情是辜负纳尔逊的期望，纳尔逊称这些舰长是他的至亲袍泽，被他击败的法国司令说，缺少纳尔逊是一个舰队的损失，而英军每个舰长都是纳尔逊；</li>
+<li>临阵大胆放权：没有现代通信工具，令旗很难统一所有军舰的行动，精心设计的战术比不上临阵的意外，纳尔逊充分授权他信任的分舰队司令和舰长，允许他们以自己的名号来号令周围的舰船，独立按照他们理解的纳尔逊作战。</li>
+</ol>
+
+<p>这段精彩的海军史，看得跟个MBA案例似的，哈哈哈哈，体验了18世纪末到19世纪初的OKR管理。</p>
+
+<p>当然，纳尔逊还在对阵丹麦的时候展示了他政治手段的一面，也让人印象深刻，这里不确定有没有一些史学界的夸大，但纳尔逊善于经营他的形象和影响力也是书里本就提到的，总之，纳尔逊的地位无愧于他雕像站立的地方</p>
+
+<h2>意料中的意外</h2>
+
+<p>安森说：“在遇到特殊情况时，任何对司令官新村信任的人都可以而且应当撇开他已经下达的命令，按照常理行事”，他和副司令以及舰长们制定了应对战时突发情况的策略，比如看不到舰队司令或临行前突然改换命令时应该如何行事，上述纳尔逊的管理正是在安森的基础上发展起来的。皇家海军这段，和我最近和同学谈的演讲经验是一脉相承的，啥应变能力，你准备的“意外”多了，让意外成为你反复练习的一部分，自然也就有能力应变了。</p>
+
+<h2>快速淘汰是常态</h2>
+
+<p>无畏舰的设计，是日俄战争对马海战的结果，对于装备的演化，战争才是真正有说服力的论据。从这个意义上说，北洋水师成军在一个悲剧年代，那个时代的船只设计理念正在不断调整而不是稳步前进，新船对旧船不是强5%或10%，而是理念的差距就让他们相差一半，甚至完全在错误的路线上，没有财力不断跟上步伐的海军，就算逞强一时，也难免落魄的结局。这一乱世差不多要到甲午战争之后10年才最终由无畏舰来终结，也迎来了战列舰主炮-装甲-航速的30年竞争。顺便说，这期间，菲舍尔最具争议的设计可能就是战巡了，但我觉得战巡的设计本身是时代背景和战略路线的选择，虽然，无敌、不倦、玛丽女王、胡德这些皇家海军的骄傲全都发生了惨烈的殉爆，但也有过福克兰海战的胜利和29节纳尔逊的传奇，战巡和战列舰炮战本身就是原始设计之外的。</p>
+
+<p>当然，无畏舰战列线的决战在1916年的日德兰海战之后，就走下神坛了，虽然勉强延续到二战，而二战中，如中途岛之战一发入魂的俯冲轰炸，在太平洋战争结束之后就淡出海战史了，再也没有这种武器了，所以，航母全甲板攻击是否还是未来海战的主流，这更有可能是错误的。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq2.jpg);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/memories/2022/08/03/have-a-drink/index.html">敬回忆一杯</a>
+                    </section>
+                    
+                    
+                    <section class="nav next more">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/life/2021/12/31/summary/index.html">人生回忆录之2021篇</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.chole.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>
