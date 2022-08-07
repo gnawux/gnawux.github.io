@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>https://wangxu.me</id>
-  <updated>2022-08-06T15:47:59+08:00</updated>
+  <updated>2022-08-07T23:34:10+08:00</updated>
   <subtitle>前某创业公司的看门大爷</subtitle>
   <link href="https://wangxu.me"></link>
   <author>
@@ -13,6 +13,16 @@
     <id>tag:wangxu.me,2022-08-03:/memories/2022/08/03/have-a-drink/index.html</id>
     <content type="html">&lt;p&gt;这一天，这一刻，我的想说，这样的孤独时刻里，我仍然不会忘记离开我已经六年的爸爸，离开我四年的奶奶，以及和他们分享的那些温暖回忆，这时我还是曾经的我。&lt;/p&gt;&#xA;</content>
     <link href="https://wangxu.me/memories/2022/08/03/have-a-drink/index.html"></link>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
+  <entry>
+    <title>当我们谈战略的时候，我们在说什么</title>
+    <updated>2022-07-16T21:59:08+08:00</updated>
+    <id>tag:wangxu.me,2022-07-16:/reading/2022/07/16/strategy/index.html</id>
+    <content type="html">&lt;p&gt;当我们在公司里谈战略的时候，我们并不是在讲计划，有的时候也不是在讲逻辑，其实，我们在谈的只是一个方向。&lt;/p&gt;&#xA;</content>
+    <link href="https://wangxu.me/reading/2022/07/16/strategy/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2019-01-25:/life/2019/01/25/annual-review-en/index.html</id>
     <content type="html">&lt;p&gt;2018 is the sequel of 2017, and the overture of 2019; In 2018, there are many predetermined surprises, and it must be an extraordinary year in my life.&lt;/p&gt;&#xA;</content>
     <link href="https://wangxu.me/life/2019/01/25/annual-review-en/index.html"></link>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>2018年末随笔</title>
-    <updated>2018-12-31T23:18:08+08:00</updated>
-    <id>tag:wangxu.me,2018-12-31:/life/2018/12/31/annual-review/index.html</id>
-    <content type="html">&lt;p&gt;2018是2017的一个续篇；2018是2019的开端；2018有很多注定的意外；2018也将是我人生传记中不平凡的一年&lt;/p&gt;&#xA;</content>
-    <link href="https://wangxu.me/life/2018/12/31/annual-review/index.html"></link>
     <author>
       <name>gnawux</name>
     </author>
