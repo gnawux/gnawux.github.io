@@ -8,7 +8,7 @@ categories:
 tags:
     - history
     - ukraine
-preview: 这是一个模板
+preview: "在乌克兰危机中，历史不止一次成为借口，也不止一次遭到滥用。它不仅被用来对危机参与者进行宣传和鼓动，也被用来为对国际法、人权乃至生命权本身对侵犯行为辩护。"
 draft: false
 
 ---
