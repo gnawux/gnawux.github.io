@@ -112,15 +112,16 @@
 或者叫“Secure as VM, Fast as Container”，这个我们是开源的，位于 <a href="https://github.com/hyperhq/hyperd/">Hyper_ · GitHub</a> ，
 简单地说是结合了 hypervisor 和 Docker Image 的一种更强调隔离的 App Container，和我们很相似的技术是 Intel 的 Clear Container，
 我们是同一个星期 Release 的（2015年5月），并没有互相参考，思路暗合；</li>
-<li>二是基于我们的容器技术做的容器云 Hyper_ ( <a href="https://www.hyper.sh">https://www.hyper.sh</a> )，因为我们的底层隔离了，上层可以做得更简洁，
+
+<li><p>二是基于我们的容器技术做的容器云 Hyper_ ( <a href="https://www.hyper.sh">https://www.hyper.sh</a> )，因为我们的底层隔离了，上层可以做得更简洁，
 完全去掉了一般公有服务里的基于虚机的资源池这一层，让用户可以像在一台无限大、永远在线的个人电脑上跑 Docker 一样，
 直接创建并运行 Container。因为没有资源池这一层，需要初始化的东西很少，所以可以在三秒钟左右的时间里（
 这个和 container 包含不包含额外的卷有关系，有额外的数据卷需要的时间要长一点）跑起一个虚拟机，
-并且每个用户的网络和容器都是完全隔离、互不干扰的。而且，因为真的很快，所以秒级计费是有实际意义的哦。</li>
-</ul>
+并且每个用户的网络和容器都是完全隔离、互不干扰的。而且，因为真的很快，所以秒级计费是有实际意义的哦。</p>
 
 <pre><code>----&gt;8------进入细节的分割线----&gt;8------
-</code></pre>
+</code></pre></li>
+</ul>
 
 <p>以上和以下提到的 Docker 均为 Docker Inc 的商标，属于 Docker 公司的知识产权。</p>
 

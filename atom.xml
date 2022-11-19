@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>https://wangxu.me</id>
-  <updated>2022-08-07T23:34:10+08:00</updated>
+  <updated>2022-11-19T20:13:29+08:00</updated>
   <subtitle>前某创业公司的看门大爷</subtitle>
   <link href="https://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
   <entry>
+    <title>《欧洲之门》读后感</title>
+    <updated>2022-10-26T13:42:08+08:00</updated>
+    <id>tag:wangxu.me,2022-10-26:/readings/2022/10/26/reading-ukraine/index.html</id>
+    <link href="https://wangxu.me/readings/2022/10/26/reading-ukraine/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;这是一个模板&lt;/p&gt;&#xA;</summary>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
+  <entry>
     <title>敬回忆一杯</title>
     <updated>2022-08-03T23:08:08+08:00</updated>
     <id>tag:wangxu.me,2022-08-03:/memories/2022/08/03/have-a-drink/index.html</id>
-    <content type="html">&lt;p&gt;这一天，这一刻，我的想说，这样的孤独时刻里，我仍然不会忘记离开我已经六年的爸爸，离开我四年的奶奶，以及和他们分享的那些温暖回忆，这时我还是曾经的我。&lt;/p&gt;&#xA;</content>
-    <link href="https://wangxu.me/memories/2022/08/03/have-a-drink/index.html"></link>
+    <link href="https://wangxu.me/memories/2022/08/03/have-a-drink/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;这一天，这一刻，我的想说，这样的孤独时刻里，我仍然不会忘记离开我已经六年的爸爸，离开我四年的奶奶，以及和他们分享的那些温暖回忆，这时我还是曾经的我。&lt;/p&gt;&#xA;</summary>
     <author>
       <name>gnawux</name>
     </author>
@@ -21,8 +31,8 @@
     <title>当我们谈战略的时候，我们在说什么</title>
     <updated>2022-07-16T21:59:08+08:00</updated>
     <id>tag:wangxu.me,2022-07-16:/reading/2022/07/16/strategy/index.html</id>
-    <content type="html">&lt;p&gt;当我们在公司里谈战略的时候，我们并不是在讲计划，有的时候也不是在讲逻辑，其实，我们在谈的只是一个方向。&lt;/p&gt;&#xA;</content>
-    <link href="https://wangxu.me/reading/2022/07/16/strategy/index.html"></link>
+    <link href="https://wangxu.me/reading/2022/07/16/strategy/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;当我们在公司里谈战略的时候，我们并不是在讲计划，有的时候也不是在讲逻辑，其实，我们在谈的只是一个方向。&lt;/p&gt;&#xA;</summary>
     <author>
       <name>gnawux</name>
     </author>
@@ -31,8 +41,8 @@
     <title>《深蓝帝国》读书笔记</title>
     <updated>2022-06-30T18:46:08+08:00</updated>
     <id>tag:wangxu.me,2022-06-30:/reading/2022/06/30/empire-deep/index.html</id>
-    <content type="html">&lt;p&gt;读书，有的时候最大的收获，不是来自作者的内容，而是他激发你所想到的东西。&lt;/p&gt;&#xA;</content>
-    <link href="https://wangxu.me/reading/2022/06/30/empire-deep/index.html"></link>
+    <link href="https://wangxu.me/reading/2022/06/30/empire-deep/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;读书，有的时候最大的收获，不是来自作者的内容，而是他激发你所想到的东西。&lt;/p&gt;&#xA;</summary>
     <author>
       <name>gnawux</name>
     </author>
@@ -41,8 +51,8 @@
     <title>人生回忆录之2021篇</title>
     <updated>2021-12-31T20:08:08+08:00</updated>
     <id>tag:wangxu.me,2021-12-31:/life/2021/12/31/summary/index.html</id>
-    <content type="html">&lt;p&gt;如果写一本人生回忆录，我想，不是每一年都有机会在里面占有一个高光时刻，创业的开始与结束、新生命的诞生和老人的离去，这些都不属于2021年；而一年中的种种经历，也可能已经记录在别处了，就好像疫情属于2020，跑步属于2019，靠在一年最后一天的通勤地铁上，我在想，写在 2021 的那一笔是什么呢？&lt;/p&gt;&#xA;</content>
-    <link href="https://wangxu.me/life/2021/12/31/summary/index.html"></link>
+    <link href="https://wangxu.me/life/2021/12/31/summary/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;如果写一本人生回忆录，我想，不是每一年都有机会在里面占有一个高光时刻，创业的开始与结束、新生命的诞生和老人的离去，这些都不属于2021年；而一年中的种种经历，也可能已经记录在别处了，就好像疫情属于2020，跑步属于2019，靠在一年最后一天的通勤地铁上，我在想，写在 2021 的那一笔是什么呢？&lt;/p&gt;&#xA;</summary>
     <author>
       <name>gnawux</name>
     </author>
@@ -51,8 +61,8 @@
     <title>自立五年</title>
     <updated>2021-02-09T12:08:08+08:00</updated>
     <id>tag:wangxu.me,2021-02-09:/memories/2021/02/09/to-dad/index.html</id>
-    <content type="html">&lt;p&gt;离开爸爸已经五年了，痛已经淡了，但他总还在我心里&lt;/p&gt;&#xA;</content>
-    <link href="https://wangxu.me/memories/2021/02/09/to-dad/index.html"></link>
+    <link href="https://wangxu.me/memories/2021/02/09/to-dad/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;离开爸爸已经五年了，痛已经淡了，但他总还在我心里&lt;/p&gt;&#xA;</summary>
     <author>
       <name>gnawux</name>
     </author>
@@ -61,8 +71,8 @@
     <title>2020年就要过去了，我很……它</title>
     <updated>2020-12-31T20:20:08+08:00</updated>
     <id>tag:wangxu.me,2020-12-31:/life/2020/12/31/happy-new-year/index.html</id>
-    <content type="html">&lt;p&gt;2020是个特别的数字，对我更是如此，我1980年出生，2020，前一个20在20世纪，后一个20在21世纪。平凡的闰年2020的过去，对我的人生在数学上就意味着很多。&lt;/p&gt;&#xA;</content>
-    <link href="https://wangxu.me/life/2020/12/31/happy-new-year/index.html"></link>
+    <link href="https://wangxu.me/life/2020/12/31/happy-new-year/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;2020是个特别的数字，对我更是如此，我1980年出生，2020，前一个20在20世纪，后一个20在21世纪。平凡的闰年2020的过去，对我的人生在数学上就意味着很多。&lt;/p&gt;&#xA;</summary>
     <author>
       <name>gnawux</name>
     </author>
@@ -71,8 +81,18 @@
     <title>出走半生，少年归来</title>
     <updated>2020-06-01T08:53:08+08:00</updated>
     <id>tag:wangxu.me,2020-06-01:/life/2020/06/01/new-car-for-fun/index.html</id>
-    <content type="html">&lt;p&gt;这种幸福，25岁的时候又怎么能感受到呢？&lt;/p&gt;&#xA;</content>
-    <link href="https://wangxu.me/life/2020/06/01/new-car-for-fun/index.html"></link>
+    <link href="https://wangxu.me/life/2020/06/01/new-car-for-fun/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;这种幸福，25岁的时候又怎么能感受到呢？&lt;/p&gt;&#xA;</summary>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
+  <entry>
+    <title>For the love and peace: 看向我的下一个十年</title>
+    <updated>2019-12-28T11:28:08+08:00</updated>
+    <id>tag:wangxu.me,2019-12-28:/life/2019/12/28/new-decade/index.html</id>
+    <link href="https://wangxu.me/life/2019/12/28/new-decade/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;2019年接近尾声，作为一个1980年出生的人，上个千年和这个千年各经历了二十年，虽然眼前有Bug，手头有任务，但恺哥说的对，这总是个该看向未来的时候了。&lt;/p&gt;&#xA;</summary>
     <author>
       <name>gnawux</name>
     </author>
@@ -81,28 +101,8 @@
     <title>对 OceanBase TPC-C 跑分的一点个人看法</title>
     <updated>2019-10-04T23:18:08+08:00</updated>
     <id>tag:wangxu.me,2019-10-04:/database/2019/10/04/on-ob-tpcc/index.html</id>
-    <content type="html">&lt;p&gt;不服跑个分呗。&lt;/p&gt;&#xA;</content>
-    <link href="https://wangxu.me/database/2019/10/04/on-ob-tpcc/index.html"></link>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>新年呓语</title>
-    <updated>2019-02-04T12:18:08+08:00</updated>
-    <id>tag:wangxu.me,2019-02-04:/life/2019/02/04/chinese-new-year-notes/index.html</id>
-    <content type="html">&lt;p&gt;我是幸运的，因为有你们。我想我也配得上这份幸运，因为我不断自省着、努力着。&lt;/p&gt;&#xA;</content>
-    <link href="https://wangxu.me/life/2019/02/04/chinese-new-year-notes/index.html"></link>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>Persoanl Annual Review of 2018</title>
-    <updated>2019-01-25T23:18:08+08:00</updated>
-    <id>tag:wangxu.me,2019-01-25:/life/2019/01/25/annual-review-en/index.html</id>
-    <content type="html">&lt;p&gt;2018 is the sequel of 2017, and the overture of 2019; In 2018, there are many predetermined surprises, and it must be an extraordinary year in my life.&lt;/p&gt;&#xA;</content>
-    <link href="https://wangxu.me/life/2019/01/25/annual-review-en/index.html"></link>
+    <link href="https://wangxu.me/database/2019/10/04/on-ob-tpcc/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;不服跑个分呗。&lt;/p&gt;&#xA;</summary>
     <author>
       <name>gnawux</name>
     </author>
