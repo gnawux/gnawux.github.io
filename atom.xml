@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>https://wangxu.me</id>
-  <updated>2022-12-01T16:40:54+08:00</updated>
+  <updated>2022-12-27T22:03:36+08:00</updated>
   <subtitle>前某创业公司的看门大爷</subtitle>
   <link href="https://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>《通往奴役之路》读后感</title>
+    <updated>2022-12-27T21:52:08+08:00</updated>
+    <id>tag:wangxu.me,2022-12-27:/readings/2022/12/27/reading-road-to-serfdom/index.html</id>
+    <link href="https://wangxu.me/readings/2022/12/27/reading-road-to-serfdom/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;这份读后感分两个部分——前一部分是对于这本书的一个背景和架构梳理，或者说是个我个人视角写的导读吧，供有兴趣阅读的人了解；后一部分是读书的过程中，我读到或想到的一些命题或断言，很多我发过朋友圈，这里罗列起来。&lt;/p&gt;&#xA;</summary>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>简单介绍下 Zwift——有哪些地方可能吸引你，以及如何上手</title>
     <updated>2022-11-30T23:38:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2020-06-01:/life/2020/06/01/new-car-for-fun/index.html</id>
     <link href="https://wangxu.me/life/2020/06/01/new-car-for-fun/index.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;这种幸福，25岁的时候又怎么能感受到呢？&lt;/p&gt;&#xA;</summary>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>For the love and peace: 看向我的下一个十年</title>
-    <updated>2019-12-28T11:28:08+08:00</updated>
-    <id>tag:wangxu.me,2019-12-28:/life/2019/12/28/new-decade/index.html</id>
-    <link href="https://wangxu.me/life/2019/12/28/new-decade/index.html" rel="alternate"></link>
-    <summary type="html">&lt;p&gt;2019年接近尾声，作为一个1980年出生的人，上个千年和这个千年各经历了二十年，虽然眼前有Bug，手头有任务，但恺哥说的对，这总是个该看向未来的时候了。&lt;/p&gt;&#xA;</summary>
     <author>
       <name>gnawux</name>
     </author>
