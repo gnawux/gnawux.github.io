@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>https://wangxu.me</id>
-  <updated>2022-12-27T22:03:36+08:00</updated>
+  <updated>2022-12-28T13:35:37+08:00</updated>
   <subtitle>前某创业公司的看门大爷</subtitle>
   <link href="https://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>2022年，我的年度书单</title>
+    <updated>2022-12-28T13:29:08+08:00</updated>
+    <id>tag:wangxu.me,2022-12-28:/readings/2022/12/28/reading-list/index.html</id>
+    <link href="https://wangxu.me/readings/2022/12/28/reading-list/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;2022年马上过去了，我的「每天半小时读书」并没有明确的目标，但是却也读完了好几本，这里我来罗列一些我看过的书，评语直接用我之前朋友圈的评语了&lt;/p&gt;&#xA;</summary>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>《通往奴役之路》读后感</title>
     <updated>2022-12-27T21:52:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2020-12-31:/life/2020/12/31/happy-new-year/index.html</id>
     <link href="https://wangxu.me/life/2020/12/31/happy-new-year/index.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;2020是个特别的数字，对我更是如此，我1980年出生，2020，前一个20在20世纪，后一个20在21世纪。平凡的闰年2020的过去，对我的人生在数学上就意味着很多。&lt;/p&gt;&#xA;</summary>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>出走半生，少年归来</title>
-    <updated>2020-06-01T08:53:08+08:00</updated>
-    <id>tag:wangxu.me,2020-06-01:/life/2020/06/01/new-car-for-fun/index.html</id>
-    <link href="https://wangxu.me/life/2020/06/01/new-car-for-fun/index.html" rel="alternate"></link>
-    <summary type="html">&lt;p&gt;这种幸福，25岁的时候又怎么能感受到呢？&lt;/p&gt;&#xA;</summary>
     <author>
       <name>gnawux</name>
     </author>
