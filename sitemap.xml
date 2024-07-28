@@ -2,12 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://wangxu.me</loc>
-    <lastmod>2024-07-29T00:13:27.116363373+08:00</lastmod>
+    <lastmod>2024-07-29T00:18:40.175200071+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://wangxu.me/skills/2024/07/28/how-to-host-a-panel/index.html</loc>
     <lastmod>2024-07-28T16:08:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://wangxu.me/readings/2022/12/28/reading-list/index.html</loc>
+    <lastmod>2022-12-28T13:29:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://wangxu.me/readings/2022/12/27/reading-road-to-serfdom/index.html</loc>
+    <lastmod>2022-12-27T21:52:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://wangxu.me/workout/2022/11/30/zwift-tutorial/index.html</loc>
+    <lastmod>2022-11-30T23:38:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://wangxu.me/readings/2022/10/26/reading-ukraine/index.html</loc>
+    <lastmod>2022-10-26T13:42:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
@@ -43,6 +63,11 @@
   <url>
     <loc>https://wangxu.me/life/2020/06/01/new-car-for-fun/index.html</loc>
     <lastmod>2020-06-01T08:53:08+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://wangxu.me/life/2019/12/28/new-decade/index.html</loc>
+    <lastmod>2019-12-28T11:28:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
