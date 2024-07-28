@@ -4,7 +4,7 @@ author: me
 topic: ""
 draft: false
 top: false
-title: 前两天回学校喷了...
+title: 前两天回学校喷了……
 date: 2010-12-06 00:19:42 +0800
 categories:
 - cloud
