@@ -1,48 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>https://wangxu.me</id>
-  <updated>2022-12-28T13:35:37+08:00</updated>
+  <updated>2024-07-29T00:13:27+08:00</updated>
   <subtitle>前某创业公司的看门大爷</subtitle>
   <link href="https://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
   <entry>
-    <title>2022年，我的年度书单</title>
-    <updated>2022-12-28T13:29:08+08:00</updated>
-    <id>tag:wangxu.me,2022-12-28:/readings/2022/12/28/reading-list/index.html</id>
-    <link href="https://wangxu.me/readings/2022/12/28/reading-list/index.html" rel="alternate"></link>
-    <summary type="html">&lt;p&gt;2022年马上过去了，我的「每天半小时读书」并没有明确的目标，但是却也读完了好几本，这里我来罗列一些我看过的书，评语直接用我之前朋友圈的评语了&lt;/p&gt;&#xA;</summary>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>《通往奴役之路》读后感</title>
-    <updated>2022-12-27T21:52:08+08:00</updated>
-    <id>tag:wangxu.me,2022-12-27:/readings/2022/12/27/reading-road-to-serfdom/index.html</id>
-    <link href="https://wangxu.me/readings/2022/12/27/reading-road-to-serfdom/index.html" rel="alternate"></link>
-    <summary type="html">&lt;p&gt;这份读后感分两个部分——前一部分是对于这本书的一个背景和架构梳理，或者说是个我个人视角写的导读吧，供有兴趣阅读的人了解；后一部分是读书的过程中，我读到或想到的一些命题或断言，很多我发过朋友圈，这里罗列起来。&lt;/p&gt;&#xA;</summary>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>简单介绍下 Zwift——有哪些地方可能吸引你，以及如何上手</title>
-    <updated>2022-11-30T23:38:08+08:00</updated>
-    <id>tag:wangxu.me,2022-11-30:/workout/2022/11/30/zwift-tutorial/index.html</id>
-    <link href="https://wangxu.me/workout/2022/11/30/zwift-tutorial/index.html" rel="alternate"></link>
-    <summary type="html">&lt;p&gt;一点小小的室内运动经验，大部分都没给链接，就给了个分类和名字，我的理解是，大部分人缺的不是搜索的能力，而是知道要搜啥，知道可以干这个，我把这个信息传递给大家，大家自己自然就可以搞定了，祝大家玩（剁）得开心。&lt;/p&gt;&#xA;</summary>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>《欧洲之门》读后感</title>
-    <updated>2022-10-26T13:42:08+08:00</updated>
-    <id>tag:wangxu.me,2022-10-26:/readings/2022/10/26/reading-ukraine/index.html</id>
-    <link href="https://wangxu.me/readings/2022/10/26/reading-ukraine/index.html" rel="alternate"></link>
-    <summary type="html">&lt;p&gt;在乌克兰危机中，历史不止一次成为借口，也不止一次遭到滥用。它不仅被用来对危机参与者进行宣传和鼓动，也被用来为对国际法、人权乃至生命权本身对侵犯行为辩护。&lt;/p&gt;&#xA;</summary>
+    <title>主持圆桌的一点心得</title>
+    <updated>2024-07-28T16:08:08+08:00</updated>
+    <id>tag:wangxu.me,2024-07-28:/skills/2024/07/28/how-to-host-a-panel/index.html</id>
+    <link href="https://wangxu.me/skills/2024/07/28/how-to-host-a-panel/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;这个周末，我有幸被指派主持了 ApacheCon Asia 2024 第一天的主题演讲的最后一个圆桌环节，是关于国际化的开源怎么做的，结果居然收获了好几个好评，这可让我有点飘了，我得总结一下。&lt;/p&gt;&#xA;</summary>
     <author>
       <name>gnawux</name>
     </author>
@@ -103,6 +73,36 @@
     <id>tag:wangxu.me,2020-12-31:/life/2020/12/31/happy-new-year/index.html</id>
     <link href="https://wangxu.me/life/2020/12/31/happy-new-year/index.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;2020是个特别的数字，对我更是如此，我1980年出生，2020，前一个20在20世纪，后一个20在21世纪。平凡的闰年2020的过去，对我的人生在数学上就意味着很多。&lt;/p&gt;&#xA;</summary>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
+  <entry>
+    <title>出走半生，少年归来</title>
+    <updated>2020-06-01T08:53:08+08:00</updated>
+    <id>tag:wangxu.me,2020-06-01:/life/2020/06/01/new-car-for-fun/index.html</id>
+    <link href="https://wangxu.me/life/2020/06/01/new-car-for-fun/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;这种幸福，25岁的时候又怎么能感受到呢？&lt;/p&gt;&#xA;</summary>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
+  <entry>
+    <title>对 OceanBase TPC-C 跑分的一点个人看法</title>
+    <updated>2019-10-04T23:18:08+08:00</updated>
+    <id>tag:wangxu.me,2019-10-04:/database/2019/10/04/on-ob-tpcc/index.html</id>
+    <link href="https://wangxu.me/database/2019/10/04/on-ob-tpcc/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;不服跑个分呗。&lt;/p&gt;&#xA;</summary>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
+  <entry>
+    <title>新年呓语</title>
+    <updated>2019-02-04T12:18:08+08:00</updated>
+    <id>tag:wangxu.me,2019-02-04:/life/2019/02/04/chinese-new-year-notes/index.html</id>
+    <link href="https://wangxu.me/life/2019/02/04/chinese-new-year-notes/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;我是幸运的，因为有你们。我想我也配得上这份幸运，因为我不断自省着、努力着。&lt;/p&gt;&#xA;</summary>
     <author>
       <name>gnawux</name>
     </author>

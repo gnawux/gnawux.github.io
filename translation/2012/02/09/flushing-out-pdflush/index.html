@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="filesystem,flusher,kernel,linux,lwn,pdflush,translation,">
         <meta name="description" content="[译文] Flushing out pdflush">
@@ -129,16 +107,16 @@
 <p>bdi_writeback 结构保存了所有用于刷入脏页的信息：</p>
 
 <pre class="brush: c; gutter: true">struct bdi_writeback {
-    struct backing_dev_info *bdi;
-    unsigned int nr;
-    struct task_struct  *task;
-    wait_queue_head_t   wait;
-    struct list_head    b_dirty;
-    struct list_head    b_io;
-    struct list_head    b_more_io;
+	struct backing_dev_info *bdi;
+	unsigned int nr;
+	struct task_struct	*task;
+	wait_queue_head_t	wait;
+	struct list_head	b_dirty;
+	struct list_head	b_io;
+	struct list_head	b_more_io;
 
-    unsigned long       nr_pages;
-    struct super_block  *sb;
+	unsigned long		nr_pages;
+	struct super_block	*sb;
 };</pre>
 
 <p>bdi_writeback结构是在设备使用 bdi_register() 进行注册的时候初始化的。结构的各个字段的含义如下：</p>

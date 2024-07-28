@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="kernel,linux,lwn,security,translation,">
         <meta name="description" content="[译文] 空指针的乐趣（1）">
@@ -110,13 +88,13 @@
 
 <pre>    static unsigned int tun_chr_poll(struct file *file, poll_table * wait)
     {
-    struct tun_file *tfile = file-&gt;private_data;
-    struct tun_struct *tun = __tun_get(tfile);
-    <span style="text-decoration: underline;">struct sock *sk = tun-&gt;sk;</span>
-    unsigned int mask = 0;
+	struct tun_file *tfile = file-&gt;private_data;
+	struct tun_struct *tun = __tun_get(tfile);
+	<span style="text-decoration: underline;">struct sock *sk = tun-&gt;sk;</span>
+	unsigned int mask = 0;
 
-    if (!tun)
-        return POLLERR;</pre>
+	if (!tun)
+	    return POLLERR;</pre>
 
 <p>上面有下划线的的那行代码是 Herbert 的补丁中添加的，这正是惹祸的开始。精心编写的内核代码都会小心的避免对指针的解引用，以避免 NULL；事实上，这里只在那个条件语句那里检查了 <tt>tun</tt> 指针。并且，这是件好事；现在看来，如果进行了 configuring <tt>ioctl()</tt> 调用，<tt>tun</tt> 确实将是 NULL。这时，按照预期，本来 <tt>tun_chr_poll()</tt> 应该返回一个错误状态。</p>
 
@@ -134,10 +112,10 @@
 
 <p>所以，攻击者这时就能通过一个空 <tt>tun</tt> 指针而成功进入 <tt>tun_chr_poll()</tt> 内部了。接下来需要指出如何利用这种情况控制内核。<tt>tun_chr_poll()</tt> 中后面的下一步代码是这样的：</p>
 
-<pre>   if (sock_writeable(sk) ||
-        (!test_and_set_bit(SOCK_ASYNC_NOSPACE, &amp;sk-&gt;sk_socket-&gt;flags) &amp;&amp;
-         sock_writeable(sk)))
-        mask |= POLLOUT | POLLWRNORM;</pre>
+<pre>	if (sock_writeable(sk) ||
+	    (!test_and_set_bit(SOCK_ASYNC_NOSPACE, &amp;sk-&gt;sk_socket-&gt;flags) &amp;&amp;
+	     sock_writeable(sk)))
+		mask |= POLLOUT | POLLWRNORM;</pre>
 
 <p>注意，<tt>sk</tt> 的值来自于 <tt>tun</tt> 的解引用，所以它位于攻击者的控制之下。<tt>SOCK_ASYNC_NOSPACE</tt> 是 0，所以 <tt>test_and_set_bit()</tt> 调用可以用于设置内存中任何字的最低权重位。这是个小小的内存冲突，但这已经被证实是足够的了，在 Brad 展示的攻击代码中，<tt>sk-&gt;sk_socket-&gt;flags</tt> 指针指向了 TUN 驱动的 <tt>file_operations</tt> 结构；特别的，它是指向了 <tt>mmap()</tt> 函数。TUN驱动不支持 <tt>mmap()</tt> 调用，所以这个指针通常应该是 NULL，在 <tt>poll()</tt> 调用之后，它就是 1 了。</p>
 

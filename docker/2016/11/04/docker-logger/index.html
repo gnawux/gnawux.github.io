@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="log,hyper,golang,docker,">
         <meta name="description" content="实现一个自己的 Docker 日志驱动">
@@ -174,15 +152,14 @@ type Message struct {
 
 <ul>
 <li><code>Close()</code> 关闭这个 <code>LogWatcher</code></li>
-
-<li><p><code>WatchClose()</code> ，返回一个 <code>&lt;-chan</code>，用于监听 <code>LogWatcher</code> 事件，用法大致如下</p>
+<li><code>WatchClose()</code> ，返回一个 <code>&lt;-chan</code>，用于监听 <code>LogWatcher</code> 事件，用法大致如下</li>
+</ul>
 
 <pre><code>select {
 case &lt;-watcher.WatchClose():
-//closed...
+    //closed...
 }
-</code></pre></li>
-</ul>
+</code></pre>
 
 <p>日志是允许多个 reader 同时读的，并且，当有 <code>Follow</code> 标记的时候，</p>
 

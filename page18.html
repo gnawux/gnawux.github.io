@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -99,70 +77,6 @@
                     
                 </header>
                 <ul class="article-list">
-                    
-                    <li class="article">
-                        <a class="title" href="/misc/2009/11/12/%e7%a7%bb%e5%8a%a8%e5%ba%94%e8%af%a5%e6%9b%b4%e5%a5%bd%e5%9c%b0%e5%88%a9%e7%94%a8%e6%96%b0%e5%aa%92%e4%bd%93/index.html">移动应该更好地利用新媒体</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1258035134"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/feeling/index.html">feeling</a><a class="tag" href="/tag/twitter/index.html">twitter</a><a class="tag" href="/tag/%e5%bb%ba%e8%ae%ae/index.html">建议</a><a class="tag" href="/tag/%e7%a7%bb%e5%8a%a8/index.html">移动</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/misc/2009/11/12/eeepc%e6%8d%a2%e5%b1%8f%e8%ae%b0/index.html">EeePC换屏记</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1258032623"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/eeepc/index.html">eeepc</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/%e7%bb%b4%e4%bf%ae/index.html">维修</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/misc/2009/11/05/%e4%b9%9f%e8%af%b4google-book/index.html">也说Google Book</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1257357285"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/feeling/index.html">feeling</a><a class="tag" href="/tag/google/index.html">google</a><a class="tag" href="/tag/%e7%89%88%e6%9d%83/index.html">版权</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/translation/2009/11/03/avro-format/index.html">[译文] Avro: 大数据的数据格式</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1257221086"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/avro/index.html">avro</a><a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/mapreduce/index.html">mapreduce</a><a class="tag" href="/tag/translation/index.html">translation</a>
-                            </span>
-                        </section>
-                    </li>
                     
                     <li class="article">
                         <a class="title" href="/misc/2009/10/25/beijinglsf%e7%ac%94%e8%ae%b0/index.html">BeijingLSF笔记</a>
@@ -260,10 +174,74 @@
                         </section>
                     </li>
                     
+                    <li class="article">
+                        <a class="title" href="/misc/2009/10/12/%e7%9d%80%e9%99%86%e6%b8%a9%e5%93%a5%e5%8d%8e/index.html">着陆温哥华</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1255293482"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/canada/index.html">canada</a>
+                            </span>
+                        </section>
+                    </li>
+                    
+                    <li class="article">
+                        <a class="title" href="/misc/2009/10/08/%e6%96%af%e5%b1%b9%e6%8d%89%e8%bf%b7%e8%97%8f/index.html">斯屹捉迷藏</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1255016012"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/%e5%ae%b6%e5%ba%ad/index.html">家庭</a><a class="tag" href="/tag/%e6%96%af%e5%b1%b9/index.html">斯屹</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a>
+                            </span>
+                        </section>
+                    </li>
+                    
+                    <li class="article">
+                        <a class="title" href="/translation/2009/09/28/[%e8%af%91%e6%96%87]-xi2-%e9%a3%9f%e8%b0%b1%ef%bc%881%ef%bc%89/index.html">[译文] XI2 食谱（1）</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1254141745"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/graphic/index.html">graphic</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/XI2/index.html">XI2</a><a class="tag" href="/tag/xorg/index.html">xorg</a>
+                            </span>
+                        </section>
+                    </li>
+                    
+                    <li class="article">
+                        <a class="title" href="/scripts/2009/09/27/%e5%90%8c%e6%97%b6%e6%93%8d%e4%bd%9c%e5%a4%9a%e5%8f%b0%e4%b8%bb%e6%9c%ba%e7%9a%84%e5%91%bd%e4%bb%a4%e8%a1%8c/index.html">同时操作多台主机的命令行</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1254034138"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/pdsh/index.html">pdsh</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/sed/index.html">sed</a><a class="tag" href="/tag/shell/index.html">shell</a><a class="tag" href="/tag/xargs/index.html">xargs</a>
+                            </span>
+                        </section>
+                    </li>
+                    
                 </ul>
                 <section class="page-nav">
                     <a class="prev" href="/page17.html">上一页</a>
-                    <span class="nav">18 / 27</span>
+                    <span class="nav">18 / 26</span>
                     <a class="next" href="/page19.html">下一页</a>
                 </section>
             </article>

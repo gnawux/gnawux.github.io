@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="design pattern,kernel,linux,lwn,programming,translation,">
         <meta name="description" content="[译文] Linux 内核设计模式 (1)">
@@ -172,8 +150,8 @@
 
    3      if (atomic_dec_and_lock(&amp;obj-&gt;refcnt, &amp;subsystem_lock)) {
                  ..... do stuff ....
-         spin_unlock(&amp;subsystem_lock);
-      }</pre>
+		 spin_unlock(&amp;subsystem_lock);
+	  }</pre>
 
 <h6>"kref" 风格</h6>
 
@@ -212,7 +190,7 @@
 <p>一个简单的例子是 <tt>struct inode </tt>中的 <tt>i_count</tt> 引用计数。<tt>iput()</tt> 中的主要部分是这样的：</p>
 
 <pre>    if (atomic_dec_and_lock(&amp;inode-&gt;i_count, &amp;inode_lock))
-    iput_final(inode);</pre>
+	iput_final(inode);</pre>
 
 <p>其中 <tt>iput_final()</tt> 检验 inode 的状态，并决定它是否可以被销毁，或是还要留在缓存中，以备稍后重用。</p>
 

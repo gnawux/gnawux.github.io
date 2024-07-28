@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="中信银行,中国银行,信用卡,失窃,工商银行,挂失,民生银行,生活,life,">
         <meta name="description" content="周末，钱包丢了暨四家银行的挂失服务比较【Update20100831】">
@@ -156,7 +134,7 @@
 
 <p></ul></p>
 
-<p><li>功能：挂失方面，如果有临时冻结功能，会对很多心存侥幸的丢卡人有很好的心理安慰</li></p>
+<li>功能：挂失方面，如果有临时冻结功能，会对很多心存侥幸的丢卡人有很好的心理安慰</li>
 
 <ul>
 
@@ -166,7 +144,7 @@
 
 </ul>
 
-<p><li>服务与信息：即使、准确而不拖沓的信息是你最需要的，而不是复杂的解释性信息：</li></p>
+<li>服务与信息：即使、准确而不拖沓的信息是你最需要的，而不是复杂的解释性信息：</li>
 
 <ul>
 
@@ -176,7 +154,7 @@
 
 </ul>
 
-<p><li>费用：挂失和补卡的费用也是一个比较因素，除了影响心情外，还影响你的最终损失，当然，当时急着挂失，可能没记清楚</li></p>
+<li>费用：挂失和补卡的费用也是一个比较因素，除了影响心情外，还影响你的最终损失，当然，当时急着挂失，可能没记清楚</li>
 
 <ul>
 

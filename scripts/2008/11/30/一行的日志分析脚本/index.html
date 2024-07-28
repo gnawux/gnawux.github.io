@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="grep,regexp,scripts,sed,">
         <meta name="description" content="一行的日志分析脚本">
@@ -124,9 +102,9 @@
 
 <p></li></p>
 
-<p><li>( ) 括起来的内容在后面依次可以用&#160; \1, \2, \3&hellip;. 的方式来引用 </li></p>
+<li>\( \) 括起来的内容在后面依次可以用&#160; \1, \2, \3.... 的方式来引用 </li>
 
-<p><li>使用 [ ] 来指定可能的字符，或用 [^] 来排除没有的，如 [^:] 就是不包含冒号的，上述[^:]* 如果替换成 .* 的话，可能在 log: 2008-11-28 13:05:33 中做最大匹配，一直到33前面，红色部分的匹配可能是无门不希望看到的。</li></p>
+<li>使用 [ ] 来指定可能的字符，或用 [^] 来排除没有的，如 [^:] 就是不包含冒号的，上述[^:]* 如果替换成 .* 的话，可能在 log: 2008-11-28 13:05:33 中做最大匹配，一直到33前面，红色部分的匹配可能是无门不希望看到的。</li>
 
 <p></ul></p>
 

@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="gc,java,jvm,translation,tuning,">
         <meta name="description" content="Java SE 6 Hotspot [TM] 虚拟机垃圾回收调优">
@@ -344,9 +322,9 @@
 
 <p></li></p>
 
-<p><li>如果总的堆尺寸是确定的，增加年轻代的尺寸就会减少年老代的尺寸。一定要保证年老代的尺寸，使之可以容纳所有在应用全程都要用到的活对象，并留有一定裕量（10-20%或更多）。</li></p>
+<li>如果总的堆尺寸是确定的，增加年轻代的尺寸就会减少年老代的尺寸。一定要保证年老代的尺寸，使之可以容纳所有在应用全程都要用到的活对象，并留有一定裕量（10-20%或更多）。</li>
 
-<p><li>依照上述年老代的约束：</p>
+<li>依照上述年老代的约束：
 
 <ul>
 
@@ -354,7 +332,7 @@
 
 <li>如果有多个处理器，那么分配更多的内存给年轻代，因为内存分配可以并行化。</li>
 
-</ul>
+<p></ul></p>
 
 <p></li></p>
 

@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -101,69 +79,18 @@
                 <ul class="article-list">
                     
                     <li class="article">
-                        <a class="title" href="/readings/2022/12/28/reading-list/index.html">2022年，我的年度书单</a>
-                        <div class="cover" style="background-image:url(/assets/reading-list.jpg);"></div>
-                        <section class="preview content"><p>2022年马上过去了，我的「每天半小时读书」并没有明确的目标，但是却也读完了好几本，这里我来罗列一些我看过的书，评语直接用我之前朋友圈的评语了</p>
+                        <a class="title" href="/skills/2024/07/28/how-to-host-a-panel/index.html">主持圆桌的一点心得</a>
+                        <div class="cover" style="background-image:url(assets/coc-asia-24-panel.jpg);"></div>
+                        <section class="preview content"><p>这个周末，我有幸被指派主持了 ApacheCon Asia 2024 第一天的主题演讲的最后一个圆桌环节，是关于国际化的开源怎么做的，结果居然收获了好几个好评，这可让我有点飘了，我得总结一下。</p>
 </section>
                         <section class="info">
                             <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
                             <a class="name" href="/about.me.html">gnawux</a>
                             
-                            <span class="date" data-time="1672205348"><span class="from"></span></span>
+                            <span class="date" data-time="1722154088"><span class="from"></span></span>
                             
                             <span class="tags">
-                            <a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/readings/index.html">readings</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/readings/2022/12/27/reading-road-to-serfdom/index.html">《通往奴役之路》读后感</a>
-                        <div class="cover" style="background-image:url(/assets/serfdom.jpg);"></div>
-                        <section class="preview content"><p>这份读后感分两个部分——前一部分是对于这本书的一个背景和架构梳理，或者说是个我个人视角写的导读吧，供有兴趣阅读的人了解；后一部分是读书的过程中，我读到或想到的一些命题或断言，很多我发过朋友圈，这里罗列起来。</p>
-</section>
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1672149128"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/social/index.html">social</a><a class="tag" href="/tag/hayek/index.html">hayek</a><a class="tag" href="/tag/economy/index.html">economy</a><a class="tag" href="/tag/readings/index.html">readings</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/workout/2022/11/30/zwift-tutorial/index.html">简单介绍下 Zwift——有哪些地方可能吸引你，以及如何上手</a>
-                        <div class="cover" style="background-image:url(assets/zwift-cam.jpg);"></div>
-                        <section class="preview content"><p>一点小小的室内运动经验，大部分都没给链接，就给了个分类和名字，我的理解是，大部分人缺的不是搜索的能力，而是知道要搜啥，知道可以干这个，我把这个信息传递给大家，大家自己自然就可以搞定了，祝大家玩（剁）得开心。</p>
-</section>
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1669822688"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/zwift/index.html">zwift</a><a class="tag" href="/tag/running/index.html">running</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/gardgets/index.html">gardgets</a><a class="tag" href="/tag/workout/index.html">workout</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/readings/2022/10/26/reading-ukraine/index.html">《欧洲之门》读后感</a>
-                        <div class="cover" style="background-image:url(assets/ukraine.jpg);"></div>
-                        <section class="preview content"><p>在乌克兰危机中，历史不止一次成为借口，也不止一次遭到滥用。它不仅被用来对危机参与者进行宣传和鼓动，也被用来为对国际法、人权乃至生命权本身对侵犯行为辩护。</p>
-</section>
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1666762928"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/history/index.html">history</a><a class="tag" href="/tag/ukraine/index.html">ukraine</a><a class="tag" href="/tag/readings/index.html">readings</a>
+                            <a class="tag" href="/tag/conference/index.html">conference</a><a class="tag" href="/tag/panel/index.html">panel</a><a class="tag" href="/tag/open%20source/index.html">open source</a><a class="tag" href="/tag/skills/index.html">skills</a>
                             </span>
                         </section>
                     </li>
@@ -270,10 +197,61 @@
                         </section>
                     </li>
                     
+                    <li class="article">
+                        <a class="title" href="/life/2020/06/01/new-car-for-fun/index.html">出走半生，少年归来</a>
+                        <div class="cover" style="background-image:url(/assets/20200531-my-girl-in-audi-hall.jpg);"></div>
+                        <section class="preview content"><p>这种幸福，25岁的时候又怎么能感受到呢？</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1590972788"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/car/index.html">car</a><a class="tag" href="/tag/audi/index.html">audi</a><a class="tag" href="/tag/life/index.html">life</a>
+                            </span>
+                        </section>
+                    </li>
+                    
+                    <li class="article">
+                        <a class="title" href="/database/2019/10/04/on-ob-tpcc/index.html">对 OceanBase TPC-C 跑分的一点个人看法</a>
+                        <div class="cover" style="background-image:url(/assets/20190531-rizhao-and-me.jpg);"></div>
+                        <section class="preview content"><p>不服跑个分呗。</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1570202288"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/oceanbase/index.html">oceanbase</a><a class="tag" href="/tag/antfin/index.html">antfin</a><a class="tag" href="/tag/moments/index.html">moments</a><a class="tag" href="/tag/tpcc/index.html">tpcc</a><a class="tag" href="/tag/database/index.html">database</a>
+                            </span>
+                        </section>
+                    </li>
+                    
+                    <li class="article">
+                        <a class="title" href="/life/2019/02/04/chinese-new-year-notes/index.html">新年呓语</a>
+                        <div class="cover" style="background-image:url(/assets/dawn-20190204.jpg);"></div>
+                        <section class="preview content"><p>我是幸运的，因为有你们。我想我也配得上这份幸运，因为我不断自省着、努力着。</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1549253888"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/life/index.html">life</a>
+                            </span>
+                        </section>
+                    </li>
+                    
                 </ul>
                 <section class="page-nav">
                     
-                    <span class="nav">1 / 27</span>
+                    <span class="nav">1 / 26</span>
                     <a class="next" href="/page2.html">下一页</a>
                 </section>
             </article>

@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -99,70 +77,6 @@
                     
                 </header>
                 <ul class="article-list">
-                    
-                    <li class="article">
-                        <a class="title" href="/life/2012/01/03/%e5%9b%9e%e5%bf%862011/index.html">回忆2011</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1325525414"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/life/index.html">life</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/linux/2011/12/12/2011%e5%b9%b4%e6%9c%80%e5%90%8e%e4%b8%80%e6%ac%a1%e7%89%88%e8%81%9a%e5%b0%8f%e8%ae%b0/index.html">2011年最后一次版聚小记</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1323667779"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/aio/index.html">aio</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/linuxfb/index.html">linuxfb</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/%e8%af%bb%e5%90%8e%e6%84%9f/2011/11/19/%e9%98%85%e8%af%bb%e7%ac%94%e8%ae%b0/index.html">阅读笔记</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1321718215"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/%e8%af%bb%e5%90%8e%e6%84%9f/index.html">读后感</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/cloud/2011/11/18/%e7%9c%8b%e5%b1%95%e5%8f%b0%e7%9a%84%e7%83%a6%e5%bf%83%e4%ba%8b/index.html">看展台的烦心事</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1321622756"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/feeling/index.html">feeling</a><a class="tag" href="/tag/%e4%ba%91%e8%ae%a1%e7%ae%97/index.html">云计算</a>
-                            </span>
-                        </section>
-                    </li>
                     
                     <li class="article">
                         <a class="title" href="/translation/2011/11/18/scsi-targets/index.html">[译文] SCSI Target 之双城记</a>
@@ -260,10 +174,74 @@
                         </section>
                     </li>
                     
+                    <li class="article">
+                        <a class="title" href="/life/2011/05/10/%e4%b8%80%e4%b8%aa%e8%89%b0%e9%9a%be%e7%9a%84%e5%86%b3%e5%ae%9a/index.html">一个艰难的决定</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1305016291"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/feeling/index.html">feeling</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/%e4%b8%ad%e5%9b%bd%e7%a7%bb%e5%8a%a8%e7%a0%94%e7%a9%b6%e9%99%a2/index.html">中国移动研究院</a><a class="tag" href="/tag/%e6%83%85%e6%84%9f/index.html">情感</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/%e7%a6%bb%e8%81%8c/index.html">离职</a><a class="tag" href="/tag/%e8%81%8c%e4%b8%9a%e7%94%9f%e6%b6%af/index.html">职业生涯</a>
+                            </span>
+                        </section>
+                    </li>
+                    
+                    <li class="article">
+                        <a class="title" href="/life/2011/05/06/%e6%96%af%e5%b1%b9%e7%9a%84%e5%ae%b6%e5%ba%ad%e4%bd%9c%e4%b8%9a/index.html">斯屹的家庭作业</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1304615881"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/ffmpeg/index.html">ffmpeg</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/openshot/index.html">openshot</a><a class="tag" href="/tag/siyi/index.html">siyi</a><a class="tag" href="/tag/video/index.html">video</a>
+                            </span>
+                        </section>
+                    </li>
+                    
+                    <li class="article">
+                        <a class="title" href="/scripts/2011/05/05/%e7%a0%94%e7%a9%b6%e4%ba%86%e4%b8%80%e5%ae%bf%ef%bc%8c%e6%89%be%e5%88%b0%e4%ba%86%e4%b8%aa%e5%90%88%e9%80%82%e7%9a%84ffmpeg%e5%8f%82%e6%95%b0/index.html">研究了一宿，找到了个合适的ffmpeg参数</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1304539447"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/ffmpeg/index.html">ffmpeg</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/video/index.html">video</a><a class="tag" href="/tag/scripts/index.html">scripts</a>
+                            </span>
+                        </section>
+                    </li>
+                    
+                    <li class="article">
+                        <a class="title" href="/works/2011/04/25/cassandra-definitive-guide/index.html">《Cassandra权威指南》翻译完成</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1303699232"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/cassandra/index.html">cassandra</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/works/index.html">works</a>
+                            </span>
+                        </section>
+                    </li>
+                    
                 </ul>
                 <section class="page-nav">
                     <a class="prev" href="/page10.html">上一页</a>
-                    <span class="nav">11 / 27</span>
+                    <span class="nav">11 / 26</span>
                     <a class="next" href="/page12.html">下一页</a>
                 </section>
             </article>

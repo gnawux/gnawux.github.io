@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="code,scala,spray,coding,">
         <meta name="description" content="Spray 中协议处理 Pipelines 的实现">
@@ -303,7 +281,7 @@
 
 <p></li></p>
 
-<p><li>以一个方向为例：</p>
+<li>以一个方向为例：
 
 <ul>
 
@@ -319,7 +297,7 @@
 
 <li>event 处理与此对称</li>
 
-</ul>
+<p></ul></p>
 
 <p></li></p>
 
@@ -347,7 +325,7 @@
 
 <p></li></p>
 
-<p><li><span lang="en-US">baseEventPipeline</span><span lang="zh-CN">送给最左级作为下一级</span></p>
+<li><span lang="en-US">baseEventPipeline</span><span lang="zh-CN">送给最左级作为下一级</span>
 
 <ul type="circle">
 
@@ -355,7 +333,7 @@
 
 <li><span lang="zh-CN">丢弃消息，对于</span><span lang="en-US"> Droppable </span><span lang="zh-CN">的不</span><span lang="zh-CN">warning</span><span lang="zh-CN">，否则</span><span lang="zh-CN">warning</span></li>
 
-</ul>
+<p></ul></p>
 
 <p></li></p>
 

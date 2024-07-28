@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="git,translation,vcs,">
         <meta name="description" content="GIT日常命令20来条">
@@ -148,17 +126,17 @@ $ git gc <b>(3)</b></pre>
 
 <p></li></p>
 
-<p><li></p>
+<li>
 
 <p>统计有多少松散的对象，没有 repack 的对象消耗了多少硬盘空间。 </p>
 
-<p></li></p>
+</li>
 
-<p><li></p>
+<li>
 
 <p>在本地仓库进行 repack，并进行其他日常维护工作。 </p>
 
-<p></li></p>
+</li>
 
 <p></ol></p>
 

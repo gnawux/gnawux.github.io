@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="life,startup,feeling,thanks,">
         <meta name="description" content="随笔">
@@ -126,7 +104,7 @@
 
 <p>聚光灯下的荣光只是一刻，而爱人却会和我共同走过一生。在过去半年，我和我的 cofounder 都没有拿过一分工资，还会贴一些日常运营的费用。这期间，家庭的收入来源只有爱人一个人，而她同时还付出大量时间来照看一双儿女，这其中的付出不是谢字可以表达出来的。未来的日子仍然悠长，我们会继续为这个家、为彼此努力付出，也用我们的全情努力来为孩子们树立榜样。</p>
 
-<hr />
+<hr>
 
 <p>2017年5月</p>
 </article>

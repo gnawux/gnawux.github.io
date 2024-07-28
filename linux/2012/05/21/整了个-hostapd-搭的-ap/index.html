@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="b43,bcm4318,hostapd,ipw2100,linux,mac80211,nl80211,ubuntu,wifi,拆机,">
         <meta name="description" content="整了个 hostapd 搭的 AP">
@@ -103,28 +81,28 @@
 <p>先是找来了弃之不用很久的老笔记本——04年的华硕 M2Ne，一代迅驰平台配二代迅驰的CPU（Dophin内核），这个不知道还有多少同学对它有印象啊，呵呵</p>
 
 <pre class="brush: bash; gutter: true">gnawux@case:~$ cat /proc/cpuinfo
-processor   : 0
-vendor_id   : GenuineIntel
-cpu family  : 6
-model       : 13
-model name  : Intel(R) Pentium(R) M processor 1.50GHz
-stepping    : 6
-microcode   : 0x17
-cpu MHz     : 600.000
-cache size  : 2048 KB
-fdiv_bug    : no
-hlt_bug     : no
-f00f_bug    : no
-coma_bug    : no
-fpu     : yes
-fpu_exception   : yes
-cpuid level : 2
-wp      : yes
-flags       : fpu vme de pse tsc msr mce cx8 apic mtrr pge mca cmov clflush dts acpi mmx fxsr sse sse2 ss tm pbe up bts est tm2
-bogomips    : 1199.98
-clflush size    : 64
-cache_alignment : 64
-address sizes   : 32 bits physical, 32 bits virtual
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 13
+model name	: Intel(R) Pentium(R) M processor 1.50GHz
+stepping	: 6
+microcode	: 0x17
+cpu MHz		: 600.000
+cache size	: 2048 KB
+fdiv_bug	: no
+hlt_bug		: no
+f00f_bug	: no
+coma_bug	: no
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 2
+wp		: yes
+flags		: fpu vme de pse tsc msr mce cx8 apic mtrr pge mca cmov clflush dts acpi mmx fxsr sse sse2 ss tm pbe up bts est tm2
+bogomips	: 1199.98
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 32 bits physical, 32 bits virtual
 power management:</pre>
 
 <p>嗯，拿来之后看了看手头的东西，装了个 Ubuntu 12.04，本来想装 Debian Sid 的，没想到 Unetbootin 做的 Debian USB 启动盘，居然没 boot，Ubuntu 倒是 boot 了，当然，不是同一个 U 盘，不知道是盘的事还是镜像的事，嗯，无所谓了。装起来之后，果断起不来 hostapd，果不出我所料，Intel IPW2100 网卡是进不了 AP mode 的，3945 以后的使用 mac80211 的才可以。</p>
@@ -179,7 +157,7 @@ iface lo inet loopback
 # The primary network interface
 auto br0
 iface br0 inet dhcp
-    bridge_ports eth0</pre>
+	bridge_ports eth0</pre>
 
 <p>嗯，关于桥的就是后三行。呃，好了，到此为止，我现在就是接在这个 AP 上写的 Blog，信号满格，哈哈。</p>
 

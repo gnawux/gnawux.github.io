@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -90,10 +68,27 @@
                     
                         <img class="logo" src="/assets/sq2.jpg" />
                         <h1 class="tag">open source</h1>
-                        <h2 class="tag-sub">5 篇文章</h2>
+                        <h2 class="tag-sub">6 篇文章</h2>
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/skills/2024/07/28/how-to-host-a-panel/index.html">主持圆桌的一点心得</a>
+                        <div class="cover" style="background-image:url(assets/coc-asia-24-panel.jpg);"></div>
+                        <section class="preview content"><p>这个周末，我有幸被指派主持了 ApacheCon Asia 2024 第一天的主题演讲的最后一个圆桌环节，是关于国际化的开源怎么做的，结果居然收获了好几个好评，这可让我有点飘了，我得总结一下。</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1722154088"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/conference/index.html">conference</a><a class="tag" href="/tag/panel/index.html">panel</a><a class="tag" href="/tag/open%20source/index.html">open source</a><a class="tag" href="/tag/skills/index.html">skills</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/cloud/2010/09/04/hadoop-in-china-2010%e5%a4%a7%e4%bc%9a%e5%bd%92%e6%9d%a5/index.html">Hadoop in China 2010大会归来</a>

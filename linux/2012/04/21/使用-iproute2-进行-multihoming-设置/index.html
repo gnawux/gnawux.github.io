@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="admin,ip,iproute2,linux,networking,route,">
         <meta name="description" content="使用 iproute2 进行 MultiHoming 设置">
@@ -136,21 +114,21 @@
 #
 # reserved values
 #
-255 local
-254 main
-253 default
-0   unspec
+255	local
+254	main
+253	default
+0	unspec
 #
 # local
 #
-#1  inr.ruhep</pre>
+#1	inr.ruhep</pre>
 
 <p>已经有三张表了：</p>
 
 <pre class="brush: bash; gutter: true">root@swipe:~# ip rule ls
-0:  from all lookup local
-32766:  from all lookup main
-32767:  from all lookup default</pre>
+0:	from all lookup local
+32766:	from all lookup main
+32767:	from all lookup default</pre>
 
 <p>这三张表都对所有的IP来源生效（from all），这其中，main 就是我们通常设置的路由规则，</p>
 
@@ -170,10 +148,10 @@ link-local      *               255.255.0.0     U     1000   0        0 eth0
 <pre class="brush: bash; gutter: true">root@swipe:~# echo &quot;200 rt2&quot; &gt;&gt; /etc/iproute2/rt_tables
 root@swipe:~# ip rule add from 192.168.12.111 table rt2
 root@swipe:~# ip rule ls
-0:  from all lookup local
-32765:  from 192.168.12.111 lookup rt2
-32766:  from all lookup main
-32767:  from all lookup default</pre>
+0:	from all lookup local
+32765:	from 192.168.12.111 lookup rt2
+32766:	from all lookup main
+32767:	from all lookup default</pre>
 
 <p>这样，来自 192.168.12.111 的包就可以先进入 rt2 这张表了</p>
 

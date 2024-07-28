@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="travel,USA,life,">
         <meta name="description" content="第一次米国之行（2）：轨道交通">
@@ -157,7 +135,7 @@
                     
                     <section class="nav prev more">
                         <div class="head">上篇文章</div>
-                        <a class="link" href="/cloud/2010/12/06/%e5%89%8d%e4%b8%a4%e5%a4%a9%e5%9b%9e%e5%ad%a6%e6%a0%a1%e5%96%b7%e4%ba%86.../index.html">前两天回学校喷了...</a>
+                        <a class="link" href="/cloud/2010/12/06/back-to-bupt/index.html">前两天回学校喷了……</a>
                     </section>
                     
                     

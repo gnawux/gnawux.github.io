@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="open source,ophone,生活,">
         <meta name="description" content="OPhone使用一周体验">
@@ -128,7 +106,7 @@
 
 </ul>
 
-<p><li>浏览器问题，总的来说还挺好的，有些细节上有不便的感觉，我不是这方面的专家，嗯，可能是我不会用，欢迎指出</li></p>
+<li>浏览器问题，总的来说还挺好的，有些细节上有不便的感觉，我不是这方面的专家，嗯，可能是我不会用，欢迎指出</li>
 
 <ul>
 
@@ -142,7 +120,7 @@
 
 </ul>
 
-<p><li>输入法问题，个人觉得输入法其实还挺好用的，但是还是有个小问题</li></p>
+<li>输入法问题，个人觉得输入法其实还挺好用的，但是还是有个小问题</li>
 
 <ul>
 
@@ -150,7 +128,7 @@
 
 </ul>
 
-<p><li>邮件程序问题，这个也可能是我不会用哈，当年mutt我也是用了很久才会用“t”的</li></p>
+<li>邮件程序问题，这个也可能是我不会用哈，当年mutt我也是用了很久才会用“t”的</li>
 
 <ul>
 
@@ -160,7 +138,7 @@
 
 </ul>
 
-<p><li>其他需求/问题</li></p>
+<li>其他需求/问题</li>
 
 <ul>
 

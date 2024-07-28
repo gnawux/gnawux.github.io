@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -99,70 +77,6 @@
                     
                 </header>
                 <ul class="article-list">
-                    
-                    <li class="article">
-                        <a class="title" href="/scripts/2008/10/22/%e6%8c%89%e8%b7%af%e5%be%84%e9%80%89%e6%8b%a9%e6%96%87%e4%bb%b6/index.html">按路径选择文件</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1224680040"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/grep/index.html">grep</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/shell/index.html">shell</a><a class="tag" href="/tag/xargs/index.html">xargs</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/scripts/2008/10/16/%e7%94%a8expect%e8%bf%9b%e8%a1%8cilo%e8%bf%9c%e7%a8%8b%e9%85%8d%e7%bd%ae/index.html">用expect进行iLO远程配置</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1224162240"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/expect/index.html">expect</a><a class="tag" href="/tag/iLO/index.html">iLO</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/ssh/index.html">ssh</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/scripts/2008/10/15/%e5%8f%af%e7%94%a8ip%e5%88%97%e8%a1%a8%e7%94%9f%e6%88%90/index.html">可用IP列表生成</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1224077460"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/script/index.html">script</a><a class="tag" href="/tag/shell/index.html">shell</a><a class="tag" href="/tag/scripts/index.html">scripts</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/scripts/2008/10/15/%e6%96%87%e4%bb%b6%e6%88%90%e5%88%86%e5%88%a4%e5%88%ab/index.html">文件成分判别</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1224074760"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/file/index.html">file</a><a class="tag" href="/tag/find/index.html">find</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/shell/index.html">shell</a>
-                            </span>
-                        </section>
-                    </li>
                     
                     <li class="article">
                         <a class="title" href="/works/2008/08/27/%e7%a7%bb%e5%8a%a8%e4%ba%91%e8%ae%a1%e7%ae%97%e6%88%91%e4%b9%8b%e8%a7%81/index.html">移动云计算我之见</a>
@@ -260,10 +174,74 @@
                         </section>
                     </li>
                     
+                    <li class="article">
+                        <a class="title" href="/translation/2008/06/04/using-ocfs2,-a-clustering-file-system/index.html">Using OCFS2, A Clustering File System</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1212554100"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/filesystem/index.html">filesystem</a><a class="tag" href="/tag/ocfs2/index.html">ocfs2</a><a class="tag" href="/tag/translation/index.html">translation</a>
+                            </span>
+                        </section>
+                    </li>
+                    
+                    <li class="article">
+                        <a class="title" href="/translation/2008/06/01/what-is-rcu/index.html">[译文]What is RCU, Fundamentally?</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1212292560"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/RCU/index.html">RCU</a><a class="tag" href="/tag/translation/index.html">translation</a>
+                            </span>
+                        </section>
+                    </li>
+                    
+                    <li class="article">
+                        <a class="title" href="/scripts/2008/05/14/%e6%b8%85%e9%99%a4%e5%b7%b2%e5%88%a0%e9%99%a4%e8%bd%af%e4%bb%b6%e5%8c%85%e7%9a%84%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e7%9a%84%e6%96%b9%e6%b3%95/index.html">清除已删除软件包的配置文件的方法</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1210767180"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/APT/index.html">APT</a><a class="tag" href="/tag/debian/index.html">debian</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/shell/index.html">shell</a><a class="tag" href="/tag/xargs/index.html">xargs</a>
+                            </span>
+                        </section>
+                    </li>
+                    
+                    <li class="article">
+                        <a class="title" href="/translation/2008/05/03/git%e6%97%a5%e5%b8%b8%e5%91%bd%e4%bb%a420%e6%9d%a5%e6%9d%a1/index.html">GIT日常命令20来条</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1209826320"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/git/index.html">git</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/vcs/index.html">vcs</a>
+                            </span>
+                        </section>
+                    </li>
+                    
                 </ul>
                 <section class="page-nav">
                     <a class="prev" href="/page22.html">上一页</a>
-                    <span class="nav">23 / 27</span>
+                    <span class="nav">23 / 26</span>
                     <a class="next" href="/page24.html">下一页</a>
                 </section>
             </article>

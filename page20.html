@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -99,70 +77,6 @@
                     
                 </header>
                 <ul class="article-list">
-                    
-                    <li class="article">
-                        <a class="title" href="/translation/2009/09/04/null-pointers-1/index.html">[译文] 空指针的乐趣（1）</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1251995499"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/security/index.html">security</a><a class="tag" href="/tag/translation/index.html">translation</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/translation/2009/08/30/[%e8%af%91%e6%96%87]-linux-%e5%86%85%e6%a0%b8%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f--1-/index.html">[译文] Linux 内核设计模式 (1)</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1251639542"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/design%20pattern/index.html">design pattern</a><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/programming/index.html">programming</a><a class="tag" href="/tag/translation/index.html">translation</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/misc/2009/07/20/%e2%80%9c%e4%b8%ad%e6%96%87linux%e5%8f%91%e8%a1%8c%e7%89%88%e2%80%9d%e6%9c%89%e5%87%ba%e8%b7%af%e4%b9%88/index.html">“中文Linux发行版”有出路么</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1248101723"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/misc/2009/07/09/chrome-os,-another-linux-distro?/index.html">Chrome OS, Another Linux Distro?</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1247110311"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/chrome%20os/index.html">chrome os</a><a class="tag" href="/tag/google/index.html">google</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/open%20source/index.html">open source</a>
-                            </span>
-                        </section>
-                    </li>
                     
                     <li class="article">
                         <a class="title" href="/misc/2009/07/09/%e7%bb%93%e5%a9%9a%e8%bf%99%e4%b8%a4%e5%b9%b4/index.html">结婚这两年</a>
@@ -260,10 +174,74 @@
                         </section>
                     </li>
                     
+                    <li class="article">
+                        <a class="title" href="/misc/2009/05/06/hdfs%e9%80%80%e6%9c%8d%e8%8a%82%e7%82%b9%e7%9a%84%e6%96%b9%e6%b3%95/index.html">HDFS退服节点的方法</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1241591980"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/hdfs/index.html">hdfs</a><a class="tag" href="/tag/%e7%ae%a1%e7%90%86/index.html">管理</a>
+                            </span>
+                        </section>
+                    </li>
+                    
+                    <li class="article">
+                        <a class="title" href="/misc/2009/05/04/%e5%bc%80%e5%a7%8b%e6%82%84%e6%82%84%e6%8e%a8%e8%8d%90%e6%88%91%e7%9a%84%e7%bd%91%e7%ab%99/index.html">开始悄悄推荐我的网站</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1241448034"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/%e6%9c%ac%e7%ab%99/index.html">本站</a>
+                            </span>
+                        </section>
+                    </li>
+                    
+                    <li class="article">
+                        <a class="title" href="/misc/2009/05/03/%e6%96%af%e5%b1%b9%e5%8f%88%e5%a4%9a%e4%ba%86%e4%b8%a4%e8%be%86%e8%bd%a6/index.html">斯屹又多了两辆车</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1241362567"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/%e6%96%af%e5%b1%b9/index.html">斯屹</a><a class="tag" href="/tag/%e7%8e%a9%e5%85%b7/index.html">玩具</a>
+                            </span>
+                        </section>
+                    </li>
+                    
+                    <li class="article">
+                        <a class="title" href="/misc/2009/05/03/%e5%87%86%e5%a4%87%e6%94%be%e4%ba%9b%e8%af%bb%e5%90%8e%e6%84%9f%e5%88%b0cms%e9%87%8c/index.html">准备放些读后感到CMS里</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1241362347"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/%e6%9c%ac%e7%ab%99/index.html">本站</a>
+                            </span>
+                        </section>
+                    </li>
+                    
                 </ul>
                 <section class="page-nav">
                     <a class="prev" href="/page19.html">上一页</a>
-                    <span class="nav">20 / 27</span>
+                    <span class="nav">20 / 26</span>
                     <a class="next" href="/page21.html">下一页</a>
                 </section>
             </article>

@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -99,74 +77,6 @@
                     
                 </header>
                 <ul class="article-list">
-                    
-                    <li class="article">
-                        <a class="title" href="/life/2020/06/01/new-car-for-fun/index.html">出走半生，少年归来</a>
-                        <div class="cover" style="background-image:url(/assets/20200531-my-girl-in-audi-hall.jpg);"></div>
-                        <section class="preview content"><p>这种幸福，25岁的时候又怎么能感受到呢？</p>
-</section>
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1590972788"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/car/index.html">car</a><a class="tag" href="/tag/audi/index.html">audi</a><a class="tag" href="/tag/life/index.html">life</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/life/2019/12/28/new-decade/index.html">For the love and peace: 看向我的下一个十年</a>
-                        <div class="cover" style="background-image:url(assets/2010decade.jpg);"></div>
-                        <section class="preview content"><p>2019年接近尾声，作为一个1980年出生的人，上个千年和这个千年各经历了二十年，虽然眼前有Bug，手头有任务，但恺哥说的对，这总是个该看向未来的时候了。</p>
-</section>
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1577503688"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/memories/index.html">memories</a><a class="tag" href="/tag/life/index.html">life</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/database/2019/10/04/on-ob-tpcc/index.html">对 OceanBase TPC-C 跑分的一点个人看法</a>
-                        <div class="cover" style="background-image:url(/assets/20190531-rizhao-and-me.jpg);"></div>
-                        <section class="preview content"><p>不服跑个分呗。</p>
-</section>
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1570202288"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/oceanbase/index.html">oceanbase</a><a class="tag" href="/tag/antfin/index.html">antfin</a><a class="tag" href="/tag/moments/index.html">moments</a><a class="tag" href="/tag/tpcc/index.html">tpcc</a><a class="tag" href="/tag/database/index.html">database</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/life/2019/02/04/chinese-new-year-notes/index.html">新年呓语</a>
-                        <div class="cover" style="background-image:url(/assets/dawn-20190204.jpg);"></div>
-                        <section class="preview content"><p>我是幸运的，因为有你们。我想我也配得上这份幸运，因为我不断自省着、努力着。</p>
-</section>
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1549253888"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/life/index.html">life</a>
-                            </span>
-                        </section>
-                    </li>
                     
                     <li class="article">
                         <a class="title" href="/life/2019/01/25/annual-review-en/index.html">Persoanl Annual Review of 2018</a>
@@ -270,10 +180,78 @@
                         </section>
                     </li>
                     
+                    <li class="article">
+                        <a class="title" href="/kata/2018/02/07/openinfra/index.html">从 OpenStack 到 OpenInfra</a>
+                        
+                        <section class="preview content"><p>在今后的 OpenStack 基金会相关的场合，大家将看到越来越多的 OpenInfra ，越来越淡的 OpenStack，这并不是一种抛弃，而是一种回归和升华</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1518001088"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/openinfra/index.html">openinfra</a><a class="tag" href="/tag/kata_containers/index.html">kata_containers</a><a class="tag" href="/tag/runv/index.html">runv</a><a class="tag" href="/tag/openstack/index.html">openstack</a><a class="tag" href="/tag/openstack_foundation/index.html">openstack_foundation</a><a class="tag" href="/tag/kata/index.html">kata</a>
+                            </span>
+                        </section>
+                    </li>
+                    
+                    <li class="article">
+                        <a class="title" href="/hyper/2017/12/28/annual-review/index.html">2017年回顾</a>
+                        
+                        <section class="preview content"><p>2017年就要结束了，在这辞旧迎新的日子，我们团队的大部分成员，一起来到普吉岛的海滨，回忆往昔，畅想未来。这一年对我自己和我们 Hyper 团队都可以用峰回路转来形容……</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1514426888"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/kata/index.html">kata</a><a class="tag" href="/tag/runv/index.html">runv</a><a class="tag" href="/tag/intel/index.html">intel</a><a class="tag" href="/tag/personal/index.html">personal</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/hyper/index.html">hyper</a>
+                            </span>
+                        </section>
+                    </li>
+                    
+                    <li class="article">
+                        <a class="title" href="/feeling/2017/11/16/legend-feeling/index.html">一点感悟</a>
+                        
+                        <section class="preview content"><p>今天，应A轮投资人君联资本邀请，荣幸地参加了君联资本 CEO Club 第十七届年会，实话说，本来觉得是浪费一天时间换和投资人一小时交流的活动，甚至都犹豫早上来还是不来。不过来了之后，听了几个主题演讲，居然完全颠覆对这类大会的印象，感觉收获颇丰。在此真的感谢君联资本的富有创新精神的组织。</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1510819688"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/%e5%88%9b%e4%b8%9a/index.html">创业</a><a class="tag" href="/tag/%e5%9b%a2%e9%98%9f/index.html">团队</a><a class="tag" href="/tag/%e5%90%9b%e8%81%94%e8%b5%84%e6%9c%ac/index.html">君联资本</a><a class="tag" href="/tag/%e7%a7%91%e5%a4%a7%e8%ae%af%e9%a3%9e/index.html">科大讯飞</a><a class="tag" href="/tag/%e4%bf%9e%e6%b0%b8%e7%a6%8f/index.html">俞永福</a><a class="tag" href="/tag/startup/index.html">startup</a><a class="tag" href="/tag/feeling/index.html">feeling</a>
+                            </span>
+                        </section>
+                    </li>
+                    
+                    <li class="article">
+                        <a class="title" href="/life/2017/07/21/run-100/index.html">百次纪念跑</a>
+                        
+                        <section class="preview content"><p>第100次，特意为他换的路线，我知道他会为我高兴的。</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1500566888"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/memories/index.html">memories</a><a class="tag" href="/tag/life/index.html">life</a>
+                            </span>
+                        </section>
+                    </li>
+                    
                 </ul>
                 <section class="page-nav">
                     <a class="prev" href="/index.html">上一页</a>
-                    <span class="nav">2 / 27</span>
+                    <span class="nav">2 / 26</span>
                     <a class="next" href="/page3.html">下一页</a>
                 </section>
             </article>

@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="life,air,PM 2.5,raspberry pi,arduino,">
         <meta name="description" content="DIY PM 2.5 监测仪 (1): 采集和显示">
@@ -196,7 +174,7 @@ while True:
     if ord(data[(pos+1)&31]) == 0x4d:
         print('found BM at %d' % (pos))
         ser.read(pos)
-    break
+	break
     pos = pos + 1
     if pos > 31:
         print('frame format error')

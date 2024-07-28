@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="mac,openvpn,script,scripts,tunnelblick,VPN,">
         <meta name="description" content="Mac 下用自定义脚本配置 Tunnelblick 的自定义路由">
@@ -129,20 +107,20 @@ LOGFILE=${PREFIX}/bin/route.log
 echo &quot;Cmd run on `date` with arguments: $@; Original Net Gateway: ${route_net_gateway}&quot; &gt; ${LOGFILE}
 
 if [ $# -lt 6 ] ; then
-    echo &quot;[WARN] not enough arguments: $@&quot; &gt;&gt; ${LOGFILE}
-    exit 1
+	echo &quot;[WARN] not enough arguments: $@&quot; &gt;&gt; ${LOGFILE}
+	exit 1
 fi
 
 OPERATION=delete
 TB_SCRIPT=/Applications/Tunnelblick.app/Contents/Resources/client.down.tunnelblick.sh
 if [ &quot;$1&quot; = &quot;up&quot; ] ; then
-    OPERATION=add
-    TB_SCRIPT=/Applications/Tunnelblick.app/Contents/Resources/client.up.tunnelblick.sh
+	OPERATION=add
+	TB_SCRIPT=/Applications/Tunnelblick.app/Contents/Resources/client.up.tunnelblick.sh
 fi
 
 while read scope ; do
-    echo /sbin/route ${OPERATION} -net ${scope} ${route_net_gateway} &gt;&gt; ${LOGFILE}
-    /sbin/route ${OPERATION} -net ${scope} ${route_net_gateway} 2&gt;&gt; ${LOGFILE}
+	echo /sbin/route ${OPERATION} -net ${scope} ${route_net_gateway} &gt;&gt; ${LOGFILE}
+	/sbin/route ${OPERATION} -net ${scope} ${route_net_gateway} 2&gt;&gt; ${LOGFILE}
 done &lt;&lt;ENDLIST
 10.53.0.0/16
 58.215.0.0/16

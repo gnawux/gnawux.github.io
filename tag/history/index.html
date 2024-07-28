@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -90,27 +68,10 @@
                     
                         <img class="logo" src="/assets/sq2.jpg" />
                         <h1 class="tag">history</h1>
-                        <h2 class="tag-sub">2 篇文章</h2>
+                        <h2 class="tag-sub">1 篇文章</h2>
                     
                 </header>
                 <ul class="article-list">
-                    
-                    <li class="article">
-                        <a class="title" href="/readings/2022/10/26/reading-ukraine/index.html">《欧洲之门》读后感</a>
-                        <div class="cover" style="background-image:url(assets/ukraine.jpg);"></div>
-                        <section class="preview content"><p>在乌克兰危机中，历史不止一次成为借口，也不止一次遭到滥用。它不仅被用来对危机参与者进行宣传和鼓动，也被用来为对国际法、人权乃至生命权本身对侵犯行为辩护。</p>
-</section>
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1666762928"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/history/index.html">history</a><a class="tag" href="/tag/ukraine/index.html">ukraine</a><a class="tag" href="/tag/readings/index.html">readings</a>
-                            </span>
-                        </section>
-                    </li>
                     
                     <li class="article">
                         <a class="title" href="/reading/2022/06/30/empire-deep/index.html">《深蓝帝国》读书笔记</a>

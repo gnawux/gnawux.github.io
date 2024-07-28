@@ -44,28 +44,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -90,44 +68,10 @@
                     
                         <img class="logo" src="/assets/sq2.jpg" />
                         <h1 class="tag">life</h1>
-                        <h2 class="tag-sub">55 篇文章</h2>
+                        <h2 class="tag-sub">52 篇文章</h2>
                     
                 </header>
                 <ul class="article-list">
-                    
-                    <li class="article">
-                        <a class="title" href="/readings/2022/12/28/reading-list/index.html">2022年，我的年度书单</a>
-                        <div class="cover" style="background-image:url(/assets/reading-list.jpg);"></div>
-                        <section class="preview content"><p>2022年马上过去了，我的「每天半小时读书」并没有明确的目标，但是却也读完了好几本，这里我来罗列一些我看过的书，评语直接用我之前朋友圈的评语了</p>
-</section>
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1672205348"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/readings/index.html">readings</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/workout/2022/11/30/zwift-tutorial/index.html">简单介绍下 Zwift——有哪些地方可能吸引你，以及如何上手</a>
-                        <div class="cover" style="background-image:url(assets/zwift-cam.jpg);"></div>
-                        <section class="preview content"><p>一点小小的室内运动经验，大部分都没给链接，就给了个分类和名字，我的理解是，大部分人缺的不是搜索的能力，而是知道要搜啥，知道可以干这个，我把这个信息传递给大家，大家自己自然就可以搞定了，祝大家玩（剁）得开心。</p>
-</section>
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1669822688"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/zwift/index.html">zwift</a><a class="tag" href="/tag/running/index.html">running</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/gardgets/index.html">gardgets</a><a class="tag" href="/tag/workout/index.html">workout</a>
-                            </span>
-                        </section>
-                    </li>
                     
                     <li class="article">
                         <a class="title" href="/memories/2022/08/03/have-a-drink/index.html">敬回忆一杯</a>
@@ -198,23 +142,6 @@
                     </li>
                     
                     <li class="article">
-                        <a class="title" href="/life/2019/12/28/new-decade/index.html">For the love and peace: 看向我的下一个十年</a>
-                        <div class="cover" style="background-image:url(assets/2010decade.jpg);"></div>
-                        <section class="preview content"><p>2019年接近尾声，作为一个1980年出生的人，上个千年和这个千年各经历了二十年，虽然眼前有Bug，手头有任务，但恺哥说的对，这总是个该看向未来的时候了。</p>
-</section>
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1577503688"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/memories/index.html">memories</a><a class="tag" href="/tag/life/index.html">life</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
                         <a class="title" href="/life/2019/02/04/chinese-new-year-notes/index.html">新年呓语</a>
                         <div class="cover" style="background-image:url(/assets/dawn-20190204.jpg);"></div>
                         <section class="preview content"><p>我是幸运的，因为有你们。我想我也配得上这份幸运，因为我不断自省着、努力着。</p>
@@ -261,6 +188,57 @@
                             
                             <span class="tags">
                             <a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/life/index.html">life</a>
+                            </span>
+                        </section>
+                    </li>
+                    
+                    <li class="article">
+                        <a class="title" href="/life/2018/07/24/workout-29999/index.html">挥汗如雨的29999分钟</a>
+                        <div class="cover" style="background-image:url(/assets/snail-29999.jpg);"></div>
+                        <section class="preview content"><p>T+29999min: Keep上看来一大步，人生之中一小步</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1532365688"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/keep/index.html">keep</a><a class="tag" href="/tag/running/index.html">running</a><a class="tag" href="/tag/workout/index.html">workout</a>
+                            </span>
+                        </section>
+                    </li>
+                    
+                    <li class="article">
+                        <a class="title" href="/life/2018/07/15/sunflower/index.html">那些傻傻的花儿啊，像我们一样</a>
+                        <div class="cover" style="background-image:url(/assets/sunflower.jpg);"></div>
+                        <section class="preview content"><p>三七，是时候记下来了</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1531622288"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/memories/index.html">memories</a><a class="tag" href="/tag/life/index.html">life</a>
+                            </span>
+                        </section>
+                    </li>
+                    
+                    <li class="article">
+                        <a class="title" href="/hyper/2017/12/28/annual-review/index.html">2017年回顾</a>
+                        
+                        <section class="preview content"><p>2017年就要结束了，在这辞旧迎新的日子，我们团队的大部分成员，一起来到普吉岛的海滨，回忆往昔，畅想未来。这一年对我自己和我们 Hyper 团队都可以用峰回路转来形容……</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1514426888"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/kata/index.html">kata</a><a class="tag" href="/tag/runv/index.html">runv</a><a class="tag" href="/tag/intel/index.html">intel</a><a class="tag" href="/tag/personal/index.html">personal</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/hyper/index.html">hyper</a>
                             </span>
                         </section>
                     </li>
