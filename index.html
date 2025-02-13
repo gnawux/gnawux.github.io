@@ -44,6 +44,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -77,6 +99,23 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/readings/2025/02/13/ai-learned/index.html">给非专业人士的AI或大模型介绍</a>
+                        
+                        <section class="preview content"><p>我本人也不是计算机专业毕业，也并非从事模型研发工作，我毕业于电子/无线通信专业，做云计算、基础设施工作，为 AI 研发同事供给计算资源，所以自己也在阅读和学习到底AI在做什么，这里是一个我的读后感的分享。</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1739462288"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/ai/index.html">ai</a><a class="tag" href="/tag/network/index.html">network</a><a class="tag" href="/tag/readings/index.html">readings</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/learning/2024/09/29/linguam-latinam-disco/index.html">一些学习拉丁语的心得</a>
@@ -227,23 +266,6 @@
                             
                             <span class="tags">
                             <a class="tag" href="/tag/strategy/index.html">strategy</a><a class="tag" href="/tag/management/index.html">management</a><a class="tag" href="/tag/reading/index.html">reading</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/reading/2022/06/30/empire-deep/index.html">《深蓝帝国》读书笔记</a>
-                        <div class="cover" style="background-image:url(assets/empire-deep.jpg);"></div>
-                        <section class="preview content"><p>读书，有的时候最大的收获，不是来自作者的内容，而是他激发你所想到的东西。</p>
-</section>
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1656585968"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/history/index.html">history</a><a class="tag" href="/tag/management/index.html">management</a><a class="tag" href="/tag/reading/index.html">reading</a>
                             </span>
                         </section>
                     </li>

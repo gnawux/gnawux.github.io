@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>https://wangxu.me</id>
-  <updated>2024-09-29T23:33:15+08:00</updated>
+  <updated>2025-02-14T00:01:30+08:00</updated>
   <subtitle>前某创业公司的看门大爷</subtitle>
   <link href="https://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>给非专业人士的AI或大模型介绍</title>
+    <updated>2025-02-13T23:58:08+08:00</updated>
+    <id>tag:wangxu.me,2025-02-13:/readings/2025/02/13/ai-learned/index.html</id>
+    <link href="https://wangxu.me/readings/2025/02/13/ai-learned/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;我本人也不是计算机专业毕业，也并非从事模型研发工作，我毕业于电子/无线通信专业，做云计算、基础设施工作，为 AI 研发同事供给计算资源，所以自己也在阅读和学习到底AI在做什么，这里是一个我的读后感的分享。&lt;/p&gt;&#xA;</summary>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>一些学习拉丁语的心得</title>
     <updated>2024-09-29T23:08:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2022-07-16:/reading/2022/07/16/strategy/index.html</id>
     <link href="https://wangxu.me/reading/2022/07/16/strategy/index.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;当我们在公司里谈战略的时候，我们并不是在讲计划，有的时候也不是在讲逻辑，其实，我们在谈的只是一个方向。&lt;/p&gt;&#xA;</summary>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>《深蓝帝国》读书笔记</title>
-    <updated>2022-06-30T18:46:08+08:00</updated>
-    <id>tag:wangxu.me,2022-06-30:/reading/2022/06/30/empire-deep/index.html</id>
-    <link href="https://wangxu.me/reading/2022/06/30/empire-deep/index.html" rel="alternate"></link>
-    <summary type="html">&lt;p&gt;读书，有的时候最大的收获，不是来自作者的内容，而是他激发你所想到的东西。&lt;/p&gt;&#xA;</summary>
     <author>
       <name>gnawux</name>
     </author>

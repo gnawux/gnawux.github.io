@@ -44,6 +44,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -77,6 +99,22 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/life/2011/03/30/%e5%9c%b0%e9%93%81%e4%b8%8e%e5%9c%b0%e9%93%81%e5%88%97%e8%bd%a6%ef%bc%88%e5%8c%97%e4%ba%ac%ef%bc%89/index.html">地铁与地铁列车（北京）</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1301451398"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/metro/index.html">metro</a><a class="tag" href="/tag/subway/index.html">subway</a><a class="tag" href="/tag/%e5%8c%97%e4%ba%ac/index.html">北京</a><a class="tag" href="/tag/%e5%9c%b0%e9%93%81/index.html">地铁</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/scripts/2011/03/28/%e4%b8%80%e4%b8%aa%e8%87%aa%e5%8a%a8%e6%90%ad%e5%bb%baipip%e9%9a%a7%e9%81%93%e7%9a%84%e8%84%9a%e6%9c%ac/index.html">一个自动搭建ipip隧道的脚本</a>
@@ -218,22 +256,6 @@
                             
                             <span class="tags">
                             <a class="tag" href="/tag/travel/index.html">travel</a><a class="tag" href="/tag/USA/index.html">USA</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/life/2010/12/05/%e7%ac%ac%e4%b8%80%e6%ac%a1%e7%b1%b3%e5%9b%bd%e4%b9%8b%e8%a1%8c%ef%bc%880%ef%bc%89%ef%bc%9a%e5%89%8d%e4%bc%a0/index.html">第一次米国之行（0）：前传</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1291563659"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/travel/index.html">travel</a><a class="tag" href="/tag/USA/index.html">USA</a><a class="tag" href="/tag/life/index.html">life</a>
                             </span>
                         </section>
                     </li>

@@ -44,6 +44,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -77,6 +99,22 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/misc/2009/10/17/%e5%91%8a%e5%88%abbanff%ef%bc%8c%e5%91%8a%e5%88%abogf27/index.html">告别Banff，告别OGF27</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1255753663"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/canada/index.html">canada</a><a class="tag" href="/tag/ogf27/index.html">ogf27</a><a class="tag" href="/tag/%e5%85%ab%e5%8d%a6/index.html">八卦</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/misc/2009/10/16/%e5%8d%9a%e5%ae%a2%e8%a1%8c%e5%8a%a8%e6%97%a5%ef%bc%8c%e6%88%91%e4%b9%9f%e6%9d%a5%e4%b8%80%e7%af%87%e5%90%a7/index.html">博客行动日，我也来一篇吧</a>
@@ -218,22 +256,6 @@
                             
                             <span class="tags">
                             <a class="tag" href="/tag/%e6%96%af%e5%b1%b9/index.html">斯屹</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/misc/2009/09/17/%e6%88%91%e7%9a%84%e4%b9%a6%e7%9a%84%e9%82%a3%e4%ba%9b%e4%ba%8b/index.html">我的书的那些事</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1253152124"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/unleashed/index.html">unleashed</a><a class="tag" href="/tag/%e5%85%ab%e5%8d%a6/index.html">八卦</a><a class="tag" href="/tag/%e5%87%ba%e7%89%88/index.html">出版</a><a class="tag" href="/tag/%e6%9c%8b%e5%8f%8b/index.html">朋友</a>
                             </span>
                         </section>
                     </li>

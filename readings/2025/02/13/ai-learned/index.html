@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我有分寸">
+<meta name="twitter:description" content="前某创业公司的看门大爷">
+<meta name="twitter:image:src" content="https://wangxu.me/assets/sq2.jpg">
+
+<meta property="og:url" content="https://wangxu.me">
+<meta property="og:title" content="我有分寸">
+<meta property="og:description" content="前某创业公司的看门大爷">
+<meta property="og:site_name" content="我有分寸">
+<meta property="og:image" content="https://wangxu.me/assets/sq2.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="我有分寸">
+<meta itemprop="description" content="前某创业公司的看门大爷">
+<meta itemprop="image" content="https://wangxu.me/assets/sq2.jpg">
+
+<link rel="canonical" href="https://wangxu.me">
+
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="apple-itouch-icon" href="/favicon.png">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
+
+        <meta name="keywords" content="ai,network,readings,">
+        <meta name="description" content="给非专业人士的AI或大模型介绍">
+        <meta name="author" content="gnawux">
+        <title>给非专业人士的AI或大模型介绍</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/assets/sq2.jpg" />
+    我有分寸
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">给非专业人士的AI或大模型介绍</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    
+                    <span class="date" data-time="1739462288"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/ai/index.html">ai</a><a class="tag" href="/tag/network/index.html">network</a><a class="tag" href="/tag/readings/index.html">readings</a></span>
+                </section>
+                <article class="content"><blockquote>
+<p>首先，我本人也不是计算机专业毕业，也并非从事模型研发工作，我毕业于电子/无线通信专业，做云计算、基础设施工作，为 AI 研发同事供给计算资源，所以自己也在阅读和学习到底AI在做什么，这里是一个我的读后感的分享。我在和家人聊天、过年串亲戚的过程中，发现很多人也有我一样的困惑，虽然不从事相关工作，但想知道神秘的 AI 背后的一点点原理，所以写出来这些东西。</p>
+
+<p>其次，这里所说的非专业人士，是指不从事 AI 专业，但是不代表任何人都可以读懂，我会尝试给长辈解释，但是也不是所有长辈都可以，还是需要她对科学或数学体系有一点点基础的。</p>
+</blockquote>
+
+<h2>知识理解需要抽象和分层</h2>
+
+<p>我们人类解决问题的前提就是对被解决的事物有一个抽象化的理解，比如，当我脑子里理解了方向盘和车的行进方向的对应关系的时候，我就可以进一步考科目二了。这里说的<strong>抽象化的理解</strong>是说，我其实并不需要理解方向盘到转向轮之间的完整映射，也不需要完整理解差动这些。完整地理解转向中心、转弯半径和过弯过程中的离心力与轮胎附着力这些，对更精确、高速过弯有帮助，更多的原理，如力学、传动，乃至更基本的物体的力学作用，对于开车人就没什么意义了。</p>
+
+<p>所以，对于一个有点复杂的系统，恰到好处的抽象化理解，是有效操作的基础。理解得过少，就容易被臆想和错觉迷惑，引入得更多，会让情况过于复杂而无法有效驾驭。一个合适的抽象维度，才是有效并高效解决问题的捷径，这就是架构师们在做的架构分层的最初意义。</p>
+
+<h2>从电路和实现视角看的各种神经网络</h2>
+
+<p>下面我来卖弄一下一些知识，来把这件事情拉近到我们领域里来。</p>
+
+<p>我是电子系的毕业生，学的是电路、模拟电路、数字电路、信号与系统、信号处理、通信原理这些。我现在从两个抽象路径来介绍下上面这些东西，并最终有点牵强地引到人工智能这个领域来——</p>
+
+<h3>计算的抽象</h3>
+
+<p>首先，我们的半导体元件，比如三极管或者场效应管（MOSFET）（大家熟悉的LED、CMOS这些名词，都是从这里来的），它们最基本的原理是电场和微观粒子的运动，最终产生了一些比如放大、饱和、截止、乃至击穿这样的关系。</p>
+
+<p>我们在「模拟电路」一开头迷迷糊糊地学习了这些基本的半导体里的原理，然后就再也没碰过它们了，模拟电路和高频电路的后续都是围绕着这些电极之间的那条输入输出的函数曲线而进行的，而众所周知，数字电路也是用上述这些模拟器件搭起来的，但后来我们甚至都不去管这些曲线了，而直接谈论0和1，去画数字电路的真值表了。</p>
+
+<p>而我们在座的各位，甚至也不去关心真值表了，尽管你可以把 CPU、GPU、DSP 这些芯片当作是一大块有几百甚至上千腿的数字电路，并且用0-1真值表（注意考虑加历史状态），去考虑它的数字输入输出，但实际上我们根本不会这么做，我们会用“指令”来对它“编程”，甚至也不直接用指令，而用高级语言、乃至方便的、别人做的库来操作它，那么这里“指令集”、“编程语言”、“库和接口”（比如 CUDA），就是一层一层的抽象了。不使用这些抽象，是很难完成真实世界的复杂任务的。</p>
+
+<h3>（神经网络所说的）网络是什么</h3>
+
+<p>另一方面，我们的电路，就是各种器件组成的一个电路网络，电阻、电容、电感，乃至半导体器件，它们可以组成一个让“信号”从输入变换到输出的“系统”，而这个系统，我们可以理解成一个“函数”。电容和电感都会改变信号的“相位”，电阻改变信号的幅度，半导体器件的影响更复杂，当它们组成一个复杂网络的时候，就可以完成一些复杂的信号变换操作，比如收音机把天空中传输的无线电波，选择性地过滤一个频道的信息出来，并转换到人耳朵可以听到的频率，驱动喇叭放出来。注意，这里“网络”这个词就和人工智能里的“神经网络”的“网络”是同一个意思了，是一种单元组件构成的，有输入有输出的进行信息处理的拓扑图，和我们社交网络、互联网距离就有点远了。</p>
+
+<p>当然和上面提到的，理解成一个“函数”，这个函数和数学里的基本函数略有差别的是，电路系统里的信号本身是一个时间的函数，而输出也是，所以这个“网络”/“系统”，它本身的对信号的操作形式是用一个所谓“冲激响应函数”（给系统输入一个最短时长的单位能量信号得到的系统输出的函数）来描述的，一个系统的输出，是输入信号和冲激响应两者对时间的一个卷积操作。卷积这个操作略显复杂，大致可以理解是信号每个时间点的输入，都可能对未来一段时间的信号产生影响，因此输出信号的时间长度很可能会比输入长，是逐渐叠加累积的前面信号的影响的（余音绕梁）。</p>
+
+<p>这里这个网络/系统，因为对信号产生了影响，这个影响可以称为是滤波，所以它就是个滤波器（filter），比如我们常说的低通滤波器，就是去掉了高频信号通过了低频信号；或者说把信号从一个形式变到了另一个信号，就是变换（transform），比如我们常说的傅立叶变换，这个变换的输入信号我们称之为第0,1,&hellip;.,t秒对应的值，就是时域信号，输出我们不说是时间，而说是第0,1,&hellip;,n Hz 频点对应的值，也就是频域信号。脑补一下，低通滤波也可以做傅立叶变换，然后直接把高频全都写成0，再反傅立叶变换回到时间去，这差不多就是很多“数字滤波器”做的工作。（当然，因为我们实际不可能处理无限长信号，所以上面的这些操作都会有近似/舍弃/使用范围。）</p>
+
+<p>当我们把神经网络看作是电路系统，这个电路可以被依次连接起来，构成多层的电路，我们讲深度神经网络、深度学习的时候，就是指这个网络是个多层的深度网络，它这个深度是指的网络系统的深度，而不是我们看到深度学习的时候想到的思维深度，因为人工智能里大量使用了不同学科中的概念，切忌“过分解读”。</p>
+
+<h2>那么模型和训练是什么</h2>
+
+<p>一个是模型的“深度”和结构，一个是从计算到实现计算的处理器和电路，从 AI 到电路的抽象层次大致如此了。但人工智能作为一个交叉学科，并不只是这么简单。就我的粗浅理解，它的内核是数学，是概率论和最优化。一个模型的工作的本质就是一个用程序在计算芯片（CPU 和 GPU或其他加速器）上实现的上述的简单或者复杂系统。这个复杂系统的目标是猜测对一些输入应该产生什么样的输出，如果它的猜测水平能达到或超过常人的水平，那么就可以认为达到了“人工智能”了。</p>
+
+<p>刚才提到了，这里实现的是一个系统，或者说，一个复杂的函数。我们已经有了一些现实世界的材料，比如我们观察人怎么做，或者我们爬取了互联网上可以获得的各种浩如烟海的数字化信息，那么我们应该就可以开始把这些已经有的信息组织成输入-输出对应的内容了。当我们有了输入-输出对应关系之后，这个局面大致相当于我们有了一个函数的大量输入和输出，那么我们来猜一下这个函数的是什么，这个过程在数学里就称为“拟合”。这就是为什么我们经常在谈论模型训练时会提到“过拟合”或类似的名词，因为它就是这么来的。</p>
+
+<p>在机器学习这个领域里，我们把这个猜测模型里的各个参数的过程叫做训练，如果这个模型可以100%精度地训练出来，那么这个模型就可以正确地回答所有问题了。当然，我们知道我们还没有现实的、有限复杂度的，可以描述这个世界运转的一切奥秘的模型，甚至我们准备的这些输入都不一定是全都准确的，所以我们实际上是构造了一个称为“损失函数”的函数，描述输出相比于输入的“不够好”的程度，然后再利用已经有的信息寻找和事的模型让这个损失函数最低，这就是数学上的“最优化”过程，其具体的训练过程也是从最优化中来的。</p>
+
+<p>当然，当我们使用了“人工智能”和“学习”这样的名词，不可避免地，我们也会借鉴认知和心理学的内容，比如强化学习这个“强化（reinforcement）”据书上说就是从心理学中借鉴来的。这个学科我不懂，但它的特点是通过得到正面或负面的反馈（奖励和惩罚），而非输入-输出对，来进行训练。进行局势或规则判断、给出奖励惩罚的设计要比准备海量的答案更现实一些，适用范围也更宽一些，这也是为什么人工智能领域总是很看重强化学习（RL）这个方向。</p>
+
+<p>所以，当我们讨论到模型和人工智能的时候，已经涉及到了心理学、数学尤（其是概率论和最优化）、信号系统、计算方法，这些学科或者说抽象层次了，一定程度上说，我们门外汉理解不了人工智能这件事情一点都不奇怪。</p>
+
+<h2>关于跨层优化</h2>
+
+<p>我们都知道大模型领域，不论是训练模型，还是在模型服务我们的时候做的推理，都会消耗算力，而算力本身意味着成本，因此每个参与者都在尝试做这个优化工作。我们都知道，当我们理解了底层是如何操作的，找到那些上下层之间不必要的重复的操作，比如，每一层都打开一下盒子，做个操作，再装上交给下一层，那么省掉这个把这个拆箱装箱操作拆到外层来就是个有收益的优化。然而，在做所有优化之前，还是高德纳那句经典的“过早的优化是万恶之源”，该在本层里做的工作还是应该做充分，跨层优化常常是个不该打开的潘多拉魔盒，抽象，或者说“墙内聚，弱耦合”作为架构格言，是无数教训换来的。</p>
+
+<p>当然，跨层优化确实是极致的优化的一个手段，也是克服不合理抽象，或者利用新技术进行大幅度优化的很好的手段。比如最近我们都听到的 DeepSeek 绕过 CUDA 这层抽象，以及，前一段被关注的利用半导体器件的模拟电路特性，可以加速有限精度的矩阵运算的存算一体架构，这些优化都是要求具备跨层的知识，然后做细致的工程工作才可以做到。跨层优化和抽象是彼此结合的，不存在从上到下打破所有抽象的工作，做合理的跨层优化才能更好地帮助我们解决问题。</p>
+
+<p>以上是最近的一点学习心得，希望对大家有帮助。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq2.jpg);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    
+                    <section class="nav next">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/learning/2024/09/29/linguam-latinam-disco/index.html">一些学习拉丁语的心得</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.chole.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>

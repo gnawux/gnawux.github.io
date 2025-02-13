@@ -44,6 +44,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -77,6 +99,23 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/reading/2022/06/30/empire-deep/index.html">《深蓝帝国》读书笔记</a>
+                        <div class="cover" style="background-image:url(assets/empire-deep.jpg);"></div>
+                        <section class="preview content"><p>读书，有的时候最大的收获，不是来自作者的内容，而是他激发你所想到的东西。</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1656585968"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/history/index.html">history</a><a class="tag" href="/tag/management/index.html">management</a><a class="tag" href="/tag/reading/index.html">reading</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/life/2021/12/31/summary/index.html">人生回忆录之2021篇</a>
@@ -227,23 +266,6 @@
                             
                             <span class="tags">
                             <a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/life/index.html">life</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/kata%20containers/2018/10/24/kata-meetup-summary/index.html">Kata Beijing Meetup 小总结</a>
-                        <div class="cover" style="background-image:url(/assets/kata-meetup-1.jpg);"></div>
-                        <section class="preview content"><p>上周三（10月17日），我们在北京环球贸易中心组织了 Kata Containers 在国内的第一次独立的 Meetup，反响热烈，交流深入，在此按照组委会的要求，来写一份家庭作业总结一下。</p>
-</section>
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1540390088"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/meetup/index.html">meetup</a><a class="tag" href="/tag/hyper/index.html">hyper</a><a class="tag" href="/tag/kata%20containers/index.html">kata containers</a>
                             </span>
                         </section>
                     </li>
