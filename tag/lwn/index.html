@@ -44,6 +44,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -68,10 +90,27 @@
                     
                         <img class="logo" src="/assets/sq2.jpg" />
                         <h1 class="tag">lwn</h1>
-                        <h2 class="tag-sub">14 篇文章</h2>
+                        <h2 class="tag-sub">15 篇文章</h2>
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/linux/2025/04/07/pcid-patchset-explained/index.html">PCID patchset explained in LWN style</a>
+                        
+                        <section class="preview content"><p>这篇文章并不是来自 LWN 的，只是作者作为 LWN 的老粉丝，很喜欢 Jonathan 的写作风格，忽然觉得这个 patchset 可以这么解释一下，因此做了个拙劣的风格模仿而已，东施效颦，大家见笑哈。</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1744039688"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/pcid/index.html">pcid</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/pvm/index.html">pvm</a><a class="tag" href="/tag/linux/index.html">linux</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/translation/2013/06/02/%e3%80%90%e8%af%91%e6%96%87%e3%80%91lsfmm:-%e7%bc%93%e5%ad%98-%e2%80%94-dm-cache-%e4%b8%8e-bcache/index.html">【译文】LSFMM: 缓存 — dm-cache 与 bcache</a>
@@ -213,22 +252,6 @@
                             
                             <span class="tags">
                             <a class="tag" href="/tag/gem/index.html">gem</a><a class="tag" href="/tag/graphic/index.html">graphic</a><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/translation/index.html">translation</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/translation/2008/06/01/what-is-rcu/index.html">[译文]What is RCU, Fundamentally?</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1212292560"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/RCU/index.html">RCU</a><a class="tag" href="/tag/translation/index.html">translation</a>
                             </span>
                         </section>
                     </li>

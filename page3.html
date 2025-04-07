@@ -44,6 +44,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -77,6 +99,23 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/life/2018/12/31/annual-review/index.html">2018年末随笔</a>
+                        <div class="cover" style="background-image:url(/assets/annual-07.jpg);"></div>
+                        <section class="preview content"><p>2018是2017的一个续篇；2018是2019的开端；2018有很多注定的意外；2018也将是我人生传记中不平凡的一年</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1546269488"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/life/index.html">life</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/kata%20containers/2018/10/24/kata-meetup-summary/index.html">Kata Beijing Meetup 小总结</a>
@@ -227,23 +266,6 @@
                             
                             <span class="tags">
                             <a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/startup/index.html">startup</a><a class="tag" href="/tag/feeling/index.html">feeling</a><a class="tag" href="/tag/thanks/index.html">thanks</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/life/2017/04/23/lose-weight/index.html">锻炼两月记</a>
-                        
-                        <section class="preview content"><p>这是一篇不太鸡汤的锻炼记录，有些回忆，有些心得，有些欣喜，有些（负能量）感想</p>
-</section>
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1492916888"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/keep/index.html">keep</a><a class="tag" href="/tag/running/index.html">running</a>
                             </span>
                         </section>
                     </li>

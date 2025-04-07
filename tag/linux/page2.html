@@ -44,6 +44,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -68,10 +90,26 @@
                     
                         <img class="logo" src="/assets/sq2.jpg" />
                         <h1 class="tag">linux</h1>
-                        <h2 class="tag-sub">40 篇文章</h2>
+                        <h2 class="tag-sub">41 篇文章</h2>
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/translation/2012/02/09/flushing-out-pdflush/index.html">[译文] Flushing out pdflush</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1328800821"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/filesystem/index.html">filesystem</a><a class="tag" href="/tag/flusher/index.html">flusher</a><a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/pdflush/index.html">pdflush</a><a class="tag" href="/tag/translation/index.html">translation</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/translation/2012/02/04/ext4/index.html">[译文]Ext4新进展：bigalloc, inline data, 和元数据校验和</a>
@@ -217,26 +255,10 @@
                         </section>
                     </li>
                     
-                    <li class="article">
-                        <a class="title" href="/scripts/2010/01/20/%e4%b8%80%e8%a1%8c%e7%9a%84%e6%97%a5%e5%bf%97%e7%bb%9f%e8%ae%a1%e8%ae%a1%e7%ae%97%e8%84%9a%e6%9c%ac/index.html">一行的日志统计计算脚本</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1263963875"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/cli/index.html">cli</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/regexp/index.html">regexp</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/sed/index.html">sed</a><a class="tag" href="/tag/shell/index.html">shell</a>
-                            </span>
-                        </section>
-                    </li>
-                    
                 </ul>
                 <section class="page-nav">
                     <a class="prev" href="/tag/linux/index.html">上一页</a>
-                    <span class="nav">2 / 4</span>
+                    <span class="nav">2 / 5</span>
                     <a class="next" href="/tag/linux/page3.html">下一页</a>
                 </section>
             </article>

@@ -44,6 +44,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -77,6 +99,23 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/life/2016/04/16/just-for-fun/index.html">Just for Fun</a>
+                        
+                        <section class="preview content"><p>前两天，用友 UDN 的白总来找我做了一个关于开源创业的访谈，是啊，做 Hyper_ 项目一年出头的时间了，自己想想也很刺激呢，那就动笔写点什么吧</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1460801888"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/opensource/index.html">opensource</a><a class="tag" href="/tag/hyper/index.html">hyper</a><a class="tag" href="/tag/fun/index.html">fun</a><a class="tag" href="/tag/life/index.html">life</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/family/2016/02/29/forget-or-not/index.html">不愿回忆，害怕忘记</a>
@@ -227,22 +266,6 @@
                             
                             <span class="tags">
                             <a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/children/index.html">children</a><a class="tag" href="/tag/zhihu/index.html">zhihu</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/meta/2015/02/24/blog-update/index.html">Blog 系统更新完毕</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1424736488"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/blog/index.html">blog</a><a class="tag" href="/tag/github/index.html">github</a><a class="tag" href="/tag/jekyll/index.html">jekyll</a><a class="tag" href="/tag/meta/index.html">meta</a>
                             </span>
                         </section>
                     </li>

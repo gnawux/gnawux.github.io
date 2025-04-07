@@ -44,6 +44,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -77,6 +99,22 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/misc/2010/12/05/%e7%ac%ac%e4%b8%80%e6%ac%a1%e7%b1%b3%e5%9b%bd%e4%b9%8b%e8%a1%8c%ef%bc%881%ef%bc%89%ef%bc%9a%e5%88%b0%e8%be%besan-jose/index.html">第一次米国之行（1）：到达San Jose</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1291563959"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/travel/index.html">travel</a><a class="tag" href="/tag/USA/index.html">USA</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/life/2010/12/05/%e7%ac%ac%e4%b8%80%e6%ac%a1%e7%b1%b3%e5%9b%bd%e4%b9%8b%e8%a1%8c%ef%bc%880%ef%bc%89%ef%bc%9a%e5%89%8d%e4%bc%a0/index.html">第一次米国之行（0）：前传</a>
@@ -218,22 +256,6 @@
                             
                             <span class="tags">
                             <a class="tag" href="/tag/cassandra/index.html">cassandra</a><a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/open%20source/index.html">open source</a><a class="tag" href="/tag/openstack/index.html">openstack</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/scripts/2010/08/17/%e5%8d%93%e8%b6%8a%e8%b4%ad%e4%b9%a6%e5%8d%95%e7%94%9f%e6%88%90%e5%91%bd%e4%bb%a4%e8%a1%8c/index.html">卓越购书单生成命令行</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1282010200"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/amazon/index.html">amazon</a><a class="tag" href="/tag/bash/index.html">bash</a><a class="tag" href="/tag/book/index.html">book</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/sed/index.html">sed</a>
                             </span>
                         </section>
                     </li>

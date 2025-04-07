@@ -44,6 +44,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -77,6 +99,22 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/meta/2015/02/24/blog-update/index.html">Blog 系统更新完毕</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1424736488"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/blog/index.html">blog</a><a class="tag" href="/tag/github/index.html">github</a><a class="tag" href="/tag/jekyll/index.html">jekyll</a><a class="tag" href="/tag/meta/index.html">meta</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/zhihu/2015/01/20/iridium/index.html">[知乎回答] 20年前(1996)MOTO的铱星计划（77颗卫星），与现在SpaceX的700颗卫星计划，有什么异同？</a>
@@ -223,22 +261,6 @@
                             
                             <span class="tags">
                             <a class="tag" href="/tag/china%20mobile/index.html">china mobile</a><a class="tag" href="/tag/career/index.html">career</a><a class="tag" href="/tag/zhihu/index.html">zhihu</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/cloud/2014/02/17/%e8%bf%91%e6%9c%9f%e4%ba%91%e8%ae%a1%e7%ae%97%e6%8a%80%e6%9c%af%e7%9a%84%e5%8f%91%e5%b1%95%e4%b8%8e%e7%83%ad%e7%82%b9%e6%8a%80%e6%9c%af/index.html">近期云计算技术的发展与热点技术</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1392649442"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/container/index.html">container</a><a class="tag" href="/tag/docker/index.html">docker</a><a class="tag" href="/tag/Orchestration/index.html">Orchestration</a><a class="tag" href="/tag/%e4%ba%91%e8%ae%a1%e7%ae%97/index.html">云计算</a>
                             </span>
                         </section>
                     </li>

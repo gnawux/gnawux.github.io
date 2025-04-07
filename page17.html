@@ -44,6 +44,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -77,6 +99,22 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/scripts/2010/01/20/%e4%b8%80%e8%a1%8c%e7%9a%84%e6%97%a5%e5%bf%97%e7%bb%9f%e8%ae%a1%e8%ae%a1%e7%ae%97%e8%84%9a%e6%9c%ac/index.html">一行的日志统计计算脚本</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1263963875"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/cli/index.html">cli</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/regexp/index.html">regexp</a><a class="tag" href="/tag/scripts/index.html">scripts</a><a class="tag" href="/tag/sed/index.html">sed</a><a class="tag" href="/tag/shell/index.html">shell</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/misc/2010/01/17/ophone%e4%bd%bf%e7%94%a8%e4%b8%80%e5%91%a8%e4%bd%93%e9%aa%8c/index.html">OPhone使用一周体验</a>
@@ -218,22 +256,6 @@
                             
                             <span class="tags">
                             <a class="tag" href="/tag/cloud/index.html">cloud</a><a class="tag" href="/tag/cloudera/index.html">cloudera</a><a class="tag" href="/tag/hadoop/index.html">hadoop</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/zookeeper/index.html">zookeeper</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/misc/2009/12/21/%e8%83%a1%e5%ae%87%e6%98%95%e5%b0%8f%e6%9c%8b%e5%8f%8b%e5%87%ba%e7%94%9f%e5%95%a6/index.html">胡宇昕小朋友出生啦</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1261382755"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/%e5%96%9c%e8%ae%af/index.html">喜讯</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a>
                             </span>
                         </section>
                     </li>

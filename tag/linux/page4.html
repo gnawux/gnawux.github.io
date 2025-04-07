@@ -44,6 +44,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -68,10 +90,26 @@
                     
                         <img class="logo" src="/assets/sq2.jpg" />
                         <h1 class="tag">linux</h1>
-                        <h2 class="tag-sub">40 篇文章</h2>
+                        <h2 class="tag-sub">41 篇文章</h2>
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/works/2008/11/14/linux%e4%b8%8b%e7%9a%84wpa%e6%97%a0%e7%ba%bf%e8%ae%a4%e8%af%81/index.html">Linux下的WPA无线认证</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1226644740"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/wireless/index.html">wireless</a><a class="tag" href="/tag/wlan/index.html">wlan</a><a class="tag" href="/tag/works/index.html">works</a><a class="tag" href="/tag/wpa/index.html">wpa</a><a class="tag" href="/tag/wpasupplicant/index.html">wpasupplicant</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/translation/2008/08/08/[%e8%af%91%e6%96%87]-gem-vs.-ttm/index.html">[译文] GEM vs. TTM</a>
@@ -217,27 +255,11 @@
                         </section>
                     </li>
                     
-                    <li class="article">
-                        <a class="title" href="/works/2005/10/14/debian%e4%b8%8b%e7%9a%84grub%e5%90%af%e5%8a%a8%e9%80%89%e9%a1%b9%e7%ae%a1%e7%90%86/index.html">debian下的grub启动选项管理</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1129274340"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/boot/index.html">boot</a><a class="tag" href="/tag/grub/index.html">grub</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/works/index.html">works</a>
-                            </span>
-                        </section>
-                    </li>
-                    
                 </ul>
                 <section class="page-nav">
                     <a class="prev" href="/tag/linux/page3.html">上一页</a>
-                    <span class="nav">4 / 4</span>
-                    
+                    <span class="nav">4 / 5</span>
+                    <a class="next" href="/tag/linux/page5.html">下一页</a>
                 </section>
             </article>
         </article>

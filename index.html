@@ -44,6 +44,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -77,6 +99,23 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/linux/2025/04/07/pcid-patchset-explained/index.html">PCID patchset explained in LWN style</a>
+                        
+                        <section class="preview content"><p>这篇文章并不是来自 LWN 的，只是作者作为 LWN 的老粉丝，很喜欢 Jonathan 的写作风格，忽然觉得这个 patchset 可以这么解释一下，因此做了个拙劣的风格模仿而已，东施效颦，大家见笑哈。</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1744039688"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/pcid/index.html">pcid</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/pvm/index.html">pvm</a><a class="tag" href="/tag/linux/index.html">linux</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/readings/2025/02/13/ai-learned/index.html">给非专业人士的AI或大模型介绍</a>
@@ -227,23 +266,6 @@
                             
                             <span class="tags">
                             <a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/memories/index.html">memories</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/reading/2022/07/16/strategy/index.html">当我们谈战略的时候，我们在说什么</a>
-                        <div class="cover" style="background-image:url(assets/strategy-a-history.jpg);"></div>
-                        <section class="preview content"><p>当我们在公司里谈战略的时候，我们并不是在讲计划，有的时候也不是在讲逻辑，其实，我们在谈的只是一个方向。</p>
-</section>
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1657979948"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/strategy/index.html">strategy</a><a class="tag" href="/tag/management/index.html">management</a><a class="tag" href="/tag/reading/index.html">reading</a>
                             </span>
                         </section>
                     </li>
