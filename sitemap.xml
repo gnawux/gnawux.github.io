@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://wangxu.me</loc>
-    <lastmod>2025-09-15T11:54:26.909543762+08:00</lastmod>
+    <lastmod>2025-09-15T21:51:41.341887+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
@@ -396,7 +396,7 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://wangxu.me/translation/2013/06/02/【译文】lsfmm:-缓存-—-dm-cache-与-bcache/index.html</loc>
+    <loc>https://wangxu.me/translation/2013/06/02/【译文】lsfmm-缓存-—-dm-cache-与-bcache/index.html</loc>
     <lastmod>2013-06-02T23:03:33+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
@@ -781,7 +781,7 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://wangxu.me/translation/2010/03/25/hbase-vs-cassandra:-我们迁移系统的原因/index.html</loc>
+    <loc>https://wangxu.me/translation/2010/03/25/hbase-vs-cassandra-我们迁移系统的原因/index.html</loc>
     <lastmod>2010-03-25T00:10:43+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
@@ -1001,7 +1001,7 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://wangxu.me/misc/2009/07/09/chrome-os,-another-linux-distro?/index.html</loc>
+    <loc>https://wangxu.me/misc/2009/07/09/chrome-os,-another-linux-distro/index.html</loc>
     <lastmod>2009-07-09T11:31:51+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
@@ -1056,7 +1056,7 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://wangxu.me/misc/2009/04/30/dfs.datanode.max.xcievers:-hadoop-的无文档的参数/index.html</loc>
+    <loc>https://wangxu.me/misc/2009/04/30/dfs.datanode.max.xcievers-hadoop-的无文档的参数/index.html</loc>
     <lastmod>2009-04-30T11:55:41+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
@@ -1231,12 +1231,12 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://wangxu.me/translation/2008/03/08/[译文]upstart:-ubuntu-的基于事件的启动进程/index.html</loc>
+    <loc>https://wangxu.me/translation/2008/03/08/[译文]upstart-ubuntu-的基于事件的启动进程/index.html</loc>
     <lastmod>2008-03-08T12:44:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://wangxu.me/translation/2008/03/04/[译文]strace:系统调用跟踪与信号报告工具/index.html</loc>
+    <loc>https://wangxu.me/translation/2008/03/04/[译文]strace系统调用跟踪与信号报告工具/index.html</loc>
     <lastmod>2008-03-04T13:16:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
@@ -1261,7 +1261,7 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://wangxu.me/translation/2007/12/06/[译文]-i386和x86_64:-破镜重圆？/index.html</loc>
+    <loc>https://wangxu.me/translation/2007/12/06/[译文]-i386和x86_64-破镜重圆？/index.html</loc>
     <lastmod>2007-12-06T11:10:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
