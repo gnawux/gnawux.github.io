@@ -2,7 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://wangxu.me</loc>
-    <lastmod>2025-04-07T23:40:58.486093956+08:00</lastmod>
+    <lastmod>2025-09-15T11:54:26.909543762+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://wangxu.me/opensource/2025/09/15/why-oss-landscape/index.html</loc>
+    <lastmod>2025-09-15T11:58:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>

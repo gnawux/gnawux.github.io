@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我有分寸">
+<meta name="twitter:description" content="前某创业公司的看门大爷">
+<meta name="twitter:image:src" content="https://wangxu.me/assets/sq2.jpg">
+
+<meta property="og:url" content="https://wangxu.me">
+<meta property="og:title" content="我有分寸">
+<meta property="og:description" content="前某创业公司的看门大爷">
+<meta property="og:site_name" content="我有分寸">
+<meta property="og:image" content="https://wangxu.me/assets/sq2.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="我有分寸">
+<meta itemprop="description" content="前某创业公司的看门大爷">
+<meta itemprop="image" content="https://wangxu.me/assets/sq2.jpg">
+
+<link rel="canonical" href="https://wangxu.me">
+
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="apple-itouch-icon" href="/favicon.png">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
+
+        <meta name="keywords" content="inclusionconf,landscape,trending,opensource,">
+        <meta name="description" content="外滩开源三问之一：为什么我要做开源开发生态与全景图？">
+        <meta name="author" content="gnawux">
+        <title>外滩开源三问之一：为什么我要做开源开发生态与全景图？</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/assets/sq2.jpg" />
+    我有分寸
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">外滩开源三问之一：为什么我要做开源开发生态与全景图？</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    
+                    <span class="date" data-time="1757908688"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/inclusionconf/index.html">inclusionconf</a><a class="tag" href="/tag/landscape/index.html">landscape</a><a class="tag" href="/tag/trending/index.html">trending</a><a class="tag" href="/tag/opensource/index.html">opensource</a></span>
+                </section>
+                <article class="content"><p><img data-src="/assets/inclusion-2025-landscape-announcement.jpg" src="data:image/gif;base64,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" alt="全景图发布现场图" data-src="/assets/inclusion-2025-landscape-announcement.jpg" /></p>
+
+<blockquote>
+<p>卷首语：感谢外滩给我们这个交流的机会，开源之于外滩只是一个小局部，但外滩之于我个人，不论是江南制造的开放隐喻，还是远望一号的星辰大海之望，都是一个精神图腾，今年和以往的每一届不论召开了还是因故取消的外滩，都有开源也都有我，也正是在这块场地里，我总有一些思考想要写出来……</p>
+</blockquote>
+
+<p>在筹备这次外滩的过程中，我和不同人，从不同角度回答了无数次这个问题，也有很多往事不断回到我的脑海中，在做了这次分享之后，我在论坛现场里就写下了这篇回答的提纲。</p>
+
+<h2>缘起：回到社区，但回到什么社区？</h2>
+
+<p>去年（2024年）9月和我司 CTO  何征宇聊天，当时我在推动的一件关于开源的事情是“回到社区”，我在他的办公室对他说，开源世界不是“平的”，自己在角落开源一个项目，并不会被人使用乃至回馈，就好像在直播写代码，它的实际影响力远不如参与、贡献一个高光的生态位，所以开始开源重要的是要找到高光的生态位在哪里，确定自己如何和这个位置发生关系。</p>
+
+<p>话虽不错，但这次谈话之后，我就给自己找到了一个“新问题”——什么才是高光位置呢？毫无疑问，专家可以给出答案，但是没有万能的专家。回答什么是云原生基础设施领域的重点项目，我当然可以满怀信心地给出答案，但其他领域呢？比如大模型领域，我并不懂啊。</p>
+
+<p>那几天我就在很多项目之间连线，忽然就意识到，<strong>虽然我们总是戏谑 GitHub 是“同性交友平台”，但我们并没有认真地对这个社交网络做过深入的分析</strong>，或许 GitHub 项目生态的主轴线就可以通过互动行为分析绘制出来呢。当时正好手头有一个 QCon 的 Track，就和同事小雅博士合作了一个大模型开源社区趋势分析的演讲，聚焦的问题就在于——</p>
+
+<ul>
+<li>什么领域，或者说生态位，是当前最热门的领域，值得新开发者加入，而什么领域已经走向红海了，少有新入局者的空间；</li>
+<li>什么项目是所在生态的绝对强者，或者什么项目之间还竞争激烈，我们在参与项目或做新项目选择上下游的时候，应该选择哪些项目。</li>
+</ul>
+
+<p>这个 QCon 话题收获了不错的成功，而且，我们把这个内容拿到内部给一些管理者看的时候，也收到了意想不到的效果……</p>
+
+<h2>从外到内：是开源需求，也是架构需求</h2>
+
+<p>利用社区中的关联关系进行数据分析，我们可以把项目之间的关联关系、关联的强弱，以及每个项目自身的热度，汇成一个大的图，或者说网络。而这个网络中的点，或许就可以聚类成一个个点生态位，然后，一个词就浮现在了我的脸前 —— Landscape。</p>
+
+<p>我们在做的，就是一个基于社区行为数据的开源开发生态的全景图（Landscape），图上是某个领域里的最有开发者影响的项目，而这个 Landscape 中的项目的潮起潮落所反映的就是项目乃至生态的变化趋势。</p>
+
+<p>当我把趋势，以及这个 Landscape 拿给老板看的时候，他立刻说“<strong>我们内部的项目也需要一个 Landscape</strong>”，我就这样莫名其妙地“卷”到了架构部里的 Peer，架构治理团队的同学们。回来之后，我忽然意识到了为什么即使你不写开源代码，也需要一张这样的全景图——因为，这是一张会动态变化的全景图。</p>
+
+<p>一家有一定规模的公司，势必要一定程度地保持研发团队的组织架构稳定性，而这种组织的稳定性就会延续到研发工作和产品架构的稳定性上，这样的稳定性是一种宝贵的传承，但是，在面对快速变革的技术的时候，单个子系统的改进和优化，有时并不能应对技术体系的变革。而领导者要做技术架构变革的时候，来自单个子系统视角，或者历史视角的观点，都不足以帮我们看到未来。</p>
+
+<p>而开源社区与内部架构的稳定不同，社区的行为是最具有活力的开发者的行为，所以，社区的行为可能不够全面甚至不非常前沿，但相对于公司内部的架构来说，它更快地体现出了技术生态位可能发生的变化，如果我们可以捕捉到这个变化，就可以把开源变成一种组织能力，一种对技术趋势的敏感度，更主动地去做适应这个快速变化的时代。</p>
+
+<h2>再从内到外：从有用到分享的全景图发布</h2>
+
+<p>在去年（2024年）12月，做规划的时候，这张全景图俨然已经是我的开源团队规划中三分天下的重要工作了，我在思考，怎么样让这个工作真的落地呢，我首先修改了开源团队的工作职责，增加了这么一条——<strong>利用对开源社区的洞察来为蚂蚁的架构和技术演进提供指引</strong>，并且加了这么一句注脚：</p>
+
+<blockquote>
+<p>我们作为一家开放的科技公司，相比于使用传统的分析师机构，我们更倾向于利用社区数据，形成自己对行业技术趋势的洞察。</p>
+</blockquote>
+
+<p>于是在去年末，我们就计划在每年的 527 蚂蚁技术日和外滩大会，做两次类似于《蚂蚁开源技术趋势报告》这样的主场的趋势发布，围绕这个，可以做对内的增长和对外的影响工作——毕竟一件自己做得好、有价值的事情，把它分享出来，本身就是开源精神的体现，从开源中来，回社区去，正是我们开源团队的根本。</p>
+
+<p>这个工作得到了 CTO 的支持，并且，在团队同学们的通力合作下，两次发布全都圆满举行了，也得到了其他相关技术和职能团队的大力支持（在此非常感谢）。在第一年里，我对这个全景图的发布设想几乎全部有着落了，当时吹的牛只差一点——</p>
+
+<blockquote>
+<p>如果搞得好，以后可以请 CTO 来做这个发布。</p>
+</blockquote>
+
+<p>革命尚未成功，通知仍需努力啊。</p>
+
+<h2>更进一步：定义现代企业开源工作</h2>
+
+<p>最后我想说的是，作为一位上个世纪开始接触开源，参与过也自己创立过开源项目，自己做过开源创业，又在带开源开发团队的人，我接手大企业的开源管理团队的时候，我想做的肯定不只是去做项目的一些运营组织工作，我一直在思考的问题就是：</p>
+
+<ul>
+<li>开源如何帮助企业，为企业创造价值，尤其是开源作为一个整体的价值——没有价值就不可能有可持续性，作为整体不能有附加价值就不如交回给每个团队；</li>
+<li>开源是不是可以用开源地方式来做，让开源团队本身利用社区，帮助自己，也贡献社区，帮助别人。</li>
+</ul>
+
+<p>我不想在蚂蚁做一个特别的开源团队，做别人不做的东西，只是想发现企业开源应该做的东西，分享出来，让它成为现代开放企业的开源基准线，帮助公司的同时，也帮助包括我在内的每个开源人。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq2.jpg);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    
+                    <section class="nav next">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/linux/2025/04/07/pcid-patchset-explained/index.html">PCID patchset explained in LWN style</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.chole.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>
