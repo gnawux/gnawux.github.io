@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>https://wangxu.me</id>
-  <updated>2025-09-15T21:51:41+08:00</updated>
+  <updated>2025-09-16T23:23:55+08:00</updated>
   <subtitle>前某创业公司的看门大爷</subtitle>
   <link href="https://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>外滩开源三问之三：开源带来研发活力？</title>
+    <updated>2025-09-16T23:18:08+08:00</updated>
+    <id>tag:wangxu.me,2025-09-16:/opensource/2025/09/16/oss-engineering-culture/index.html</id>
+    <link href="https://wangxu.me/opensource/2025/09/16/oss-engineering-culture/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;在外滩上，开源见解论坛的隔壁，就是 CPO 的人才论坛，因为时间和开源论坛完全撞车，我没有去观摩，但是就在下午，和庄表伟老师在暴雨来临前的很短的谈话中，我们也探讨了人才话题。表伟老师目前是天工开物开源基金会的负责人，一贯以尖锐的观点而著称，但这次他的一个关于工程师文化的框架却让我再次眼前一亮。&lt;/p&gt;&#xA;</summary>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>外滩开源三问之一：为什么我要做开源开发生态与全景图？</title>
     <updated>2025-09-15T11:58:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2022-11-30:/workout/2022/11/30/zwift-tutorial/index.html</id>
     <link href="https://wangxu.me/workout/2022/11/30/zwift-tutorial/index.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;一点小小的室内运动经验，大部分都没给链接，就给了个分类和名字，我的理解是，大部分人缺的不是搜索的能力，而是知道要搜啥，知道可以干这个，我把这个信息传递给大家，大家自己自然就可以搞定了，祝大家玩（剁）得开心。&lt;/p&gt;&#xA;</summary>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>《欧洲之门》读后感</title>
-    <updated>2022-10-26T13:42:08+08:00</updated>
-    <id>tag:wangxu.me,2022-10-26:/readings/2022/10/26/reading-ukraine/index.html</id>
-    <link href="https://wangxu.me/readings/2022/10/26/reading-ukraine/index.html" rel="alternate"></link>
-    <summary type="html">&lt;p&gt;在乌克兰危机中，历史不止一次成为借口，也不止一次遭到滥用。它不仅被用来对危机参与者进行宣传和鼓动，也被用来为对国际法、人权乃至生命权本身对侵犯行为辩护。&lt;/p&gt;&#xA;</summary>
     <author>
       <name>gnawux</name>
     </author>

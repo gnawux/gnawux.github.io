@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我有分寸">
+<meta name="twitter:description" content="前某创业公司的看门大爷">
+<meta name="twitter:image:src" content="https://wangxu.me/assets/sq2.jpg">
+
+<meta property="og:url" content="https://wangxu.me">
+<meta property="og:title" content="我有分寸">
+<meta property="og:description" content="前某创业公司的看门大爷">
+<meta property="og:site_name" content="我有分寸">
+<meta property="og:image" content="https://wangxu.me/assets/sq2.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="我有分寸">
+<meta itemprop="description" content="前某创业公司的看门大爷">
+<meta itemprop="image" content="https://wangxu.me/assets/sq2.jpg">
+
+<link rel="canonical" href="https://wangxu.me">
+
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="apple-itouch-icon" href="/favicon.png">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
+
+        <meta name="keywords" content="inclusionconf,talent,culture,opensource,">
+        <meta name="description" content="外滩开源三问之三：开源带来研发活力？">
+        <meta name="author" content="gnawux">
+        <title>外滩开源三问之三：开源带来研发活力？</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/assets/sq2.jpg" />
+    我有分寸
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">外滩开源三问之三：开源带来研发活力？</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    
+                    <span class="date" data-time="1758035888"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/inclusionconf/index.html">inclusionconf</a><a class="tag" href="/tag/talent/index.html">talent</a><a class="tag" href="/tag/culture/index.html">culture</a><a class="tag" href="/tag/opensource/index.html">opensource</a></span>
+                </section>
+                <article class="content"><p><img data-src="/assets/inclusionconf-2025-biaowei.jpg" src="data:image/gif;base64,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" alt="庄表伟在外滩大会开源嘉年华上" data-src="/assets/inclusionconf-2025-biaowei.jpg" /></p>
+
+<p><strong>副标题：与表伟：为什么我们在谈工程师文化的时候会谈开源</strong></p>
+
+<p>在外滩上，开源见解论坛的隔壁，就是 CPO 的人才论坛，因为时间和开源论坛完全撞车，我没有去观摩，但是就在下午，和庄表伟老师在暴雨来临前的很短的谈话中，我们也探讨了人才话题。表伟老师目前是天工开物开源基金会的负责人，一贯以尖锐的观点而著称，但这次他的一个关于工程师文化的框架却让我再次眼前一亮。</p>
+
+<h2>话题的开启：从校园到社区到员工，人才的成长</h2>
+
+<p>这次我们交谈的切入点是他在天工开物推的“开源奖学金计划”，是今年的“开源毕设”和各种开源编程夏令营活动的拓展。一直以来我是比较支持这种计划的，我见过多年前 Google Summer of Code （GSoC）赞助过的同学，后来逐渐成为非常优秀的工程师。而在过去几年里，国内的中科院软件所的 OSPP 开源之夏、CCF 的 GLCC 开源夏令营这样的学生开源活动也开始繁荣起来，也成为开源社区招新最重要的来源之一，而且有很多同学由此从从校园到开源社区，再到公司成为了团队的新鲜血液。</p>
+
+<p>其实，正如公司的起起落落，少有百年老店一样，开源项目也很少有持续繁荣的，此兴彼落、新旧更替才是常态，但那些从社区到公司的人才，往往可以做到“是金子在哪里都发光”，并不局限在一个项目甚至一个领域里，总是我们身边更优秀的一帮人。开源社区是筛选了人才还是培养了人才，还是两者都有？这个问题，应该是每个关注人才的人都想了解的吧。</p>
+
+<p>就我个人观察，（优质的）开源社区里锻炼成长起来的人有几个优点：</p>
+
+<ul>
+<li>首先是做事有规范，不论是代码的格式，还是测试的完善程度，乃至于 commit message 的写作风格和 Release Notes 的写作，都需要写得规范、清晰，才能被社区接纳；</li>
+<li>其次是规划能说清，在一个社区里，要开一个新的 Feature、新的 Enhancement/Blueprint，需要写明白背景是什么、解决什么问题、对项目有什么利弊等等，并能被社区所接受；</li>
+<li>还有就是能平等沟通，很多社区里没有绝对的权威，即使是有，不满意的人也可以离开社区不来贡献，要说服别人就必须能平等沟通，这个能力其实是很多 i 人程序员在生活里所欠缺的，却是在开源社区里有所作为必须的。</li>
+</ul>
+
+<p>而这些特质，在搬砖的时候不一定有用，但对于希望成为团队骨干独当一面，乃至开拓新的方向的时候，却常常是必不可少的，这也是我希望我们的同学，从开源社区里带回到内部工作中的特质。</p>
+
+<h2>一点点忧国忧民：大厂与人的成长</h2>
+
+<p>说实话，很久以来，我就有一种对大厂社会责任的担忧，似乎这不是我这个层级的 TL 该想的话题，但我确实想了几年了，想都想了就写出来吧——我们的大厂似乎已经代替十几年前的外企，成为了中国（IT 领域？）最优秀的青年的主要就业选择，但是，我总觉得我们的年轻人的成长并不如意，很多年轻人在经过几个月的上手之后，就开始了满足需求吞吐率要求的工作，他们的技术视野、架构判断力，这些都有成长么？曾经有位朋友说 “在大厂，好的方面是有第一手的需求，不好的方面是，来不及想自己干得对不对”，毕竟客户的需求总是需要满足的。</p>
+
+<p>去年，有个 Peer 批评我们的同学 Release Notes 写得不好，可是，说实话，各位看看自己的代码仓库的 commit log，有多少 commit 是 <code>update</code> 或 <code>fix</code>，看着这样的 commits，Release Notes 咋写啊……甚至有个去了另一家大厂的同学跟我说，他们那的研发都不写 UT 的，有一次他写了，另一个人找过来挑战他，他一头雾水的问自己写了 UT 有什么错么，结果对方说“妨碍我改代码了”……</p>
+
+<p>会过来看上面我提到的开源社区里培养出来的工程师文化，这些文化常常是可以平移到其他环境的，换句话说，参与（优秀的社区化）开源的同学，常常可以成为团队里优秀工程师文化的载体，而我们这些 TL 要做的，是保护好这些我们所珍惜的文化，并让他们在内部也生根发芽。</p>
+
+<p>记得我 2019 年结束开源创业，团队加入蚂蚁的之后几个月的时间，当时部门里曾经邀请我做了一个关于开源和“内部开源”的分享，那个文件我至今还保存着，当时我左思右想了半天“内部开源为什么”我的一个立论点就是“工程师文化”，现在看，当时老板可能要的就是文化，只是当时我虽然写出来了，但还没领悟是为什么。</p>
+
+<h2>表伟的团队研发成长阶梯：效率、能力与活力</h2>
+
+<p>这次在外滩和表伟谈的内容里，最让我感到 “众里寻她千百度” 的话题是，当我说到人才培养和工程师文化的时候，表伟说，他曾经在前司构建过研发工程师成长的一个阶梯模型——效率、能力与活力：</p>
+
+<ul>
+<li><strong>效率</strong>：管理者看工程团队，第一步追求的总是效率，用多快的时间来完成一定数量的任务，能够降低开销、节约成本、提升产出；</li>
+<li><strong>能力</strong>：工程团队在效率之上还应该考虑的是能力，不是所有工作都是靠提效就能完成的，能力不具备的工程团队，再高的效率，可能也无法产出足够的目标；</li>
+<li><strong>活力</strong>：能力之外，对于创新型团队，在面对不确定的挑战的时候，不仅需要解决问题，更需要定义问题，只有有活力的团队才能创造性地达到目标。</li>
+</ul>
+
+<p>实话实说，我看到“活力”两个字的时候虎躯一震，我们 HR 们谈了一年的“组织活力”是不是有同样的内涵？在这个“活力”的点上，表伟的观点是，给予团队空间和开放性，活力才能生长出来，开源社区是汇聚活力的好土壤，有一说一，在这个问题上我没答案，但是，我很喜欢这个阶梯，也希望分享给各位。</p>
+
+<h2>以及活力的担当：技术中层管理者</h2>
+
+<p>这里，表伟认为，中层管理者必须要管理好压力，给工程团队活力生长的空间，他们是工程师文化和活力的最重要的维护者。对此，我并不确定我是否有这个能力，当然我也不确定我这个层级够不够得上中层，但这个观点很像去年彭涛推荐给我的《创新者的窘境》（The Innovator’s Dilemma）中的一段话：</p>
+
+<blockquote>
+<p>大多数创新提议都是由企业中低层人员而非高层提出……企业的中层管理人员在筛选这些项目的过程中发挥关键性但却是隐形的作用。……他们需要根据……判断哪些项目是最出色的，最有可能获得成功，并且最有可能获得批准的。</p>
+
+<p>……中层管理人员为了维护他们自身和企业的利益，一般都会选择支持哪些市场需求看起来最有保障的项目。</p>
+</blockquote>
+
+<p>说的是不同的事情，但责任都在中层，或者说本来企业文化的载体，换句话说，企业成功的基因，本来就是在企业的中层中维系的，中层的活力，是不是应该被唤醒、被珍惜呢。</p>
+
+<p>虽然有点跑题，并且我也没有答案，但我还是想把这段思考也写出来，“组织活力调研”里没有的这些东西，可能也是真的活力的一部分。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq2.jpg);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    
+                    <section class="nav next">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/opensource/2025/09/15/why-oss-landscape/index.html">外滩开源三问之一：为什么我要做开源开发生态与全景图？</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.chole.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>
