@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>https://wangxu.me</id>
-  <updated>2025-09-16T23:23:55+08:00</updated>
+  <updated>2025-09-18T00:51:59+08:00</updated>
   <subtitle>前某创业公司的看门大爷</subtitle>
   <link href="https://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>外滩开源三问之二: 为什么需要开源基金会</title>
+    <updated>2025-09-18T00:48:08+08:00</updated>
+    <id>tag:wangxu.me,2025-09-18:/opensource/2025/09/18/why-oss-foundation/index.html</id>
+    <link href="https://wangxu.me/opensource/2025/09/18/why-oss-foundation/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;昊阳是我的好朋友，过去几年来他都是开放基础设施基金会（OIF）的中国或亚洲区负责人，直到今年 OIF 加入 Linux 基金会（LF），他开始操办起了的 LF 中国区，CNCF, LF_AI&amp;amp;Data, PyTorch 这些子基金会也成为了他的领域。他知道我对于当下基金会的价值与意义一直是有质疑的，这次在外滩，刚好我们又聊了一会儿……&lt;/p&gt;&#xA;</summary>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>外滩开源三问之三：开源带来研发活力？</title>
     <updated>2025-09-16T23:18:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2022-12-27:/readings/2022/12/27/reading-road-to-serfdom/index.html</id>
     <link href="https://wangxu.me/readings/2022/12/27/reading-road-to-serfdom/index.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;这份读后感分两个部分——前一部分是对于这本书的一个背景和架构梳理，或者说是个我个人视角写的导读吧，供有兴趣阅读的人了解；后一部分是读书的过程中，我读到或想到的一些命题或断言，很多我发过朋友圈，这里罗列起来。&lt;/p&gt;&#xA;</summary>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>简单介绍下 Zwift——有哪些地方可能吸引你，以及如何上手</title>
-    <updated>2022-11-30T23:38:08+08:00</updated>
-    <id>tag:wangxu.me,2022-11-30:/workout/2022/11/30/zwift-tutorial/index.html</id>
-    <link href="https://wangxu.me/workout/2022/11/30/zwift-tutorial/index.html" rel="alternate"></link>
-    <summary type="html">&lt;p&gt;一点小小的室内运动经验，大部分都没给链接，就给了个分类和名字，我的理解是，大部分人缺的不是搜索的能力，而是知道要搜啥，知道可以干这个，我把这个信息传递给大家，大家自己自然就可以搞定了，祝大家玩（剁）得开心。&lt;/p&gt;&#xA;</summary>
     <author>
       <name>gnawux</name>
     </author>
