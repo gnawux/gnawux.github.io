@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>https://wangxu.me</id>
-  <updated>2025-09-18T00:51:59+08:00</updated>
+  <updated>2025-12-14T17:36:15+08:00</updated>
   <subtitle>前某创业公司的看门大爷</subtitle>
   <link href="https://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>容器系统设计的一些基本原则</title>
+    <updated>2025-12-14T17:24:08+08:00</updated>
+    <id>tag:wangxu.me,2025-12-14:/containers/2025/12/14/sandbox-principles/index.html</id>
+    <link href="https://wangxu.me/containers/2025/12/14/sandbox-principles/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;对待风格，可以随波逐流；对待原则，要坚如磐石。（&lt;em&gt;In matters of style, swim with the current; in matters of principle, stand like a rock.&lt;/em&gt;）&lt;/p&gt;&#xA;</summary>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>外滩开源三问之二: 为什么需要开源基金会</title>
     <updated>2025-09-18T00:48:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2022-12-28:/readings/2022/12/28/reading-list/index.html</id>
     <link href="https://wangxu.me/readings/2022/12/28/reading-list/index.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;2022年马上过去了，我的「每天半小时读书」并没有明确的目标，但是却也读完了好几本，这里我来罗列一些我看过的书，评语直接用我之前朋友圈的评语了&lt;/p&gt;&#xA;</summary>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>《通往奴役之路》读后感</title>
-    <updated>2022-12-27T21:52:08+08:00</updated>
-    <id>tag:wangxu.me,2022-12-27:/readings/2022/12/27/reading-road-to-serfdom/index.html</id>
-    <link href="https://wangxu.me/readings/2022/12/27/reading-road-to-serfdom/index.html" rel="alternate"></link>
-    <summary type="html">&lt;p&gt;这份读后感分两个部分——前一部分是对于这本书的一个背景和架构梳理，或者说是个我个人视角写的导读吧，供有兴趣阅读的人了解；后一部分是读书的过程中，我读到或想到的一些命题或断言，很多我发过朋友圈，这里罗列起来。&lt;/p&gt;&#xA;</summary>
     <author>
       <name>gnawux</name>
     </author>

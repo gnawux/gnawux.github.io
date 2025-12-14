@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我有分寸">
+<meta name="twitter:description" content="前某创业公司的看门大爷">
+<meta name="twitter:image:src" content="https://wangxu.me/assets/sq2.jpg">
+
+<meta property="og:url" content="https://wangxu.me">
+<meta property="og:title" content="我有分寸">
+<meta property="og:description" content="前某创业公司的看门大爷">
+<meta property="og:site_name" content="我有分寸">
+<meta property="og:image" content="https://wangxu.me/assets/sq2.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="我有分寸">
+<meta itemprop="description" content="前某创业公司的看门大爷">
+<meta itemprop="image" content="https://wangxu.me/assets/sq2.jpg">
+
+<link rel="canonical" href="https://wangxu.me">
+
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="apple-itouch-icon" href="/favicon.png">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
+
+        <meta name="keywords" content="kata,architecture,cloud-native,security,workaround,containers,">
+        <meta name="description" content="容器系统设计的一些基本原则">
+        <meta name="author" content="gnawux">
+        <title>容器系统设计的一些基本原则</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/assets/sq2.jpg" />
+    我有分寸
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">容器系统设计的一些基本原则</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    
+                    <span class="date" data-time="1765704248"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/kata/index.html">kata</a><a class="tag" href="/tag/architecture/index.html">architecture</a><a class="tag" href="/tag/cloud-native/index.html">cloud-native</a><a class="tag" href="/tag/security/index.html">security</a><a class="tag" href="/tag/workaround/index.html">workaround</a><a class="tag" href="/tag/containers/index.html">containers</a></span>
+                </section>
+                <article class="content"><p>最近一段时间，忙于 Agent Sandbox 相关的工作，有很多不同子系统的实现同学，对 Kata Containers 的运行时提出了很多需求，有些我欣然接纳，而另一些则顽固拒绝。我相信，不论是对于提需求的同学，还是我们自己的实现者，都会有一些不理解，这时，我想起了一句据传是托马斯.杰斐逊所说的名言(据考证是托伪的)：</p>
+
+<blockquote>
+<p>对待风格，可以随波逐流；对待原则，要坚如磐石。（<em>In matters of style, swim with the current; in matters of principle, stand like a rock.</em>）</p>
+</blockquote>
+
+<p>这里，我解释一些我所采纳的原则，或者说哲学，这些都并非是单纯的实现难度或者性能、开销考量，而是从云原生架构设计的出发点引出的。这些当然可以讨论，并非一成不变的，但是我们要覆盖掉这些原则，必须是在理解了这些原则的出发点的基础上的活学活用。</p>
+
+<h2>Pod 级策略执行（Pod-level Policy Enforcement）</h2>
+
+<p>把策略执行点，比如 Proxy 或者其他控制点，设置成节点级或是 Pod 级，一直是存在争议的，尤其是设成节点级往往有更少开销，因此也经常成为一种优化手段，但是，对于复杂或有多租户需求的策略，在云原生系统里，一般还是倾向于设计成 Pod 级别，主要有这么几个考虑：</p>
+
+<ul>
+<li><strong>生命周期</strong>：Pod 级别的 Proxy 和 Pod 有相同的生命周期，维护需求相对更低、可以随着 Pod 删除一起被释放，没有跨越 Pod 生命周期的维护需求，如果 Pod 创建失败或者销毁，也会被一同销毁掉，如果有升级也会随着 Pod 重建被升级；</li>
+<li><strong>策略隔离与租户安全</strong>：策略为每个 Pod 生效，为一个 Pod 实施的逻辑不容易被错误应用到其他 Pod 上，策略执行点的代码可以尽量简单，无需顾及多租户，也不容易因为 Proxy 本身的逻辑问题出现一个租户的策略影响其他租户；</li>
+<li><strong>爆炸半径</strong>：当策略执行点出现问题时，影响范围是 per-Pod 的，不容易造成整个节点的服务问题，当今我们的节点上，经常有数十个甚至更多的 Pod，Pod 级别的策略执行比节点级的策略执行的爆炸半径经常会小 1-2 个数量级；</li>
+<li><strong>瘦节点</strong>：不论是 DaemonSet 还是节点侧的独立 Agent，都是不可售卖的系统维护的隐形开销，DaemonSet 虽然是容器化管理的，但常常是特殊的，在运维时需要被格外照顾，因此，我们在有选择的情况下，总是希望尽量减少不必要的 DaemonSet，把逻辑附加给每个容器，就让节点管理变得更容易；</li>
+<li><strong>计量计费</strong>：为应用做定制服务的策略执行点的开销和用户应用放在一起被计费是更「直觉」的放置方法。</li>
+</ul>
+
+<p>当然，也有一些情况下，我们会有不同的考虑，这个原则并非绝对地不可逾越，我们也经常有一些东西希望可以被交给节点来做，比如：
+* <strong>数据面</strong>：与希望把策略逻辑放在 Sandbox 相比，数据面值得商榷的余地更大，毕竟跨进程/内核态的数据传输常常意味着开销，如果可以让数据面的操作尽可能地“无脑”，那么，优化掉 data-copy 总是喜闻乐见的，但我们做这个操作的时候，必须要铭记的就是“过早的优化是万恶之源”。</p>
+
+<p>综上，在我们可以比较大程度地压缩开销的时候，把策略执行尽可能地放在 Pod 级别而非节点级别就是一个比较理想的架构选择，至少当我们要放弃这个选择的时候，要理解自己收获了多少、损失了多少。</p>
+
+<h2>基础设施与用户应用的安全边界</h2>
+
+<p>另一个架构原则在于我们在安全容器的上下文里，应该怎么放置基础设施的 sidecar，对基础设施才是安全的。简单地说，</p>
+
+<blockquote>
+<p>对于 Kata Containers 和类似的安全容器技术，虚拟化的 Host-Gest 边界是它最可信的安全边界，这里应该是基础设施和用户应用的隔离点，如果一个基础设施 sidecar 需要和基础设施服务通信，那么就应该被放置在安全边界之外。</p>
+</blockquote>
+
+<p>这个原则的前提是，用户确实希望使用安全容器来保护基础设施安全，如果仅仅是故障隔离或性能隔离的话，那么这个约束的意义并不大，但是，在 Agent Sandbox 或其他类似运行非信任来源代码的情况下，基础设施 sidecar 的功能移动到安全边界之外就是一个确实安全的选择。</p>
+
+<p><img data-src="/assets/vancouver-23-tsi-2.png" src="data:image/gif;base64,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" alt="温哥华上攀哥的演讲" data-src="/assets/vancouver-23-tsi-2.png" /></p>
+
+<p>这个原则里，对于 sidecar 的安全有这么几个考量：
+* 由于 Mesh 的 sidecar 具有访问基础设施服务的能力，甚至与基础设施服务保持长链接，那么，从这个 sidecar 出发，是具有攻击基础设施服务的能力的，尽管有签名与远程证明，可以一定程度地对劫持进行防御，但是，仍然有可能在自身有代码缺陷或遭遇环境的注入的时候成为攻击的发起点；
+* 同样由于 Mesh 的 sidecar 需要具有访问基础设施服务的能力，往往就意味着我们需要让给你用户的 Pod 具备和基础设施服务的网络连通性，这对网络的安全防护增加了很多困难，如果用户利用这个连通性，做拒绝服务或类似的攻击，甚至可能不需要入侵 sidecar 容器；</p>
+
+<p>针对这个原则我们在 2023 年就开始进行了，相关的工作，上图就是我们团队在当年的温哥华 Summit 上介绍的，我们基于 virtio-vsock，在 Kata Containers 里实现了 TSI （Transparent Socket Impersonation），将用户的四层请求不是劫持到旁边的 Sidecar 里的 proxy，而是劫持到安全边界外面，在基础设施空间来与基础设施服务通信、执行策略，而在用户空间只运行用户的容器，或者是无需访问基础设施服务的工具，以此来明确、完善基础设施和用户的安全边界。</p>
+
+<p>与已经实现的 shim-v2、基本实现的 runtime-rs，再加上同样已经在实验中的 pvm 一起，这就是在不考虑机密计算上下文情况下的，完全体的安全容器了。</p>
+
+<h2>外一条：Workaround 原则</h2>
+
+<p>在设计架构的讨论中，我还为快速原型 MVP 中的一些尚未完成的功能，做了一些有缺陷、不够友好的 Workaround，这涉及了另一个关于 Workaround 的原则：</p>
+
+<blockquote>
+<p>如果期待尽快被替代，那么就必须要牺牲 Workaround 本身的体验，如果 Workaround 具备良好的用户体验，那么，我们就一定不会再投入足够的精力去开发终态方案来替代 Workaround，直到它的问题彻底爆发，带来更大的麻烦。</p>
+</blockquote>
+
+<p>所以，当我们知道这是一项暂时的功能的时候，就绝对不要妆点它，S* 上雕花它仍然是 S*，与诸君共勉。</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq2.jpg);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    
+                    <section class="nav next">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/opensource/2025/09/18/why-oss-foundation/index.html">外滩开源三问之二: 为什么需要开源基金会</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.chole.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>
