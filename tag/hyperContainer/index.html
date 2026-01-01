@@ -29,6 +29,9 @@
 
 <link rel="canonical" href="https://wangxu.me">
 
+
+<script defer src="https://cloud.umami.is/script.js" data-website-id="34f69af4-9143-46d1-ae02-736186b22f51"></script>
+
 <link rel="shortcut icon" href="/favicon.png">
 <link rel="apple-itouch-icon" href="/favicon.png">
 <link rel="stylesheet" href="/bundle/index.css">
@@ -42,28 +45,6 @@
         second: '秒前'
     };
     var root = '';
-</script>
-
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
 </script>
 
 
