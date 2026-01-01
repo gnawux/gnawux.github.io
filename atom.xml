@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>https://wangxu.me</id>
-  <updated>2025-12-22T22:19:03+08:00</updated>
+  <updated>2026-01-01T12:34:25+08:00</updated>
   <subtitle>前某创业公司的看门大爷</subtitle>
   <link href="https://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>2025年总结：读书篇</title>
+    <updated>2026-01-01T12:24:08+08:00</updated>
+    <id>tag:wangxu.me,2026-01-01:/life/2026/01/01/reading-2025/index.html</id>
+    <link href="https://wangxu.me/life/2026/01/01/reading-2025/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;2025年压力太大，读书太少，但是还是读了好几本有意思的书，也把这些读书心得分享出来。希望2026年能读更多的好书，继续读下去&lt;/p&gt;&#xA;</summary>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>停在港口的船很安全，但那不是我们造船的目的</title>
     <updated>2025-12-20T11:24:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2024-09-08:/conference/2024/09/08/post-inclusion-conf-bund/index.html</id>
     <link href="https://wangxu.me/conference/2024/09/08/post-inclusion-conf-bund/index.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;欢乐的大会总有结束，深刻的见解需要时间来检验，而社区是永恒（至少我们希望它是）。让我们明年再见，希望明年我们都还能相聚在外滩大会的开源场。&lt;/p&gt;&#xA;</summary>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>主持圆桌的一点心得</title>
-    <updated>2024-07-28T16:08:08+08:00</updated>
-    <id>tag:wangxu.me,2024-07-28:/skills/2024/07/28/how-to-host-a-panel/index.html</id>
-    <link href="https://wangxu.me/skills/2024/07/28/how-to-host-a-panel/index.html" rel="alternate"></link>
-    <summary type="html">&lt;p&gt;这个周末，我有幸被指派主持了 ApacheCon Asia 2024 第一天的主题演讲的最后一个圆桌环节，是关于国际化的开源怎么做的，结果居然收获了好几个好评，这可让我有点飘了，我得总结一下。&lt;/p&gt;&#xA;</summary>
     <author>
       <name>gnawux</name>
     </author>

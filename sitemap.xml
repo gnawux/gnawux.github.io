@@ -2,7 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://wangxu.me</loc>
-    <lastmod>2025-12-22T22:19:03.297543+08:00</lastmod>
+    <lastmod>2026-01-01T12:34:25.874999+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://wangxu.me/life/2026/01/01/reading-2025/index.html</loc>
+    <lastmod>2026-01-01T12:24:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
