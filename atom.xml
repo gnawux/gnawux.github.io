@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>https://wangxu.me</id>
-  <updated>2026-01-01T15:35:30+08:00</updated>
+  <updated>2026-01-01T19:31:33+08:00</updated>
   <subtitle>前某创业公司的看门大爷</subtitle>
   <link href="https://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>2025年总结：拉丁语学习篇</title>
+    <updated>2026-01-01T18:54:08+08:00</updated>
+    <id>tag:wangxu.me,2026-01-01:/life/2026/01/01/latina-2025/index.html</id>
+    <link href="https://wangxu.me/life/2026/01/01/latina-2025/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;2025年奋斗到12月31号，拉丁语完了《韦洛克拉丁语教程》的第25课，全年完成10课，根据目前的难度和进度，2026年学完无望，但努力的话，2027年还是有可能的&lt;/p&gt;&#xA;</summary>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>2025年总结：运动和装备篇</title>
     <updated>2026-01-01T15:24:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2025-02-13:/readings/2025/02/13/ai-learned/index.html</id>
     <link href="https://wangxu.me/readings/2025/02/13/ai-learned/index.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;我本人也不是计算机专业毕业，也并非从事模型研发工作，我毕业于电子/无线通信专业，做云计算、基础设施工作，为 AI 研发同事供给计算资源，所以自己也在阅读和学习到底AI在做什么，这里是一个我的读后感的分享。&lt;/p&gt;&#xA;</summary>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>一些学习拉丁语的心得</title>
-    <updated>2024-09-29T23:08:08+08:00</updated>
-    <id>tag:wangxu.me,2024-09-29:/learning/2024/09/29/linguam-latinam-disco/index.html</id>
-    <link href="https://wangxu.me/learning/2024/09/29/linguam-latinam-disco/index.html" rel="alternate"></link>
-    <summary type="html">&lt;p&gt;鉴于朋友圈有朋友好奇我咋学的拉丁语，我来介绍一些我用到的应用和书，【重要：不构成推荐，我刚学了一年多，没啥成果，你可以想象下，你会听一个刚学了不到两年英语的人告诉你英语该咋学么】。&lt;/p&gt;&#xA;</summary>
     <author>
       <name>gnawux</name>
     </author>
