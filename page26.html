@@ -47,6 +47,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -80,6 +102,22 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/misc/2008/04/30/unleashed%e7%9a%84%e9%81%97%e6%86%be/index.html">Unleashed的遗憾</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1209534960"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/unleashed/index.html">unleashed</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/translation/2008/04/22/[%e8%af%91%e6%96%87]-%e6%8a%80%e6%9c%af%e9%a2%84%e8%a7%88%ef%bc%9a%e5%9f%ba%e4%ba%8e%e5%86%85%e6%a0%b8%e7%9a%84%e6%98%be%e7%a4%ba%e6%a8%a1%e5%bc%8f%e8%ae%be%e5%ae%9a/index.html">[译文] 技术预览：基于内核的显示模式设定</a>
@@ -221,22 +259,6 @@
                             
                             <span class="tags">
                             <a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/linux/index.html">linux</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/translation/index.html">translation</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/translation/2007/07/20/[%e8%af%91%e6%96%87]%e4%bd%bf%e7%94%a8rsync%e8%bf%9b%e8%a1%8c%e4%b8%93%e5%ae%b6%e7%ba%a7%e7%9a%84%e5%a4%87%e4%bb%bd/index.html">[译文]使用rsync进行专家级的备份</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1184907180"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/backup/index.html">backup</a><a class="tag" href="/tag/rsync/index.html">rsync</a><a class="tag" href="/tag/translation/index.html">translation</a>
                             </span>
                         </section>
                     </li>

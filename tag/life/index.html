@@ -47,6 +47,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -71,10 +93,27 @@
                     
                         <img class="logo" src="/assets/sq2.jpg" />
                         <h1 class="tag">life</h1>
-                        <h2 class="tag-sub">60 篇文章</h2>
+                        <h2 class="tag-sub">61 篇文章</h2>
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/memories/2026/02/08/2026-02-09-memories-ten-years/index.html">十年</a>
+                        <div class="cover" style="background-image:url(/assets/mem16.jpg);"></div>
+                        <section class="preview content"><p>十年如是，他也会开心得多喝两口吧。</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1770480008"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/dad/index.html">dad</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/memories/index.html">memories</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/life/2026/01/01/latina-2025/index.html">2025年总结：拉丁语学习篇</a>
@@ -229,27 +268,10 @@
                         </section>
                     </li>
                     
-                    <li class="article">
-                        <a class="title" href="/life/2020/12/31/happy-new-year/index.html">2020年就要过去了，我很……它</a>
-                        <div class="cover" style="background-image:url(assets/happy-2021.jpg);"></div>
-                        <section class="preview content"><p>2020是个特别的数字，对我更是如此，我1980年出生，2020，前一个20在20世纪，后一个20在21世纪。平凡的闰年2020的过去，对我的人生在数学上就意味着很多。</p>
-</section>
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1609417208"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/new%20year/index.html">new year</a><a class="tag" href="/tag/life/index.html">life</a>
-                            </span>
-                        </section>
-                    </li>
-                    
                 </ul>
                 <section class="page-nav">
                     
-                    <span class="nav">1 / 6</span>
+                    <span class="nav">1 / 7</span>
                     <a class="next" href="/tag/life/page2.html">下一页</a>
                 </section>
             </article>

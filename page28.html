@@ -47,6 +47,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -80,6 +102,22 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/translation/2005/10/16/udev-faq-%e4%b8%ad%e6%96%87%e7%bf%bb%e8%af%91/index.html">udev-FAQ 中文翻译</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1129439100"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/faq/index.html">faq</a><a class="tag" href="/tag/translation/index.html">translation</a><a class="tag" href="/tag/udev/index.html">udev</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/works/2005/10/14/debian%e4%b8%8b%e7%9a%84grub%e5%90%af%e5%8a%a8%e9%80%89%e9%a1%b9%e7%ae%a1%e7%90%86/index.html">debian下的grub启动选项管理</a>

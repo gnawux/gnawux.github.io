@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>https://wangxu.me</id>
-  <updated>2026-01-11T16:29:18+08:00</updated>
+  <updated>2026-02-07T23:27:52+08:00</updated>
   <subtitle>前某创业公司的看门大爷</subtitle>
   <link href="https://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>十年</title>
+    <updated>2026-02-08T00:00:08+08:00</updated>
+    <id>tag:wangxu.me,2026-02-08:/memories/2026/02/08/2026-02-09-memories-ten-years/index.html</id>
+    <link href="https://wangxu.me/memories/2026/02/08/2026-02-09-memories-ten-years/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;十年如是，他也会开心得多喝两口吧。&lt;/p&gt;&#xA;</summary>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>2025年总结：拉丁语学习篇</title>
     <updated>2026-01-10T16:37:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2025-04-07:/linux/2025/04/07/pcid-patchset-explained/index.html</id>
     <link href="https://wangxu.me/linux/2025/04/07/pcid-patchset-explained/index.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;这篇文章并不是来自 LWN 的，只是作者作为 LWN 的老粉丝，很喜欢 Jonathan 的写作风格，忽然觉得这个 patchset 可以这么解释一下，因此做了个拙劣的风格模仿而已，东施效颦，大家见笑哈。&lt;/p&gt;&#xA;</summary>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>给非专业人士的AI或大模型介绍</title>
-    <updated>2025-02-13T23:58:08+08:00</updated>
-    <id>tag:wangxu.me,2025-02-13:/readings/2025/02/13/ai-learned/index.html</id>
-    <link href="https://wangxu.me/readings/2025/02/13/ai-learned/index.html" rel="alternate"></link>
-    <summary type="html">&lt;p&gt;我本人也不是计算机专业毕业，也并非从事模型研发工作，我毕业于电子/无线通信专业，做云计算、基础设施工作，为 AI 研发同事供给计算资源，所以自己也在阅读和学习到底AI在做什么，这里是一个我的读后感的分享。&lt;/p&gt;&#xA;</summary>
     <author>
       <name>gnawux</name>
     </author>

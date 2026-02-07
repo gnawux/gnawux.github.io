@@ -47,6 +47,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -71,10 +93,27 @@
                     
                         <img class="logo" src="/assets/sq2.jpg" />
                         <h1 class="tag">family</h1>
-                        <h2 class="tag-sub">25 篇文章</h2>
+                        <h2 class="tag-sub">26 篇文章</h2>
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/memories/2026/02/08/2026-02-09-memories-ten-years/index.html">十年</a>
+                        <div class="cover" style="background-image:url(/assets/mem16.jpg);"></div>
+                        <section class="preview content"><p>十年如是，他也会开心得多喝两口吧。</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1770480008"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/dad/index.html">dad</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/memories/index.html">memories</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/family/2025/12/20/ship-for-ocean/index.html">停在港口的船很安全，但那不是我们造船的目的</a>
@@ -225,23 +264,6 @@
                             
                             <span class="tags">
                             <a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/life/index.html">life</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/life/2018/07/15/sunflower/index.html">那些傻傻的花儿啊，像我们一样</a>
-                        <div class="cover" style="background-image:url(/assets/sunflower.jpg);"></div>
-                        <section class="preview content"><p>三七，是时候记下来了</p>
-</section>
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1531622288"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/memories/index.html">memories</a><a class="tag" href="/tag/life/index.html">life</a>
                             </span>
                         </section>
                     </li>

@@ -47,6 +47,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -71,10 +93,26 @@
                     
                         <img class="logo" src="/assets/sq2.jpg" />
                         <h1 class="tag">life</h1>
-                        <h2 class="tag-sub">60 篇文章</h2>
+                        <h2 class="tag-sub">61 篇文章</h2>
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/life/2014/06/01/%e4%b8%ba%e4%bb%80%e4%b9%88%e8%af%b4%e8%88%aa%e7%a9%ba%e5%8d%9a%e7%89%a9%e9%a6%86%e4%b8%8d%e9%80%82%e5%90%88%e7%bb%99%e5%ad%a9%e5%ad%90%e5%81%9a%e7%a7%91%e6%99%ae/index.html">为什么说航空博物馆不适合给孩子做科普</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1401552548"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/%e5%8d%9a%e7%89%a9%e9%a6%86/index.html">博物馆</a><a class="tag" href="/tag/%e5%90%90%e6%a7%bd/index.html">吐槽</a><a class="tag" href="/tag/%e8%88%aa%e7%a9%ba%e5%8d%9a%e7%89%a9%e9%a6%86/index.html">航空博物馆</a><a class="tag" href="/tag/life/index.html">life</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/life/2013/12/22/2013%e5%9b%9e%e6%9c%9b/index.html">2013回望</a>
@@ -220,26 +258,10 @@
                         </section>
                     </li>
                     
-                    <li class="article">
-                        <a class="title" href="/life/2012/01/03/%e5%9b%9e%e5%bf%862011/index.html">回忆2011</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1325525414"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/life/index.html">life</a>
-                            </span>
-                        </section>
-                    </li>
-                    
                 </ul>
                 <section class="page-nav">
                     <a class="prev" href="/tag/life/page3.html">上一页</a>
-                    <span class="nav">4 / 6</span>
+                    <span class="nav">4 / 7</span>
                     <a class="next" href="/tag/life/page5.html">下一页</a>
                 </section>
             </article>

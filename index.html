@@ -47,6 +47,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -80,6 +102,23 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/memories/2026/02/08/2026-02-09-memories-ten-years/index.html">十年</a>
+                        <div class="cover" style="background-image:url(/assets/mem16.jpg);"></div>
+                        <section class="preview content"><p>十年如是，他也会开心得多喝两口吧。</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1770480008"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/dad/index.html">dad</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/memories/index.html">memories</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/life/2026/01/01/latina-2025/index.html">2025年总结：拉丁语学习篇</a>
@@ -230,23 +269,6 @@
                             
                             <span class="tags">
                             <a class="tag" href="/tag/kernel/index.html">kernel</a><a class="tag" href="/tag/pcid/index.html">pcid</a><a class="tag" href="/tag/lwn/index.html">lwn</a><a class="tag" href="/tag/pvm/index.html">pvm</a><a class="tag" href="/tag/linux/index.html">linux</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/readings/2025/02/13/ai-learned/index.html">给非专业人士的AI或大模型介绍</a>
-                        
-                        <section class="preview content"><p>我本人也不是计算机专业毕业，也并非从事模型研发工作，我毕业于电子/无线通信专业，做云计算、基础设施工作，为 AI 研发同事供给计算资源，所以自己也在阅读和学习到底AI在做什么，这里是一个我的读后感的分享。</p>
-</section>
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1739462288"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/ai/index.html">ai</a><a class="tag" href="/tag/network/index.html">network</a><a class="tag" href="/tag/readings/index.html">readings</a>
                             </span>
                         </section>
                     </li>

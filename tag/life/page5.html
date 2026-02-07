@@ -47,6 +47,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -71,10 +93,26 @@
                     
                         <img class="logo" src="/assets/sq2.jpg" />
                         <h1 class="tag">life</h1>
-                        <h2 class="tag-sub">60 篇文章</h2>
+                        <h2 class="tag-sub">61 篇文章</h2>
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/life/2012/01/03/%e5%9b%9e%e5%bf%862011/index.html">回忆2011</a>
+                        
+                        
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1325525414"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a><a class="tag" href="/tag/life/index.html">life</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/life/2011/09/16/%e4%b8%8d%e5%ae%a2%e8%a7%82%e5%9c%b0%e5%af%b9%e6%af%94%e4%b8%80%e4%b8%8b%e7%a7%bb%e5%8a%a8edge%e5%92%8c%e8%81%94%e9%80%9awcdma%e7%9a%84%e4%b8%9a%e5%8a%a1/index.html">不客观地对比一下移动Edge和联通WCDMA的业务</a>
@@ -220,26 +258,10 @@
                         </section>
                     </li>
                     
-                    <li class="article">
-                        <a class="title" href="/life/2011/03/30/%e5%9c%b0%e9%93%81%e4%b8%8e%e5%9c%b0%e9%93%81%e5%88%97%e8%bd%a6%ef%bc%88%e5%8c%97%e4%ba%ac%ef%bc%89/index.html">地铁与地铁列车（北京）</a>
-                        
-                        
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1301451398"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/metro/index.html">metro</a><a class="tag" href="/tag/subway/index.html">subway</a><a class="tag" href="/tag/%e5%8c%97%e4%ba%ac/index.html">北京</a><a class="tag" href="/tag/%e5%9c%b0%e9%93%81/index.html">地铁</a><a class="tag" href="/tag/%e7%94%9f%e6%b4%bb/index.html">生活</a>
-                            </span>
-                        </section>
-                    </li>
-                    
                 </ul>
                 <section class="page-nav">
                     <a class="prev" href="/tag/life/page4.html">上一页</a>
-                    <span class="nav">5 / 6</span>
+                    <span class="nav">5 / 7</span>
                     <a class="next" href="/tag/life/page6.html">下一页</a>
                 </section>
             </article>

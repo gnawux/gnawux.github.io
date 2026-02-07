@@ -47,6 +47,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -71,10 +93,27 @@
                     
                         <img class="logo" src="/assets/sq2.jpg" />
                         <h1 class="tag">memories</h1>
-                        <h2 class="tag-sub">11 篇文章</h2>
+                        <h2 class="tag-sub">12 篇文章</h2>
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/family/2016/02/29/forget-or-not/index.html">不愿回忆，害怕忘记</a>
+                        
+                        <section class="preview content"><p>爸爸离开这么多天了，生活其实没有什么大不同，就好象之前不在他身边的日子一样，好像第二天又会在他身边。只是偶尔神经会被触到，猛然感到一种压在胸口的痛感，久久无法释怀。理智如我，仍然在逃避回忆</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1456679408"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/memories/index.html">memories</a><a class="tag" href="/tag/dad/index.html">dad</a><a class="tag" href="/tag/family/index.html">family</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/family/2016/02/09/bye-to-dad/index.html">送别父亲</a>
