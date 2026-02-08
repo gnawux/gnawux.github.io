@@ -47,28 +47,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="emacs,linux,linuxfb,vim,">
         <meta name="description" content="版聚的另一话题——你是如何退出Emacs的">

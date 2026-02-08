@@ -47,28 +47,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="中信银行,中国银行,信用卡,失窃,工商银行,挂失,民生银行,生活,life,">
         <meta name="description" content="周末，钱包丢了暨四家银行的挂失服务比较【Update20100831】">

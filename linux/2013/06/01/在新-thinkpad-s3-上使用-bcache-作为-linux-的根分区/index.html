@@ -47,28 +47,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="bcache,initramfs,linux,scripts,ubuntu,">
         <meta name="description" content="在新 Thinkpad S3 上使用 bcache 作为 Linux 的根分区">

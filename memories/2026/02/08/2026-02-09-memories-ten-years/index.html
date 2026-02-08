@@ -47,33 +47,11 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="family,dad,life,memories,">
-        <meta name="description" content="十年">
+        <meta name="description" content="十年不惑">
         <meta name="author" content="gnawux">
-        <title>十年</title>
+        <title>十年不惑</title>
     </head>
     <body>
         <article class="container">
@@ -90,12 +68,12 @@
 </header>
 
             <article class="main article">
-                <h1 class="title">十年</h1>
+                <h1 class="title">十年不惑</h1>
                 <section class="info">
                     <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
                     <a class="name" href="/about.me.html">gnawux</a>
                     
-                    <span class="date" data-time="1770480008"><span class="from"></span></span>
+                    <span class="date" data-time="1770566408"><span class="from"></span> 更新</span>
                     
                     <span class="tags"><a class="tag" href="/tag/family/index.html">family</a><a class="tag" href="/tag/dad/index.html">dad</a><a class="tag" href="/tag/life/index.html">life</a><a class="tag" href="/tag/memories/index.html">memories</a></span>
                 </section>
