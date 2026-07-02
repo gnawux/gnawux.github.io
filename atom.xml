@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>https://wangxu.me</id>
-  <updated>2026-02-08T23:44:29+08:00</updated>
+  <updated>2026-07-02T21:29:26+08:00</updated>
   <subtitle>前某创业公司的看门大爷</subtitle>
   <link href="https://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>蒸馏,学习,与知识的自由</title>
+    <updated>2026-07-02T15:26:00+08:00</updated>
+    <id>tag:wangxu.me,2026-07-02:/open-source/2026/07/02/distilling-and-free-knowledge/index.html</id>
+    <link href="https://wangxu.me/open-source/2026/07/02/distilling-and-free-knowledge/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;我期待可以有一种类似 GPL 的法律工具出现，可以保护蒸馏衍生作品的『可蒸馏性』&lt;/p&gt;&#xA;</summary>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>十年不惑</title>
     <updated>2026-02-09T00:00:08+08:00</updated>
@@ -93,16 +103,6 @@
     <id>tag:wangxu.me,2025-09-15:/opensource/2025/09/15/why-oss-landscape/index.html</id>
     <link href="https://wangxu.me/opensource/2025/09/15/why-oss-landscape/index.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;在筹备这次外滩的过程中，我和不同人，从不同角度回答了无数次这个问题，也有很多往事不断回到我的脑海中，在做了这次分享之后，我在论坛现场里就写下了这篇回答的提纲。&lt;/p&gt;&#xA;</summary>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>PCID patchset explained in LWN style</title>
-    <updated>2025-04-07T23:28:08+08:00</updated>
-    <id>tag:wangxu.me,2025-04-07:/linux/2025/04/07/pcid-patchset-explained/index.html</id>
-    <link href="https://wangxu.me/linux/2025/04/07/pcid-patchset-explained/index.html" rel="alternate"></link>
-    <summary type="html">&lt;p&gt;这篇文章并不是来自 LWN 的，只是作者作为 LWN 的老粉丝，很喜欢 Jonathan 的写作风格，忽然觉得这个 patchset 可以这么解释一下，因此做了个拙劣的风格模仿而已，东施效颦，大家见笑哈。&lt;/p&gt;&#xA;</summary>
     <author>
       <name>gnawux</name>
     </author>
