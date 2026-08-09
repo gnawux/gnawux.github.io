@@ -47,6 +47,28 @@
     var root = '';
 </script>
 
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -71,10 +93,27 @@
                     
                         <img class="logo" src="/assets/sq2.jpg" />
                         <h1 class="tag">kubernetes</h1>
-                        <h2 class="tag-sub">3 篇文章</h2>
+                        <h2 class="tag-sub">4 篇文章</h2>
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/open-source/2026/08/09/kata-xolis-kubecon-demo/index.html">个人业余项目: 基于 Kata 和 PVM 的云上沙箱服务 Xolis</a>
+                        <div class="cover" style="background-image:url(/assets/kubecon-jp-2026-demo-on-stage.jpg);"></div>
+                        <section class="preview content"><p>正是在这些开源工作的基础上，我们才可以用一个星期就实现一个 Agent Sandbox 的服务的开发，展示这些社区开源项目里已经成熟且高效的部分，正是我们的这一演示的目的。</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1786290960"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/kata-containers/index.html">kata-containers</a><a class="tag" href="/tag/sandbox/index.html">sandbox</a><a class="tag" href="/tag/virtualization/index.html">virtualization</a><a class="tag" href="/tag/container/index.html">container</a><a class="tag" href="/tag/kubernetes/index.html">kubernetes</a><a class="tag" href="/tag/xolis/index.html">xolis</a><a class="tag" href="/tag/kubecon/index.html">kubecon</a><a class="tag" href="/tag/demo/index.html">demo</a><a class="tag" href="/tag/open-source/index.html">open-source</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/hyper/2016/06/28/frakti/index.html">Kubernetes 新项目 Frakti</a>
