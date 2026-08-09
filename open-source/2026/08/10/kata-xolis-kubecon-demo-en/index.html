@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1">
+<meta name="renderer" content="webkit">
+<meta name="google" value="notranslate">
+<meta name="robots" content="index,follow">
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我有分寸">
+<meta name="twitter:description" content="前某创业公司的看门大爷">
+<meta name="twitter:image:src" content="https://wangxu.me/assets/sq2.jpg">
+
+<meta property="og:url" content="https://wangxu.me">
+<meta property="og:title" content="我有分寸">
+<meta property="og:description" content="前某创业公司的看门大爷">
+<meta property="og:site_name" content="我有分寸">
+<meta property="og:image" content="https://wangxu.me/assets/sq2.jpg">
+<meta property="og:type" content="website">
+<meta name="robots" content="noodp">
+
+<meta itemprop="name" content="我有分寸">
+<meta itemprop="description" content="前某创业公司的看门大爷">
+<meta itemprop="image" content="https://wangxu.me/assets/sq2.jpg">
+
+<link rel="canonical" href="https://wangxu.me">
+
+
+<script defer src="https://cloud.umami.is/script.js" data-website-id="34f69af4-9143-46d1-ae02-736186b22f51"></script>
+
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="apple-itouch-icon" href="/favicon.png">
+<link rel="stylesheet" href="/bundle/index.css">
+<script type="text/javascript">
+    var timeSinceLang = {
+        year: '年前',
+        month: '个月前',
+        day: '天前',
+        hour: '小时前',
+        minute: '分钟前',
+        second: '秒前'
+    };
+    var root = '';
+</script>
+
+<script type="text/javascript">
+    var conn, reloadTimer, connectTimer;
+    var connect = function() {
+        conn = new WebSocket('ws://' + location.host + '/live');
+        conn.onmessage = function(event) {
+            if (event.data === 'change') {
+                if (reloadTimer) clearTimeout(reloadTimer);
+                reloadTimer = setTimeout(function() {
+                    window.location.reload();
+                }, 200);
+            }
+        };
+        conn.onclose = function() {
+            if (connectTimer) clearTimeout(connectTimer);
+            connectTimer = setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+    };
+    connect();
+</script>
+
+
+        <meta name="keywords" content="kata-containers,sandbox,virtualization,container,kubernetes,xolis,kubecon,demo,open-source,">
+        <meta name="description" content="Personal Project: Xolis — A Sandbox Service Built on Kata and PVM">
+        <meta name="author" content="gnawux">
+        <title>Personal Project: Xolis — A Sandbox Service Built on Kata and PVM</title>
+    </head>
+    <body>
+        <article class="container">
+            <header class="header-wrap">
+  <a class="index" href="/">
+    <img class="logo" src="/assets/sq2.jpg" />
+    我有分寸
+  </a>
+  <ul class="menu">
+      <li class="menu-item"><a href="/archive.html">归档</a></li>
+      <li class="menu-item"><a href="/tag.html">标签</a></li>
+      <li class="menu-item"><a href="/atom.xml">订阅</a></li>
+  </ul>
+</header>
+
+            <article class="main article">
+                <h1 class="title">Personal Project: Xolis — A Sandbox Service Built on Kata and PVM</h1>
+                <section class="info">
+                    <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    
+                    <span class="date" data-time="1786293720"><span class="from"></span></span>
+                    
+                    <span class="tags"><a class="tag" href="/tag/kata-containers/index.html">kata-containers</a><a class="tag" href="/tag/sandbox/index.html">sandbox</a><a class="tag" href="/tag/virtualization/index.html">virtualization</a><a class="tag" href="/tag/container/index.html">container</a><a class="tag" href="/tag/kubernetes/index.html">kubernetes</a><a class="tag" href="/tag/xolis/index.html">xolis</a><a class="tag" href="/tag/kubecon/index.html">kubecon</a><a class="tag" href="/tag/demo/index.html">demo</a><a class="tag" href="/tag/open-source/index.html">open-source</a></span>
+                </section>
+                <article class="content"><p><img data-src="/assets/kubecon-jp-2026-demo-on-stage.jpg" src="data:image/gif;base64,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" alt="Yokohama KubeCon Japan 2026 Demo" data-src="/assets/kubecon-jp-2026-demo-on-stage.jpg" /></p>
+
+<p>At KubeCon Japan 2026, Huyu from Japan AI and I demoed a sandbox service built entirely on open-source components — a Kubernetes agent-sandbox CRD running on AWS EKS, with Kata runtime-rs on the nodes to create the sandboxes. The sandbox uses the dragonball rust-vmm built into runtime-rs: shim, runtime, and VMM are three-in-one, with no extra processes needed, which minimizes both management and memory overhead. Thanks to Dragonfly and Nydus, image pull times for the sandbox are also drastically reduced.</p>
+
+<p>The demo is open source on GitHub: <a href="https://github.com/gnawux/xolis">gnawux/xolis</a>. The tag <code>kubecon-japan-2026</code> captures the exact state of the demo. In the week that followed, I added PVM support — with PVM, the Kata VMM can run on any cloud host, such as any x86 EC2 instance on AWS, without requiring nested virtualization. This makes deployment far more flexible and cost-effective. That version is tagged <code>demo-with-pvm</code>. When I have time, I&rsquo;ll continue to make it more production-ready — at the very least, as a usable reference sandbox demo for the Kata community.</p>
+
+<h2>Origin: Making the Community Visible</h2>
+
+<p>The idea started in KubeCon EU in Amsterdam this March, when Huyu and I met at the Kata booth. He came by to ask about Kata and discuss sandbox solutions, and I happened to be there as a retired Kata member. After a good chat about Kata, and with the KubeCon Japan CFP deadline just around the corner, I suggested we submit a joint talk on a Kata-based sandbox. We hit it off immediately. The community tends to love these kinds of collaborative talks — with both community and local flavor, upstream and real-world application, connecting multiple open-source projects and giving the audience something they can actually try themselves — so our proposal was accepted.</p>
+
+<p>In fact, I had been thinking about building something like this for a while. On one hand, e2b had been getting a lot of attention, and it felt somewhat reminiscent of the container cloud services we built years ago. On the other hand, many companies and teams have released their own sandbox projects, and they all benchmark against Kata, claiming to be many times faster or much lighter. But they rarely disclose how their Kata baseline was configured, and judging from their results, I doubt they ever seriously tuned Kata for a fair comparison.</p>
+
+<p>In reality, the dragonball rust-vmm integration has been upstream for a long time — it reached stable status at the end of last year — and it&rsquo;s essentially the same setup Ant Group and Alibaba have been running at scale in production for years. As a single-process, Rust-based sandbox, it was designed from the start for low overhead and easy operations. After extensive testing and validation, this version was officially released on July 21, and I highlighted the milestone on social media on July 29:</p>
+
+<blockquote>
+<p>Samuel and I first started pushing for a full Rust rewrite at the Denver Summit in 2019 — from Bo Yang’s <code>rust-agent</code> to Fupan’s <code>runtime-rs</code>. After we failed to convince CLH to provide a kata-profile, we ended up integrating Alibaba&rsquo;s Dragonball as the built-in <code>rust-vmm</code> in the runtime. Ant Group and Alibaba have actually been running this internally for a long time. This afternoon I&rsquo;ll be demoing an <code>agent sandbox</code> using the kata-4.0 open-source stack — a single all-in-one Rust binary is just so much cleaner.</p>
+</blockquote>
+
+<h2>Key Ingredients: Open Source Foundations, Especially PVM</h2>
+
+<p>The runtime is essential to a sandbox system, but it&rsquo;s only one piece of the puzzle. My Xolis demo is composed entirely of open-source projects — no proprietary components from any large vendor. Broadly, there are two chains:</p>
+
+<ul>
+<li><strong>Runtime Plane:</strong> Kubernetes <em><a href="https://agent-sandbox.sigs.k8s.io/">Agent Sandbox</a></em> defines the sandbox behavior and warm pool. Through standard Kubernetes and containerd, it creates Kata sandboxes. The sandbox VMM runs on top of KVM, and with <a href="https://lpc.events/event/18/contributions/1766/">PVM (Pagetable-based Virtual Machine)</a>, our KVM no longer needs hardware virtualization support.</li>
+<li><strong>Image Plane:</strong> Through the image acceleration project <em><a href="https://nydus.dev/">Nydus</a></em>, we can use the Nydus accelerated image format — which follows the OCI Image Artifact spec — to lazy-load images from a standard registry with very low latency, and accelerate distribution within the cluster via P2P with <em><a href="https://d7y.io/">Dragonfly</a></em>.</li>
+</ul>
+
+<p>Of all of this, I want to highlight PVM in particular. It allows a KVM-based VMM to run without hardware virtualization — no <code>vmx</code> flag required on the CPU. That means Kata can run directly inside any VM, whether it&rsquo;s a pre-8th-generation EC2 instance or a VM on any other public cloud. For virtualization-based strongly-isolated containers, this is a big deal: first, we can run and debug Kata environments in any VM, which makes development much easier; second, it greatly expands where we can deploy, making it as unconstrained as a regular container. That&rsquo;s why I like to call Kata with PVM the complete form of Kata.</p>
+
+<p>The PVM patches have been submitted to LKML, and related papers have been presented at SOSP, the top systems conference, and at LPC, the Linux kernel developers conference. If you&rsquo;re interested in the details, you can read the code and papers directly. Briefly, the principle is — on the framework side, it leverages the <code>pvops</code> framework that Xen introduced and that has been gradually merged into the kernel since 2007, which enables cooperation between the host and guest kernels; on the isolation side, it employs page tables to provide address space isolation between host and guest — the &ldquo;P&rdquo; in PVM stands for PageTable. Building on these existing foundations, PVM adds a paravirtualized KVM driver with minimal changes, enabling KVM virtualization without hardware-assisted via a small kernel patch.</p>
+
+<p>PVM was recently initiated by Lai Jiangshan (laijs), a kernel developer who has been with our team since the hyper.sh days through the Ant era, but it&rsquo;s not his first breakthrough in lightweight virtualization. Previously, he leveraged the live migration feature of VMs to perform a local-to-local migration without copying memory, enabling fast VM startup via a &ldquo;Template&rdquo; technique. That technique was later ported to Kata by another core member of our team, Peng Tao (bergwolf), and has become the standard approach for accelerating Kata cold starts.</p>
+
+<p>It is thanks to all this open-source work — everything except PVM, which is still out-of-tree, are OIF or CNCF community projects — that we were able to build an Agent Sandbox service in just a week. In fact, even if you don&rsquo;t use Kata, open-source contributions like PVM and Nydus may already be powering other teams&rsquo; &ldquo;novel solutions&rdquo; under the hood. Showcasing these mature and efficient pieces from the community is exactly what our demo was about.</p>
+
+<h2>Current Status: What&rsquo;s Done and What&rsquo;s Next</h2>
+
+<p>The project currently includes:</p>
+
+<ul>
+<li>Overall architecture design, documentation, demo materials, and architecture diagrams;</li>
+<li>OpenTofu code for provisioning clusters on AWS, plus code for building AMIs and container images;</li>
+<li>A simple demo service, written mainly in Rust and Python;</li>
+<li>Test code, helper scripts, and necessary patches.</li>
+</ul>
+
+<p><img data-src="/assets/xolis-demo.png" src="data:image/gif;base64,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" alt="Illustration of the demo" data-src="/assets/xolis-demo.png" /></p>
+
+<p>All code and tests were developed with AI agent-assisted programming. The service itself is still fairly simple — scaling it up would require adding a database, multi-AZ deployment, high availability, and so on. Networking is also minimal at the moment; a natural next step would be to enrich it, for example by using Kata&rsquo;s TSI feature to redirect networking from inside the sandbox to outside the container for more fine-grained control. So far only AWS is supported, and only Kubernetes via EKS. For a more complete product, multi-cloud and multi-provider support would be essential.</p>
+
+<h2>Looking Ahead</h2>
+
+<p>For now, my priority is to polish the demo and ensure full integration of the various community features. Many old friends from the Kata upstream helped a lot during development, and I hope this project can evolve into a reference use case or demo project for the community.</p>
+
+<p>Anyway — demo done is success. Before we move on to the next step, let&rsquo;s grab a coffee and take a break.</p>
+</article>
+                <section class="author">
+                    <div class="avatar" style="background-image: url(/assets/sq2.jpg);"></div>
+                    <a class="name" href="/about.me.html">gnawux</a>
+                    <div class="intro">me!#$!@#$@#$wangxu!@#$%^&amp;*()_me</div>
+                </section>
+                <section class="recommend">
+                    
+                    
+                    <section class="nav next">
+                        <div class="head">下篇文章</div>
+                        <a class="link" href="/open-source/2026/08/09/kata-xolis-kubecon-demo/index.html">个人业余项目: 基于 Kata 和 PVM 的云上沙箱服务 Xolis</a>
+                    </section>
+                    
+                </section>
+                
+    <section id="disqus_thread"></section>
+    <script type="text/javascript">
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//gnawux.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+
+
+            </article>
+        </article>
+        <footer class="footer">
+    <span class="copyright">
+        我有分寸 ©
+        <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script>
+    </span>
+    <span class="publish">Powered by <a href="http://www.chole.io/" target="_blank">Ink</a></span>
+</footer>
+
+        <script src="/bundle/index.js"></script>
+    </body>
+</html>
