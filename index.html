@@ -47,28 +47,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -102,6 +80,23 @@
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/open-source/2026/11/13/kubecon-na-2026-community-conf/index.html">从 KubeCon 谈起，聊聊如何参加一次社区技术会议</a>
+                        
+                        <section class="preview content"><p>参加社区技术会议，第一重要的是认识人、建立或加强社区信任，第二是感受、交流与确认趋势，最后才是学习知识，毕竟这些活动相关的文章和视频不难在家里获得。</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1794568440"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/kubecon/index.html">kubecon</a><a class="tag" href="/tag/community/index.html">community</a><a class="tag" href="/tag/open-source/index.html">open-source</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/open-source/2026/08/10/kata-xolis-kubecon-demo-en/index.html">Personal Project: Xolis — A Sandbox Service Built on Kata and PVM</a>
@@ -251,23 +246,6 @@
                             
                             <span class="tags">
                             <a class="tag" href="/tag/kata/index.html">kata</a><a class="tag" href="/tag/architecture/index.html">architecture</a><a class="tag" href="/tag/cloud-native/index.html">cloud-native</a><a class="tag" href="/tag/security/index.html">security</a><a class="tag" href="/tag/workaround/index.html">workaround</a><a class="tag" href="/tag/containers/index.html">containers</a>
-                            </span>
-                        </section>
-                    </li>
-                    
-                    <li class="article">
-                        <a class="title" href="/opensource/2025/09/18/why-oss-foundation/index.html">外滩开源三问之二: 为什么需要开源基金会</a>
-                        <div class="cover" style="background-image:url(/assets/ant-llm-landscape-202509.png);"></div>
-                        <section class="preview content"><p>昊阳是我的好朋友，过去几年来他都是开放基础设施基金会（OIF）的中国或亚洲区负责人，直到今年 OIF 加入 Linux 基金会（LF），他开始操办起了的 LF 中国区，CNCF, LF_AI&amp;Data, PyTorch 这些子基金会也成为了他的领域。他知道我对于当下基金会的价值与意义一直是有质疑的，这次在外滩，刚好我们又聊了一会儿……</p>
-</section>
-                        <section class="info">
-                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
-                            <a class="name" href="/about.me.html">gnawux</a>
-                            
-                            <span class="date" data-time="1758127688"><span class="from"></span></span>
-                            
-                            <span class="tags">
-                            <a class="tag" href="/tag/foundation/index.html">foundation</a><a class="tag" href="/tag/community/index.html">community</a><a class="tag" href="/tag/inclusionconf/index.html">inclusionconf</a><a class="tag" href="/tag/opensource/index.html">opensource</a>
                             </span>
                         </section>
                     </li>

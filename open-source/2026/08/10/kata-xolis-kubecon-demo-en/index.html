@@ -47,28 +47,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="kata-containers,sandbox,virtualization,container,kubernetes,xolis,kubecon,demo,open-source,">
         <meta name="description" content="Personal Project: Xolis — A Sandbox Service Built on Kata and PVM">
@@ -162,8 +140,13 @@
                 </section>
                 <section class="recommend">
                     
+                    <section class="nav prev more">
+                        <div class="head">上篇文章</div>
+                        <a class="link" href="/open-source/2026/11/13/kubecon-na-2026-community-conf/index.html">从 KubeCon 谈起，聊聊如何参加一次社区技术会议</a>
+                    </section>
                     
-                    <section class="nav next">
+                    
+                    <section class="nav next more">
                         <div class="head">下篇文章</div>
                         <a class="link" href="/open-source/2026/08/09/kata-xolis-kubecon-demo/index.html">个人业余项目: 基于 Kata 和 PVM 的云上沙箱服务 Xolis</a>
                     </section>

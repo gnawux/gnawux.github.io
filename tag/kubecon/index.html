@@ -47,28 +47,6 @@
     var root = '';
 </script>
 
-<script type="text/javascript">
-    var conn, reloadTimer, connectTimer;
-    var connect = function() {
-        conn = new WebSocket('ws://' + location.host + '/live');
-        conn.onmessage = function(event) {
-            if (event.data === 'change') {
-                if (reloadTimer) clearTimeout(reloadTimer);
-                reloadTimer = setTimeout(function() {
-                    window.location.reload();
-                }, 200);
-            }
-        };
-        conn.onclose = function() {
-            if (connectTimer) clearTimeout(connectTimer);
-            connectTimer = setTimeout(function() {
-                connect();
-            }, 1000);
-        };
-    };
-    connect();
-</script>
-
 
         <meta name="keywords" content="前某创业公司的看门大爷">
         <meta name="description" content="前某创业公司的看门大爷">
@@ -93,10 +71,27 @@
                     
                         <img class="logo" src="/assets/sq2.jpg" />
                         <h1 class="tag">kubecon</h1>
-                        <h2 class="tag-sub">2 篇文章</h2>
+                        <h2 class="tag-sub">3 篇文章</h2>
                     
                 </header>
                 <ul class="article-list">
+                    
+                    <li class="article">
+                        <a class="title" href="/open-source/2026/11/13/kubecon-na-2026-community-conf/index.html">从 KubeCon 谈起，聊聊如何参加一次社区技术会议</a>
+                        
+                        <section class="preview content"><p>参加社区技术会议，第一重要的是认识人、建立或加强社区信任，第二是感受、交流与确认趋势，最后才是学习知识，毕竟这些活动相关的文章和视频不难在家里获得。</p>
+</section>
+                        <section class="info">
+                            <span class="avatar" style="background-image: url(/assets/sq2.jpg);"></span>
+                            <a class="name" href="/about.me.html">gnawux</a>
+                            
+                            <span class="date" data-time="1794568440"><span class="from"></span></span>
+                            
+                            <span class="tags">
+                            <a class="tag" href="/tag/kubecon/index.html">kubecon</a><a class="tag" href="/tag/community/index.html">community</a><a class="tag" href="/tag/open-source/index.html">open-source</a>
+                            </span>
+                        </section>
+                    </li>
                     
                     <li class="article">
                         <a class="title" href="/open-source/2026/08/10/kata-xolis-kubecon-demo-en/index.html">Personal Project: Xolis — A Sandbox Service Built on Kata and PVM</a>

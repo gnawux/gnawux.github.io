@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
   <title>我有分寸</title>
   <id>https://wangxu.me</id>
-  <updated>2026-08-10T00:42:16+08:00</updated>
+  <updated>2026-11-13T19:17:14+08:00</updated>
   <subtitle>前某创业公司的看门大爷</subtitle>
   <link href="https://wangxu.me"></link>
   <author>
     <name>我有分寸</name>
   </author>
+  <entry>
+    <title>从 KubeCon 谈起，聊聊如何参加一次社区技术会议</title>
+    <updated>2026-11-13T19:14:00+08:00</updated>
+    <id>tag:wangxu.me,2026-11-13:/open-source/2026/11/13/kubecon-na-2026-community-conf/index.html</id>
+    <link href="https://wangxu.me/open-source/2026/11/13/kubecon-na-2026-community-conf/index.html" rel="alternate"></link>
+    <summary type="html">&lt;p&gt;参加社区技术会议，第一重要的是认识人、建立或加强社区信任，第二是感受、交流与确认趋势，最后才是学习知识，毕竟这些活动相关的文章和视频不难在家里获得。&lt;/p&gt;&#xA;</summary>
+    <author>
+      <name>gnawux</name>
+    </author>
+  </entry>
   <entry>
     <title>Personal Project: Xolis — A Sandbox Service Built on Kata and PVM</title>
     <updated>2026-08-10T00:42:00+08:00</updated>
@@ -92,16 +102,6 @@
     <id>tag:wangxu.me,2025-12-14:/containers/2025/12/14/sandbox-principles/index.html</id>
     <link href="https://wangxu.me/containers/2025/12/14/sandbox-principles/index.html" rel="alternate"></link>
     <summary type="html">&lt;p&gt;对待风格，可以随波逐流；对待原则，要坚如磐石。（&lt;em&gt;In matters of style, swim with the current; in matters of principle, stand like a rock.&lt;/em&gt;）&lt;/p&gt;&#xA;</summary>
-    <author>
-      <name>gnawux</name>
-    </author>
-  </entry>
-  <entry>
-    <title>外滩开源三问之二: 为什么需要开源基金会</title>
-    <updated>2025-09-18T00:48:08+08:00</updated>
-    <id>tag:wangxu.me,2025-09-18:/opensource/2025/09/18/why-oss-foundation/index.html</id>
-    <link href="https://wangxu.me/opensource/2025/09/18/why-oss-foundation/index.html" rel="alternate"></link>
-    <summary type="html">&lt;p&gt;昊阳是我的好朋友，过去几年来他都是开放基础设施基金会（OIF）的中国或亚洲区负责人，直到今年 OIF 加入 Linux 基金会（LF），他开始操办起了的 LF 中国区，CNCF, LF_AI&amp;amp;Data, PyTorch 这些子基金会也成为了他的领域。他知道我对于当下基金会的价值与意义一直是有质疑的，这次在外滩，刚好我们又聊了一会儿……&lt;/p&gt;&#xA;</summary>
     <author>
       <name>gnawux</name>
     </author>
