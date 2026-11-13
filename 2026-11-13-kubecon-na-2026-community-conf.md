@@ -7,7 +7,7 @@ categories:
 tags:
     - kubecon
     - community
-cover: 
+cover: /assets/kubecon-na-2026-community-conf.jpg
 preview: "我写这篇小作文，介绍我的这次的参会经历，除了凡尔赛以外，也是想给没太参会过的年轻人和大厂的技术 Leaders 们介绍一下，为什么要参与这样一个成本不菲的开源技术大会，以及可以如何参会。"
 draft: false
 
