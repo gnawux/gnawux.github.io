@@ -9,7 +9,7 @@ tags:
     - sbom
     - community
     - speech
-cover: 
+cover: /assets/coscon26-next-gen-oss.jpg
 preview: "开源是一个创新的基础平台、一个“可以让更多普通人站上去的肩膀”，而下一代开源社区，仍然是也应该是那个催化创新、扩散技术理念、推动协作的人类的社区，只是建立在新的基础之上。"
 draft: false
 
